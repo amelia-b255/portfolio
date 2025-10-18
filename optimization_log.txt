@@ -1,0 +1,6 @@
+=== Starting Image Optimization ===
+This will optimize images for web performance
+
+Optimizing JPG/JPEG files...
+./optimize_images.sh: line 17: syntax error near unexpected token `2'
+./optimize_images.sh: line 17: `for img in *.jpg *.jpeg *.JPG *.JPEG 2>/dev/null; do'
