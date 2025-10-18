@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>My Creative Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Georgia+Pro&family=Dawning+of+a+New+Day&family=Cookie&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica:ital@0;1&display=swap');
+        @import url('https://fonts.cdnfonts.com/css/made-sunflower');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            overflow-x: hidden;
+            max-width: 100vw;
+            width: 100%;
+        }
+
+        body {
+            font-family: 'IM Fell DW Pica', serif;
+            background: linear-gradient(135deg, #f5c1cf 0%, #fceadb 20%, #e8d5ca 40%, #b4d4c3 60%, #f5e6e8 80%, #d4a5a5 100%);
+            color: #5a5a5a;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .doodle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .star {
+            width: 25px;
+            height: 25px;
+            background: #d4a5a5;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            animation: gentleFloat 6s infinite ease-in-out;
+            opacity: 0.5;
+        }
+
+        .star1 { top: 15%; left: 8%; animation-delay: 0s; animation-duration: 7s; }
+        .star2 { top: 25%; right: 12%; animation-delay: 2s; animation-duration: 8s; width: 20px; height: 20px; background: #a8c5b5; }
+        .star3 { bottom: 20%; left: 15%; animation-delay: 4s; animation-duration: 6s; }
+        .star4 { top: 60%; right: 8%; animation-delay: 3s; animation-duration: 9s; width: 30px; height: 30px; }
+        .star5 { top: 45%; left: 5%; animation-delay: 1s; width: 18px; height: 18px; background: #f5c1cf; }
+        .star6 { top: 35%; right: 25%; animation-delay: 1.5s; animation-duration: 7.5s; width: 22px; height: 22px; background: #e8d5ca; }
+        .star7 { top: 70%; left: 30%; animation-delay: 2.5s; animation-duration: 6.5s; width: 28px; height: 28px; background: #f5c1cf; }
+        .star8 { top: 10%; right: 35%; animation-delay: 0.5s; animation-duration: 8.5s; width: 16px; height: 16px; background: #a8c5b5; }
+        .star9 { bottom: 35%; right: 20%; animation-delay: 3.5s; animation-duration: 7s; width: 24px; height: 24px; background: #d4a5a5; }
+        .star10 { top: 50%; left: 20%; animation-delay: 1s; animation-duration: 9s; width: 35px; height: 35px; background: #a8c5b5; }
+        .star11 { bottom: 10%; right: 15%; animation-delay: 2s; animation-duration: 6s; width: 20px; height: 20px; background: #f5c1cf; }
+        .star12 { top: 80%; left: 10%; animation-delay: 4s; animation-duration: 8s; width: 26px; height: 26px; background: #e8d5ca; }
+        .star13 { top: 20%; left: 40%; animation-delay: 3s; animation-duration: 7s; width: 19px; height: 19px; background: #d4a5a5; }
+        .star14 { bottom: 50%; left: 8%; animation-delay: 0.8s; animation-duration: 8.2s; width: 32px; height: 32px; background: #a8c5b5; }
+        .star15 { top: 40%; right: 5%; animation-delay: 2.2s; animation-duration: 7.8s; width: 23px; height: 23px; background: #f5c1cf; }
+        .star16 { top: 12%; left: 25%; animation-delay: 1.8s; animation-duration: 7.2s; width: 21px; height: 21px; background: #a8c5b5; }
+        .star17 { bottom: 25%; right: 30%; animation-delay: 0.3s; animation-duration: 8.8s; width: 27px; height: 27px; background: #f5c1cf; }
+        .star18 { top: 55%; right: 18%; animation-delay: 2.8s; animation-duration: 6.8s; width: 17px; height: 17px; background: #e8d5ca; }
+        .star19 { bottom: 15%; left: 35%; animation-delay: 3.2s; animation-duration: 7.4s; width: 29px; height: 29px; background: #d4a5a5; }
+        .star20 { top: 30%; left: 12%; animation-delay: 1.2s; animation-duration: 8.6s; width: 24px; height: 24px; background: #a8c5b5; }
+        .star21 { bottom: 40%; right: 10%; animation-delay: 4.2s; animation-duration: 6.2s; width: 20px; height: 20px; background: #f5c1cf; }
+        .star22 { top: 65%; left: 22%; animation-delay: 0.7s; animation-duration: 9.2s; width: 33px; height: 33px; background: #a8c5b5; }
+        .star23 { top: 8%; right: 22%; animation-delay: 2.4s; animation-duration: 7.6s; width: 18px; height: 18px; background: #e8d5ca; }
+        .star24 { bottom: 30%; left: 18%; animation-delay: 3.8s; animation-duration: 6.4s; width: 25px; height: 25px; background: #d4a5a5; }
+        .star25 { top: 75%; right: 25%; animation-delay: 1.4s; animation-duration: 8.4s; width: 22px; height: 22px; background: #f5c1cf; }
+        .star26 { top: 42%; left: 32%; animation-delay: 2.6s; animation-duration: 7.2s; width: 19px; height: 19px; background: #a8c5b5; }
+        .star27 { bottom: 18%; right: 8%; animation-delay: 0.9s; animation-duration: 8.9s; width: 26px; height: 26px; background: #e8d5ca; }
+        .star28 { top: 52%; right: 28%; animation-delay: 3.6s; animation-duration: 6.6s; width: 21px; height: 21px; background: #d4a5a5; }
+        .star29 { bottom: 45%; left: 28%; animation-delay: 1.6s; animation-duration: 8.2s; width: 30px; height: 30px; background: #f5c1cf; }
+        .star30 { top: 18%; right: 16%; animation-delay: 2.1s; animation-duration: 7.9s; width: 23px; height: 23px; background: #a8c5b5; }
+
+        @keyframes gentleFloat {
+            0%, 100% { transform: translate(0, 0); opacity: 0.4; }
+            25% { transform: translate(10px, -15px); opacity: 0.6; }
+            50% { transform: translate(-5px, -25px); opacity: 0.5; }
+            75% { transform: translate(-15px, -10px); opacity: 0.7; }
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 25px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(15px);
+            transition: all 0.4s ease;
+        }
+
+        nav.scrolled {
+            padding: 20px 60px;
+            box-shadow: 0 2px 20px rgba(212, 165, 165, 0.1);
+        }
+
+        .logo {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 24px;
+            color: #8b475d;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            font-weight: 400;
+            text-transform: uppercase;
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+
+        .logo:hover {
+            color: #a0617a;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 32px;
+            color: #8b475d;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1001;
+            min-width: 44px;
+            min-height: 44px;
+            flex-shrink: 0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #8b475d;
+            text-decoration: none;
+            font-size: 17px;
+            letter-spacing: 0.5px;
+            position: relative;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-family: Georgia, serif;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: #8b475d;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .music-nav-link {
+            background: linear-gradient(135deg, #f5c1cf, #a8c5b5);
+            padding: 10px 20px !important;
+            border-radius: 20px;
+            font-weight: 600 !important;
+            transition: all 0.3s ease;
+        }
+
+        .music-nav-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(139, 71, 93, 0.3);
+        }
+
+        .music-nav-link::after {
+            display: none !important;
+        }
+
+        .cv-button {
+            padding: 10px 25px;
+            background: #8b475d;
+            color: white !important;
+            text-decoration: none;
+            border-radius: 25px;
+            font-family: Georgia, serif;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            margin-left: 20px;
+            box-shadow: 0 3px 10px rgba(139, 71, 93, 0.3);
+            display: inline-block;
+        }
+
+        .cv-button:hover {
+            background: #a0617a;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(139, 71, 93, 0.5);
+        }
+
+        .cv-button::after {
+            display: none !important;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 40px 60px;
+            position: relative;
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            max-width: 1400px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-content h1 {
+            font-family: 'MADE Sunflower', sans-serif;
+            font-size: 82px;
+            color: #8b475d;
+            margin-bottom: 25px;
+            line-height: 1.2;
+            animation: fadeInUp 1s ease;
+            font-weight: 400;
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            color: #a0617a;
+            margin-bottom: 35px;
+            line-height: 1.7;
+            animation: fadeInUp 1s ease 0.2s backwards;
+            font-family: Georgia, serif;
+            font-style: italic;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 500px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 15px 15px 0px rgba(168, 197, 181, 0.4);
+            overflow: hidden;
+            position: relative;
+            animation: fadeInUp 1s ease 0.4s backwards;
+            transition: all 0.4s ease;
+        }
+
+        .hero-image:hover {
+            transform: translateY(-10px);
+            box-shadow: 20px 20px 0px rgba(168, 197, 181, 0.4);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 45px;
+            background: #8b475d;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            letter-spacing: 2px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            animation: pulseGlow 2s infinite;
+            font-family: 'Archivo Black', sans-serif;
+            text-transform: uppercase;
+            border-radius: 5px;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(139, 71, 93, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(139, 71, 93, 0.6); }
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 40px rgba(139, 71, 93, 0.4);
+        }
+
+        section {
+            padding: 100px 60px;
+            position: relative;
+            z-index: 10;
+        }
+
+        h2 {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 56px;
+            text-align: center;
+            color: #8b475d;
+            margin-bottom: 70px;
+            letter-spacing: 2px;
+            position: relative;
+            text-transform: uppercase;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: #f5c1cf;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .portfolio-item {
+            position: relative;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            box-shadow: 10px 10px 30px rgba(139, 71, 93, 0.1);
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-15px);
+            box-shadow: 15px 15px 40px rgba(139, 71, 93, 0.15);
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .portfolio-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .portfolio-item:hover .portfolio-image img {
+            transform: scale(1.08);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(139, 71, 93, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-overlay-text {
+            color: white;
+            font-size: 24px;
+            font-family: 'Archivo Black', sans-serif;
+            text-align: center;
+            transform: translateY(20px);
+            transition: transform 0.4s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .portfolio-item:hover .portfolio-overlay-text {
+            transform: translateY(0);
+        }
+
+        .portfolio-content {
+            padding: 35px;
+        }
+
+        .portfolio-content h3 {
+            font-family: 'MADE Sunflower', sans-serif;
+            font-size: 26px;
+            color: #8b475d;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .portfolio-content p {
+            color: #a0617a;
+            line-height: 1.7;
+            font-size: 17px;
+            font-style: italic;
+        }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 500px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 15px 15px 0px rgba(245, 193, 207, 0.4);
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .about-image:hover {
+            transform: translateY(-10px);
+            box-shadow: 20px 20px 0px rgba(245, 193, 207, 0.4);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-content {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 10px 10px 30px rgba(139, 71, 93, 0.1);
+        }
+
+        .about-content h3 {
+            font-family: 'MADE Sunflower', sans-serif;
+            font-size: 28px;
+            color: #8b475d;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+            font-weight: 400;
+        }
+
+        .about-content p {
+            margin-bottom: 20px;
+            line-height: 1.9;
+            font-size: 16px;
+            color: #5a5a5a;
+            font-family: Georgia, serif;
+        }
+
+        .instagram-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px 25px;
+            margin-top: 25px;
+            background: #fceadb;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .instagram-link:hover {
+            background: #f5c1cf;
+            transform: translateX(5px);
+        }
+
+        .instagram-icon {
+            font-size: 28px;
+        }
+
+        .instagram-text {
+            font-family: 'MADE Sunflower', sans-serif;
+            font-size: 18px;
+            color: #8b475d;
+            font-weight: 400;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.4s ease;
+            box-shadow: 5px 5px 20px rgba(139, 71, 93, 0.08);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 10px 10px 30px rgba(139, 71, 93, 0.12);
+        }
+
+        .skill-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 25px;
+            background: linear-gradient(135deg, #f5c1cf, #a8c5b5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: white;
+            overflow: hidden;
+        }
+
+        .skill-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .skill-card h3 {
+            font-family: 'MADE Sunflower', sans-serif;
+            font-size: 20px;
+            color: #8b475d;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+            font-weight: 400;
+        }
+
+        .skill-card p {
+            color: #a0617a;
+            line-height: 1.7;
+            font-size: 14px;
+            font-family: Georgia, serif;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .contact-info, .contact-form {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 10px 10px 30px rgba(139, 71, 93, 0.1);
+        }
+
+        .contact-info h3 {
+            font-family: 'MADE Sunflower', sans-serif;
+            font-size: 28px;
+            color: #8b475d;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+            font-weight: 400;
+        }
+
+        .contact-info p {
+            margin-bottom: 20px;
+            line-height: 1.9;
+            font-size: 16px;
+            color: #5a5a5a;
+            font-family: Georgia, serif;
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .contact-info-item img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            color: #8b475d;
+            font-size: 14px;
+            letter-spacing: 1px;
+            font-family: 'Archivo Black', sans-serif;
+            text-transform: uppercase;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 15px;
+            background: #fceadb;
+            border: none;
+            border-radius: 8px;
+            color: #5a5a5a;
+            font-size: 15px;
+            font-family: 'IM Fell DW Pica', serif;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            background: white;
+            box-shadow: 0 0 0 2px #a8c5b5;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 18px;
+            background: #8b475d;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-family: 'MADE Sunflower', sans-serif;
+        }
+
+        button[type="submit"]:hover {
+            background: #a0617a;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(139, 71, 93, 0.3);
+        }
+
+        footer {
+            text-align: center;
+            padding: 50px 40px;
+            background: rgba(255, 255, 255, 0.5);
+            color: #8b475d;
+            font-size: 14px;
+        }
+
+        @media (max-width: 820px) {
+            .menu-toggle {
+                display: block !important;
+            }
+
+            nav {
+                padding: 15px 20px !important;
+            }
+
+            .logo {
+                font-size: 14px !important;
+                letter-spacing: 1px;
+                max-width: calc(100% - 70px);
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 65px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 65px);
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(15px);
+                flex-direction: column;
+                padding: 30px 20px;
+                transition: left 0.3s ease;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+                overflow-y: auto;
+                gap: 0 !important;
+                z-index: 999;
+                align-items: stretch;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                width: 100%;
+                margin: 0;
+                border-bottom: 1px solid rgba(139, 71, 93, 0.1);
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 18px 10px !important;
+                font-size: 16px !important;
+                text-align: center;
+                white-space: normal;
+            }
+
+            .cv-button {
+                margin: 15px 0 0 0 !important;
+                width: 100%;
+                text-align: center;
+                padding: 15px 20px !important;
+            }
+
+            .music-nav-link {
+                margin: 15px 0 !important;
+                text-align: center;
+                padding: 15px 20px !important;
+            }
+
+            .hero {
+                padding: 90px 20px 50px !important;
+                min-height: auto;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr !important;
+                gap: 30px;
+            }
+
+            .hero-content h1 {
+                font-size: 36px !important;
+            }
+
+            .hero-content p {
+                font-size: 16px;
+            }
+
+            .hero-image {
+                height: 300px;
+            }
+
+            h2 {
+                font-size: 28px !important;
+                margin-bottom: 35px;
+            }
+
+            section {
+                padding: 50px 20px !important;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr !important;
+                gap: 30px;
+            }
+
+            .portfolio-image {
+                height: 250px;
+            }
+
+            .portfolio-content {
+                padding: 20px !important;
+            }
+
+            .portfolio-content h3 {
+                font-size: 20px !important;
+            }
+
+            .portfolio-content p {
+                font-size: 14px !important;
+            }
+
+            .about-container,
+            .contact-container {
+                grid-template-columns: 1fr !important;
+                gap: 30px;
+            }
+
+            .about-image {
+                height: 300px;
+            }
+
+            .about-content,
+            .contact-info,
+            .contact-form {
+                padding: 25px !important;
+            }
+
+            .skill-card {
+                padding: 25px !important;
+            }
+
+            .skill-icon {
+                width: 60px !important;
+                height: 60px !important;
+            }
+
+            .cta-button {
+                width: 100%;
+                max-width: 250px;
+                padding: 15px 30px !important;
+                font-size: 14px !important;
+            }
+
+            .star {
+                width: 15px !important;
+                height: 15px !important;
+                opacity: 0.4;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 32px !important;
+            }
+
+            h2 {
+                font-size: 24px !important;
+            }
+
+            .portfolio-content,
+            .about-content,
+            .contact-info,
+            .contact-form {
+                padding: 20px !important;
+            }
+
+            .star {
+                width: 12px !important;
+                height: 12px !important;
+                opacity: 0.35;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="doodle star star1"></div>
+    <div class="doodle star star2"></div>
+    <div class="doodle star star3"></div>
+    <div class="doodle star star4"></div>
+    <div class="doodle star star5"></div>
+    <div class="doodle star star6"></div>
+    <div class="doodle star star7"></div>
+    <div class="doodle star star8"></div>
+    <div class="doodle star star9"></div>
+    <div class="doodle star star10"></div>
+    <div class="doodle star star11"></div>
+    <div class="doodle star star12"></div>
+    <div class="doodle star star13"></div>
+    <div class="doodle star star14"></div>
+    <div class="doodle star star15"></div>
+    <div class="doodle star star16"></div>
+    <div class="doodle star star17"></div>
+    <div class="doodle star star18"></div>
+    <div class="doodle star star19"></div>
+    <div class="doodle star star20"></div>
+    <div class="doodle star star21"></div>
+    <div class="doodle star star22"></div>
+    <div class="doodle star star23"></div>
+    <div class="doodle star star24"></div>
+    <div class="doodle star star25"></div>
+    <div class="doodle star star26"></div>
+    <div class="doodle star star27"></div>
+    <div class="doodle star star28"></div>
+    <div class="doodle star star29"></div>
+    <div class="doodle star star30"></div>
+
+    <nav id="navbar">
+        <div class="logo">AMELIA'S PORTFOLIO</div>
+        <button class="menu-toggle" id="menuToggle" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#portfolio">Work</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="music.html" class="music-nav-link">Music</a></li>
+            <li><a href="Design CV.html" class="cv-button">View Design CV</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Amelia Bobbin</h1>
+                <p>Aspiring graphic designer passionate about combining storytelling and visual design. Skilled in Adobe Creative Suite and creative computing, with experience in branding, digital illustration, and visual communication.</p>
+                <a href="#portfolio" class="cta-button">View My Work</a>
+            </div>
+            <div class="hero-image">
+                <img src="covercovercover.png" alt="Hero Image">
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <h2>Selected Works</h2>
+        <div class="portfolio-grid">
+           <a href="tram.html" style="text-decoration: none; color: inherit; display: block;">
+            <div class="portfolio-item">
+                <div class="portfolio-image">
+                    <img src="cover1.png" alt="Light Rail Safety Campaign">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-overlay-text">VIEW PROJECT</div>
+                    </div>
+                </div>
+                <div class="portfolio-content">
+                    <h3>Light Rail Safety Campaign</h3>
+                    <p>1st Place Winner - CMET Competition 2025</p>
+                </div>
+            </div>
+            </a>
+            <a href="brand.html" style="text-decoration: none; color: inherit; display: block;">
+            <div class="portfolio-item">
+                <div class="portfolio-image">
+                    <img src="logo.png" alt="Brand Identity Design">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-overlay-text">VIEW PROJECT</div>
+                    </div>
+                </div>
+                <div class="portfolio-content">
+                    <h3>Brand Identity Design</h3>
+                    <p>Logo, colour palette &amp; style guide</p>
+                </div>
+            </div>
+            </a>
+            <a href="extras.html" style="text-decoration: none; color: inherit; display: block;">
+            <div class="portfolio-item">
+                <div class="portfolio-image">
+                    <img src="art.png" alt="Drawings and Print Work">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-overlay-text">VIEW PROJECT</div>
+                    </div>
+                </div>
+                <div class="portfolio-content">
+                    <h3>Drawings, Posters &amp; Print</h3>
+                    <p>Selected illustration, poster series, magazine layouts &amp; other design work</p>
+                </div>
+            </div>
+            </a>
+            <a href="shortfilm.html" style="text-decoration: none; color: inherit; display: block;">
+            <div class="portfolio-item">
+                <div class="portfolio-image">
+                    <img src="shortfilm.JPG" alt="Short Film">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-overlay-text">VIEW PROJECT</div>
+                    </div>
+                </div>
+                <div class="portfolio-content">
+                    <h3>Short Film Production</h3>
+                    <p>Blowing Out The Candles — poster &amp; trailer</p>
+                </div>
+            </div>
+            </a>
+            <a href="theatre.html" style="text-decoration: none; color: inherit; display: block;">
+            <div class="portfolio-item">
+                <div class="portfolio-image">
+                    <img src="musical.png" alt="Theatre Production">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-overlay-text">VIEW PROJECT</div>
+                    </div>
+                </div>
+                <div class="portfolio-content">
+                    <h3>Theatre Production Design</h3>
+                    <p>Promotional materials</p>
+                </div>
+            </div>
+            </a>
+          <a href="photography.html" style="text-decoration: none; color: inherit; display: block;">
+            <div class="portfolio-item">
+                <div class="portfolio-image">
+                    <img src="photo.jpeg" alt="Photography">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-overlay-text">VIEW PROJECT</div>
+                    </div>
+                </div>
+                <div class="portfolio-content">
+                    <h3>Photography Series</h3>
+                    <p>1st Place — CMAG Secondary School Art Prize 2023</p>
+                </div>
+            </div>
+            </a>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="about-container">
+            <div class="about-image">
+                <img src="me.JPG" alt="About Me">
+            </div>
+            <div class="about-content">
+                <h3>Hey! I'm Amelia</h3>
+                <p>I'm an aspiring graphic designer from Canberra, currently studying at Dickson College. My journey in design combines my passions for visual storytelling, music, and creative problem-solving.</p>
+                <p>I specialize in graphic design, digital illustration, photography, and media production. My work has been recognized with awards including 1st place in the CMET Light Rail Safety Week Competition (2025) and the Canberra Museum and Gallery Secondary School Art Prize (2023).</p>
+                <p>When I'm not designing, I'm immersed in music (contemporary and classical), theatre production, or exploring new creative computing techniques. I love bringing together different artistic techniques to create meaningful artworks.</p>
+                
+                <a href="https://www.instagram.com/ameliabobbin_/?hl=es" target="_blank" class="instagram-link">
+                    <span class="instagram-icon">📸</span>
+                    <span class="instagram-text">Follow me on Instagram @ameliabobbin_</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>What I Do</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <img src="graphicdesign.png" alt="Graphic Design Icon">
+                </div>
+                <h3>Graphic Design</h3>
+                <p>Adobe Creative Suite (Photoshop, Illustrator, InDesign, After Effects), brand identity, layout &amp; typography</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <img src="illustrate.png" alt="Digital Illustration Icon">
+                </div>
+                <h3>Digital Illustration</h3>
+                <p>Procreate, digital painting, visual composition, photography &amp; image editing</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <img src="camera1.png" alt="Media Production Icon">
+                </div>
+                <h3>Media Production</h3>
+                <p>Video editing, cinematography, screenplay writing &amp; film production</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Get In Touch</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Let's Work Together</h3>
+                <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.</p>
+                <p>Whether you have a question or just want to say hello, feel free to reach out. I'll get back to you as soon as possible.</p>
+                
+                <div class="contact-info-item">
+                    <img src="mail.png" alt="Email">
+                    <p style="margin: 0;"><strong>Email:</strong> amelia.bobbin@gmail.com</p>
+                </div>
+
+                <div class="contact-info-item">
+                    <img src="pin.png" alt="Location">
+                    <p style="margin: 0;"><strong>Location:</strong> Canberra, ACT</p>
+                </div>
+
+                <div class="contact-info-item">
+                    <img src="instagram.png" alt="Instagram">
+                    <p style="margin: 0;"><strong>Instagram:</strong> @ameliabobbin_</p>
+                </div>
+            </div>
+
+            <form class="contact-form" action="https://formspree.io/f/manpvjez" method="POST">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea name="message" required></textarea>
+                </div>
+                <button type="submit">SEND MESSAGE</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Amelia Bobbin</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const menuToggle = document.getElementById('menuToggle');
+            navLinks.classList.toggle('active');
+            menuToggle.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+        }
+
+        document.addEventListener('click', function(event) {
+            const nav = document.getElementById('navbar');
+            const navLinks = document.getElementById('navLinks');
+            const menuToggle = document.getElementById('menuToggle');
+            
+            if (!nav.contains(event.target) && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                menuToggle.textContent = '☰';
+            }
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                const navLinks = document.getElementById('navLinks');
+                const menuToggle = document.getElementById('menuToggle');
+                navLinks.classList.remove('active');
+                menuToggle.textContent = '☰';
+            });
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        let ticking = false;
+        document.addEventListener('mousemove', (e) => {
+            if (window.innerWidth > 820 && !ticking) {
+                window.requestAnimationFrame(() => {
+                    const stars = document.querySelectorAll('.star');
+                    stars.forEach((star, i) => {
+                        const speed = (i + 1) * 0.015;
+                        const x = (e.clientX * speed) / 50;
+                        const y = (e.clientY * speed) / 50;
+                        star.style.transform = `translate(${x}px, ${y}px)`;
+                    });
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+    </script>
+</body>
+</html>

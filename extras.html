@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drawings, Posters &amp; Print - Amelia Bobbin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Cookie&display=swap" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica:ital@0;1&display=swap');
+    @import url('https://fonts.cdnfonts.com/css/made-sunflower');
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    html, body { overflow-x:hidden; max-width:100vw; width:100%; }
+
+    body{
+      font-family:'IM Fell DW Pica', serif;
+      background: linear-gradient(135deg,#f5c1cf 0%,#fceadb 20%,#e8d5ca 40%,#b4d4c3 60%,#f5e6e8 80%,#d4a5a5 100%);
+      color:#5a5a5a; font-weight:400;
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* Decorative Stars (30 — same look/positions as your other pages) */
+    .doodle{ position:fixed; pointer-events:none; z-index:1; }
+    .star{
+      width:25px; height:25px; background:#d4a5a5; opacity:.4;
+      clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+      animation:gentleFloat 6s infinite ease-in-out;
+    }
+    .star1{top:15%;left:8%;animation-delay:0s;animation-duration:7s}
+    .star2{top:25%;right:12%;width:20px;height:20px;background:#a8c5b5;animation-delay:2s;animation-duration:8s}
+    .star3{bottom:20%;left:15%;animation-delay:4s;animation-duration:6s}
+    .star4{top:60%;right:8%;width:30px;height:30px;animation-delay:3s;animation-duration:9s}
+    .star5{top:45%;left:5%;width:18px;height:18px;background:#f5c1cf;animation-delay:1s}
+    .star6{bottom:35%;right:20%;animation-delay:5s;animation-duration:7s}
+    .star7{top:10%;right:25%;width:35px;height:35px;background:#8b475d;opacity:.3;animation-delay:2.5s}
+    .star8{bottom:40%;left:30%;width:22px;height:22px;background:#a8c5b5;animation-delay:4.5s;animation-duration:8s}
+    .star9{top:70%;left:25%;width:28px;height:28px;background:#f5c1cf;animation-delay:1.5s}
+    .star10{top:35%;right:35%;width:16px;height:16px;background:#d4a5a5;animation-delay:3.5s;animation-duration:9s}
+    .star11{bottom:10%;right:15%;width:20px;height:20px;background:#f5c1cf;animation-delay:2s;animation-duration:6s}
+    .star12{top:80%;left:10%;width:26px;height:26px;background:#e8d5ca;animation-delay:4s;animation-duration:8s}
+    .star13{top:20%;left:40%;width:19px;height:19px;background:#d4a5a5;animation-delay:3s;animation-duration:7s}
+    .star14{bottom:50%;left:8%;width:32px;height:32px;background:#a8c5b5;animation-delay:.8s;animation-duration:8.2s}
+    .star15{top:40%;right:5%;width:23px;height:23px;background:#f5c1cf;animation-delay:2.2s;animation-duration:7.8s}
+    .star16{top:12%;left:25%;width:21px;height:21px;background:#a8c5b5;animation-delay:1.8s;animation-duration:7.2s}
+    .star17{bottom:25%;right:30%;width:27px;height:27px;background:#f5c1cf;animation-delay:.3s;animation-duration:8.8s}
+    .star18{top:55%;right:18%;width:17px;height:17px;background:#e8d5ca;animation-delay:2.8s;animation-duration:6.8s}
+    .star19{bottom:15%;left:35%;width:29px;height:29px;background:#d4a5a5;animation-delay:3.2s;animation-duration:7.4s}
+    .star20{top:30%;left:12%;width:24px;height:24px;background:#a8c5b5;animation-delay:1.2s;animation-duration:8.6s}
+    .star21{bottom:40%;right:10%;width:20px;height:20px;background:#f5c1cf;animation-delay:4.2s;animation-duration:6.2s}
+    .star22{top:65%;left:22%;width:33px;height:33px;background:#a8c5b5;animation-delay:.7s;animation-duration:9.2s}
+    .star23{top:8%;right:22%;width:18px;height:18px;background:#e8d5ca;animation-delay:2.4s;animation-duration:7.6s}
+    .star24{bottom:30%;left:18%;width:25px;height:25px;background:#d4a5a5;animation-delay:3.8s;animation-duration:6.4s}
+    .star25{top:75%;right:25%;width:22px;height:22px;background:#f5c1cf;animation-delay:1.4s;animation-duration:8.4s}
+    .star26{top:42%;left:32%;width:19px;height:19px;background:#a8c5b5;animation-delay:2.6s;animation-duration:7.2s}
+    .star27{bottom:18%;right:8%;width:26px;height:26px;background:#e8d5ca;animation-delay:.9s;animation-duration:8.9s}
+    .star28{top:52%;right:28%;width:21px;height:21px;background:#d4a5a5;animation-delay:3.6s;animation-duration:6.6s}
+    .star29{bottom:45%;left:28%;width:30px;height:30px;background:#f5c1cf;animation-delay:1.6s;animation-duration:8.2s}
+    .star30{top:18%;right:16%;width:23px;height:23px;background:#a8c5b5;animation-delay:2.1s;animation-duration:7.9s}
+
+    @keyframes gentleFloat{
+      0%,100%{transform:translate(0,0);opacity:.3}
+      25%{transform:translate(10px,-15px);opacity:.5}
+      50%{transform:translate(-5px,-25px);opacity:.4}
+      75%{transform:translate(-15px,-10px);opacity:.6}
+    }
+
+    /* Navigation */
+    nav{
+      position:fixed; top:0; width:100%;
+      padding:25px 60px;
+      display:flex; justify-content:space-between; align-items:center;
+      z-index:1000; background:rgba(255,255,255,.85); backdrop-filter:blur(15px);
+      transition:all .4s ease;
+    }
+    nav.scrolled{ padding:20px 60px; box-shadow:0 2px 20px rgba(212,165,165,.1); }
+
+    .logo{ font-family:'Archivo Black',sans-serif; font-size:24px; color:#8b475d; letter-spacing:2px; font-weight:400; text-transform:uppercase; }
+    .logo a{ color:#8b475d; text-decoration:none; }
+
+    /* Burger: visible by default (mobile-safe), hidden on wide screens */
+    .menu-toggle{
+      display:block; background:none; border:none; font-size:32px; color:#8b475d;
+      cursor:pointer; padding:10px; z-index:1001; min-width:44px; min-height:44px;
+    }
+    @media (min-width:821px){ .menu-toggle{ display:none; } }
+
+    .nav-links{ display:flex; gap:35px; list-style:none; align-items:center; }
+    .nav-links a{
+      color:#8b475d; text-decoration:none; font-size:17px; letter-spacing:.5px; position:relative;
+      transition:all .3s ease; font-weight:500; font-family:Georgia,serif;
+    }
+    .nav-links a::after{
+      content:''; position:absolute; bottom:-5px; left:50%; transform:translateX(-50%);
+      width:0; height:2px; background:#8b475d; transition:width .3s ease;
+    }
+    .nav-links a:hover::after{ width:100%; }
+
+    .music-nav-link{
+      background:linear-gradient(135deg,#f5c1cf,#a8c5b5);
+      padding:10px 20px !important; border-radius:20px; font-weight:600 !important; transition:all .3s ease;
+    }
+    .music-nav-link::after{ display:none !important; }
+
+    /* Hero */
+    .hero{ min-height:60vh; display:flex; align-items:center; justify-content:center; text-align:center; padding:150px 40px 100px; }
+    .hero-content h1{ font-family:'MADE Sunflower',sans-serif; font-size:72px; color:#8b475d; margin-bottom:20px; line-height:1.2; font-weight:400; }
+    .hero-content p{ font-size:20px; color:#a0617a; line-height:1.7; max-width:800px; margin:0 auto; font-family:Georgia,serif; font-style:italic; font-weight:400; letter-spacing:.3px; }
+
+    /* Sections */
+    section{ padding:80px 60px; position:relative; z-index:10; } /* content above stars */
+    h2{
+      font-family:'Archivo Black',sans-serif; font-size:48px; text-align:center; color:#8b475d;
+      margin-bottom:50px; letter-spacing:2px; position:relative; text-transform:uppercase;
+    }
+    h2::after{ content:''; position:absolute; bottom:-15px; left:50%; transform:translateX(-50%); width:100px; height:3px; background:#f5c1cf; }
+    h3{ font-family:'MADE Sunflower',sans-serif; font-size:32px; color:#8b475d; margin-bottom:40px; text-align:center; font-weight:400; }
+
+    /* Grids */
+    .work-grid-2{ display:grid; grid-template-columns:repeat(2,1fr); gap:40px; max-width:1400px; margin:0 auto 80px; }
+    .work-grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:40px; max-width:1400px; margin:0 auto 80px; }
+
+    .work-item{
+      background:white; border-radius:20px; overflow:hidden;
+      box-shadow:10px 10px 30px rgba(139,71,93,.1); transition:all .4s ease;
+    }
+    .work-item:hover{ transform:translateY(-10px); box-shadow:15px 15px 40px rgba(139,71,93,.15); }
+
+    .work-image{
+      width:100%; min-height:400px; overflow:hidden; position:relative; background:#f5e6e8;
+      display:flex; align-items:center; justify-content:center; padding:20px;
+    }
+    .work-image img{ max-width:100%; max-height:100%; object-fit:contain; transition: transform .5s ease; }
+    .work-item:hover .work-image img{ transform:scale(1.05); }
+
+    .work-caption{ padding:25px; text-align:center; }
+    .work-caption h4{ font-family:'MADE Sunflower',sans-serif; font-size:22px; color:#8b475d; margin-bottom:10px; font-weight:400; }
+    .work-caption p{ font-family:Georgia,serif; font-size:16px; color:#a0617a; font-style:italic; line-height:1.6; }
+
+    /* Magazine layout */
+    .magazine-grid{ display:grid; grid-template-columns:1fr 1fr; grid-template-rows:auto auto; gap:40px; max-width:1400px; margin:0 auto 80px; }
+    .magazine-cover{ grid-row:1 / 3; }
+    .magazine-spread{ grid-column:2; }
+    .work-image-landscape{ aspect-ratio:3/2; }
+    .magazine-spread .work-image{ min-height:450px !important; padding:5px !important; }
+    .magazine-spread .work-image img{ transform:rotate(90deg); width:140% !important; height:140% !important; max-width:140% !important; max-height:140% !important; object-fit:contain !important; }
+
+    /* Illustration layout */
+    .illustration-grid{ display:grid; grid-template-columns:1fr 1fr; grid-template-rows:auto auto; gap:40px; max-width:1400px; margin:0 auto 80px; }
+    .illustration-grid .work-item:nth-child(1){ grid-column:1; grid-row:1; }
+    .illustration-grid .work-item:nth-child(2){ grid-column:2; grid-row:1 / 3; }
+    .illustration-grid .work-item:nth-child(3){ grid-column:1; grid-row:2; }
+    .illustration-landscape .work-image{ min-height:300px !important; padding:5px !important; aspect-ratio:3/2; }
+    .illustration-landscape .work-image img{ transform:rotate(90deg) !important; width:140% !important; height:140% !important; max-width:140% !important; max-height:140% !important; object-fit:contain !important; }
+
+    /* Icons */
+    .icons-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:30px; max-width:1400px; margin:0 auto; }
+    .icon-item{
+      background:white; border-radius:15px; padding:30px; display:flex; align-items:center; justify-content:center;
+      min-height:200px; box-shadow:10px 10px 30px rgba(139,71,93,.1); transition:all .4s ease;
+    }
+    .icon-item:hover{ transform:translateY(-10px); box-shadow:15px 15px 40px rgba(139,71,93,.15); }
+    .icon-item img{ max-width:100%; max-height:150px; object-fit:contain; }
+
+    /* Specials */
+    .full-width-item{ grid-column:1 / -1; max-width:1000px; margin:0 auto; }
+
+    /* Footer & back button */
+    footer{ text-align:center; padding:50px 40px; background:rgba(255,255,255,.5); color:#8b475d; font-size:14px; letter-spacing:.5px; }
+    .back-button{ display:inline-block; padding:15px 35px; background:#8b475d; color:#fff; text-decoration:none; font-size:16px; letter-spacing:1px; transition:all .4s ease; font-family:'Archivo Black',sans-serif; text-transform:uppercase; border-radius:5px; box-shadow:0 3px 10px rgba(139,71,93,.3); margin-top:40px; }
+    .back-button:hover{ transform:translateY(-3px); box-shadow:0 8px 25px rgba(139,71,93,.4); background:#a0617a; }
+    .back-button-container{ text-align:center; margin-top:60px; }
+
+    /* Mobile tweaks — layout + smaller icons, tidy paddings, burger menu panel */
+    @media (max-width: 968px){
+      .hero-content h1{ font-size:48px; }
+      h2{ font-size:36px; } h3{ font-size:26px; }
+      nav{ padding:15px 20px !important; }
+      section{ padding:60px 30px; }
+
+      /* mobile menu panel */
+      .nav-links{
+        position:fixed; top:65px; left:-100%; width:100%; height:calc(100vh - 65px);
+        background:rgba(255,255,255,.98); backdrop-filter:blur(15px);
+        flex-direction:column; padding:30px 20px; transition:left .3s ease;
+        box-shadow:0 4px 20px rgba(0,0,0,.1); overflow-y:auto; gap:0 !important; z-index:999; align-items:stretch;
+      }
+      .nav-links.active{ left:0; }
+      .nav-links li{ width:100%; margin:0; border-bottom:1px solid rgba(139,71,93,.1); }
+      .nav-links a{ display:block; padding:18px 10px !important; font-size:16px !important; text-align:center; white-space:normal; }
+      .music-nav-link{ margin:15px 0 !important; text-align:center; padding:15px 20px !important; }
+
+      /* grids collapse nicely; images not too tall */
+      .work-grid-2, .work-grid-3{ grid-template-columns:1fr; gap:30px; }
+      .work-image{ min-height:260px; padding:14px; }
+
+      .magazine-grid{ grid-template-columns:1fr; grid-template-rows:auto; }
+      .magazine-cover{ grid-row:auto; }
+      .magazine-spread{ grid-column:auto; }
+      .magazine-spread .work-image{ min-height:320px !important; }
+
+      .illustration-grid{ grid-template-columns:1fr; grid-template-rows:auto; }
+      .illustration-grid .work-item:nth-child(1),
+      .illustration-grid .work-item:nth-child(2),
+      .illustration-grid .work-item:nth-child(3){ grid-column:1; grid-row:auto; }
+
+      /* smaller icons */
+      .icons-grid{ grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:20px; }
+      .icon-item{ min-height:140px; padding:18px; }
+      .icon-item img{ max-height:90px; }
+
+      /* stars slightly smaller so they don’t crowd */
+      .star{ width:15px !important; height:15px !important; opacity:.4; }
+    }
+
+    @media (max-width:480px){
+      .hero-content h1{ font-size:32px !important; }
+      h2{ font-size:24px !important; }
+      section{ padding:50px 20px !important; }
+      .work-image{ min-height:220px; padding:12px; }
+
+      .icons-grid{ grid-template-columns:repeat(auto-fit,minmax(100px,1fr)); }
+      .icon-item{ min-height:120px; padding:14px; }
+      .icon-item img{ max-height:70px; }
+
+      .star{ width:12px !important; height:12px !important; opacity:.35; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Decorative Stars (30) -->
+  <div class="doodle star star1"></div>
+  <div class="doodle star star2"></div>
+  <div class="doodle star star3"></div>
+  <div class="doodle star star4"></div>
+  <div class="doodle star star5"></div>
+  <div class="doodle star star6"></div>
+  <div class="doodle star star7"></div>
+  <div class="doodle star star8"></div>
+  <div class="doodle star star9"></div>
+  <div class="doodle star star10"></div>
+  <div class="doodle star star11"></div>
+  <div class="doodle star star12"></div>
+  <div class="doodle star star13"></div>
+  <div class="doodle star star14"></div>
+  <div class="doodle star star15"></div>
+  <div class="doodle star star16"></div>
+  <div class="doodle star star17"></div>
+  <div class="doodle star star18"></div>
+  <div class="doodle star star19"></div>
+  <div class="doodle star star20"></div>
+  <div class="doodle star star21"></div>
+  <div class="doodle star star22"></div>
+  <div class="doodle star star23"></div>
+  <div class="doodle star star24"></div>
+  <div class="doodle star star25"></div>
+  <div class="doodle star star26"></div>
+  <div class="doodle star star27"></div>
+  <div class="doodle star star28"></div>
+  <div class="doodle star star29"></div>
+  <div class="doodle star star30"></div>
+
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="logo"><a href="Graphic Design.html">AMELIA'S PORTFOLIO</a></div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="Graphic Design.html#home">Home</a></li>
+      <li><a href="Graphic Design.html#portfolio">Work</a></li>
+      <li><a href="Graphic Design.html#about">About</a></li>
+      <li><a href="Graphic Design.html#contact">Contact</a></li>
+      <li><a href="music.html" class="music-nav-link">Music</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Drawings, Posters &amp; Print</h1>
+      <p>A collection of illustration work, magazine design, packaging concepts, and digital artwork.</p>
+    </div>
+  </section>
+
+  <!-- Magazine Project -->
+  <section>
+    <h2>Magazine Design</h2>
+    <h3>Augustine Magazine</h3>
+    <div class="magazine-grid">
+      <div class="work-item magazine-cover">
+        <div class="work-image">
+          <img src="magazine.png" alt="Augustine Magazine Cover">
+        </div>
+        <div class="work-caption">
+          <h4>Cover Design</h4>
+          <p>Magazine cover</p>
+        </div>
+      </div>
+      <div class="work-item magazine-spread">
+        <div class="work-image work-image-landscape">
+          <img src="mspread.png" alt="We Never Go Out of Style Spread" style="transform: rotate(90deg);">
+        </div>
+        <div class="work-caption">
+          <h4>"We Never Go Out of Style"</h4>
+          <p>Magazine spread</p>
+        </div>
+      </div>
+      <div class="work-item magazine-spread">
+        <div class="work-image work-image-landscape">
+          <img src="drafts.png" alt="Magazine Spread 2" style="transform:none !important;width:100% !important;height:100% !important;max-width:100% !important;max-height:100% !important;">
+        </div>
+        <div class="work-caption">
+          <h4>Magazine Drafts</h4>
+          <p>Magazine layout design</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Illustration -->
+  <section>
+    <h2>Illustration</h2>
+    <div class="illustration-grid">
+      <div class="work-item illustration-landscape">
+        <div class="work-image">
+          <img src="gettingready1.png" alt="Getting Ready - Four Girls">
+        </div>
+        <div class="work-caption">
+          <h4>"Getting Ready"</h4>
+          <p>Digital illustration</p>
+        </div>
+      </div>
+      <div class="work-item illustration-portrait">
+        <div class="work-image">
+          <img src="seadragon.png" alt="Summer Sea Dragon">
+        </div>
+        <div class="work-caption">
+          <h4>"Summer Sea Dragon"</h4>
+          <p>Leafy sea dragon mermaid artwork</p>
+        </div>
+      </div>
+      <div class="work-item illustration-portrait">
+        <div class="work-image">
+          <img src="aworldalone.png" alt="Additional Illustration">
+        </div>
+        <div class="work-caption">
+          <h4>A World Alone</h4>
+          <p>Digital illustration</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Packaging Design -->
+  <section>
+    <h2>Packaging Design</h2>
+    <h3>Sugar Blooms</h3>
+    <div class="work-grid-2">
+      <div class="work-item">
+        <div class="work-image">
+          <img src="packagephoto.png" alt="Sugar Blooms Packaging 3D">
+        </div>
+        <div class="work-caption">
+          <h4>Physical Mockup</h4>
+          <p>3D packaging design for "Sugar Blooms" confectionery brand</p>
+        </div>
+      </div>
+      <div class="work-item">
+        <div class="work-image">
+          <img src="dieline.png" alt="Sugar Blooms Dieline">
+        </div>
+        <div class="work-caption">
+          <h4>Flat Dieline</h4>
+          <p>Complete packaging dieline</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Digital Camera Drawings -->
+  <section>
+    <h2>Digital Camera Series</h2>
+    <h3>"Summer Through a Lens"</h3>
+    <div class="work-grid-2">
+      <div class="work-item">
+        <div class="work-image">
+          <img src="Butterfly_Kiss.png" alt="Butterfly Kiss">
+        </div>
+        <div class="work-caption">
+          <h4>"Butterfly Kiss"</h4>
+          <p>Digital camera illustration with native Australian flowers</p>
+        </div>
+      </div>
+      <div class="work-item">
+        <div class="work-image">
+          <img src="summerlens.png" alt="A Day Out">
+        </div>
+        <div class="work-caption">
+          <h4>"A Day Out"</h4>
+          <p>Camera capturing a summer moment</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- T-Shirt Designs -->
+  <section>
+    <h2>T-Shirt Designs</h2>
+    <div class="work-grid-2">
+      <div class="work-item">
+        <div class="work-image">
+          <img src="tshirtdesign.png" alt="Good Witch Design">
+        </div>
+        <div class="work-caption">
+          <h4>"Good Witch" - Design</h4>
+          <p>Collection of pink icons asking "Are you a good witch, or a bad witch?"</p>
+        </div>
+      </div>
+      <div class="work-item">
+        <div class="work-image">
+          <img src="tshirtphoto.jpg" alt="Good Witch T-Shirt">
+        </div>
+        <div class="work-caption">
+          <h4>"Good Witch" - Physical Product</h4>
+          <p>Design printed on white t-shirt</p>
+        </div>
+      </div>
+      <div class="work-item">
+        <div class="work-image">
+          <img src="koifish.png" alt="Koi Fish Design">
+        </div>
+        <div class="work-caption">
+          <h4>Koi Fish - Design</h4>
+          <p>Koi fish illustration </p>
+        </div>
+      </div>
+      <div class="work-item">
+        <div class="work-image">
+          <img src="fishshirt.jpg" alt="Koi Fish T-Shirt">
+        </div>
+        <div class="work-caption">
+          <h4>Koi Fish - Physical Product</h4>
+          <p>Design printed on white t-shirt</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rebus -->
+  <section>
+    <h2>Rebus</h2>
+    <div class="work-grid-2">
+      <div class="work-item full-width-item">
+        <div class="work-image">
+          <img src="milkteeth.png" alt="Milk Teeth Rebus">
+        </div>
+        <div class="work-caption">
+          <h4>"Milk Teeth"</h4>
+          <p>Visual word puzzle combining milk carton and tooth illustration</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Icons -->
+  <section>
+    <h2>Icon Collection</h2>
+    <div class="icons-grid">
+      <div class="icon-item"><img src="2koifish.png" alt="Koi Fish Icon"></div>
+      <div class="icon-item"><img src="stargirl1.png" alt="Character Icon"></div>
+      <div class="icon-item"><img src="cake.png" alt="Cake Icon"></div>
+      <div class="icon-item"><img src="strawberry.png" alt="Strawberry Icon"></div>
+      <div class="icon-item"><img src="icecream.png" alt="Ice Cream Icon"></div>
+      <div class="icon-item"><img src="orchid.png" alt="Orchid Icon"></div>
+    </div>
+
+    <div class="back-button-container">
+      <a href="Graphic Design.html#portfolio" class="back-button">← Back to Portfolio</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Amelia Bobbin</p>
+  </footer>
+
+  <script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) navbar.classList.add('scrolled');
+      else navbar.classList.remove('scrolled');
+    });
+
+    // Burger menu
+    const navLinks = document.getElementById('navLinks');
+    const menuToggle = document.getElementById('menuToggle');
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      menuToggle.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+    });
+    document.addEventListener('click', (e) => {
+      const nav = document.getElementById('navbar');
+      if (!nav.contains(e.target) && navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.textContent = '☰';
+      }
+    });
+    document.querySelectorAll('.nav-links a').forEach(a=>{
+      a.addEventListener('click',()=>{
+        navLinks.classList.remove('active');
+        menuToggle.textContent='☰';
+      });
+    });
+
+    // Parallax stars — desktop only (prevents mobile jank)
+    let ticking = false;
+    document.addEventListener('mousemove', (e) => {
+      if (window.innerWidth <= 820 || ticking) return;
+      window.requestAnimationFrame(() => {
+        document.querySelectorAll('.star').forEach((star, i) => {
+          const speed = (i + 1) * 0.015;
+          const x = (e.clientX * speed) / 50;
+          const y = (e.clientY * speed) / 50;
+          star.style.transform = `translate(${x}px, ${y}px)`;
+        });
+        ticking = false;
+      });
+      ticking = true;
+    });
+  </script>
+</body>
+</html>
