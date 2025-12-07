@@ -38,6 +38,26 @@
     .star8{bottom:40%;left:30%;animation-delay:4.5s;width:22px;height:22px;background:#a8c5b5;animation-duration:8s}
     .star9{top:70%;left:25%;animation-delay:1.5s;width:28px;height:28px;background:#f5c1cf}
     .star10{top:35%;right:35%;animation-delay:3.5s;width:16px;height:16px;background:#d4a5a5;animation-duration:9s}
+    .star11{bottom:10%;right:15%;width:20px;height:20px;background:#f5c1cf;animation-delay:2s;animation-duration:6s}
+    .star12{top:80%;left:10%;width:26px;height:26px;background:#e8d5ca;animation-delay:4s;animation-duration:8s}
+    .star13{top:20%;left:40%;width:19px;height:19px;background:#d4a5a5;animation-delay:3s;animation-duration:7s}
+    .star14{bottom:50%;left:8%;width:32px;height:32px;background:#a8c5b5;animation-delay:.8s;animation-duration:8.2s}
+    .star15{top:40%;right:5%;width:23px;height:23px;background:#f5c1cf;animation-delay:2.2s;animation-duration:7.8s}
+    .star16{top:12%;left:25%;width:21px;height:21px;background:#a8c5b5;animation-delay:1.8s;animation-duration:7.2s}
+    .star17{bottom:25%;right:30%;width:27px;height:27px;background:#f5c1cf;animation-delay:.3s;animation-duration:8.8s}
+    .star18{top:55%;right:18%;width:17px;height:17px;background:#e8d5ca;animation-delay:2.8s;animation-duration:6.8s}
+    .star19{bottom:15%;left:35%;width:29px;height:29px;background:#d4a5a5;animation-delay:3.2s;animation-duration:7.4s}
+    .star20{top:30%;left:12%;width:24px;height:24px;background:#a8c5b5;animation-delay:1.2s;animation-duration:8.6s}
+    .star21{bottom:40%;right:10%;width:20px;height:20px;background:#f5c1cf;animation-delay:4.2s;animation-duration:6.2s}
+    .star22{top:65%;left:22%;width:33px;height:33px;background:#a8c5b5;animation-delay:.7s;animation-duration:9.2s}
+    .star23{top:8%;right:22%;width:18px;height:18px;background:#e8d5ca;animation-delay:2.4s;animation-duration:7.6s}
+    .star24{bottom:30%;left:18%;width:25px;height:25px;background:#d4a5a5;animation-delay:3.8s;animation-duration:6.4s}
+    .star25{top:75%;right:25%;width:22px;height:22px;background:#f5c1cf;animation-delay:1.4s;animation-duration:8.4s}
+    .star26{top:42%;left:32%;width:19px;height:19px;background:#a8c5b5;animation-delay:2.6s;animation-duration:7.2s}
+    .star27{bottom:18%;right:8%;width:26px;height:26px;background:#e8d5ca;animation-delay:.9s;animation-duration:8.9s}
+    .star28{top:52%;right:28%;width:21px;height:21px;background:#d4a5a5;animation-delay:3.6s;animation-duration:6.6s}
+    .star29{bottom:45%;left:28%;width:30px;height:30px;background:#f5c1cf;animation-delay:1.6s;animation-duration:8.2s}
+    .star30{top:18%;right:16%;width:23px;height:23px;background:#a8c5b5;animation-delay:2.1s;animation-duration:7.9s}
 
     @keyframes gentleFloat {
       0%, 100% { transform: translate(0, 0); opacity: 0.3; }
@@ -90,7 +110,7 @@
       padding: 150px 40px 100px;
     }
     .hero-content h1 {
-      font-family: "MADE Sunflower", sans-serif; font-size: 72px; color: #8b475d;
+      font-family: "MADE Sunflower", sans-serif; font-size: 72px; color: #8b475d; font-weight: 400;
       margin-bottom: 20px; line-height: 1.2; animation: fadeInUp 1s ease; font-weight: 400;
     }
     .hero-content p {
@@ -201,6 +221,26 @@
   <div class="doodle star star8"></div>
   <div class="doodle star star9"></div>
   <div class="doodle star star10"></div>
+  <div class="doodle star star11"></div>
+  <div class="doodle star star12"></div>
+  <div class="doodle star star13"></div>
+  <div class="doodle star star14"></div>
+  <div class="doodle star star15"></div>
+  <div class="doodle star star16"></div>
+  <div class="doodle star star17"></div>
+  <div class="doodle star star18"></div>
+  <div class="doodle star star19"></div>
+  <div class="doodle star star20"></div>
+  <div class="doodle star star21"></div>
+  <div class="doodle star star22"></div>
+  <div class="doodle star star23"></div>
+  <div class="doodle star star24"></div>
+  <div class="doodle star star25"></div>
+  <div class="doodle star star26"></div>
+  <div class="doodle star star27"></div>
+  <div class="doodle star star28"></div>
+  <div class="doodle star star29"></div>
+  <div class="doodle star star30"></div>
 
   <!-- Navigation -->
   <nav id="navbar">
@@ -220,6 +260,7 @@
     <div class="hero-content">
       <h1>Blowing Out The Candles</h1>
       <p>Do you trust the voices in your head?.</p>
+      <span style="font-size:15px; color:#8b475d; font-style:italic; margin-top:20px; display:block; letter-spacing:1px; animation:fadeInUp 1s ease 0.5s backwards;">2025</span>
     </div>
   </section>
 
@@ -256,29 +297,43 @@
     <h2>Watch The Trailer</h2>
     <div class="trailer-container">
       <div class="trailer-video">
-        <!-- Desktop (unchanged) -->
-        <iframe
-          class="trailer-iframe"
-          src="filmtrailer.mp4"
-          frameborder="0"
-          allow="fullscreen"
-          allowfullscreen
-        ></iframe>
-
-        <!-- Mobile: native controls include the small fullscreen icon -->
         <video
-          id="mobileTrailer"
-          class="trailer-video-mobile"
-          src="shortfilm.mp4"
           controls
           playsinline
           webkit-playsinline
           preload="metadata"
-        ></video>
+          style="width:100%; max-width:900px; border-radius:15px; box-shadow:0 10px 40px rgba(139,71,93,0.2);"
+        >
+          <source src="filmtrailer.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
       </div>
       <div class="trailer-caption">
         <h3>Official Trailer</h3>
         <p>Experience a preview of "Blowing Out The Candles"</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Full Film -->
+  <section>
+    <h2>Watch The Full Film</h2>
+    <div class="trailer-container">
+      <div class="trailer-video">
+        <video
+          controls
+          playsinline
+          webkit-playsinline
+          preload="metadata"
+          style="width:100%; max-width:900px; border-radius:15px; box-shadow:0 10px 40px rgba(139,71,93,0.2);"
+        >
+          <source src="film.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="trailer-caption">
+        <h3>"Blowing Out The Candles"</h3>
+        <p>Full film — 7 minutes</p>
       </div>
     </div>
   </section>

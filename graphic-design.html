@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="viewport" content="width=device-width, initial-scale=5.0">
     <title>My Creative Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Georgia+Pro&family=Dawning+of+a+New+Day&family=Cookie&display=swap" rel="stylesheet">
     <style>
@@ -30,58 +30,60 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        .doodle {
-            position: fixed;
-            pointer-events: none;
-            z-index: 1;
-        }
+        /* Decorative Stars – shared across pages */
+.doodle {
+    position: fixed;
+    pointer-events: none;
+    z-index: 1;
+}
 
-        .star {
-            width: 25px;
-            height: 25px;
-            background: #d4a5a5;
-            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-            animation: gentleFloat 6s infinite ease-in-out;
-            opacity: 0.5;
-        }
+.star {
+    width: 25px;
+    height: 25px;
+    background: #d4a5a5;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    animation: gentleFloat 6s infinite ease-in-out;
+    opacity: 0.5;
+}
 
-        .star1 { top: 15%; left: 8%; animation-delay: 0s; animation-duration: 7s; }
-        .star2 { top: 25%; right: 12%; animation-delay: 2s; animation-duration: 8s; width: 20px; height: 20px; background: #a8c5b5; }
-        .star3 { bottom: 20%; left: 15%; animation-delay: 4s; animation-duration: 6s; }
-        .star4 { top: 60%; right: 8%; animation-delay: 3s; animation-duration: 9s; width: 30px; height: 30px; }
-        .star5 { top: 45%; left: 5%; animation-delay: 1s; width: 18px; height: 18px; background: #f5c1cf; }
-        .star6 { top: 35%; right: 25%; animation-delay: 1.5s; animation-duration: 7.5s; width: 22px; height: 22px; background: #e8d5ca; }
-        .star7 { top: 70%; left: 30%; animation-delay: 2.5s; animation-duration: 6.5s; width: 28px; height: 28px; background: #f5c1cf; }
-        .star8 { top: 10%; right: 35%; animation-delay: 0.5s; animation-duration: 8.5s; width: 16px; height: 16px; background: #a8c5b5; }
-        .star9 { bottom: 35%; right: 20%; animation-delay: 3.5s; animation-duration: 7s; width: 24px; height: 24px; background: #d4a5a5; }
-        .star10 { top: 50%; left: 20%; animation-delay: 1s; animation-duration: 9s; width: 35px; height: 35px; background: #a8c5b5; }
-        .star11 { bottom: 10%; right: 15%; animation-delay: 2s; animation-duration: 6s; width: 20px; height: 20px; background: #f5c1cf; }
-        .star12 { top: 80%; left: 10%; animation-delay: 4s; animation-duration: 8s; width: 26px; height: 26px; background: #e8d5ca; }
-        .star13 { top: 20%; left: 40%; animation-delay: 3s; animation-duration: 7s; width: 19px; height: 19px; background: #d4a5a5; }
-        .star14 { bottom: 50%; left: 8%; animation-delay: 0.8s; animation-duration: 8.2s; width: 32px; height: 32px; background: #a8c5b5; }
-        .star15 { top: 40%; right: 5%; animation-delay: 2.2s; animation-duration: 7.8s; width: 23px; height: 23px; background: #f5c1cf; }
-        .star16 { top: 12%; left: 25%; animation-delay: 1.8s; animation-duration: 7.2s; width: 21px; height: 21px; background: #a8c5b5; }
-        .star17 { bottom: 25%; right: 30%; animation-delay: 0.3s; animation-duration: 8.8s; width: 27px; height: 27px; background: #f5c1cf; }
-        .star18 { top: 55%; right: 18%; animation-delay: 2.8s; animation-duration: 6.8s; width: 17px; height: 17px; background: #e8d5ca; }
-        .star19 { bottom: 15%; left: 35%; animation-delay: 3.2s; animation-duration: 7.4s; width: 29px; height: 29px; background: #d4a5a5; }
-        .star20 { top: 30%; left: 12%; animation-delay: 1.2s; animation-duration: 8.6s; width: 24px; height: 24px; background: #a8c5b5; }
-        .star21 { bottom: 40%; right: 10%; animation-delay: 4.2s; animation-duration: 6.2s; width: 20px; height: 20px; background: #f5c1cf; }
-        .star22 { top: 65%; left: 22%; animation-delay: 0.7s; animation-duration: 9.2s; width: 33px; height: 33px; background: #a8c5b5; }
-        .star23 { top: 8%; right: 22%; animation-delay: 2.4s; animation-duration: 7.6s; width: 18px; height: 18px; background: #e8d5ca; }
-        .star24 { bottom: 30%; left: 18%; animation-delay: 3.8s; animation-duration: 6.4s; width: 25px; height: 25px; background: #d4a5a5; }
-        .star25 { top: 75%; right: 25%; animation-delay: 1.4s; animation-duration: 8.4s; width: 22px; height: 22px; background: #f5c1cf; }
-        .star26 { top: 42%; left: 32%; animation-delay: 2.6s; animation-duration: 7.2s; width: 19px; height: 19px; background: #a8c5b5; }
-        .star27 { bottom: 18%; right: 8%; animation-delay: 0.9s; animation-duration: 8.9s; width: 26px; height: 26px; background: #e8d5ca; }
-        .star28 { top: 52%; right: 28%; animation-delay: 3.6s; animation-duration: 6.6s; width: 21px; height: 21px; background: #d4a5a5; }
-        .star29 { bottom: 45%; left: 28%; animation-delay: 1.6s; animation-duration: 8.2s; width: 30px; height: 30px; background: #f5c1cf; }
-        .star30 { top: 18%; right: 16%; animation-delay: 2.1s; animation-duration: 7.9s; width: 23px; height: 23px; background: #a8c5b5; }
+.star1 { top: 15%; left: 8%; animation-delay: 0s; animation-duration: 7s; }
+.star2 { top: 25%; right: 12%; animation-delay: 2s; animation-duration: 8s; width: 20px; height: 20px; background: #a8c5b5; }
+.star3 { bottom: 20%; left: 15%; animation-delay: 4s; animation-duration: 6s; }
+.star4 { top: 60%; right: 8%; animation-delay: 3s; animation-duration: 9s; width: 30px; height: 30px; }
+.star5 { top: 45%; left: 5%; animation-delay: 1s; width: 18px; height: 18px; background: #f5c1cf; }
+.star6 { top: 35%; right: 25%; animation-delay: 1.5s; animation-duration: 7.5s; width: 22px; height: 22px; background: #e8d5ca; }
+.star7 { top: 70%; left: 30%; animation-delay: 2.5s; animation-duration: 6.5s; width: 28px; height: 28px; background: #f5c1cf; }
+.star8 { top: 10%; right: 35%; animation-delay: 0.5s; animation-duration: 8.5s; width: 16px; height: 16px; background: #a8c5b5; }
+.star9 { bottom: 35%; right: 20%; animation-delay: 3.5s; animation-duration: 7s; width: 24px; height: 24px; background: #d4a5a5; }
+.star10 { top: 50%; left: 20%; animation-delay: 1s; animation-duration: 9s; width: 35px; height: 35px; background: #a8c5b5; }
+.star11 { bottom: 10%; right: 15%; animation-delay: 2s; animation-duration: 6s; width: 20px; height: 20px; background: #f5c1cf; }
+.star12 { top: 80%; left: 10%; animation-delay: 4s; animation-duration: 8s; width: 26px; height: 26px; background: #e8d5ca; }
+.star13 { top: 20%; left: 40%; animation-delay: 3s; animation-duration: 7s; width: 19px; height: 19px; background: #d4a5a5; }
+.star14 { bottom: 50%; left: 8%; animation-delay: 0.8s; animation-duration: 8.2s; width: 32px; height: 32px; background: #a8c5b5; }
+.star15 { top: 40%; right: 5%; animation-delay: 2.2s; animation-duration: 7.8s; width: 23px; height: 23px; background: #f5c1cf; }
+.star16 { top: 12%; left: 25%; animation-delay: 1.8s; animation-duration: 7.2s; width: 21px; height: 21px; background: #a8c5b5; }
+.star17 { bottom: 25%; right: 30%; animation-delay: 0.3s; animation-duration: 8.8s; width: 27px; height: 27px; background: #f5c1cf; }
+.star18 { top: 55%; right: 18%; animation-delay: 2.8s; animation-duration: 6.8s; width: 17px; height: 17px; background: #e8d5ca; }
+.star19 { bottom: 15%; left: 35%; animation-delay: 3.2s; animation-duration: 7.4s; width: 29px; height: 29px; background: #d4a5a5; }
+.star20 { top: 30%; left: 12%; animation-delay: 1.2s; animation-duration: 8.6s; width: 24px; height: 24px; background: #a8c5b5; }
+.star21 { bottom: 40%; right: 10%; animation-delay: 4.2s; animation-duration: 6.2s; width: 20px; height: 20px; background: #f5c1cf; }
+.star22 { top: 65%; left: 22%; animation-delay: 0.7s; animation-duration: 9.2s; width: 33px; height: 33px; background: #a8c5b5; }
+.star23 { top: 8%; right: 22%; animation-delay: 2.4s; animation-duration: 7.6s; width: 18px; height: 18px; background: #e8d5ca; }
+.star24 { bottom: 30%; left: 18%; animation-delay: 3.8s; animation-duration: 6.4s; width: 25px; height: 25px; background: #d4a5a5; }
+.star25 { top: 75%; right: 25%; animation-delay: 1.4s; animation-duration: 8.4s; width: 22px; height: 22px; background: #f5c1cf; }
+.star26 { top: 42%; left: 32%; animation-delay: 2.6s; animation-duration: 7.2s; width: 19px; height: 19px; background: #a8c5b5; }
+.star27 { bottom: 18%; right: 8%; animation-delay: 0.9s; animation-duration: 8.9s; width: 26px; height: 26px; background: #e8d5ca; }
+.star28 { top: 52%; right: 28%; animation-delay: 3.6s; animation-duration: 6.6s; width: 21px; height: 21px; background: #d4a5a5; }
+.star29 { bottom: 45%; left: 28%; animation-delay: 1.6s; animation-duration: 8.2s; width: 30px; height: 30px; background: #f5c1cf; }
+.star30 { top: 18%; right: 16%; animation-delay: 2.1s; animation-duration: 7.9s; width: 23px; height: 23px; background: #a8c5b5; }
 
-        @keyframes gentleFloat {
-            0%, 100% { transform: translate(0, 0); opacity: 0.4; }
-            25% { transform: translate(10px, -15px); opacity: 0.6; }
-            50% { transform: translate(-5px, -25px); opacity: 0.5; }
-            75% { transform: translate(-15px, -10px); opacity: 0.7; }
-        }
+@keyframes gentleFloat {
+    0%, 100% { transform: translate(0, 0); opacity: 0.4; }
+    25% { transform: translate(10px, -15px); opacity: 0.6; }
+    50% { transform: translate(-5px, -25px); opacity: 0.5; }
+    75% { transform: translate(-15px, -10px); opacity: 0.7; }
+}
+
 
         nav {
             position: fixed;
@@ -226,7 +228,7 @@
         }
 
         .hero-content h1 {
-            font-family: 'MADE Sunflower', sans-serif;
+            font-family: 'MADE Sunflower', sans-serif; font-weight: 400;
             font-size: 82px;
             color: #8b475d;
             margin-bottom: 25px;
@@ -273,6 +275,11 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .hero-image:hover img {
+            transform: scale(1.05);
         }
 
         .cta-button {
@@ -363,11 +370,11 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.4s ease;
         }
 
         .portfolio-item:hover .portfolio-image img {
-            transform: scale(1.08);
+            transform: scale(1.05);
         }
 
         .portfolio-overlay {
@@ -408,7 +415,7 @@
         }
 
         .portfolio-content h3 {
-            font-family: 'MADE Sunflower', sans-serif;
+            font-family: 'MADE Sunflower', sans-serif; font-weight: 400;
             font-size: 26px;
             color: #8b475d;
             margin-bottom: 15px;
@@ -450,6 +457,11 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
         }
 
         .about-content {
@@ -460,7 +472,7 @@
         }
 
         .about-content h3 {
-            font-family: 'MADE Sunflower', sans-serif;
+            font-family: 'MADE Sunflower', sans-serif; font-weight: 400;
             font-size: 28px;
             color: #8b475d;
             margin-bottom: 25px;
@@ -499,7 +511,7 @@
         }
 
         .instagram-text {
-            font-family: 'MADE Sunflower', sans-serif;
+            font-family: 'MADE Sunflower', sans-serif; font-weight: 400;
             font-size: 18px;
             color: #8b475d;
             font-weight: 400;
@@ -539,6 +551,11 @@
             font-size: 32px;
             color: white;
             overflow: hidden;
+            transition: transform 0.4s ease;
+        }
+
+        .skill-card:hover .skill-icon {
+            transform: scale(1.1) rotate(5deg);
         }
 
         .skill-icon img {
@@ -548,7 +565,7 @@
         }
 
         .skill-card h3 {
-            font-family: 'MADE Sunflower', sans-serif;
+            font-family: 'MADE Sunflower', sans-serif; font-weight: 400;
             font-size: 20px;
             color: #8b475d;
             margin-bottom: 15px;
@@ -579,7 +596,7 @@
         }
 
         .contact-info h3 {
-            font-family: 'MADE Sunflower', sans-serif;
+            font-family: 'MADE Sunflower', sans-serif; font-weight: 400;
             font-size: 28px;
             color: #8b475d;
             margin-bottom: 25px;
@@ -631,6 +648,7 @@
             color: #5a5a5a;
             font-size: 15px;
             font-family: 'IM Fell DW Pica', serif;
+            transition: all 0.3s ease;
         }
 
         input:focus, textarea:focus {
@@ -654,13 +672,25 @@
             font-size: 18px;
             cursor: pointer;
             transition: all 0.4s ease;
-            font-family: 'MADE Sunflower', sans-serif;
+            font-family: 'MADE Sunflower', sans-serif; font-weight: 400;
         }
 
         button[type="submit"]:hover {
             background: #a0617a;
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(139, 71, 93, 0.3);
+        }
+
+        /* Fade-in animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         footer {
@@ -848,39 +878,48 @@
                 opacity: 0.35;
             }
         }
+
+        /* === CONSISTENCY TWEAK: only clickable project images zoom === */
+        /* Stop zooming the hero and about images (they are not links) */
+        .hero-image:hover img,
+        .about-image:hover img {
+            transform: none;
+        }
     </style>
 </head>
 <body>
-    <div class="doodle star star1"></div>
-    <div class="doodle star star2"></div>
-    <div class="doodle star star3"></div>
-    <div class="doodle star star4"></div>
-    <div class="doodle star star5"></div>
-    <div class="doodle star star6"></div>
-    <div class="doodle star star7"></div>
-    <div class="doodle star star8"></div>
-    <div class="doodle star star9"></div>
-    <div class="doodle star star10"></div>
-    <div class="doodle star star11"></div>
-    <div class="doodle star star12"></div>
-    <div class="doodle star star13"></div>
-    <div class="doodle star star14"></div>
-    <div class="doodle star star15"></div>
-    <div class="doodle star star16"></div>
-    <div class="doodle star star17"></div>
-    <div class="doodle star star18"></div>
-    <div class="doodle star star19"></div>
-    <div class="doodle star star20"></div>
-    <div class="doodle star star21"></div>
-    <div class="doodle star star22"></div>
-    <div class="doodle star star23"></div>
-    <div class="doodle star star24"></div>
-    <div class="doodle star star25"></div>
-    <div class="doodle star star26"></div>
-    <div class="doodle star star27"></div>
-    <div class="doodle star star28"></div>
-    <div class="doodle star star29"></div>
-    <div class="doodle star star30"></div>
+    <!-- Decorative stars -->
+<div class="doodle star star1"></div>
+<div class="doodle star star2"></div>
+<div class="doodle star star3"></div>
+<div class="doodle star star4"></div>
+<div class="doodle star star5"></div>
+<div class="doodle star star6"></div>
+<div class="doodle star star7"></div>
+<div class="doodle star star8"></div>
+<div class="doodle star star9"></div>
+<div class="doodle star star10"></div>
+<div class="doodle star star11"></div>
+<div class="doodle star star12"></div>
+<div class="doodle star star13"></div>
+<div class="doodle star star14"></div>
+<div class="doodle star star15"></div>
+<div class="doodle star star16"></div>
+<div class="doodle star star17"></div>
+<div class="doodle star star18"></div>
+<div class="doodle star star19"></div>
+<div class="doodle star star20"></div>
+<div class="doodle star star21"></div>
+<div class="doodle star star22"></div>
+<div class="doodle star star23"></div>
+<div class="doodle star star24"></div>
+<div class="doodle star star25"></div>
+<div class="doodle star star26"></div>
+<div class="doodle star star27"></div>
+<div class="doodle star star28"></div>
+<div class="doodle star star29"></div>
+<div class="doodle star star30"></div>
+
 
     <nav id="navbar">
         <div class="logo">AMELIA'S PORTFOLIO</div>
@@ -913,7 +952,7 @@
         <h2>Selected Works</h2>
         <div class="portfolio-grid">
            <a href="tram.html" style="text-decoration: none; color: inherit; display: block;">
-            <div class="portfolio-item">
+            <div class="portfolio-item fade-in">
                 <div class="portfolio-image">
                     <img src="cover1.png" alt="Light Rail Safety Campaign">
                     <div class="portfolio-overlay">
@@ -922,26 +961,13 @@
                 </div>
                 <div class="portfolio-content">
                     <h3>Light Rail Safety Campaign</h3>
+                    <span style="font-size:12px; color:#8b475d; font-style:italic; display:block; margin-bottom:8px; letter-spacing:0.5px;">2025</span>
                     <p>1st Place Winner - CMET Competition 2025</p>
                 </div>
             </div>
             </a>
-            <a href="brand.html" style="text-decoration: none; color: inherit; display: block;">
-            <div class="portfolio-item">
-                <div class="portfolio-image">
-                    <img src="logo.png" alt="Brand Identity Design">
-                    <div class="portfolio-overlay">
-                        <div class="portfolio-overlay-text">VIEW PROJECT</div>
-                    </div>
-                </div>
-                <div class="portfolio-content">
-                    <h3>Brand Identity Design</h3>
-                    <p>Logo, colour palette &amp; style guide</p>
-                </div>
-            </div>
-            </a>
             <a href="extras.html" style="text-decoration: none; color: inherit; display: block;">
-            <div class="portfolio-item">
+            <div class="portfolio-item fade-in">
                 <div class="portfolio-image">
                     <img src="art.png" alt="Drawings and Print Work">
                     <div class="portfolio-overlay">
@@ -950,12 +976,13 @@
                 </div>
                 <div class="portfolio-content">
                     <h3>Drawings, Posters &amp; Print</h3>
+                    <span style="font-size:12px; color:#8b475d; font-style:italic; display:block; margin-bottom:8px; letter-spacing:0.5px;">2024–2025</span>
                     <p>Selected illustration, poster series, magazine layouts &amp; other design work</p>
                 </div>
             </div>
             </a>
             <a href="shortfilm.html" style="text-decoration: none; color: inherit; display: block;">
-            <div class="portfolio-item">
+            <div class="portfolio-item fade-in">
                 <div class="portfolio-image">
                     <img src="shortfilm.JPG" alt="Short Film">
                     <div class="portfolio-overlay">
@@ -964,12 +991,28 @@
                 </div>
                 <div class="portfolio-content">
                     <h3>Short Film Production</h3>
+                    <span style="font-size:12px; color:#8b475d; font-style:italic; display:block; margin-bottom:8px; letter-spacing:0.5px;">2025</span>
                     <p>Blowing Out The Candles — poster &amp; trailer</p>
                 </div>
             </div>
             </a>
+            <a href="brand.html" style="text-decoration: none; color: inherit; display: block;">
+            <div class="portfolio-item fade-in">
+                <div class="portfolio-image">
+                    <img src="logo.png" alt="Brand Identity Design">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-overlay-text">VIEW PROJECT</div>
+                    </div>
+                </div>
+                <div class="portfolio-content">
+                    <h3>Brand Identity Design</h3>
+                    <span style="font-size:12px; color:#8b475d; font-style:italic; display:block; margin-bottom:8px; letter-spacing:0.5px;">2025</span>
+                    <p>Logo, colour palette &amp; style guide</p>
+                </div>
+            </div>
+            </a>
             <a href="theatre.html" style="text-decoration: none; color: inherit; display: block;">
-            <div class="portfolio-item">
+            <div class="portfolio-item fade-in">
                 <div class="portfolio-image">
                     <img src="musical.png" alt="Theatre Production">
                     <div class="portfolio-overlay">
@@ -978,12 +1021,13 @@
                 </div>
                 <div class="portfolio-content">
                     <h3>Theatre Production Design</h3>
+                    <span style="font-size:12px; color:#8b475d; font-style:italic; display:block; margin-bottom:8px; letter-spacing:0.5px;">2023–2024</span>
                     <p>Promotional materials</p>
                 </div>
             </div>
             </a>
           <a href="photography.html" style="text-decoration: none; color: inherit; display: block;">
-            <div class="portfolio-item">
+            <div class="portfolio-item fade-in">
                 <div class="portfolio-image">
                     <img src="photo.jpeg" alt="Photography">
                     <div class="portfolio-overlay">
@@ -992,16 +1036,33 @@
                 </div>
                 <div class="portfolio-content">
                     <h3>Photography Series</h3>
+                    <span style="font-size:12px; color:#8b475d; font-style:italic; display:block; margin-bottom:8px; letter-spacing:0.5px;">2023</span>
                     <p>1st Place — CMAG Secondary School Art Prize 2023</p>
                 </div>
             </div>
             </a>
+
+          <a href="coding.html" style="text-decoration: none; color: inherit; display: block;">
+            <div class="portfolio-item fade-in">
+                <div class="portfolio-image">
+                    <img src="codingcover.png" alt="Creative Coding Projects">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-overlay-text">VIEW PROJECT</div>
+                    </div>
+                </div>
+                <div class="portfolio-content">
+                    <h3>Creative Coding Projects</h3>
+                    <span style="font-size:12px; color:#8b475d; font-style:italic; display:block; margin-bottom:8px; letter-spacing:0.5px;">2025</span>
+                    <p>Interactive p5.js from my Creative Computing H course </p>
+                </div>
+            </div>
+          </a>
         </div>
     </section>
 
     <section id="about">
         <h2>About Me</h2>
-        <div class="about-container">
+        <div class="about-container fade-in">
             <div class="about-image">
                 <img src="me.JPG" alt="About Me">
             </div>
@@ -1022,21 +1083,21 @@
     <section id="skills">
         <h2>What I Do</h2>
         <div class="skills-grid">
-            <div class="skill-card">
+            <div class="skill-card fade-in">
                 <div class="skill-icon">
                     <img src="graphicdesign.png" alt="Graphic Design Icon">
                 </div>
                 <h3>Graphic Design</h3>
                 <p>Adobe Creative Suite (Photoshop, Illustrator, InDesign, After Effects), brand identity, layout &amp; typography</p>
             </div>
-            <div class="skill-card">
+            <div class="skill-card fade-in">
                 <div class="skill-icon">
                     <img src="illustrate.png" alt="Digital Illustration Icon">
                 </div>
                 <h3>Digital Illustration</h3>
                 <p>Procreate, digital painting, visual composition, photography &amp; image editing</p>
             </div>
-            <div class="skill-card">
+            <div class="skill-card fade-in">
                 <div class="skill-icon">
                     <img src="camera1.png" alt="Media Production Icon">
                 </div>
@@ -1048,7 +1109,7 @@
 
     <section id="contact">
         <h2>Get In Touch</h2>
-        <div class="contact-container">
+        <div class="contact-container fade-in">
             <div class="contact-info">
                 <h3>Let's Work Together</h3>
                 <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.</p>
@@ -1137,6 +1198,24 @@
             } else {
                 navbar.classList.remove('scrolled');
             }
+        });
+
+        // Fade-in animation
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
         });
 
         let ticking = false;
