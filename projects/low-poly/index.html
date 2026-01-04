@@ -18,11 +18,11 @@
 // Low Poly Landscape Generator
 // Inspired by the aesthetics of Monument Valley
 // Low-poly 3D landscape with 'impossible geometry' idea
-let terrain = [];
+    let terrain = [];
 let trees = [];
 let structures = [];
 let complexity = 15; 
-let rotationY = 0;
+    let rotationY = 0;
 let rotationX = 0;
 let autoRotate = true;
 let showTrees = true;
@@ -172,12 +172,12 @@ function createControls() {
 }
 function preload() {
 }
-function setup() {
-  createCanvas(windowWidth, windowHeight, WEBGL);
+    function setup() {
+      createCanvas(windowWidth, windowHeight, WEBGL);
   
   createControls();
   
-  generateTerrain();
+      generateTerrain();
   generateTrees();
   generateStructures();
   
@@ -193,7 +193,7 @@ function setup() {
     isDragging = false;
   };
 }
-function draw() {
+    function draw() {
   const palette = palettes[currentPaletteIndex];
   
   background(palette.sky);
@@ -208,14 +208,14 @@ function draw() {
   } else if (autoRotate) {
     rotationY += 0.005;
   }
-  
-  push();
-  translate(0, 50, 0);
+
+      push();
+      translate(0, 50, 0);
   rotateX(PI/4 + rotationX);
-  rotateY(rotationY);
+      rotateY(rotationY);
   scale(15);
   
-  drawTerrain();
+      drawTerrain();
   
   if (showTrees) {
     drawTrees();
@@ -225,13 +225,13 @@ function draw() {
     drawStructures();
   }
   
-  pop();
-}
-function generateTerrain() {
-  terrain = [];
-  
-  for (let x = 0; x < complexity; x++) {
-    for (let z = 0; z < complexity; z++) {
+      pop();
+    }
+    function generateTerrain() {
+      terrain = [];
+
+      for (let x = 0; x < complexity; x++) {
+        for (let z = 0; z < complexity; z++) {
       let px = (x / complexity) * 5;
       let pz = (z / complexity) * 5;
       let height = noise(px, pz) * 5;
@@ -247,51 +247,51 @@ function generateTerrain() {
         height = round(height / 2) * 2; 
       }
       
-      terrain.push({
+          terrain.push({
         x: (x - complexity/2) * (40/complexity),
-        y: height,
+            y: height,
         z: (z - complexity/2) * (40/complexity),
-        colorIndex: floor(random(5)) 
-      });
+            colorIndex: floor(random(5))
+          });
+        }
+      }
     }
-  }
-}
 function drawTerrain() {
   const palette = palettes[currentPaletteIndex];
   noStroke();
-  
+
   for (let x = 0; x < complexity-1; x++) {
     for (let z = 0; z < complexity-1; z++) {
-      const i1 = x * complexity + z;
-      const i2 = x * complexity + (z + 1);
-      const i3 = (x + 1) * complexity + z;
-      const i4 = (x + 1) * complexity + (z + 1);
-      
-      const p1 = terrain[i1];
-      const p2 = terrain[i2];
-      const p3 = terrain[i3];
-      const p4 = terrain[i4];
-      
+          const i1 = x * complexity + z;
+          const i2 = x * complexity + (z + 1);
+          const i3 = (x + 1) * complexity + z;
+          const i4 = (x + 1) * complexity + (z + 1);
+
+          const p1 = terrain[i1];
+          const p2 = terrain[i2];
+          const p3 = terrain[i3];
+          const p4 = terrain[i4];
+
       beginShape(TRIANGLES);
       fill(
         palette.ground[p1.colorIndex][0],
         palette.ground[p1.colorIndex][1],
         palette.ground[p1.colorIndex][2]
       );
-      vertex(p1.x, p1.y, p1.z);
-      vertex(p2.x, p2.y, p2.z);
-      vertex(p3.x, p3.y, p3.z);
+          vertex(p1.x, p1.y, p1.z);
+          vertex(p2.x, p2.y, p2.z);
+          vertex(p3.x, p3.y, p3.z);
       endShape();
-      
+
       beginShape(TRIANGLES);
       fill(
         palette.ground[p2.colorIndex][0],
         palette.ground[p2.colorIndex][1],
         palette.ground[p2.colorIndex][2]
       );
-      vertex(p2.x, p2.y, p2.z);
-      vertex(p4.x, p4.y, p4.z);
-      vertex(p3.x, p3.y, p3.z);
+          vertex(p2.x, p2.y, p2.z);
+          vertex(p4.x, p4.y, p4.z);
+          vertex(p3.x, p3.y, p3.z);
       endShape();
     }
   }
@@ -361,8 +361,8 @@ function drawTrees() {
     endShape();
     
     pop();
-  }
-}
+        }
+      }
 function generateStructures() {
   structures = [];
   
@@ -474,7 +474,7 @@ function drawStructures() {
           vertex(x1, 0, z1);
           vertex(0, -structure.height/2, 0);
           vertex(x2, 0, z2);
-        }
+    }
         endShape();
         pop();
         break;
@@ -502,9 +502,9 @@ function drawStructures() {
     pop();
   }
 }
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
-}
+    function windowResized() {
+      resizeCanvas(windowWidth, windowHeight);
+    }
 function mousePressed() {
   if (mouseX > 230) {
     isDragging = true;
