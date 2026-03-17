@@ -59,9 +59,10 @@
 
   var lbImg = overlay.querySelector('.ab-lightbox-img');
 
-  function openLightbox(src, alt) {
+  function openLightbox(src, alt, rotate) {
     lbImg.src = src;
     lbImg.alt = alt || '';
+    lbImg.style.transform = rotate ? 'rotate(' + rotate + 'deg)' : '';
     overlay.style.display = 'flex';
     requestAnimationFrame(function() {
       overlay.classList.add('active');
@@ -98,7 +99,8 @@
     var link = e.target.closest('a');
     if (link && imgExts.test(link.getAttribute('href'))) {
       e.preventDefault();
-      openLightbox(link.href, link.querySelector('img') ? link.querySelector('img').alt : '');
+      var rotate = link.getAttribute('data-rotate');
+      openLightbox(link.href, link.querySelector('img') ? link.querySelector('img').alt : '', rotate);
     }
   });
 
