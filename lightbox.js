@@ -101,4 +101,38 @@
       openLightbox(link.href, link.querySelector('img') ? link.querySelector('img').alt : '');
     }
   });
+
+  /* ── Image download protection ── */
+
+  // Disable right-click on all images
+  document.addEventListener('contextmenu', function(e) {
+    if (e.target.tagName === 'IMG' || e.target.closest('.ab-lightbox-overlay')) {
+      e.preventDefault();
+    }
+  });
+
+  // Disable image dragging
+  document.addEventListener('dragstart', function(e) {
+    if (e.target.tagName === 'IMG') {
+      e.preventDefault();
+    }
+  });
+
+  // Block Ctrl+S / Cmd+S save page
+  document.addEventListener('keydown', function(e) {
+    if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+      e.preventDefault();
+    }
+  });
+
+  // Prevent long-press saving on mobile
+  var protectCss = document.createElement('style');
+  protectCss.textContent = `
+    img {
+      -webkit-user-select: none;
+      user-select: none;
+      -webkit-touch-callout: none;
+    }
+  `;
+  document.head.appendChild(protectCss);
 })();
