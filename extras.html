@@ -176,6 +176,48 @@
       animation: fadeInUp 0.8s ease 0.15s backwards;
     }
 
+    /* ── Section Divider ── */
+    .section-divider {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 56px 50px 20px;
+    }
+    .section-divider-inner {
+      display: inline-flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .section-divider-line {
+      width: 120px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #8b475d);
+    }
+    .section-divider-line.right {
+      background: linear-gradient(90deg, #8b475d, transparent);
+    }
+    .section-divider h2 {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 44px;
+      color: #8b475d;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 0;
+      background: linear-gradient(135deg, #8b475d, #a8c5b5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .section-divider h2::after { display: none; }
+    .section-divider-sub {
+      font-family: Georgia, serif;
+      font-style: italic;
+      font-size: 15px;
+      color: #a0617a;
+      letter-spacing: 1px;
+      margin-top: 10px;
+    }
+
     /* Grids - scaled down */
     .work-grid-2{ display:grid; grid-template-columns:repeat(2,1fr); gap:28px; max-width:900px; margin:0 auto 56px; }
     .work-grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:28px; max-width:1000px; margin:0 auto 56px; }
@@ -334,6 +376,9 @@
       .icon-item img{ max-width:80px; max-height:80px; width:auto; height:auto; }
 
       .star{ width:15px !important; height:15px !important; opacity:.4; }
+
+      .section-divider h2{ font-size:32px !important; }
+      .section-divider-line{ width:60px; }
     }
 
     @media (max-width:480px){
@@ -352,6 +397,9 @@
       .icon-item img{ max-width:65px; max-height:65px; width:auto; height:auto; }
 
       .star{ width:12px !important; height:12px !important; opacity:.35; }
+
+      .section-divider h2{ font-size:24px !important; }
+      .section-divider-line{ width:30px; }
     }
   </style>
 </head>
@@ -412,6 +460,20 @@
     </div>
   </section>
 
+  <!-- ════════════════════════════════════════
+       POSTERS & PRINT
+  ════════════════════════════════════════ -->
+  <div class="section-divider">
+    <div class="section-divider-inner">
+      <div class="section-divider-line"></div>
+      <div>
+        <h2>Posters &amp; Print</h2>
+        <p class="section-divider-sub">print design · poster work · editorial</p>
+      </div>
+      <div class="section-divider-line right"></div>
+    </div>
+  </div>
+
   <!-- Posters -->
   <section>
     <h2>Posters</h2>
@@ -450,95 +512,10 @@
     </div>
   </section>
 
-  <!-- Illustration -->
-  <section>
-    <h2>Illustration</h2>
-    <p style="text-align:center; font-size:15px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:25px; letter-spacing:1px;">2025</p>
-    <div class="illustration-grid">
-      <div class="work-item illustration-landscape">
-        <a href="gettingready1.png" data-rotate="90" class="work-image">
-          <img src="gettingready1.png" alt="Getting Ready - Four Girls">
-        </a>
-        <div class="work-caption">
-          <h4>"Getting Ready"</h4>
-          <p>Digital illustration</p>
-          <a class="award-label"
-             href="https://www.instagram.com/p/DQ-c1TFiRtE/?hl=es"
-             target="_blank"
-             rel="noopener noreferrer">
-            <span class="award-icon">🏅</span>
-            <span class="award-text">FINALIST – M16 ARTSPACE DIGITAL DRAWING PRIZE</span>
-          </a>
-        </div>
-      </div>
-      <div class="work-item illustration-portrait">
-        <a href="seadragon.png" target="_blank" class="work-image">
-          <img src="seadragon.png" alt="Summer Sea Dragon">
-        </a>
-        <div class="work-caption">
-          <h4>"Summer Sea Dragon"</h4>
-          <p>Leafy sea dragon mermaid artwork</p>
-        </div>
-      </div>
-      <div class="work-item illustration-portrait">
-        <a href="aworldalone.png" target="_blank" class="work-image">
-          <img src="aworldalone.png" alt="Additional Illustration">
-        </a>
-        <div class="work-caption">
-          <h4>A World Alone</h4>
-          <p>Digital illustration</p>
-        </div>
-      </div>
-    </div>
-    <div class="work-grid-2">
-      <div class="work-item full-width-item">
-        <a href="girl in room.jpg" target="_blank" class="work-image">
-          <span class="new-badge">NEW</span>
-          <img src="girl in room.jpg" alt="Girl in Room">
-        </a>
-        <div class="work-caption">
-          <h4>lost in my bedroom&nbsp; &nbsp;</h4>
-          <p>Sky Ferreira inspired</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- Orchid Posters -->
   <section>
     <h2>Orchid Posters</h2>
     <p style="text-align:center; font-size:15px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:25px; letter-spacing:1px;">2026</p>
-
-    <!-- Individual Orchid Illustrations - Row of 3 -->
-    <div class="work-grid-3 orchid-grid">
-      <div class="work-item">
-        <a href="orangeorchid.png" target="_blank" class="work-image">
-          <img src="orangeorchid.png" alt="Orange and Pink Orchid Illustration">
-        </a>
-        <div class="work-caption">
-          <h4>Orange Orchid</h4>
-          <p>&nbsp;</p>
-        </div>
-      </div>
-      <div class="work-item">
-        <a href="pinkorchid.png" target="_blank" class="work-image">
-          <img src="pinkorchid.png" alt="Pink Orchid Illustration">
-        </a>
-        <div class="work-caption">
-          <h4>Pink Orchid</h4>
-          <p>&nbsp;</p>
-        </div>
-      </div>
-      <div class="work-item">
-        <a href="greenorchid.png" target="_blank" class="work-image">
-          <img src="greenorchid.png" alt="Green Speckled Orchid Illustration">
-        </a>
-        <div class="work-caption">
-          <h4>Green Orchid</h4>
-          <p>&nbsp;</p>
-        </div>
-      </div>
-    </div>
 
     <!-- Horizontal Poster - Full Width -->
     <div class="work-grid-2">
@@ -600,50 +577,6 @@
         <div class="work-caption">
           <h4>Green Orchid Design</h4>
           <p>&nbsp;</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- T-Shirt Designs -->
-  <section>
-    <h2>T-Shirt Designs</h2>
-    <p style="text-align:center; font-size:15px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:25px; letter-spacing:1px;">2024</p>
-    <div class="work-grid-2">
-      <div class="work-item">
-        <a href="tshirtdesign.png" target="_blank" class="work-image">
-          <img src="tshirtdesign.png" alt="Good Witch Design">
-        </a>
-        <div class="work-caption">
-          <h4>"Good Witch" - Design</h4>
-          <p>Collection of pink icons asking "Are you a good witch, or a bad witch?"</p>
-        </div>
-      </div>
-      <div class="work-item">
-        <div class="work-image">
-          <img src="tshirtphoto.jpg" alt="Good Witch T-Shirt">
-        </div>
-        <div class="work-caption">
-          <h4>"Good Witch" - Physical Product</h4>
-          <p>Design printed on white t-shirt</p>
-        </div>
-      </div>
-      <div class="work-item">
-        <a href="koifish.png" target="_blank" class="work-image">
-          <img src="koifish.png" alt="Koi Fish Design">
-        </a>
-        <div class="work-caption">
-          <h4>Koi Fish - Design</h4>
-          <p>Koi fish illustration </p>
-        </div>
-      </div>
-      <div class="work-item">
-        <div class="work-image">
-          <img src="fishshirt.jpg" alt="Koi Fish T-Shirt">
-        </div>
-        <div class="work-caption">
-          <h4>Koi Fish - Physical Product</h4>
-          <p>Design printed on white t-shirt</p>
         </div>
       </div>
     </div>
@@ -742,33 +675,6 @@
         <div class="work-caption">
           <h4>Flat Dieline</h4>
           <p>Complete packaging dieline</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Digital Camera Drawings -->
-  <section>
-    <h2>Digital Camera Series</h2>
-    <p style="text-align:center; font-size:15px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:25px; letter-spacing:1px;">2025</p>
-    <h3>"Summer Through a Lens"</h3>
-    <div class="work-grid-2">
-      <div class="work-item">
-        <a href="Butterfly_Kiss.png" target="_blank" class="work-image">
-          <img src="Butterfly_Kiss.png" alt="Butterfly Kiss">
-        </a>
-        <div class="work-caption">
-          <h4>"Butterfly Kiss"</h4>
-          <p>Digital camera illustration with native Australian flowers</p>
-        </div>
-      </div>
-      <div class="work-item">
-        <a href="summerlens.png" target="_blank" class="work-image">
-          <img src="summerlens.png" alt="A Day Out">
-        </a>
-        <div class="work-caption">
-          <h4>"A Day Out"</h4>
-          <p>Camera capturing a summer moment</p>
         </div>
       </div>
     </div>
@@ -878,6 +784,208 @@
         </a>
         <div class="work-caption">
           <h4>"So When Can I See You?" - Variant</h4>
+          <p>&nbsp;</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       DRAWINGS
+  ════════════════════════════════════════ -->
+  <div class="section-divider">
+    <div class="section-divider-inner">
+      <div class="section-divider-line"></div>
+      <div>
+        <h2>Drawings</h2>
+        <p class="section-divider-sub">illustration · digital art · character design</p>
+      </div>
+      <div class="section-divider-line right"></div>
+    </div>
+  </div>
+
+  <!-- Illustration -->
+  <section>
+    <h2>Illustration</h2>
+    <p style="text-align:center; font-size:15px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:25px; letter-spacing:1px;">2025</p>
+    <div class="illustration-grid">
+      <div class="work-item illustration-landscape">
+        <a href="gettingready1.png" data-rotate="90" class="work-image">
+          <img src="gettingready1.png" alt="Getting Ready - Four Girls">
+        </a>
+        <div class="work-caption">
+          <h4>"Getting Ready"</h4>
+          <p>Digital illustration</p>
+          <a class="award-label"
+             href="https://www.instagram.com/p/DQ-c1TFiRtE/?hl=es"
+             target="_blank"
+             rel="noopener noreferrer">
+            <span class="award-icon">🏅</span>
+            <span class="award-text">FINALIST – M16 ARTSPACE DIGITAL DRAWING PRIZE</span>
+          </a>
+        </div>
+      </div>
+      <div class="work-item illustration-portrait">
+        <a href="seadragon.png" target="_blank" class="work-image">
+          <img src="seadragon.png" alt="Summer Sea Dragon">
+        </a>
+        <div class="work-caption">
+          <h4>"Summer Sea Dragon"</h4>
+          <p>Leafy sea dragon mermaid artwork</p>
+        </div>
+      </div>
+      <div class="work-item illustration-portrait">
+        <a href="aworldalone.png" target="_blank" class="work-image">
+          <img src="aworldalone.png" alt="Additional Illustration">
+        </a>
+        <div class="work-caption">
+          <h4>A World Alone</h4>
+          <p>Digital illustration</p>
+        </div>
+      </div>
+    </div>
+    <div class="work-grid-2">
+      <div class="work-item full-width-item">
+        <a href="girl in room.jpg" target="_blank" class="work-image">
+          <span class="new-badge">NEW</span>
+          <img src="girl in room.jpg" alt="Girl in Room">
+        </a>
+        <div class="work-caption">
+          <h4>lost in my bedroom&nbsp; &nbsp;</h4>
+          <p>Sky Ferreira inspired</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Orchid Illustrations -->
+  <section>
+    <h2>Orchid Illustrations</h2>
+    <p style="text-align:center; font-size:15px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:25px; letter-spacing:1px;">2026</p>
+    <div class="work-grid-3 orchid-grid">
+      <div class="work-item">
+        <a href="orangeorchid.png" target="_blank" class="work-image">
+          <img src="orangeorchid.png" alt="Orange and Pink Orchid Illustration">
+        </a>
+        <div class="work-caption">
+          <h4>Orange Orchid</h4>
+          <p>&nbsp;</p>
+        </div>
+      </div>
+      <div class="work-item">
+        <a href="pinkorchid.png" target="_blank" class="work-image">
+          <img src="pinkorchid.png" alt="Pink Orchid Illustration">
+        </a>
+        <div class="work-caption">
+          <h4>Pink Orchid</h4>
+          <p>&nbsp;</p>
+        </div>
+      </div>
+      <div class="work-item">
+        <a href="greenorchid.png" target="_blank" class="work-image">
+          <img src="greenorchid.png" alt="Green Speckled Orchid Illustration">
+        </a>
+        <div class="work-caption">
+          <h4>Green Orchid</h4>
+          <p>&nbsp;</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- T-Shirt Designs -->
+  <section>
+    <h2>T-Shirt Designs</h2>
+    <p style="text-align:center; font-size:15px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:25px; letter-spacing:1px;">2024</p>
+    <div class="work-grid-2">
+      <div class="work-item">
+        <a href="tshirtdesign.png" target="_blank" class="work-image">
+          <img src="tshirtdesign.png" alt="Good Witch Design">
+        </a>
+        <div class="work-caption">
+          <h4>"Good Witch" - Design</h4>
+          <p>Collection of pink icons asking "Are you a good witch, or a bad witch?"</p>
+        </div>
+      </div>
+      <div class="work-item">
+        <div class="work-image">
+          <img src="tshirtphoto.jpg" alt="Good Witch T-Shirt">
+        </div>
+        <div class="work-caption">
+          <h4>"Good Witch" - Physical Product</h4>
+          <p>Design printed on white t-shirt</p>
+        </div>
+      </div>
+      <div class="work-item">
+        <a href="koifish.png" target="_blank" class="work-image">
+          <img src="koifish.png" alt="Koi Fish Design">
+        </a>
+        <div class="work-caption">
+          <h4>Koi Fish - Design</h4>
+          <p>Koi fish illustration </p>
+        </div>
+      </div>
+      <div class="work-item">
+        <div class="work-image">
+          <img src="fishshirt.jpg" alt="Koi Fish T-Shirt">
+        </div>
+        <div class="work-caption">
+          <h4>Koi Fish - Physical Product</h4>
+          <p>Design printed on white t-shirt</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Digital Camera Drawings -->
+  <section>
+    <h2>Digital Camera Series</h2>
+    <p style="text-align:center; font-size:15px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:25px; letter-spacing:1px;">2025</p>
+    <h3>"Summer Through a Lens"</h3>
+    <div class="work-grid-2">
+      <div class="work-item">
+        <a href="Butterfly_Kiss.png" target="_blank" class="work-image">
+          <img src="Butterfly_Kiss.png" alt="Butterfly Kiss">
+        </a>
+        <div class="work-caption">
+          <h4>"Butterfly Kiss"</h4>
+          <p>Digital camera illustration with native Australian flowers</p>
+        </div>
+      </div>
+      <div class="work-item">
+        <a href="summerlens.png" target="_blank" class="work-image">
+          <img src="summerlens.png" alt="A Day Out">
+        </a>
+        <div class="work-caption">
+          <h4>"A Day Out"</h4>
+          <p>Camera capturing a summer moment</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trace Designs -->
+  <section>
+    <h2>Trace Designs</h2>
+    <p style="text-align:center; font-size:15px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:25px; letter-spacing:1px;">2026</p>
+    <div class="work-grid-2">
+      <div class="work-item">
+        <a href="trace poster 1.jpg" target="_blank" class="work-image">
+          <span class="new-badge">NEW</span>
+          <img src="trace poster 1.jpg" alt="Trace Design I">
+        </a>
+        <div class="work-caption">
+          <h4>Trace Design I</h4>
+          <p>&nbsp;</p>
+        </div>
+      </div>
+      <div class="work-item">
+        <a href="trace poster 2.jpg" target="_blank" class="work-image">
+          <span class="new-badge">NEW</span>
+          <img src="trace poster 2.jpg" alt="Trace Design II">
+        </a>
+        <div class="work-caption">
+          <h4>Trace Design II</h4>
           <p>&nbsp;</p>
         </div>
       </div>
