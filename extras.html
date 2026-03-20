@@ -250,6 +250,29 @@
       aspect-ratio:16/9;
     }
 
+    /* NEW badge */
+    .new-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: #8b475d;
+      color: white;
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 5px 13px;
+      border-radius: 999px;
+      z-index: 10;
+      box-shadow: 0 2px 8px rgba(139,71,93,.4);
+      pointer-events: none;
+      animation: badgePulse 2.4s ease-in-out infinite;
+    }
+    @keyframes badgePulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 2px 8px rgba(139,71,93,.4); }
+      50%       { transform: scale(1.08); box-shadow: 0 4px 16px rgba(139,71,93,.55); }
+    }
+
     /* Icons - scaled down */
     .icons-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:20px; max-width:900px; margin:0 auto; }
     .icon-item{
@@ -389,77 +412,6 @@
     </div>
   </section>
 
-  <!-- Magazine Project -->
-  <section>
-    <h2>Magazine Design</h2>
-    <p style="text-align:center; font-size:15px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:25px; letter-spacing:1px;">2024</p>
-    <h3>Augustine Magazine</h3>
-    <div class="magazine-grid">
-      <div class="work-item magazine-cover">
-        <a href="magazine.png" target="_blank" class="work-image">
-          <img src="magazine.png" alt="Augustine Magazine Cover">
-        </a>
-        <div class="work-caption">
-          <h4>Cover Design</h4>
-          <p>Magazine cover</p>
-        </div>
-      </div>
-      <div class="work-item magazine-spread">
-        <a href="mspread.png" data-rotate="90" class="work-image work-image-landscape">
-          <img src="mspread.png" alt="We Never Go Out of Style Spread" style="transform: rotate(90deg);">
-        </a>
-        <div class="work-caption">
-          <h4>"We Never Go Out of Style"</h4>
-          <p>Magazine spread</p>
-        </div>
-      </div>
-      <div class="work-item magazine-spread">
-        <a href="drafts.png" target="_blank" class="work-image work-image-landscape">
-          <img src="drafts.png" alt="Magazine Spread 2" style="transform:none !important;width:100% !important;height:100% !important;max-width:100% !important;max-height:100% !important;">
-        </a>
-        <div class="work-caption">
-          <h4>Magazine Drafts</h4>
-          <p>Magazine layout design</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Artist Posters -->
-  <section>
-    <h2>Artist Posters</h2>
-    <p style="text-align:center; font-size:15px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:25px; letter-spacing:1px;">2026</p>
-    <div class="work-grid-3">
-      <div class="work-item">
-        <a href="lorde.png" target="_blank" class="work-image">
-          <img src="lorde.png" alt="Lorde Solar Power Poster">
-        </a>
-        <div class="work-caption">
-          <h4>Lorde</h4>
-          <p>Album Solar Power poster design</p>
-        </div>
-      </div>
-      <div class="work-item">
-        <a href="ethelcain.png" target="_blank" class="work-image">
-          <img src="ethelcain.png" alt="Ethel Cain Poster">
-        </a>
-        <div class="work-caption">
-          <h4>Ethel Cain</h4>
-          <p>Artist tribute poster</p>
-        </div>
-      </div>
-      <div class="work-item">
-        <a href="addisonrae.png" target="_blank" class="work-image">
-          <img src="addisonrae.png" alt="Addison Rae Poster">
-        </a>
-        <div class="work-caption">
-          <h4>Addison Rae</h4>
-          <p>Artist portrait poster</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- Posters -->
   <section>
     <h2>Posters</h2>
@@ -467,6 +419,7 @@
     <div class="work-grid-2">
       <div class="work-item">
         <a href="star girl room poster.jpg" target="_blank" class="work-image">
+          <span class="new-badge">NEW</span>
           <img src="star girl room poster.jpg" alt="Star Girl Room Poster">
         </a>
         <div class="work-caption">
@@ -476,6 +429,7 @@
       </div>
       <div class="work-item">
         <a href="star girl 2 poster.jpg" target="_blank" class="work-image">
+          <span class="new-badge">NEW</span>
           <img src="star girl 2 poster.jpg" alt="Star Girl Poster 2">
         </a>
         <div class="work-caption">
@@ -485,11 +439,65 @@
       </div>
       <div class="work-item">
         <a href="Koi Fish Room Poster.jpg" target="_blank" class="work-image">
+          <span class="new-badge">NEW</span>
           <img src="Koi Fish Room Poster.jpg" alt="Koi Fish Room Poster">
         </a>
         <div class="work-caption">
           <h4>Koi Fish  Poster</h4>
           <p>nishikigoi&nbsp;</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Illustration -->
+  <section>
+    <h2>Illustration</h2>
+    <p style="text-align:center; font-size:15px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:25px; letter-spacing:1px;">2025</p>
+    <div class="illustration-grid">
+      <div class="work-item illustration-landscape">
+        <a href="gettingready1.png" data-rotate="90" class="work-image">
+          <img src="gettingready1.png" alt="Getting Ready - Four Girls">
+        </a>
+        <div class="work-caption">
+          <h4>"Getting Ready"</h4>
+          <p>Digital illustration</p>
+          <a class="award-label"
+             href="https://www.instagram.com/p/DQ-c1TFiRtE/?hl=es"
+             target="_blank"
+             rel="noopener noreferrer">
+            <span class="award-icon">🏅</span>
+            <span class="award-text">FINALIST – M16 ARTSPACE DIGITAL DRAWING PRIZE</span>
+          </a>
+        </div>
+      </div>
+      <div class="work-item illustration-portrait">
+        <a href="seadragon.png" target="_blank" class="work-image">
+          <img src="seadragon.png" alt="Summer Sea Dragon">
+        </a>
+        <div class="work-caption">
+          <h4>"Summer Sea Dragon"</h4>
+          <p>Leafy sea dragon mermaid artwork</p>
+        </div>
+      </div>
+      <div class="work-item illustration-portrait">
+        <a href="aworldalone.png" target="_blank" class="work-image">
+          <img src="aworldalone.png" alt="Additional Illustration">
+        </a>
+        <div class="work-caption">
+          <h4>A World Alone</h4>
+          <p>Digital illustration</p>
+        </div>
+      </div>
+    </div>
+    <div class="work-grid-2">
+      <div class="work-item full-width-item">
+        <a href="girl in room.jpg" target="_blank" class="work-image">
+          <img src="girl in room.jpg" alt="Girl in Room">
+        </a>
+        <div class="work-caption">
+          <h4>lost in my bedroom&nbsp; &nbsp;</h4>
+          <p>Sky Ferreira inspired</p>
         </div>
       </div>
     </div>
@@ -566,6 +574,7 @@
       </div>
       <div class="work-item">
         <a href="orchiddesignfour.png" target="_blank" class="work-image">
+          <span class="new-badge">NEW</span>
           <img src="orchiddesignfour.png" alt="Orchid Poster on Burgundy Background">
         </a>
         <div class="work-caption">
@@ -594,54 +603,116 @@
     </div>
   </section>
 
-  <!-- Illustration -->
+  <!-- T-Shirt Designs -->
   <section>
-    <h2>Illustration</h2>
-    <p style="text-align:center; font-size:15px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:25px; letter-spacing:1px;">2025</p>
-    <div class="illustration-grid">
-      <div class="work-item illustration-landscape">
-        <a href="gettingready1.png" data-rotate="90" class="work-image">
-          <img src="gettingready1.png" alt="Getting Ready - Four Girls">
+    <h2>T-Shirt Designs</h2>
+    <p style="text-align:center; font-size:15px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:25px; letter-spacing:1px;">2024</p>
+    <div class="work-grid-2">
+      <div class="work-item">
+        <a href="tshirtdesign.png" target="_blank" class="work-image">
+          <img src="tshirtdesign.png" alt="Good Witch Design">
         </a>
         <div class="work-caption">
-          <h4>"Getting Ready"</h4>
-          <p>Digital illustration</p>
-          <a class="award-label"
-             href="https://www.instagram.com/p/DQ-c1TFiRtE/?hl=es"
-             target="_blank"
-             rel="noopener noreferrer">
-            <span class="award-icon">🏅</span>
-            <span class="award-text">FINALIST – M16 ARTSPACE DIGITAL DRAWING PRIZE</span>
-          </a>
+          <h4>"Good Witch" - Design</h4>
+          <p>Collection of pink icons asking "Are you a good witch, or a bad witch?"</p>
         </div>
       </div>
-      <div class="work-item illustration-portrait">
-        <a href="seadragon.png" target="_blank" class="work-image">
-          <img src="seadragon.png" alt="Summer Sea Dragon">
-        </a>
+      <div class="work-item">
+        <div class="work-image">
+          <img src="tshirtphoto.jpg" alt="Good Witch T-Shirt">
+        </div>
         <div class="work-caption">
-          <h4>"Summer Sea Dragon"</h4>
-          <p>Leafy sea dragon mermaid artwork</p>
+          <h4>"Good Witch" - Physical Product</h4>
+          <p>Design printed on white t-shirt</p>
         </div>
       </div>
-      <div class="work-item illustration-portrait">
-        <a href="aworldalone.png" target="_blank" class="work-image">
-          <img src="aworldalone.png" alt="Additional Illustration">
+      <div class="work-item">
+        <a href="koifish.png" target="_blank" class="work-image">
+          <img src="koifish.png" alt="Koi Fish Design">
         </a>
         <div class="work-caption">
-          <h4>A World Alone</h4>
-          <p>Digital illustration</p>
+          <h4>Koi Fish - Design</h4>
+          <p>Koi fish illustration </p>
+        </div>
+      </div>
+      <div class="work-item">
+        <div class="work-image">
+          <img src="fishshirt.jpg" alt="Koi Fish T-Shirt">
+        </div>
+        <div class="work-caption">
+          <h4>Koi Fish - Physical Product</h4>
+          <p>Design printed on white t-shirt</p>
         </div>
       </div>
     </div>
-    <div class="work-grid-2">
-      <div class="work-item full-width-item">
-        <a href="girl in room.jpg" target="_blank" class="work-image">
-          <img src="girl in room.jpg" alt="Girl in Room">
+  </section>
+
+  <!-- Magazine Project -->
+  <section>
+    <h2>Magazine Design</h2>
+    <p style="text-align:center; font-size:15px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:25px; letter-spacing:1px;">2024</p>
+    <h3>Augustine Magazine</h3>
+    <div class="magazine-grid">
+      <div class="work-item magazine-cover">
+        <a href="magazine.png" target="_blank" class="work-image">
+          <img src="magazine.png" alt="Augustine Magazine Cover">
         </a>
         <div class="work-caption">
-          <h4>lost in my bedroom&nbsp; &nbsp;</h4>
-          <p>Sky Ferreira inspired</p>
+          <h4>Cover Design</h4>
+          <p>Magazine cover</p>
+        </div>
+      </div>
+      <div class="work-item magazine-spread">
+        <a href="mspread.png" data-rotate="90" class="work-image work-image-landscape">
+          <img src="mspread.png" alt="We Never Go Out of Style Spread" style="transform: rotate(90deg);">
+        </a>
+        <div class="work-caption">
+          <h4>"We Never Go Out of Style"</h4>
+          <p>Magazine spread</p>
+        </div>
+      </div>
+      <div class="work-item magazine-spread">
+        <a href="drafts.png" target="_blank" class="work-image work-image-landscape">
+          <img src="drafts.png" alt="Magazine Spread 2" style="transform:none !important;width:100% !important;height:100% !important;max-width:100% !important;max-height:100% !important;">
+        </a>
+        <div class="work-caption">
+          <h4>Magazine Drafts</h4>
+          <p>Magazine layout design</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Artist Posters -->
+  <section>
+    <h2>Artist Posters</h2>
+    <p style="text-align:center; font-size:15px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:25px; letter-spacing:1px;">2026</p>
+    <div class="work-grid-3">
+      <div class="work-item">
+        <a href="lorde.png" target="_blank" class="work-image">
+          <img src="lorde.png" alt="Lorde Solar Power Poster">
+        </a>
+        <div class="work-caption">
+          <h4>Lorde</h4>
+          <p>Album Solar Power poster design</p>
+        </div>
+      </div>
+      <div class="work-item">
+        <a href="ethelcain.png" target="_blank" class="work-image">
+          <img src="ethelcain.png" alt="Ethel Cain Poster">
+        </a>
+        <div class="work-caption">
+          <h4>Ethel Cain</h4>
+          <p>Artist tribute poster</p>
+        </div>
+      </div>
+      <div class="work-item">
+        <a href="addisonrae.png" target="_blank" class="work-image">
+          <img src="addisonrae.png" alt="Addison Rae Poster">
+        </a>
+        <div class="work-caption">
+          <h4>Addison Rae</h4>
+          <p>Artist portrait poster</p>
         </div>
       </div>
     </div>
@@ -696,50 +767,6 @@
         <div class="work-caption">
           <h4>"A Day Out"</h4>
           <p>Camera capturing a summer moment</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- T-Shirt Designs -->
-  <section>
-    <h2>T-Shirt Designs</h2>
-    <p style="text-align:center; font-size:15px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:25px; letter-spacing:1px;">2024</p>
-    <div class="work-grid-2">
-      <div class="work-item">
-        <a href="tshirtdesign.png" target="_blank" class="work-image">
-          <img src="tshirtdesign.png" alt="Good Witch Design">
-        </a>
-        <div class="work-caption">
-          <h4>"Good Witch" - Design</h4>
-          <p>Collection of pink icons asking "Are you a good witch, or a bad witch?"</p>
-        </div>
-      </div>
-      <div class="work-item">
-        <div class="work-image">
-          <img src="tshirtphoto.jpg" alt="Good Witch T-Shirt">
-        </div>
-        <div class="work-caption">
-          <h4>"Good Witch" - Physical Product</h4>
-          <p>Design printed on white t-shirt</p>
-        </div>
-      </div>
-      <div class="work-item">
-        <a href="koifish.png" target="_blank" class="work-image">
-          <img src="koifish.png" alt="Koi Fish Design">
-        </a>
-        <div class="work-caption">
-          <h4>Koi Fish - Design</h4>
-          <p>Koi fish illustration </p>
-        </div>
-      </div>
-      <div class="work-item">
-        <div class="work-image">
-          <img src="fishshirt.jpg" alt="Koi Fish T-Shirt">
-        </div>
-        <div class="work-caption">
-          <h4>Koi Fish - Physical Product</h4>
-          <p>Design printed on white t-shirt</p>
         </div>
       </div>
     </div>
