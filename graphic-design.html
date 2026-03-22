@@ -943,6 +943,13 @@
             }
         }
 
+        @media (max-width: 820px) {
+            /* Mobile: portfolio-image height is 250px, so scale needs to be larger to fill width */
+            .drawing-card-img {
+                transform: rotate(90deg) scale(1.45) !important;
+            }
+        }
+
         /* === CONSISTENCY TWEAK: only clickable project images zoom === */
         /* Stop zooming the hero and about images (they are not links) */
         .hero-image:hover img,
