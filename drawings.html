@@ -81,7 +81,8 @@
     nav.scrolled{ padding:20px 60px; box-shadow:0 2px 20px rgba(212,165,165,.1); }
 
     .logo{ font-family:'Archivo Black',sans-serif; font-size:24px; color:#8b475d; letter-spacing:2px; font-weight:400; text-transform:uppercase; }
-    .logo a{ color:#8b475d; text-decoration:none; }
+    .logo a{ color:#8b475d; text-decoration:none; display:flex; align-items:center; gap:10px; }
+    .logo-img{ height:38px; width:auto; flex-shrink:0; }
 
     .menu-toggle{
       display:none; background:none; border:none; font-size:32px; color:#8b475d;
@@ -301,7 +302,7 @@
 
   <!-- Navigation -->
   <nav id="navbar">
-    <div class="logo"><a href="graphic-design.html">AMELIA'S PORTFOLIO</a></div>
+    <div class="logo"><a href="graphic-design.html"><img src="AB logo.png" alt="AB" class="logo-img">AMELIA'S PORTFOLIO</a></div>
     <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
     <ul class="nav-links" id="navLinks">
       <li><a href="graphic-design.html#home">Home</a></li>
