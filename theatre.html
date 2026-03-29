@@ -103,7 +103,11 @@
       font-family:'Archivo Black',sans-serif;font-size:24px;color:#8b475d;letter-spacing:2px;
       transition:all .3s ease;font-weight:400;text-transform:uppercase;flex-shrink:0;white-space:nowrap;
     }
-    .logo a{color:#8b475d;text-decoration:none}
+    .logo a{color:#8b475d;text-decoration:none;display:flex;align-items:center;gap:10px}
+    .logo-img{height:38px;width:auto;flex-shrink:0}
+    .cv-button{padding:10px 25px;background:#8b475d;color:white!important;text-decoration:none;border-radius:25px;font-family:Georgia,serif;font-size:16px;transition:all 0.3s ease;margin-left:20px;box-shadow:0 3px 10px rgba(139,71,93,.3);display:inline-block}
+    .cv-button:hover{background:#a0617a;transform:translateY(-3px);box-shadow:0 6px 20px rgba(139,71,93,.5)}
+    .cv-button::after{display:none!important}
 
     .menu-toggle{
       display:none;background:none;border:none;font-size:32px;color:#8b475d;cursor:pointer;
@@ -234,14 +238,16 @@
 
   <!-- Navigation -->
   <nav id="navbar">
-    <div class="logo"><a href="graphic-design.html">AMELIA'S PORTFOLIO</a></div>
+    <div class="logo"><a href="graphic-design.html"><img src="AB logo.png" alt="AB" class="logo-img">AMELIA'S PORTFOLIO</a></div>
     <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
     <ul class="nav-links" id="navLinks">
       <li><a href="graphic-design.html#home">Home</a></li>
       <li><a href="graphic-design.html#portfolio">Work</a></li>
       <li><a href="graphic-design.html#about">About</a></li>
+      <li><a href="graphic-design.html#skills">Skills</a></li>
       <li><a href="graphic-design.html#contact">Contact</a></li>
       <li><a href="music.html" class="music-nav-link">Music</a></li>
+      <li><a href="design-cv.html" class="cv-button">View Design CV</a></li>
     </ul>
   </nav>
 
