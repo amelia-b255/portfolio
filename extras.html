@@ -157,7 +157,7 @@
     .work-grid-1 .work-image{ min-height: unset; height:70vh; max-height:70vh; }
     .work-grid-1 .work-image img{ max-height:100%; }
     .work-grid-3{ display:grid; grid-template-columns:repeat(2,1fr); gap:28px; max-width:900px; margin:0 auto 56px; }
-    .work-grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:28px; max-width:1000px; margin:0 auto 56px; }
+    .work-grid-3{ display:grid; grid-template-columns:repeat(3, minmax(0, 315px)); justify-content:center; gap:28px; max-width:1000px; margin:0 auto 56px; }
 
     .work-item{
       background:white; border-radius:16px; overflow:hidden;
@@ -554,20 +554,6 @@
     <h2>Orchidaceae</h2>
     <p style="text-align:center; font-size:15px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:25px; letter-spacing:1px;">2026</p>
 
-    <!-- Horizontal Poster - Full Width -->
-    <div class="work-grid-3">
-      <div class="work-item full-width-item">
-        <a href="orchiddesignfive.png" target="_blank" class="work-image">
-          <img src="orchiddesignfive.png" alt="Rotated Orchid Poster Layout">
-        </a>
-        <div class="work-caption">
-          <h4>Landscape Poster&nbsp;</h4>
-          <p>favourite flower, les fleurs&nbsp; &nbsp;</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Poster Designs - 2 per row -->
     <div class="work-grid-3">
       <div class="work-item">
         <a href="orchiddesign.png" target="_blank" class="work-image">
@@ -587,7 +573,18 @@
           <p>&nbsp;</p>
         </div>
       </div>
-      <div class="work-item full-width-item">
+    </div>
+    <div class="work-grid-3">
+      <div class="work-item">
+        <a href="orchiddesignfive.png" target="_blank" class="work-image">
+          <img src="orchiddesignfive.png" alt="Rotated Orchid Poster Layout">
+        </a>
+        <div class="work-caption">
+          <h4>Landscape Poster</h4>
+          <p>favourite flower, les fleurs</p>
+        </div>
+      </div>
+      <div class="work-item">
         <a href="New orchid design .jpg" target="_blank" class="work-image">
           <span class="new-badge">NEW</span>
           <img src="New orchid design .jpg" alt="Green Orchid Design">
