@@ -156,8 +156,8 @@
     .work-grid-1{ display:grid; grid-template-columns:1fr; gap:28px; max-width:520px; margin:0 auto 56px; }
     .work-grid-1 .work-image{ min-height: unset; height:70vh; max-height:70vh; }
     .work-grid-1 .work-image img{ max-height:100%; }
-    .work-grid-3{ display:grid; grid-template-columns:repeat(2,1fr); gap:28px; max-width:900px; margin:0 auto 56px; }
-    .work-grid-3{ display:grid; grid-template-columns:repeat(3, minmax(0, 315px)); justify-content:center; gap:28px; max-width:1000px; margin:0 auto 56px; }
+    .work-grid-3{ display:flex; flex-wrap:wrap; justify-content:center; gap:28px; max-width:1000px; margin:0 auto 56px; }
+    .work-grid-3 > .work-item{ flex: 0 0 310px; }
 
     .work-item{
       background:white; border-radius:16px; overflow:hidden;
@@ -202,7 +202,7 @@
       50%       { transform: scale(1.08); box-shadow: 0 4px 16px rgba(139,71,93,.55); }
     }
 
-    .full-width-item{ grid-column:1 / -1; max-width:650px; margin:0 auto; }
+    .full-width-item{ flex: 1 1 100% !important; max-width:650px; margin:0 auto; }
 
     footer{ text-align:center; padding:40px 32px; background:rgba(255,255,255,.5); color:#8b475d; font-size:12px; letter-spacing:.5px; }
     .back-button{ display:inline-block; padding:12px 28px; background:#8b475d; color:#fff; text-decoration:none; font-size:13px; letter-spacing:1px; transition:all .4s ease; font-family:'Archivo Black',sans-serif; text-transform:uppercase; border-radius:4px; box-shadow:0 2px 8px rgba(139,71,93,.3); margin-top:32px; }
@@ -231,7 +231,7 @@
       .music-nav-link{ margin:15px 0 !important; text-align:center; padding:15px 20px !important; }
       .cv-button{ margin:15px 0 0 0 !important; width:100%; text-align:center; padding:15px 20px !important; }
 
-      .work-grid-3, .work-grid-3{ grid-template-columns:1fr; gap:20px; }
+      .work-grid-3 > .work-item{ flex: 1 1 100%; }
       .work-image{ min-height:180px; padding:10px; }
 
       .magazine-grid{ grid-template-columns:1fr; grid-template-rows:auto; }
@@ -497,22 +497,22 @@
         </div>
       </div>
       <div class="work-item">
-        <a href="feeling lucky poster.png" target="_blank" class="work-image">
-          <span class="new-badge">NEW</span>
-          <img src="feeling lucky poster.png" alt="Feeling Lucky">
-        </a>
-        <div class="work-caption">
-          <h4>Feeling Lucky</h4>
-          <p>&nbsp;</p>
-        </div>
-      </div>
-      <div class="work-item">
         <a href="it is what it is poster.png" target="_blank" class="work-image">
           <span class="new-badge">NEW</span>
           <img src="it is what it is poster.png" alt="It Is What It Is">
         </a>
         <div class="work-caption">
           <h4>It Is What It Is</h4>
+          <p>&nbsp;</p>
+        </div>
+      </div>
+      <div class="work-item">
+        <a href="feeling lucky poster.png" target="_blank" class="work-image">
+          <span class="new-badge">NEW</span>
+          <img src="feeling lucky poster.png" alt="Feeling Lucky">
+        </a>
+        <div class="work-caption">
+          <h4>Feeling Lucky</h4>
           <p>&nbsp;</p>
         </div>
       </div>
