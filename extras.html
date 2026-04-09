@@ -157,16 +157,16 @@
     .work-grid-1 .work-image{ min-height: unset; height:70vh; max-height:70vh; }
     .work-grid-1 .work-image img{ max-height:100%; }
     .work-grid-3{ display:flex; flex-wrap:wrap; justify-content:center; gap:28px; max-width:1000px; margin:0 auto 56px; }
-    .work-grid-3 > .work-item{ flex: 0 0 310px; }
+    .work-grid-3 > .work-item{ flex: 0 0 340px; }
 
     .work-item{
-      background:white; border-radius:16px; overflow:hidden;
-      box-shadow:8px 8px 24px rgba(139,71,93,.1); transition:all .4s ease;
+      background:transparent; border-radius:0; overflow:visible;
+      box-shadow:none; transition:all .4s ease;
     }
-    .work-item:hover{ transform:translateY(-8px); box-shadow:12px 12px 32px rgba(139,71,93,.15); }
+    .work-item:hover{ transform:translateY(-8px); }
 
     .work-image{
-      width:100%; min-height:240px; overflow:hidden; position:relative; background:#f5e6e8;
+      width:100%; min-height:280px; overflow:hidden; position:relative; background:transparent;
       display:flex; align-items:center; justify-content:center; padding:14px;
       cursor:pointer; text-decoration:none;
     }
