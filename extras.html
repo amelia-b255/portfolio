@@ -157,7 +157,7 @@
     .work-grid-1 .work-image{ min-height: unset; height:70vh; max-height:70vh; }
     .work-grid-1 .work-image img{ max-height:100%; }
     .work-grid-3{ display:flex; flex-wrap:wrap; justify-content:center; gap:28px; max-width:1000px; margin:0 auto 56px; }
-    .work-grid-3 > .work-item{ flex: 0 0 340px; }
+    .work-grid-3 > .work-item{ flex: 0 0 360px; }
 
     .work-item{
       background:transparent; border-radius:0; overflow:visible;
@@ -165,8 +165,14 @@
     }
     .work-item:hover{ transform:translateY(-8px); }
 
+    .work-item.with-bg{
+      background:white; border-radius:16px; overflow:hidden;
+      box-shadow:8px 8px 24px rgba(139,71,93,.1);
+    }
+    .work-item.with-bg:hover{ box-shadow:12px 12px 32px rgba(139,71,93,.15); }
+
     .work-image{
-      width:100%; min-height:280px; overflow:hidden; position:relative; background:transparent;
+      width:100%; min-height:300px; overflow:hidden; position:relative; background:transparent;
       display:flex; align-items:center; justify-content:center; padding:14px;
       cursor:pointer; text-decoration:none;
     }
@@ -184,7 +190,7 @@
     .magazine-spread{ grid-column:2; }
     .work-image-landscape{ aspect-ratio:3/2; }
     .magazine-spread .work-image{ min-height:280px !important; padding:8px !important; }
-    .magazine-spread .work-image img{ transform:rotate(90deg); width:130% !important; height:130% !important; max-width:130% !important; max-height:130% !important; object-fit:contain !important; }
+    .magazine-spread .work-image img{ width:100% !important; height:100% !important; object-fit:contain !important; }
 
     /* Art showcase program */
     .art-program-grid .work-image{ min-height:220px; padding:8px; aspect-ratio:16/9; }
@@ -203,6 +209,31 @@
     }
 
     .full-width-item{ flex: 1 1 100% !important; max-width:650px; margin:0 auto; }
+    .rebus-item{ flex: 0 0 360px; }
+
+    /* Portrait images displayed as landscape via 90-degree rotation */
+    .img-rot90 {
+      position: relative; overflow: hidden;
+      aspect-ratio: 1.414 / 1 !important; min-height: unset !important;
+    }
+    .img-rot90 img {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%) rotate(90deg) !important;
+      transition: none !important;
+      height: 141% !important; width: auto !important;
+      max-width: none !important; max-height: none !important;
+    }
+    .img-rot-90 {
+      position: relative; overflow: hidden;
+      aspect-ratio: 1.414 / 1 !important; min-height: unset !important;
+    }
+    .img-rot-90 img {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%) rotate(-90deg) !important;
+      transition: none !important;
+      height: 141% !important; width: auto !important;
+      max-width: none !important; max-height: none !important;
+    }
 
     footer{ text-align:center; padding:40px 32px; background:rgba(255,255,255,.5); color:#8b475d; font-size:12px; letter-spacing:.5px; }
     .back-button{ display:inline-block; padding:12px 28px; background:#8b475d; color:#fff; text-decoration:none; font-size:13px; letter-spacing:1px; transition:all .4s ease; font-family:'Archivo Black',sans-serif; text-transform:uppercase; border-radius:4px; box-shadow:0 2px 8px rgba(139,71,93,.3); margin-top:32px; }
@@ -549,7 +580,7 @@
     </div>
     <div class="work-grid-3">
       <div class="work-item">
-        <a href="landscapeorchid.png" target="_blank" class="work-image">
+        <a href="landscapeorchid.png" target="_blank" class="work-image work-image-landscape">
           <img src="landscapeorchid.png" alt="Rotated Orchid Poster Layout">
         </a>
         <div class="work-caption">
@@ -558,7 +589,7 @@
         </div>
       </div>
       <div class="work-item">
-        <a href="greenorchidart.png" target="_blank" class="work-image">
+        <a href="greenorchidart.png" target="_blank" class="work-image work-image-landscape">
           <span class="new-badge">NEW</span>
           <img src="greenorchidart.png" alt="Green Orchid Design">
         </a>
@@ -577,8 +608,8 @@
     <h3>Augustine Magazine</h3>
     <div class="magazine-grid">
       <div class="work-item magazine-cover">
-        <a href="magazine.png" target="_blank" class="work-image">
-          <img src="magazine.png" alt="Augustine Magazine Cover">
+        <a href="magazine cover.png" target="_blank" class="work-image">
+          <img src="magazine cover.png" alt="Augustine Magazine Cover">
         </a>
         <div class="work-caption">
           <h4>Cover Design</h4>
@@ -586,8 +617,8 @@
         </div>
       </div>
       <div class="work-item magazine-spread">
-        <a href="mspread.png" data-rotate="90" class="work-image work-image-landscape">
-          <img src="mspread.png" alt="We Never Go Out of Style Spread" style="transform: rotate(90deg);">
+        <a href="magazinespreadart.png" target="_blank" class="work-image work-image-landscape">
+          <img src="magazinespreadart.png" alt="We Never Go Out of Style Spread">
         </a>
         <div class="work-caption">
           <h4>"We Never Go Out of Style"</h4>
@@ -595,8 +626,8 @@
         </div>
       </div>
       <div class="work-item magazine-spread">
-        <a href="drafts.png" target="_blank" class="work-image work-image-landscape">
-          <img src="drafts.png" alt="Magazine Spread 2" style="transform:none !important;width:100% !important;height:100% !important;max-width:100% !important;max-height:100% !important;">
+        <a href="magazine drafts.png" target="_blank" class="work-image work-image-landscape">
+          <img src="magazine drafts.png" alt="Magazine Drafts">
         </a>
         <div class="work-caption">
           <h4>Magazine Drafts</h4>
@@ -612,7 +643,7 @@
     <p style="text-align:center; font-size:15px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:25px; letter-spacing:1px;">2024</p>
     <h3>Sugar Blooms</h3>
     <div class="work-grid-3">
-      <div class="work-item">
+      <div class="work-item with-bg">
         <div class="work-image">
           <img src="packagephoto.png" alt="Sugar Blooms Packaging 3D">
         </div>
@@ -621,7 +652,7 @@
           <p>3D packaging design for "Sugar Blooms" confectionery brand</p>
         </div>
       </div>
-      <div class="work-item">
+      <div class="work-item with-bg">
         <a href="dieline.png" data-rotate="90" class="work-image">
           <img src="dieline.png" alt="Sugar Blooms Dieline">
         </a>
@@ -638,9 +669,9 @@
     <h2>Rebus</h2>
     <p style="text-align:center; font-size:15px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:25px; letter-spacing:1px;">2024</p>
     <div class="work-grid-3">
-      <div class="work-item full-width-item">
-        <a href="milkteeth.png" target="_blank" class="work-image">
-          <img src="milkteeth.png" alt="Milk Teeth Rebus">
+      <div class="work-item">
+        <a href="rebusart.png" target="_blank" class="work-image">
+          <img src="rebusart.png" alt="Milk Teeth Rebus">
         </a>
         <div class="work-caption">
           <h4>"Milk Teeth"</h4>
@@ -658,8 +689,8 @@
 
     <div class="work-grid-3">
       <div class="work-item">
-        <a href="poster.png" target="_blank" class="work-image">
-          <img src="poster.png" alt="Art Showcase Poster">
+        <a href="artshowcase.png" target="_blank" class="work-image">
+          <img src="artshowcase.png" alt="Art Showcase Poster">
         </a>
         <div class="work-caption">
           <h4>Event Poster</h4>
@@ -667,8 +698,8 @@
         </div>
       </div>
       <div class="work-item">
-        <a href="menu.png" target="_blank" class="work-image">
-          <img src="menu.png" alt="Art Showcase Artwork Detail">
+        <a href="menuart.png" target="_blank" class="work-image">
+          <img src="menuart.png" alt="Art Showcase Artwork Detail">
         </a>
         <div class="work-caption">
           <h4>Poster Artwork Detail</h4>
@@ -679,8 +710,8 @@
 
     <div class="work-grid-3 art-program-grid">
       <div class="work-item">
-        <a href="program1.png" target="_blank" class="work-image work-image-landscape">
-          <img src="program1.png" alt="Art Showcase Program Outside Spread">
+        <a href="artshowcasespreadoutside.png" target="_blank" class="work-image work-image-landscape">
+          <img src="artshowcasespreadoutside.png" alt="Art Showcase Program Outside Spread">
         </a>
         <div class="work-caption">
           <h4>Program – Outside Spread</h4>
@@ -688,8 +719,8 @@
         </div>
       </div>
       <div class="work-item">
-        <a href="program2.png" target="_blank" class="work-image work-image-landscape">
-          <img src="program2.png" alt="Art Showcase Program Inside Spread">
+        <a href="artshowcasespread.png" target="_blank" class="work-image work-image-landscape">
+          <img src="artshowcasespread.png" alt="Art Showcase Program Inside Spread">
         </a>
         <div class="work-caption">
           <h4>Program – Inside Spread</h4>
@@ -705,8 +736,8 @@
     <p style="text-align:center; font-size:15px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:25px; letter-spacing:1px;">2026</p>
     <div class="work-grid-3">
       <div class="work-item">
-        <a href="lock in.jpg" target="_blank" class="work-image work-image-landscape">
-          <img src="lock in.jpg" alt="Time to Lock In Calendar">
+        <a href="timetolockindesign.png" target="_blank" class="work-image work-image-landscape">
+          <img src="timetolockindesign.png" alt="Time to Lock In Calendar">
         </a>
         <div class="work-caption">
           <h4>"Time to Lock In"</h4>
@@ -714,8 +745,8 @@
         </div>
       </div>
       <div class="work-item">
-        <a href="when can I see you different colour.jpg" target="_blank" class="work-image work-image-landscape">
-          <img src="when can I see you different colour.jpg" alt="So When Can I See You Calendar Variant">
+        <a href="sowhencaniseeyoudesign.png" target="_blank" class="work-image work-image-landscape">
+          <img src="sowhencaniseeyoudesign.png" alt="So When Can I See You Calendar Variant">
         </a>
         <div class="work-caption">
           <h4>"So When Can I See You?" - Variant</h4>
