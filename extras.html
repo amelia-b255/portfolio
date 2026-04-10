@@ -158,6 +158,8 @@
     .work-grid-1 .work-image img{ max-height:100%; }
     .work-grid-3{ display:flex; flex-wrap:wrap; justify-content:center; gap:28px; max-width:1000px; margin:0 auto 56px; }
     .work-grid-3 > .work-item{ flex: 0 0 360px; }
+    .work-grid-landscape > .work-item{ flex: 0 0 460px; }
+    .work-grid-landscape{ max-width:980px; }
 
     .work-item{
       background:transparent; border-radius:0; overflow:visible;
@@ -189,8 +191,8 @@
     .magazine-cover{ grid-row:1 / 3; }
     .magazine-spread{ grid-column:2; }
     .work-image-landscape{ aspect-ratio:1.414/1; }
-    .magazine-spread .work-image{ min-height:280px !important; padding:8px !important; }
-    .magazine-spread .work-image img{ width:100% !important; height:100% !important; object-fit:contain !important; }
+    .magazine-spread .work-image{ padding:8px !important; }
+    .magazine-spread .work-image img{ width:100% !important; max-height:100% !important; object-fit:contain !important; }
 
     /* Art showcase program */
     .art-program-grid .work-image{ padding:8px; }
@@ -268,7 +270,7 @@
       .magazine-grid{ grid-template-columns:1fr; grid-template-rows:auto; }
       .magazine-cover{ grid-row:auto; }
       .magazine-spread{ grid-column:auto; }
-      .magazine-spread .work-image{ min-height:240px !important; }
+      .magazine-spread .work-image{ padding:6px !important; }
 
       .art-program-grid .work-image{ padding:6px; }
 
@@ -281,7 +283,7 @@
       h2{ font-size:19px !important; }
       section{ padding:40px 16px !important; }
       .work-image{ padding:8px; }
-      .magazine-spread .work-image{ min-height:200px !important; }
+      .magazine-spread .work-image{ padding:4px !important; }
       .art-program-grid .work-image{ padding:4px; }
       .star{ width:12px !important; height:12px !important; opacity:.35; }
     }
@@ -578,7 +580,7 @@
         </div>
       </div>
     </div>
-    <div class="work-grid-3">
+    <div class="work-grid-3 work-grid-landscape">
       <div class="work-item">
         <a href="landscapeorchid.png" target="_blank" class="work-image work-image-landscape">
           <img src="landscapeorchid.png" alt="Rotated Orchid Poster Layout">
@@ -626,8 +628,8 @@
         </div>
       </div>
       <div class="work-item magazine-spread">
-        <a href="magazine drafts.png" target="_blank" class="work-image work-image-landscape">
-          <img src="magazine drafts.png" alt="Magazine Drafts">
+        <a href="magazine-drafts.png" target="_blank" class="work-image work-image-landscape">
+          <img src="magazine-drafts.png" alt="Magazine Drafts">
         </a>
         <div class="work-caption">
           <h4>Magazine Drafts</h4>
@@ -708,7 +710,7 @@
       </div>
     </div>
 
-    <div class="work-grid-3 art-program-grid">
+    <div class="work-grid-3 work-grid-landscape art-program-grid">
       <div class="work-item">
         <a href="artshowcasespreadoutside.png" target="_blank" class="work-image work-image-landscape">
           <img src="artshowcasespreadoutside.png" alt="Art Showcase Program Outside Spread">
@@ -734,7 +736,7 @@
   <section>
     <h2>Calendar Designs</h2>
     <p style="text-align:center; font-size:15px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:25px; letter-spacing:1px;">2026</p>
-    <div class="work-grid-3">
+    <div class="work-grid-3 work-grid-landscape">
       <div class="work-item">
         <a href="timetolockindesign.png" target="_blank" class="work-image work-image-landscape">
           <img src="timetolockindesign.png" alt="Time to Lock In Calendar">
