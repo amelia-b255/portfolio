@@ -6,24 +6,27 @@
   <title>Posters &amp; Print - Amelia Bobbin</title>
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Cookie&display=swap" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica:ital@0;1&display=swap');
     @import url('https://fonts.cdnfonts.com/css/made-sunflower');
+    @font-face { font-family: "Cavalhatriz"; src: url("fonts/Cavalhatriz.ttf") format("truetype"); font-weight: normal; font-style: normal; }
+    @font-face { font-family: "Georgia Custom"; src: url("fonts/georgia.ttf") format("truetype"); font-weight: normal; font-style: normal; }
+    @font-face { font-family: "Georgia Custom"; src: url("fonts/georgiab.ttf") format("truetype"); font-weight: bold; font-style: normal; }
 
     * { margin:0; padding:0; box-sizing:border-box; }
 
     html, body { overflow-x:hidden; max-width:100vw; width:100%; }
 
     body{
-      font-family:'IM Fell DW Pica', serif;
-      background: linear-gradient(135deg,#f5c1cf 0%,#fceadb 20%,#e8d5ca 40%,#b4d4c3 60%,#f5e6e8 80%,#d4a5a5 100%);
-      color:#5a5a5a; font-weight:400;
+      font-size: 1.1em;
+      font-family:'Cavalhatriz', serif;
+      background: linear-gradient(135deg, #f5c1cf 0%, #fceadb 20%, #e8d5ca 40%, #b4d4c3 60%, #f5e6e8 80%, #d4a5a5 100%);
+      color:#5a5a5a; font-weight:700;
       -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
     }
 
     /* Decorative Stars */
     .doodle{ position:fixed; pointer-events:none; z-index:1; }
     .star{
-      width:25px; height:25px; background:#d4a5a5; opacity:.4;
+      width:25px; height:25px; background:#a8c5b5; opacity:.4;
       clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
       animation:gentleFloat 6s infinite ease-in-out;
     }
@@ -36,25 +39,25 @@
     .star7{top:10%;right:25%;width:35px;height:35px;background:#8b475d;opacity:.3;animation-delay:2.5s}
     .star8{bottom:40%;left:30%;width:22px;height:22px;background:#a8c5b5;animation-delay:4.5s;animation-duration:8s}
     .star9{top:70%;left:25%;width:28px;height:28px;background:#f5c1cf;animation-delay:1.5s}
-    .star10{top:35%;right:35%;width:16px;height:16px;background:#d4a5a5;animation-delay:3.5s;animation-duration:9s}
+    .star10{top:35%;right:35%;width:16px;height:16px;background:#a8c5b5;animation-delay:3.5s;animation-duration:9s}
     .star11{bottom:10%;right:15%;width:20px;height:20px;background:#f5c1cf;animation-delay:2s;animation-duration:6s}
-    .star12{top:80%;left:10%;width:26px;height:26px;background:#e8d5ca;animation-delay:4s;animation-duration:8s}
-    .star13{top:20%;left:40%;width:19px;height:19px;background:#d4a5a5;animation-delay:3s;animation-duration:7s}
+    .star12{top:80%;left:10%;width:26px;height:26px;background:#fceadb;animation-delay:4s;animation-duration:8s}
+    .star13{top:20%;left:40%;width:19px;height:19px;background:#a8c5b5;animation-delay:3s;animation-duration:7s}
     .star14{bottom:50%;left:8%;width:32px;height:32px;background:#a8c5b5;animation-delay:.8s;animation-duration:8.2s}
     .star15{top:40%;right:5%;width:23px;height:23px;background:#f5c1cf;animation-delay:2.2s;animation-duration:7.8s}
     .star16{top:12%;left:25%;width:21px;height:21px;background:#a8c5b5;animation-delay:1.8s;animation-duration:7.2s}
     .star17{bottom:25%;right:30%;width:27px;height:27px;background:#f5c1cf;animation-delay:.3s;animation-duration:8.8s}
-    .star18{top:55%;right:18%;width:17px;height:17px;background:#e8d5ca;animation-delay:2.8s;animation-duration:6.8s}
-    .star19{bottom:15%;left:35%;width:29px;height:29px;background:#d4a5a5;animation-delay:3.2s;animation-duration:7.4s}
+    .star18{top:55%;right:18%;width:17px;height:17px;background:#fceadb;animation-delay:2.8s;animation-duration:6.8s}
+    .star19{bottom:15%;left:35%;width:29px;height:29px;background:#a8c5b5;animation-delay:3.2s;animation-duration:7.4s}
     .star20{top:30%;left:12%;width:24px;height:24px;background:#a8c5b5;animation-delay:1.2s;animation-duration:8.6s}
     .star21{bottom:40%;right:10%;width:20px;height:20px;background:#f5c1cf;animation-delay:4.2s;animation-duration:6.2s}
     .star22{top:65%;left:22%;width:33px;height:33px;background:#a8c5b5;animation-delay:.7s;animation-duration:9.2s}
-    .star23{top:8%;right:22%;width:18px;height:18px;background:#e8d5ca;animation-delay:2.4s;animation-duration:7.6s}
-    .star24{bottom:30%;left:18%;width:25px;height:25px;background:#d4a5a5;animation-delay:3.8s;animation-duration:6.4s}
+    .star23{top:8%;right:22%;width:18px;height:18px;background:#fceadb;animation-delay:2.4s;animation-duration:7.6s}
+    .star24{bottom:30%;left:18%;width:25px;height:25px;background:#a8c5b5;animation-delay:3.8s;animation-duration:6.4s}
     .star25{top:75%;right:25%;width:22px;height:22px;background:#f5c1cf;animation-delay:1.4s;animation-duration:8.4s}
     .star26{top:42%;left:32%;width:19px;height:19px;background:#a8c5b5;animation-delay:2.6s;animation-duration:7.2s}
-    .star27{bottom:18%;right:8%;width:26px;height:26px;background:#e8d5ca;animation-delay:.9s;animation-duration:8.9s}
-    .star28{top:52%;right:28%;width:21px;height:21px;background:#d4a5a5;animation-delay:3.6s;animation-duration:6.6s}
+    .star27{bottom:18%;right:8%;width:26px;height:26px;background:#fceadb;animation-delay:.9s;animation-duration:8.9s}
+    .star28{top:52%;right:28%;width:21px;height:21px;background:#a8c5b5;animation-delay:3.6s;animation-duration:6.6s}
     .star29{bottom:45%;left:28%;width:30px;height:30px;background:#f5c1cf;animation-delay:1.6s;animation-duration:8.2s}
     .star30{top:18%;right:16%;width:23px;height:23px;background:#a8c5b5;animation-delay:2.1s;animation-duration:7.9s}
 
@@ -70,7 +73,7 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    .announcement-banner{position:fixed;top:0;left:0;width:100%;height:38px;background:linear-gradient(90deg,#f5c1cf 0%,#fceadb 25%,#b4d4c3 55%,#f5c1cf 100%);background-size:300% 100%;animation:bannerShift 8s linear infinite;z-index:1002;overflow:hidden;display:flex;align-items:center}
+    .announcement-banner{position:fixed;top:0;left:0;width:100%;height:38px;background:linear-gradient(90deg, #f5c1cf 0%, #fceadb 25%, #b4d4c3 55%, #f5c1cf 100%);background-size:300% 100%;animation:bannerShift 8s linear infinite;z-index:1002;overflow:hidden;display:flex;align-items:center}
     .banner-link{display:block;width:100%;overflow:hidden;text-decoration:none;cursor:pointer}
     .banner-link:hover .banner-inner{animation-play-state:paused}
     .banner-inner{display:flex;white-space:nowrap;animation:marqueeScroll 28s linear infinite;will-change:transform}
@@ -91,7 +94,7 @@
     .logo{ font-family:'Archivo Black',sans-serif; font-size:24px; color:#8b475d; letter-spacing:2px; font-weight:400; text-transform:uppercase; }
     .logo a{ color:#8b475d; text-decoration:none; display:flex; align-items:center; gap:10px; }
     .logo-img{ height:48px; width:auto; flex-shrink:0; }
-    .cv-button{ padding:10px 25px; background:#8b475d; color:white !important; text-decoration:none; border-radius:25px; font-family:Georgia,serif; font-size:16px; transition:all 0.3s ease; margin-left:20px; box-shadow:0 3px 10px rgba(139,71,93,.3); display:inline-block; }
+    .cv-button{ padding:10px 25px; background:#8b475d; color:white !important; text-decoration:none; border-radius:25px; font-family:'Georgia Custom', Georgia, serif; font-size:16px; transition:all 0.3s ease; margin-left:20px; box-shadow:0 3px 10px rgba(139,71,93,.3); display:inline-block; }
     .cv-button:hover{ background:#a0617a; transform:translateY(-3px); box-shadow:0 6px 20px rgba(139,71,93,.5); }
     .cv-button::after{ display:none !important; }
 
@@ -103,7 +106,7 @@
     .nav-links{ display:flex; gap:35px; list-style:none; align-items:center; }
     .nav-links a{
       color:#8b475d; text-decoration:none; font-size:17px; letter-spacing:.5px; position:relative;
-      transition:all .3s ease; font-weight:500; font-family:Georgia,serif;
+      transition:all .3s ease; font-weight:500; font-family:'Georgia Custom',Georgia,serif;
     }
     .nav-links a::after{
       content:''; position:absolute; bottom:-5px; left:50%; transform:translateX(-50%);
@@ -130,8 +133,8 @@
     }
     .hero-content p{
       font-size:17px; color:#a0617a; line-height:1.7; max-width:700px;
-      margin:0 auto; font-family:Georgia,serif; font-style:italic; font-weight:400;
-      letter-spacing:.3px; animation: fadeInUp 1s ease 0.3s backwards;
+      margin:0 auto; font-family:Helvetica,Arial,sans-serif; font-style:normal; font-weight:700;
+      letter-spacing:-0.07em; animation: fadeInUp 1s ease 0.3s backwards;
     }
 
     /* Sections */
@@ -184,7 +187,7 @@
 
     .work-caption{ padding:20px; text-align:center; }
     .work-caption h4{ font-family:'MADE Sunflower',sans-serif; font-size:18px; color:#8b475d; margin-bottom:8px; font-weight:400;}
-    .work-caption p{ font-family:Georgia,serif; font-size:13px; color:#a0617a; font-style:italic; line-height:1.6; }
+    .work-caption p{ font-family:Helvetica,Arial,sans-serif; font-size:13px; color:#a0617a; font-style:normal; line-height:1.6; letter-spacing:-0.07em; }
 
     /* Magazine layout */
     .magazine-grid{ display:grid; grid-template-columns:1fr 1fr; grid-template-rows:auto auto; gap:28px; max-width:900px; margin:0 auto 56px; }
@@ -237,7 +240,7 @@
       max-width: none !important; max-height: none !important;
     }
 
-    footer{ text-align:center; padding:40px 32px; background:rgba(255,255,255,.5); color:#8b475d; font-size:12px; letter-spacing:.5px; }
+    footer{ text-align:center; padding:40px 32px; background:rgba(255,255,255,.5); color:#8b475d; font-size:12px; letter-spacing:-0.07em; font-family:Helvetica,Arial,sans-serif; }
     .back-button{ display:inline-block; padding:12px 28px; background:#8b475d; color:#fff; text-decoration:none; font-size:13px; letter-spacing:1px; transition:all .4s ease; font-family:'Archivo Black',sans-serif; text-transform:uppercase; border-radius:4px; box-shadow:0 2px 8px rgba(139,71,93,.3); margin-top:32px; }
     .back-button:hover{ transform:translateY(-2px); box-shadow:0 6px 20px rgba(139,71,93,.4); background:#a0617a; }
     .back-button-container{ text-align:center; margin-top:48px; }
@@ -247,7 +250,7 @@
       .menu-toggle{ display:block; }
       .hero{ padding:150px 20px 50px; min-height:auto; align-items:flex-start; }
       .hero-content h1{ font-size:32px; }
-      h2{ font-size:29px; }
+      h2{ font-size:29px; letter-spacing:0px; word-break:break-word; }
       h3{ font-size:21px; }
       nav{ padding:15px 20px !important; }
       section{ padding:48px 24px; }
@@ -280,13 +283,234 @@
     @media (max-width:480px){
       .hero{ padding:130px 16px 40px !important; min-height:auto !important; }
       .hero-content h1{ font-size:26px !important; }
-      h2{ font-size:19px !important; }
+      h2{ font-size:19px !important; letter-spacing:0px; word-break:break-word; }
       section{ padding:40px 16px !important; }
       .work-image{ padding:8px; }
       .magazine-spread .work-image{ padding:4px !important; }
       .art-program-grid .work-image{ padding:4px; }
       .star{ width:12px !important; height:12px !important; opacity:.35; }
     }
+
+    /* ===== CARD STACK ===== */
+    .stack-scene {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+      margin: 0 auto 16px;
+    }
+    .card-stack {
+      position: relative;
+      width: 420px;
+      height: 594px;
+      flex-shrink: 0;
+    }
+    .stack-card {
+      position: absolute;
+      inset: 0;
+      display: block;
+      border-radius: 0;
+      overflow: visible;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), filter 0.4s ease, opacity 0.4s ease;
+      will-change: transform;
+      cursor: pointer;
+      text-decoration: none;
+      background: transparent;
+    }
+    .stack-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      pointer-events: none;
+    }
+    .stack-caption {
+      text-align: center;
+      padding: 0 20px 40px;
+      min-height: 64px;
+    }
+    .stack-caption h4 {
+      font-family: 'MADE Sunflower', sans-serif;
+      font-size: 20px;
+      color: #8b475d;
+      margin-bottom: 6px;
+      font-weight: 400;
+    }
+    .stack-caption p {
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color: #a0617a;
+      font-style: normal;
+      letter-spacing: -0.07em;
+    }
+    .stack-nav {
+      background: rgba(255,255,255,0.35);
+      border: none;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #8b475d;
+      opacity: 0.75;
+      transition: opacity 0.2s, transform 0.15s;
+      padding: 0;
+      flex-shrink: 0;
+      line-height: 0;
+      position: relative;
+      z-index: 50;
+    }
+    .stack-nav:hover { opacity: 1; transform: scale(1.15); }
+    .stack-counter {
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 13px;
+      color: #a0617a;
+      text-align: center;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+    @media (max-width: 968px) {
+      .card-stack { width: 300px; height: 424px; }
+      .stack-scene { gap: 24px; }
+    }
+    @media (max-width: 480px) {
+      .card-stack { width: 240px; height: 340px; }
+      .stack-scene { gap: 16px; }
+    }
+
+        /* ── Animation enhancements ── */
+
+        /* More dramatic fade-in with subtle scale + blur */
+        .fade-in {
+            transform: translateY(60px) scale(0.94) !important;
+            filter: blur(3px);
+            transition: opacity 2.5s ease, transform 2.5s cubic-bezier(0.22, 1, 0.36, 1), filter 2s ease !important;
+        }
+        .fade-in.visible {
+            transform: translateY(0) scale(1) !important;
+            filter: blur(0px);
+        }
+
+        /* Fade-in from left for odd items, right for even */
+        .fade-in:nth-child(odd) {
+            transform: translateY(50px) translateX(-30px) scale(0.94) !important;
+        }
+        .fade-in:nth-child(even) {
+            transform: translateY(50px) translateX(30px) scale(0.94) !important;
+        }
+        .fade-in.visible:nth-child(odd),
+        .fade-in.visible:nth-child(even) {
+            transform: translateY(0) translateX(0) scale(1) !important;
+        }
+
+        /* h2 headings slide up + underline draws in */
+        h2.will-animate {
+            opacity: 0;
+            transform: translateY(40px) scale(0.92);
+            filter: blur(4px);
+            transition: opacity 2.2s ease, transform 2.2s cubic-bezier(0.22, 1, 0.36, 1), filter 1.8s ease;
+        }
+        h2.will-animate.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            filter: blur(0px);
+        }
+        h2.will-animate::after {
+            width: 0 !important;
+            transition: width 2.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s !important;
+        }
+        h2.will-animate.visible::after {
+            width: 100px !important;
+        }
+
+        /* Section divider shimmer on h2 underline */
+        h2.will-animate.visible::after {
+            background: linear-gradient(90deg, #f5c1cf, #a8c5b5, #f5c1cf) !important;
+            background-size: 200% 100% !important;
+            animation: underlineShimmer 6s ease-in-out infinite !important;
+        }
+        @keyframes underlineShimmer {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Shimmer sweep across buttons on hover */
+        .cta-button, .cv-button {
+            overflow: hidden !important;
+        }
+        .cta-button::before, .cv-button::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.28), transparent);
+            pointer-events: none;
+            transition: left 1.2s ease;
+        }
+        .cta-button:hover::before, .cv-button:hover::before {
+            left: 160%;
+        }
+
+        /* Skill/stack card pop-in bounce on hover */
+        .skill-card {
+            transition: transform 1s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 1s ease !important;
+        }
+        .skill-card:hover {
+            transform: translateY(-12px) scale(1.04) !important;
+            box-shadow: 12px 18px 40px rgba(139, 71, 93, 0.18) !important;
+        }
+
+        /* Navigation link colour transition */
+        .nav-links a {
+            transition: color 0.7s ease, letter-spacing 0.7s ease !important;
+        }
+        .nav-links a:hover {
+            letter-spacing: 1.5px !important;
+        }
+
+        /* Music nav link shimmer */
+        .music-nav-link {
+            position: relative !important;
+            overflow: hidden !important;
+        }
+        .music-nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 80%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            pointer-events: none;
+            animation: navShimmer 7s ease-in-out infinite;
+        }
+        @keyframes navShimmer {
+            0%, 70%, 100% { left: -100%; }
+            35% { left: 150%; }
+        }
+
+        /* Contact form focus glow */
+        input:focus, textarea:focus {
+            box-shadow: 0 0 0 3px rgba(168, 197, 181, 0.4), 0 0 20px rgba(168, 197, 181, 0.15) !important;
+            transform: scale(1.01);
+            transition: all 0.8s ease !important;
+        }
+
+        /* Stack nav arrow bounce */
+        .stack-prev, .stack-next {
+            transition: transform 0.85s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.6s ease !important;
+        }
+        .stack-prev:hover, .stack-next:hover {
+            transform: scale(1.22) !important;
+        }
+
+        /* Decorative star smooth transitions */
+        .doodle {
+            transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) !important;
+        }
   </style>
 </head>
 <body>
@@ -343,7 +567,7 @@
   </div>
   <!-- Navigation -->
   <nav id="navbar">
-    <div class="logo"><a href="graphic-design.html"><img src="AB logo.png" alt="AB" class="logo-img">AMELIA'S PORTFOLIO</a></div>
+    <div class="logo"><a href="graphic-design.html"><img src="shared/AB logo.png" alt="AB" class="logo-img">AMELIA'S PORTFOLIO</a></div>
     <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
     <ul class="nav-links" id="navLinks">
       <li><a href="graphic-design.html#home">Home</a></li>
@@ -370,315 +594,115 @@
   <!-- Artist Posters -->
   <section>
     <h2>Artist Posters</h2>
-    <p style="text-align:center; font-size:15px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:25px; letter-spacing:1px;">2026</p>
-    <div class="work-grid-3">
-      <div class="work-item">
-        <a href="whywaitforthebestwhenicouldhaveyou.png" target="_blank" class="work-image">
-          <span class="new-badge">NEW</span>
-          <img src="whywaitforthebestwhenicouldhaveyou.png" alt="Lana Del Rey NFR Poster">
-        </a>
-        <div class="work-caption">
-          <h4>Lana Del Rey</h4>
-          <p>NFR! poster design</p>
-        </div>
+    <p style="text-align:center; font-size:17px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:32px; letter-spacing:1px; font-family: 'Cavalhatriz', serif;">2026</p>
+    <div class="stack-scene">
+      <button class="stack-nav stack-prev" aria-label="Previous"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></button>
+      <div class="card-stack">
+        <a href="extras/whywaitforthebest-fullscreen.png" target="_blank" class="stack-card" data-title="Lana Del Rey" data-desc="NFR! poster design"><img src="extras/whywaitforthebestwhenicouldhaveyou.png" alt="Lana Del Rey NFR Poster"></a>
+        <a href="extras/allisfulloflove-fullscreen.png" target="_blank" class="stack-card" data-title="Björk" data-desc="All is Full of Love poster design"><img src="extras/allisfulloflove.png" alt="Björk Poster"></a>
+        <a href="extras/pinkpantheress-fullscreen.png" target="_blank" class="stack-card" data-title="PinkPantheress" data-desc="Artist poster"><img src="extras/pinkpantheress.png" alt="PinkPantheress Poster"></a>
+        <a href="extras/poppies-fullscreen.png" target="_blank" class="stack-card" data-title="Marcy Playground" data-desc="Poppies poster design"><img src="extras/poppies.png" alt="Poppies Poster"></a>
+        <a href="extras/wacotexas-fullscreen.png" target="_blank" class="stack-card" data-title="Ethel Cain" data-desc="Waco Texas poster design"><img src="extras/wacotexas.png" alt="Waco Texas Poster"></a>
+        <a href="extras/movies-fullscreen.png" target="_blank" class="stack-card" data-title="Weyes Blood" data-desc="Movies poster design"><img src="extras/movies.png" alt="Movies Poster"></a>
+        <a href="extras/bangbangkisskiss-fullscreen.png" target="_blank" class="stack-card" data-title="Bang Bang Kiss Kiss" data-desc="Lana Del Rey poster design"><img src="extras/bangbangkisskiss.png" alt="Bang Bang Kiss Kiss"></a>
+        <a href="extras/joost-fullscreen.png" target="_blank" class="stack-card" data-title="Joost Klein (1)" data-desc="Artist poster"><img src="extras/joost.png" alt="Joost Klein Poster 1"></a>
+        <a href="extras/joost2-fullscreen.png" target="_blank" class="stack-card" data-title="Joost Klein (2)" data-desc="Artist poster"><img src="extras/joost2.png" alt="Joost Klein Poster 2"></a>
+        <a href="extras/language-fullscreen.png" target="_blank" class="stack-card" data-title="Language" data-desc="Spirit Blue poster design"><img src="extras/language.png" alt="Language Poster"></a>
+        <a href="extras/oklou-fullscreen.png" target="_blank" class="stack-card" data-title="Oklou" data-desc="harvest sky poster design"><img src="extras/oklou.png" alt="Oklou Poster"></a>
       </div>
-      <div class="work-item">
-        <a href="allisfulloflove.png" target="_blank" class="work-image">
-          <span class="new-badge">NEW</span>
-          <img src="allisfulloflove.png" alt="Björk All is Full of Love Poster">
-        </a>
-        <div class="work-caption">
-          <h4>Björk</h4>
-          <p>All is Full of Love poster design</p>
-        </div>
-      </div>
-      <div class="work-item">
-        <a href="pinkpantheress.png" target="_blank" class="work-image">
-          <span class="new-badge">NEW</span>
-          <img src="pinkpantheress.png" alt="PinkPantheress Poster">
-        </a>
-        <div class="work-caption">
-          <h4>PinkPantheress</h4>
-          <p>Artist poster</p>
-        </div>
-      </div>
-      <div class="work-item">
-        <a href="poppies.png" target="_blank" class="work-image">
-          <span class="new-badge">NEW</span>
-          <img src="poppies.png" alt="Marcy Playground Poppies Poster">
-        </a>
-        <div class="work-caption">
-          <h4>Marcy Playground</h4>
-          <p>Poppies poster design</p>
-        </div>
-      </div>
-      <div class="work-item">
-        <a href="wacotexas.png" target="_blank" class="work-image">
-          <span class="new-badge">NEW</span>
-          <img src="wacotexas.png" alt="Ethel Cain Waco Texas Poster">
-        </a>
-        <div class="work-caption">
-          <h4>Ethel Cain</h4>
-          <p>Waco Texas poster design</p>
-        </div>
-      </div>
-      <div class="work-item">
-        <a href="movies.png" target="_blank" class="work-image">
-          <span class="new-badge">NEW</span>
-          <img src="movies.png" alt="Weyes Blood Movies Poster">
-        </a>
-        <div class="work-caption">
-          <h4>Weyes Blood</h4>
-          <p>Movies poster design</p>
-        </div>
-      </div>
+      <button class="stack-nav stack-next" aria-label="Next"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></button>
     </div>
-    <div class="work-grid-3">
-      <div class="work-item">
-        <a href="bangbangkisskiss.png" target="_blank" class="work-image">
-          <span class="new-badge">NEW</span>
-          <img src="bangbangkisskiss.png" alt="Bang Bang Kiss Kiss">
-        </a>
-        <div class="work-caption">
-          <h4>Bang Bang Kiss Kiss</h4>
-          <p>&nbsp;</p>
-        </div>
-      </div>
-      <div class="work-item">
-        <a href="joost.png" target="_blank" class="work-image">
-          <span class="new-badge">NEW</span>
-          <img src="joost.png" alt="Joost Klein Poster 1">
-        </a>
-        <div class="work-caption">
-          <h4>Joost Klein (1)</h4>
-          <p>&nbsp;</p>
-        </div>
-      </div>
-      <div class="work-item">
-        <a href="joost2.png" target="_blank" class="work-image">
-          <span class="new-badge">NEW</span>
-          <img src="joost2.png" alt="Joost Klein Poster 2">
-        </a>
-        <div class="work-caption">
-          <h4>Joost Klein (2)</h4>
-          <p>&nbsp;</p>
-        </div>
-      </div>
-      <div class="work-item">
-        <a href="language.png" target="_blank" class="work-image">
-          <span class="new-badge">NEW</span>
-          <img src="language.png" alt="Language Poster">
-        </a>
-        <div class="work-caption">
-          <h4>Language</h4>
-          <p>&nbsp;</p>
-        </div>
-      </div>
-      <div class="work-item">
-        <a href="oklou.png" target="_blank" class="work-image">
-          <span class="new-badge">NEW</span>
-          <img src="oklou.png" alt="Oklou Poster">
-        </a>
-        <div class="work-caption">
-          <h4>Oklou</h4>
-          <p>&nbsp;</p>
-        </div>
-      </div>
-    </div>
+    <div class="stack-counter"></div>
+    <div class="stack-caption"><h4></h4><p></p></div>
   </section>
 
   <!-- Posters -->
   <section>
     <h2>Posters</h2>
-    <p style="text-align:center; font-size:15px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:25px; letter-spacing:1px;">2026</p>
-    <div class="work-grid-3">
-      <div class="work-item">
-        <a href="chromedesign.png" target="_blank" class="work-image">
-          <span class="new-badge">NEW</span>
-          <img src="chromedesign.png" alt="Chrome Design">
-        </a>
-        <div class="work-caption">
-          <h4>Chrome Design</h4>
-          <p>&nbsp;</p>
-        </div>
+    <p style="text-align:center; font-size:17px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:32px; letter-spacing:1px; font-family: 'Cavalhatriz', serif;">2026</p>
+    <div class="stack-scene">
+      <button class="stack-nav stack-prev" aria-label="Previous"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></button>
+      <div class="card-stack">
+        <a href="extras/feelinglucky-fullscreen.png" target="_blank" class="stack-card" data-title="Feeling Lucky" data-desc="Lucky poster design"><img src="extras/feelinglucky.png" alt="Feeling Lucky"></a>
+        <a href="extras/chromedesign-fullscreen.png" target="_blank" class="stack-card" data-title="Chrome Design" data-desc="3D material designs"><img src="extras/chromedesign.png" alt="Chrome Design"></a>
+        <a href="extras/itiswhatitis-fullscreen.png" target="_blank" class="stack-card" data-title="It Is What It Is" data-desc="3D material designs"><img src="extras/itiswhatitis.png" alt="It Is What It Is"></a>
+        <a href="extras/starart-fullscreen.png" target="_blank" class="stack-card" data-title="Star Poster" data-desc="3D material designs"><img src="extras/starart.png" alt="Star Poster"></a>
+        <a href="extras/stargirl-fullscreen.jpg?v=2" target="_blank" class="stack-card" data-title="Star Girl" data-desc="Girl illustration poster design"><img src="extras/stargirl.png" alt="Star Girl Poster"></a>
+        <a href="extras/koifishart-fullscreen.jpg" target="_blank" class="stack-card" data-title="Nishikigoi" data-desc="Koi Fish poster design"><img src="extras/koifishart.png" alt="Koi Fish poster design"></a>
       </div>
-      <div class="work-item">
-        <a href="itiswhatitis.png" target="_blank" class="work-image">
-          <span class="new-badge">NEW</span>
-          <img src="itiswhatitis.png" alt="It Is What It Is">
-        </a>
-        <div class="work-caption">
-          <h4>It Is What It Is</h4>
-          <p>&nbsp;</p>
-        </div>
-      </div>
-      <div class="work-item">
-        <a href="feelinglucky.png" target="_blank" class="work-image">
-          <span class="new-badge">NEW</span>
-          <img src="feelinglucky.png" alt="Feeling Lucky">
-        </a>
-        <div class="work-caption">
-          <h4>Feeling Lucky</h4>
-          <p>&nbsp;</p>
-        </div>
-      </div>
-      <div class="work-item">
-        <a href="starart.png" target="_blank" class="work-image">
-          <span class="new-badge">NEW</span>
-          <img src="starart.png" alt="Star Poster">
-        </a>
-        <div class="work-caption">
-          <h4>Star Poster</h4>
-          <p>Experimenting with Cybersigilism&nbsp;</p>
-        </div>
-      </div>
-      <div class="work-item">
-        <a href="stargirl.png" target="_blank" class="work-image">
-          <span class="new-badge">NEW</span>
-          <img src="stargirl.png" alt="Star Girl Poster">
-        </a>
-        <div class="work-caption">
-          <h4>Star Girl Poster</h4>
-          <p>&nbsp;</p>
-        </div>
-      </div>
-      <div class="work-item">
-        <a href="koifishart.png" target="_blank" class="work-image">
-          <span class="new-badge">NEW</span>
-          <img src="koifishart.png" alt="Koi Fish Room Poster">
-        </a>
-        <div class="work-caption">
-          <h4>Nishikigoi</h4>
-          <p>Koi Fish Poster&nbsp;</p>
-        </div>
-      </div>
+      <button class="stack-nav stack-next" aria-label="Next"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></button>
     </div>
+    <div class="stack-counter"></div>
+    <div class="stack-caption"><h4></h4><p></p></div>
   </section>
 
   <!-- Orchid Posters -->
   <section>
     <h2>Orchidaceae</h2>
-    <p style="text-align:center; font-size:15px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:25px; letter-spacing:1px;">2026</p>
-
-    <div class="work-grid-3">
-      <div class="work-item">
-        <a href="orchidposterart.png" target="_blank" class="work-image">
-          <img src="orchidposterart.png" alt="Orchid Poster Trio Layout">
-        </a>
-        <div class="work-caption">
-          <h4>Orchid Poster 1</h4>
-          <p>&nbsp;</p>
-        </div>
+    <p style="text-align:center; font-size:17px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:32px; letter-spacing:1px; font-family: 'Cavalhatriz', serif;">2026</p>
+    <div class="stack-scene">
+      <button class="stack-nav stack-prev" aria-label="Previous"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></button>
+      <div class="card-stack">
+        <a href="extras/orchidposterart-fullscreen.png" target="_blank" class="stack-card" data-title="Orchid Poster 1" data-desc="Botanical orchid posters"><img src="extras/orchidposterart.png" alt="Orchid Poster Trio Layout"></a>
+        <a href="extras/orchidposter2-fullscreen.png" target="_blank" class="stack-card" data-title="Orchid Poster 2" data-desc="Botanical orchid posters"><img src="extras/orchidposter2.png" alt="Orchid Poster on Burgundy Background"></a>
+        <a href="extras/landscapeorchid-fullscreen.png" target="_blank" class="stack-card" data-orient="landscape" data-title="Landscape Poster" data-desc="Botanical orchid posters"><img src="extras/landscapeorchid.png" alt="Rotated Orchid Poster Layout"></a>
+        <a href="extras/greenorchidart-fullscreen.jpg" target="_blank" class="stack-card" data-orient="landscape" data-title="Green Orchid Design" data-desc="Orchid illustration"><img src="extras/greenorchidart.png" alt="Green Orchid Design"></a>
       </div>
-      <div class="work-item">
-        <a href="orchidposter2.png" target="_blank" class="work-image">
-          <img src="orchidposter2.png" alt="Orchid Poster on Burgundy Background">
-        </a>
-        <div class="work-caption">
-          <h4>Orchid Poster 2</h4>
-          <p>&nbsp;</p>
-        </div>
-      </div>
+      <button class="stack-nav stack-next" aria-label="Next"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></button>
     </div>
-    <div class="work-grid-3 work-grid-landscape">
-      <div class="work-item">
-        <a href="landscapeorchid.png" target="_blank" class="work-image work-image-landscape">
-          <img src="landscapeorchid.png" alt="Rotated Orchid Poster Layout">
-        </a>
-        <div class="work-caption">
-          <h4>Landscape Poster</h4>
-          <p>favourite flower, les fleurs</p>
-        </div>
-      </div>
-      <div class="work-item">
-        <a href="greenorchidart.png" target="_blank" class="work-image work-image-landscape">
-          <span class="new-badge">NEW</span>
-          <img src="greenorchidart.png" alt="Green Orchid Design">
-        </a>
-        <div class="work-caption">
-          <h4>Green Orchid Design</h4>
-          <p>&nbsp;</p>
-        </div>
-      </div>
-    </div>
+    <div class="stack-counter"></div>
+    <div class="stack-caption"><h4></h4><p></p></div>
   </section>
 
   <!-- Magazine Project -->
   <section>
     <h2>Magazine Design</h2>
-    <p style="text-align:center; font-size:15px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:25px; letter-spacing:1px;">2024</p>
+    <p style="text-align:center; font-size:17px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:32px; letter-spacing:1px; font-family: 'Cavalhatriz', serif;">2024</p>
     <h3>Augustine Magazine</h3>
-    <div class="magazine-grid">
-      <div class="work-item magazine-cover">
-        <a href="magazine cover.png" target="_blank" class="work-image">
-          <img src="magazine cover.png" alt="Augustine Magazine Cover">
-        </a>
-        <div class="work-caption">
-          <h4>Cover Design</h4>
-          <p>Magazine cover</p>
-        </div>
+    <div class="stack-scene">
+      <button class="stack-nav stack-prev" aria-label="Previous"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></button>
+      <div class="card-stack">
+        <a href="extras/magazinecover-fullscreen.png" target="_blank" class="stack-card" data-title="Cover Design" data-desc="Magazine cover"><img src="extras/magazine cover.png" alt="Augustine Magazine Cover"></a>
+        <a href="extras/magazinespread-fullscreen.png" target="_blank" class="stack-card" data-orient="landscape" data-rotate="90" data-title="&quot;We Never Go Out of Style&quot;" data-desc="Magazine spread"><img src="extras/magazinespreadart.png" alt="We Never Go Out of Style Spread"></a>
+        <a href="extras/magazinedrafts-fullscreen.png" target="_blank" class="stack-card" data-orient="landscape" data-title="Magazine Drafts" data-desc="Magazine layout design"><img src="extras/magazine-drafts.png" alt="Magazine Drafts"></a>
       </div>
-      <div class="work-item magazine-spread">
-        <a href="magazinespreadart.png" target="_blank" class="work-image work-image-landscape">
-          <img src="magazinespreadart.png" alt="We Never Go Out of Style Spread">
-        </a>
-        <div class="work-caption">
-          <h4>"We Never Go Out of Style"</h4>
-          <p>Magazine spread</p>
-        </div>
-      </div>
-      <div class="work-item magazine-spread">
-        <a href="magazine-drafts.png" target="_blank" class="work-image work-image-landscape">
-          <img src="magazine-drafts.png" alt="Magazine Drafts">
-        </a>
-        <div class="work-caption">
-          <h4>Magazine Drafts</h4>
-          <p>Magazine layout design</p>
-        </div>
-      </div>
+      <button class="stack-nav stack-next" aria-label="Next"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></button>
     </div>
+    <div class="stack-counter"></div>
+    <div class="stack-caption"><h4></h4><p></p></div>
   </section>
 
   <!-- Packaging Design -->
   <section>
     <h2>Packaging Design</h2>
-    <p style="text-align:center; font-size:15px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:25px; letter-spacing:1px;">2024</p>
+    <p style="text-align:center; font-size:17px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:32px; letter-spacing:1px; font-family: 'Cavalhatriz', serif;">2024</p>
     <h3>Sugar Blooms</h3>
-    <div class="work-grid-3">
-      <div class="work-item with-bg">
-        <div class="work-image">
-          <img src="packagephoto.png" alt="Sugar Blooms Packaging 3D">
-        </div>
-        <div class="work-caption">
-          <h4>Physical Mockup</h4>
-          <p>3D packaging design for "Sugar Blooms" confectionery brand</p>
-        </div>
+    <div class="stack-scene">
+      <button class="stack-nav stack-prev" aria-label="Previous"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></button>
+      <div class="card-stack">
+        <a href="extras/packaging design full screen.png" target="_blank" class="stack-card" data-title="Sugar Blooms" data-desc="Dieline design"><img src="extras/packaging design preview.png" alt="Packaging Design"></a>
+        <a href="extras/sugar bloom full screen image1.png" target="_blank" class="stack-card" data-title="Sugar Blooms" data-desc="3D packaging design for Sugar Blooms confectionery brand"><img src="extras/sugar bloom preview image1.png" alt="Sugar Blooms Packaging 1"></a>
+        <a href="extras/sugar bloom full screen image2.png" target="_blank" class="stack-card" data-title="Sugar Blooms" data-desc="3D packaging design for Sugar Blooms confectionery brand"><img src="extras/sugar bloom preview image2.png" alt="Sugar Blooms Packaging 2"></a>
+        <a href="extras/sugar bloom full screen image3.png" target="_blank" class="stack-card" data-title="Sugar Blooms" data-desc="3D packaging design for Sugar Blooms confectionery brand"><img src="extras/sugar bloom preview image3.png" alt="Sugar Blooms Packaging 3"></a>
+        <a href="extras/sugar bloom full screen image4.png" target="_blank" class="stack-card" data-title="Sugar Blooms" data-desc="3D packaging design for Sugar Blooms confectionery brand"><img src="extras/sugar bloom preview image4.png" alt="Sugar Blooms Packaging 4"></a>
       </div>
-      <div class="work-item with-bg">
-        <a href="dieline.png" data-rotate="90" class="work-image">
-          <img src="dieline.png" alt="Sugar Blooms Dieline">
-        </a>
-        <div class="work-caption">
-          <h4>Flat Dieline</h4>
-          <p>Complete packaging dieline</p>
-        </div>
-      </div>
+      <button class="stack-nav stack-next" aria-label="Next"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></button>
     </div>
+    <div class="stack-counter"></div>
+    <div class="stack-caption"><h4></h4><p></p></div>
   </section>
 
   <!-- Rebus -->
   <section>
     <h2>Rebus</h2>
-    <p style="text-align:center; font-size:15px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:25px; letter-spacing:1px;">2024</p>
-    <div class="work-grid-3">
-      <div class="work-item">
-        <a href="rebusart.png" target="_blank" class="work-image">
-          <img src="rebusart.png" alt="Milk Teeth Rebus">
-        </a>
-        <div class="work-caption">
-          <h4>"Milk Teeth"</h4>
-          <p>Visual word puzzle combining milk carton and tooth illustration</p>
-        </div>
+    <p style="text-align:center; font-size:17px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:25px; letter-spacing:1px; font-family: 'Cavalhatriz', serif;">2024</p>
+    <div style="text-align:center; margin:0 auto 40px;">
+      <a href="extras/rebusart.png" target="_blank" style="display:inline-block; max-width:360px; width:100%;">
+        <img src="extras/rebusart.png" alt="Milk Teeth Rebus" style="width:100%; border-radius:6px; display:block;">
+      </a>
+      <div style="margin-top:16px;">
+        <h4 style="font-family:'MADE Sunflower',sans-serif; font-size:20px; color:#8b475d; margin-bottom:6px; font-weight:400;">"Milk Teeth"</h4>
+        <p style="font-family:Helvetica,Arial,sans-serif; font-size:14px; color:#a0617a; font-style:normal; letter-spacing:-0.07em;">Visual word puzzle combining milk carton and tooth illustration</p>
       </div>
     </div>
   </section>
@@ -686,76 +710,36 @@
   <!-- Art Showcase poster & program -->
   <section>
     <h2>Art Showcase Design</h2>
-    <p style="text-align:center; font-size:15px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:25px; letter-spacing:1px;">2025</p>
+    <p style="text-align:center; font-size:17px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:32px; letter-spacing:1px; font-family: 'Cavalhatriz', serif;">2025</p>
     <h3>Dickson College Art Showcase</h3>
-
-    <div class="work-grid-3">
-      <div class="work-item">
-        <a href="artshowcase.png" target="_blank" class="work-image">
-          <img src="artshowcase.png" alt="Art Showcase Poster">
-        </a>
-        <div class="work-caption">
-          <h4>Event Poster</h4>
-          <p>Promotional poster for the Dickson College Art Showcase.</p>
-        </div>
+    <div class="stack-scene">
+      <button class="stack-nav stack-prev" aria-label="Previous"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></button>
+      <div class="card-stack">
+        <a href="extras/artshowcaseposter-fullscreen.png" target="_blank" class="stack-card" data-title="Event Poster" data-desc="Promotional poster for the Dickson College Art Showcase"><img src="extras/artshowcase.png" alt="Art Showcase Poster"></a>
+        <a href="extras/menuart-fullscreen.png" target="_blank" class="stack-card" data-title="Menu" data-desc="Event menu items"><img src="extras/menuart.png" alt="Art Showcase Artwork Detail"></a>
+        <a href="extras/artshowcaseoutside-fullscreen.png" target="_blank" class="stack-card" data-orient="landscape" data-title="Programme – Outside Spread" data-desc="Front and back of the programme"><img src="extras/artshowcasespreadoutside.png" alt="Art Showcase Programme Outside Spread"></a>
+        <a href="extras/artshowcaseinside-fullscreen.png" target="_blank" class="stack-card" data-orient="landscape" data-title="Programme – Inside Spread" data-desc="Overview, timings and menu"><img src="extras/artshowcasespread.png" alt="Art Showcase Programme Inside Spread"></a>
       </div>
-      <div class="work-item">
-        <a href="menuart.png" target="_blank" class="work-image">
-          <img src="menuart.png" alt="Art Showcase Artwork Detail">
-        </a>
-        <div class="work-caption">
-          <h4>Poster Artwork Detail</h4>
-          <p>Close-up focus on the central illustration used across the collateral.</p>
-        </div>
-      </div>
+      <button class="stack-nav stack-next" aria-label="Next"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></button>
     </div>
-
-    <div class="work-grid-3 work-grid-landscape art-program-grid">
-      <div class="work-item">
-        <a href="artshowcasespreadoutside.png" target="_blank" class="work-image work-image-landscape">
-          <img src="artshowcasespreadoutside.png" alt="Art Showcase Program Outside Spread">
-        </a>
-        <div class="work-caption">
-          <h4>Program – Outside Spread</h4>
-          <p>Front and back of the program, featuring event title and key details.</p>
-        </div>
-      </div>
-      <div class="work-item">
-        <a href="artshowcasespread.png" target="_blank" class="work-image work-image-landscape">
-          <img src="artshowcasespread.png" alt="Art Showcase Program Inside Spread">
-        </a>
-        <div class="work-caption">
-          <h4>Program – Inside Spread</h4>
-          <p>Overview, timings and menu presented in a matching decorative style.</p>
-        </div>
-      </div>
-    </div>
+    <div class="stack-counter"></div>
+    <div class="stack-caption"><h4></h4><p></p></div>
   </section>
 
   <!-- Calendar Designs -->
   <section>
     <h2>Calendar Designs</h2>
-    <p style="text-align:center; font-size:15px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:25px; letter-spacing:1px;">2026</p>
-    <div class="work-grid-3 work-grid-landscape">
-      <div class="work-item">
-        <a href="timetolockindesign.png" target="_blank" class="work-image work-image-landscape">
-          <img src="timetolockindesign.png" alt="Time to Lock In Calendar">
-        </a>
-        <div class="work-caption">
-          <h4>"Time to Lock In"</h4>
-          <p>&nbsp;</p>
-        </div>
+    <p style="text-align:center; font-size:17px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:32px; letter-spacing:1px; font-family: 'Cavalhatriz', serif;">2026</p>
+    <div class="stack-scene">
+      <button class="stack-nav stack-prev" aria-label="Previous"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></button>
+      <div class="card-stack">
+        <a href="extras/lockin-fullscreen.jpg" target="_blank" class="stack-card" data-orient="landscape" data-title="&quot;Time to Lock In&quot;" data-desc=""><img src="extras/timetolockindesign.png" alt="Time to Lock In Calendar"></a>
+        <a href="extras/sowhencaniseeyou-fullscreen.jpg" target="_blank" class="stack-card" data-orient="landscape" data-title="&quot;So When Can I See You?&quot;" data-desc="Variant"><img src="extras/sowhencaniseeyoudesign.png" alt="So When Can I See You Calendar Variant"></a>
       </div>
-      <div class="work-item">
-        <a href="sowhencaniseeyoudesign.png" target="_blank" class="work-image work-image-landscape">
-          <img src="sowhencaniseeyoudesign.png" alt="So When Can I See You Calendar Variant">
-        </a>
-        <div class="work-caption">
-          <h4>"So When Can I See You?" - Variant</h4>
-          <p>&nbsp;</p>
-        </div>
-      </div>
+      <button class="stack-nav stack-next" aria-label="Next"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></button>
     </div>
+    <div class="stack-counter"></div>
+    <div class="stack-caption"><h4></h4><p></p></div>
 
     <div class="back-button-container">
       <a href="graphic-design.html#portfolio" class="back-button">← Back to Portfolio</a>
@@ -807,7 +791,110 @@
       });
       ticking = true;
     });
+
+    // Card Stacks
+    document.querySelectorAll('.card-stack').forEach(stackEl => {
+      const cards = [...stackEl.querySelectorAll('.stack-card')];
+      const n = cards.length;
+      if (n === 0) return;
+      const rots = [0, -6, 4, -3, 5, -2, 7, -4, 3, -5, 6];
+      const captionEl = stackEl.closest('section').querySelector('.stack-caption');
+      const counterEl = stackEl.closest('section').querySelector('.stack-counter');
+      let front = 0;
+
+      let busy = false;
+
+      function update() {
+        cards.forEach((card, i) => {
+          const pos = (i - front + n) % n;
+          const rot = rots[Math.min(pos, rots.length - 1)];
+          const isLandscape = card.dataset.orient === 'landscape';
+          const scale = (1 - Math.min(pos, 5) * 0.03) * (isLandscape ? 1.35 : 1);
+          card._baseTransform = `rotate(${rot}deg) scale(${scale})`;
+          card.style.zIndex = n - pos;
+          card.style.transform = card._baseTransform;
+          card.style.filter = pos === 0 ? 'drop-shadow(0 20px 40px rgba(0,0,0,0.32))' : 'none';
+          card.style.opacity = pos < 5 ? 1 : 0;
+          card.style.pointerEvents = pos === 0 ? 'auto' : 'none';
+        });
+        if (counterEl) counterEl.textContent = (front + 1) + ' / ' + n;
+        if (captionEl) {
+          const fc = cards[front];
+          captionEl.querySelector('h4').textContent = fc.dataset.title || '';
+          captionEl.querySelector('p').textContent = fc.dataset.desc || '';
+        }
+      }
+
+      function go(dir) {
+        if (busy) return;
+        busy = true;
+        front = (front + dir + n) % n;
+        update();
+        setTimeout(() => { busy = false; }, 650);
+      }
+
+      stackEl.closest('.stack-scene').querySelector('.stack-prev').addEventListener('click', () => go(-1));
+      stackEl.closest('.stack-scene').querySelector('.stack-next').addEventListener('click', () => go(1));
+
+      // Touch swipe support
+      var touchStartX = 0;
+      var touchStartY = 0;
+      var scene = stackEl.closest('.stack-scene');
+      scene.addEventListener('touchstart', function(e) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      }, { passive: true });
+      scene.addEventListener('touchend', function(e) {
+        var dx = e.changedTouches[0].clientX - touchStartX;
+        var dy = e.changedTouches[0].clientY - touchStartY;
+        if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+          go(dx < 0 ? 1 : -1);
+        }
+      });
+
+      cards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+          if (card.style.pointerEvents === 'none') return;
+          const base = card._baseTransform || '';
+          card.style.transform = base.replace(/scale\(([^)]+)\)/, (_, s) => `scale(${parseFloat(s) * 1.04})`) + ' translateY(-7px)';
+        });
+        card.addEventListener('mouseleave', () => {
+          if (card._baseTransform) card.style.transform = card._baseTransform;
+        });
+      });
+
+      update();
+    });
   </script>
-  <script src="lightbox.js"></script>
+  <script src="shared/lightbox.js?v=5"></script>
+<script>
+    // Scroll-triggered animations
+    (function() {
+        var opts = { threshold: 0.12, rootMargin: '0px 0px -40px 0px' };
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, opts);
+
+        // Observe fade-in elements
+        document.querySelectorAll('.fade-in').forEach(function(el) { observer.observe(el); });
+
+        // Observe h2 headings and give them the animated class
+        document.querySelectorAll('h2').forEach(function(h2) {
+            h2.classList.add('will-animate');
+            observer.observe(h2);
+        });
+
+        // Stagger fade-in siblings
+        document.querySelectorAll('.fade-in').forEach(function(el) {
+            var siblings = Array.from(el.parentElement.children).filter(function(c) {
+                return c.classList.contains('fade-in');
+            });
+            var idx = siblings.indexOf(el);
+            if (idx > 0) el.style.transitionDelay = (idx * 0.11) + 's';
+        });
+    })();
+</script>
 </body>
 </html>

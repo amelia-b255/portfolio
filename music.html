@@ -6,8 +6,10 @@
     <title>Amelia Bobbin - Music</title>
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Cookie&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica:ital@0;1&display=swap');
         @import url('https://fonts.cdnfonts.com/css/made-sunflower');
+    @font-face { font-family: "Cavalhatriz"; src: url("fonts/Cavalhatriz.ttf") format("truetype"); font-weight: normal; font-style: normal; }
+    @font-face { font-family: "Georgia Custom"; src: url("fonts/georgia.ttf") format("truetype"); font-weight: normal; font-style: normal; }
+    @font-face { font-family: "Georgia Custom"; src: url("fonts/georgiab.ttf") format("truetype"); font-weight: bold; font-style: normal; }
         
         * {
             margin: 0;
@@ -22,10 +24,12 @@
         }
 
         body {
-            font-family: 'IM Fell DW Pica', serif;
+            font-size: 1.1em;
+      font-family: Helvetica, Arial, sans-serif;
+            letter-spacing: -0.07em;
             background: linear-gradient(135deg, #f5c1cf 0%, #fceadb 20%, #e8d5ca 40%, #b4d4c3 60%, #f5e6e8 80%, #d4a5a5 100%);
             color: #5a5a5a;
-            font-weight: 400;
+            font-weight: 700;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
@@ -39,7 +43,7 @@
         .star {
             width: 25px;
             height: 25px;
-            background: #d4a5a5;
+            background: #a8c5b5;
             clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
             animation: gentleFloat 6s infinite ease-in-out;
             opacity: 0.5;
@@ -50,29 +54,29 @@
         .star3 { bottom: 20%; left: 15%; animation-delay: 4s; animation-duration: 6s; }
         .star4 { top: 60%; right: 8%; animation-delay: 3s; animation-duration: 9s; width: 30px; height: 30px; }
         .star5 { top: 45%; left: 5%; animation-delay: 1s; width: 18px; height: 18px; background: #f5c1cf; }
-        .star6 { top: 35%; right: 25%; animation-delay: 1.5s; animation-duration: 7.5s; width: 22px; height: 22px; background: #e8d5ca; }
+        .star6 { top: 35%; right: 25%; animation-delay: 1.5s; animation-duration: 7.5s; width: 22px; height: 22px; background: #fceadb; }
         .star7 { top: 70%; left: 30%; animation-delay: 2.5s; animation-duration: 6.5s; width: 28px; height: 28px; background: #f5c1cf; }
         .star8 { top: 10%; right: 35%; animation-delay: 0.5s; animation-duration: 8.5s; width: 16px; height: 16px; background: #a8c5b5; }
-        .star9 { bottom: 35%; right: 20%; animation-delay: 3.5s; animation-duration: 7s; width: 24px; height: 24px; background: #d4a5a5; }
+        .star9 { bottom: 35%; right: 20%; animation-delay: 3.5s; animation-duration: 7s; width: 24px; height: 24px; background: #a8c5b5; }
         .star10 { top: 50%; left: 20%; animation-delay: 1s; animation-duration: 9s; width: 35px; height: 35px; background: #a8c5b5; }
         .star11 { bottom: 10%; right: 15%; animation-delay: 2s; animation-duration: 6s; width: 20px; height: 20px; background: #f5c1cf; }
-        .star12 { top: 80%; left: 10%; animation-delay: 4s; animation-duration: 8s; width: 26px; height: 26px; background: #e8d5ca; }
-        .star13 { top: 20%; left: 40%; animation-delay: 3s; animation-duration: 7s; width: 19px; height: 19px; background: #d4a5a5; }
+        .star12 { top: 80%; left: 10%; animation-delay: 4s; animation-duration: 8s; width: 26px; height: 26px; background: #fceadb; }
+        .star13 { top: 20%; left: 40%; animation-delay: 3s; animation-duration: 7s; width: 19px; height: 19px; background: #a8c5b5; }
         .star14 { bottom: 50%; left: 8%; animation-delay: 0.8s; animation-duration: 8.2s; width: 32px; height: 32px; background: #a8c5b5; }
         .star15 { top: 40%; right: 5%; animation-delay: 2.2s; animation-duration: 7.8s; width: 23px; height: 23px; background: #f5c1cf; }
         .star16 { top: 12%; left: 25%; animation-delay: 1.8s; animation-duration: 7.2s; width: 21px; height: 21px; background: #a8c5b5; }
         .star17 { bottom: 25%; right: 30%; animation-delay: 0.3s; animation-duration: 8.8s; width: 27px; height: 27px; background: #f5c1cf; }
-        .star18 { top: 55%; right: 18%; animation-delay: 2.8s; animation-duration: 6.8s; width: 17px; height: 17px; background: #e8d5ca; }
-        .star19 { bottom: 15%; left: 35%; animation-delay: 3.2s; animation-duration: 7.4s; width: 29px; height: 29px; background: #d4a5a5; }
+        .star18 { top: 55%; right: 18%; animation-delay: 2.8s; animation-duration: 6.8s; width: 17px; height: 17px; background: #fceadb; }
+        .star19 { bottom: 15%; left: 35%; animation-delay: 3.2s; animation-duration: 7.4s; width: 29px; height: 29px; background: #a8c5b5; }
         .star20 { top: 30%; left: 12%; animation-delay: 1.2s; animation-duration: 8.6s; width: 24px; height: 24px; background: #a8c5b5; }
         .star21 { bottom: 40%; right: 10%; animation-delay: 4.2s; animation-duration: 6.2s; width: 20px; height: 20px; background: #f5c1cf; }
         .star22 { top: 65%; left: 22%; animation-delay: 0.7s; animation-duration: 9.2s; width: 33px; height: 33px; background: #a8c5b5; }
-        .star23 { top: 8%; right: 22%; animation-delay: 2.4s; animation-duration: 7.6s; width: 18px; height: 18px; background: #e8d5ca; }
-        .star24 { bottom: 30%; left: 18%; animation-delay: 3.8s; animation-duration: 6.4s; width: 25px; height: 25px; background: #d4a5a5; }
+        .star23 { top: 8%; right: 22%; animation-delay: 2.4s; animation-duration: 7.6s; width: 18px; height: 18px; background: #fceadb; }
+        .star24 { bottom: 30%; left: 18%; animation-delay: 3.8s; animation-duration: 6.4s; width: 25px; height: 25px; background: #a8c5b5; }
         .star25 { top: 75%; right: 25%; animation-delay: 1.4s; animation-duration: 8.4s; width: 22px; height: 22px; background: #f5c1cf; }
         .star26 { top: 42%; left: 32%; animation-delay: 2.6s; animation-duration: 7.2s; width: 19px; height: 19px; background: #a8c5b5; }
-        .star27 { bottom: 18%; right: 8%; animation-delay: 0.9s; animation-duration: 8.9s; width: 26px; height: 26px; background: #e8d5ca; }
-        .star28 { top: 52%; right: 28%; animation-delay: 3.6s; animation-duration: 6.6s; width: 21px; height: 21px; background: #d4a5a5; }
+        .star27 { bottom: 18%; right: 8%; animation-delay: 0.9s; animation-duration: 8.9s; width: 26px; height: 26px; background: #fceadb; }
+        .star28 { top: 52%; right: 28%; animation-delay: 3.6s; animation-duration: 6.6s; width: 21px; height: 21px; background: #a8c5b5; }
         .star29 { bottom: 45%; left: 28%; animation-delay: 1.6s; animation-duration: 8.2s; width: 30px; height: 30px; background: #f5c1cf; }
         .star30 { top: 18%; right: 16%; animation-delay: 2.1s; animation-duration: 7.9s; width: 23px; height: 23px; background: #a8c5b5; }
 
@@ -83,7 +87,7 @@
             75% { transform: translate(-15px, -10px); opacity: 0.7; }
         }
 
-        .announcement-banner{position:fixed;top:0;left:0;width:100%;height:38px;background:linear-gradient(90deg,#f5c1cf 0%,#fceadb 25%,#b4d4c3 55%,#f5c1cf 100%);background-size:300% 100%;animation:bannerShift 8s linear infinite;z-index:1002;overflow:hidden;display:flex;align-items:center}
+        .announcement-banner{position:fixed;top:0;left:0;width:100%;height:38px;background:linear-gradient(90deg, #f5c1cf 0%, #fceadb 25%, #b4d4c3 55%, #f5c1cf 100%);background-size:300% 100%;animation:bannerShift 8s linear infinite;z-index:1002;overflow:hidden;display:flex;align-items:center}
         .banner-link{display:block;width:100%;overflow:hidden;text-decoration:none;cursor:pointer}
         .banner-link:hover .banner-inner{animation-play-state:paused}
         .banner-inner{display:flex;white-space:nowrap;animation:marqueeScroll 28s linear infinite;will-change:transform}
@@ -155,7 +159,7 @@
             position: relative;
             transition: all 0.3s ease;
             font-weight: 500;
-            font-family: Georgia, serif;
+            font-family: 'Georgia Custom', Georgia, serif;
             white-space: nowrap;
         }
 
@@ -201,7 +205,7 @@
             font-size: 15px;
             letter-spacing: 1px;
             transition: all 0.4s ease;
-            font-family: Georgia, serif;
+            font-family: 'Georgia Custom', Georgia, serif;
             font-weight: 500;
             border-radius: 25px;
             box-shadow: 0 3px 10px rgba(139, 71, 93, 0.3);
@@ -235,7 +239,7 @@
 
         .hero-content h1 {
             font-family: 'MADE Sunflower', sans-serif; font-weight: 400;
-            font-size: 82px;
+            font-size: 58px;
             color: #8b475d;
             margin-bottom: 25px;
             line-height: 1.2;
@@ -244,16 +248,16 @@
         }
 
         .hero-content p {
-            font-size: 20px;
+            font-size: 17px;
             color: #a0617a;
             margin-bottom: 35px;
             line-height: 1.7;
             max-width: 800px;
             margin: 0 auto 35px;
-            font-family: Georgia, serif;
-            font-style: italic;
-            font-weight: 400;
-            letter-spacing: 0.3px;
+            font-family: Helvetica, Arial, sans-serif;
+            font-style: normal;
+            font-weight: 700;
+            letter-spacing: -0.07em;
         }
 
         @keyframes fadeInUp {
@@ -262,14 +266,14 @@
         }
 
         section {
-            padding: 80px 60px;
+            padding: 60px 50px;
             position: relative;
             z-index: 10;
         }
 
         h2 {
             font-family: 'Archivo Black', sans-serif;
-            font-size: 56px;
+            font-size: 38px;
             text-align: center;
             color: #8b475d;
             margin-bottom: 70px;
@@ -289,114 +293,34 @@
             background: #f5c1cf;
         }
 
-        .music-photos-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            max-width: 1400px;
-            margin: 0 auto 80px;
-        }
-
-        .music-photo-item {
-            position: relative;
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            box-shadow: 10px 10px 30px rgba(139, 71, 93, 0.1);
-            aspect-ratio: 4/3;
-        }
-
-        .music-photo-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 15px 15px 40px rgba(139, 71, 93, 0.15);
-        }
-
-        .music-photo-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .video-gallery {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 40px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .video-item {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 10px 10px 30px rgba(139, 71, 93, 0.1);
-        }
-
-        .video-item.landscape {
-            grid-column: span 2;
-        }
-
-        .video-item.portrait {
-            grid-column: span 1;
-        }
-
-        .video-container {
-            width: 100%;
-            background: #f5e6e8;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .video-item.landscape .video-container {
-            aspect-ratio: 16/9;
-        }
-
-        .video-item.portrait .video-container {
-            aspect-ratio: 9/16;
-        }
-
-        .video-container video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            background: #000;
-        }
-
-        .video-caption {
-            padding: 20px;
-            text-align: center;
-        }
-
-        .video-caption h4 {
-            font-family: 'MADE Sunflower', sans-serif; font-weight: 400;
-            font-size: 18px;
-            color: #8b475d;
-            margin-bottom: 8px;
-            font-weight: 400;
-        }
-
-        .video-caption p {
-            font-family: Georgia, serif;
-            font-size: 14px;
-            color: #a0617a;
-            font-style: italic;
-            line-height: 1.6;
-        }
+        /* Card stacks */
+        .stack-scene{display:flex;align-items:center;justify-content:center;gap:48px;margin:0 auto 16px}
+        .card-stack{position:relative;flex-shrink:0}
+        .stack-card{position:absolute;inset:0;overflow:visible;transition:transform 0.6s cubic-bezier(0.4,0,0.2,1),filter 0.4s ease,opacity 0.4s ease;will-change:transform;background:transparent}
+        .stack-card img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;-webkit-user-select:none;user-select:none;border-radius:2px}
+        .stack-card video{width:100%;height:100%;object-fit:contain;display:block;background:transparent;border-radius:2px}
+        .stack-nav{background:rgba(255,255,255,0.35);border:none;border-radius:50%;width:48px;height:48px;display:flex;align-items:center;justify-content:center;color:#8b475d;font-size:36px;cursor:pointer;opacity:0.75;transition:opacity 0.2s,transform 0.2s;padding:0;line-height:0;position:relative;z-index:50}
+        .stack-nav:hover{opacity:1;transform:scale(1.15)}
+        .stack-counter{font-family:Helvetica,Arial,sans-serif;font-size:13px;color:#a0617a;text-align:center;margin-bottom:10px;letter-spacing:1px}
+        .stack-caption{text-align:center;padding:0 20px 40px;min-height:64px}
+        .stack-caption h4{font-family:'MADE Sunflower',sans-serif;font-size:20px;color:#8b475d;margin-bottom:6px;font-weight:400}
+        .stack-caption p{font-family:Helvetica,Arial,sans-serif;font-size:14px;color:#a0617a;font-style:normal;letter-spacing:-0.07em}
+        .stack-year{font-family:'Cavalhatriz',serif;font-size:17px;color:#8b475d;font-style:italic;display:block;margin-top:8px;letter-spacing:1px}
+        .card-stack-video{width:600px;height:338px;transition:width 0.5s ease, height 0.5s ease}
+        .card-stack-photo{width:480px;height:360px}
 
         .music-achievements {
-            max-width: 900px;
+            max-width: 700px;
             margin: 0 auto;
+            padding: 40px 50px;
             background: white;
-            padding: 50px;
             border-radius: 20px;
             box-shadow: 10px 10px 30px rgba(139, 71, 93, 0.1);
         }
 
         .music-achievements h3 {
             font-family: 'MADE Sunflower', sans-serif; font-weight: 400;
-            font-size: 28px;
+            font-size: 26px;
             color: #8b475d;
             margin-bottom: 25px;
             text-align: center;
@@ -409,7 +333,8 @@
         }
 
         .music-achievements li {
-            font-family: Georgia, serif;
+            font-family: Helvetica, Arial, sans-serif;
+            letter-spacing: -0.07em;
             font-size: 16px;
             color: #5a5a5a;
             line-height: 1.8;
@@ -432,7 +357,8 @@
             background: rgba(255, 255, 255, 0.5);
             color: #8b475d;
             font-size: 14px;
-            letter-spacing: 0.5px;
+            letter-spacing: -0.07em;
+            font-family: Helvetica, Arial, sans-serif;
         }
 
         .fade-in {
@@ -516,8 +442,9 @@
             }
 
             .hero-content h1 {
-                font-size: 38px !important;
+                font-size: 32px !important;
                 margin-bottom: 20px;
+                word-break: break-word;
             }
 
             .hero-content p {
@@ -533,19 +460,16 @@
             }
 
             h2 {
-                font-size: 28px !important;
+                font-size: 22px !important;
                 margin-bottom: 40px;
-                letter-spacing: 1px;
+                letter-spacing: -0.5px;
+                word-break: break-word;
+                overflow-wrap: break-word;
+                text-transform: none;
             }
 
             section {
-                padding: 50px 20px !important;
-            }
-
-            .music-photos-grid {
-                grid-template-columns: 1fr !important;
-                gap: 25px;
-                margin-bottom: 50px;
+                padding: 48px 24px !important;
             }
 
             .music-achievements {
@@ -561,27 +485,9 @@
                 padding-left: 20px;
             }
 
-            .video-gallery {
-                grid-template-columns: 1fr !important;
-                gap: 25px;
-            }
-
-            .video-item.landscape,
-            .video-item.portrait {
-                grid-column: span 1 !important;
-            }
-
-            .video-caption {
-                padding: 15px;
-            }
-
-            .video-caption h4 {
-                font-size: 16px !important;
-            }
-
-            .video-caption p {
-                font-size: 13px !important;
-            }
+            .card-stack-video{width:420px;height:236px}
+            .card-stack-photo{width:360px;height:270px}
+            .stack-scene{gap:24px}
 
             footer {
                 padding: 40px 20px;
@@ -601,7 +507,8 @@
             }
 
             .hero-content h1 {
-                font-size: 32px !important;
+                font-size: 26px !important;
+                word-break: break-word;
             }
 
             .hero-content p {
@@ -609,8 +516,13 @@
             }
 
             h2 {
-                font-size: 24px !important;
+                font-size: 20px !important;
                 margin-bottom: 30px;
+                letter-spacing: -0.5px;
+                word-break: break-word;
+                overflow-wrap: break-word;
+                text-transform: none;
+                padding: 0 5px;
             }
 
             .music-achievements {
@@ -625,11 +537,147 @@
                 font-size: 13px !important;
             }
 
+            .card-stack-video{width:310px;height:174px}
+            .card-stack-photo{width:270px;height:203px}
+            .stack-scene{gap:12px}
+
             .star {
                 width: 12px !important;
                 height: 12px !important;
                 opacity: 0.35;
             }
+        }
+
+        /* ── Animation enhancements ── */
+
+        /* More dramatic fade-in with subtle scale + blur */
+        .fade-in {
+            transform: translateY(60px) scale(0.94) !important;
+            filter: blur(3px);
+            transition: opacity 2.5s ease, transform 2.5s cubic-bezier(0.22, 1, 0.36, 1), filter 2s ease !important;
+        }
+        .fade-in.visible {
+            transform: translateY(0) scale(1) !important;
+            filter: blur(0px);
+        }
+
+        /* Fade-in from left for odd items, right for even */
+        .fade-in:nth-child(odd) {
+            transform: translateY(50px) translateX(-30px) scale(0.94) !important;
+        }
+        .fade-in:nth-child(even) {
+            transform: translateY(50px) translateX(30px) scale(0.94) !important;
+        }
+        .fade-in.visible:nth-child(odd),
+        .fade-in.visible:nth-child(even) {
+            transform: translateY(0) translateX(0) scale(1) !important;
+        }
+
+        /* h2 headings slide up + underline draws in */
+        h2.will-animate {
+            opacity: 0;
+            transform: translateY(40px) scale(0.92);
+            filter: blur(4px);
+            transition: opacity 2.2s ease, transform 2.2s cubic-bezier(0.22, 1, 0.36, 1), filter 1.8s ease;
+        }
+        h2.will-animate.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            filter: blur(0px);
+        }
+        h2.will-animate::after {
+            width: 0 !important;
+            transition: width 2.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s !important;
+        }
+        h2.will-animate.visible::after {
+            width: 100px !important;
+        }
+
+        /* Section divider shimmer on h2 underline */
+        h2.will-animate.visible::after {
+            background: linear-gradient(90deg, #f5c1cf, #a8c5b5, #f5c1cf) !important;
+            background-size: 200% 100% !important;
+            animation: underlineShimmer 6s ease-in-out infinite !important;
+        }
+        @keyframes underlineShimmer {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Shimmer sweep across buttons on hover */
+        .cta-button, .cv-button {
+            overflow: hidden !important;
+        }
+        .cta-button::before, .cv-button::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.28), transparent);
+            pointer-events: none;
+            transition: left 1.2s ease;
+        }
+        .cta-button:hover::before, .cv-button:hover::before {
+            left: 160%;
+        }
+
+        /* Skill/stack card pop-in bounce on hover */
+        .skill-card {
+            transition: transform 1s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 1s ease !important;
+        }
+        .skill-card:hover {
+            transform: translateY(-12px) scale(1.04) !important;
+            box-shadow: 12px 18px 40px rgba(139, 71, 93, 0.18) !important;
+        }
+
+        /* Navigation link colour transition */
+        .nav-links a {
+            transition: color 0.7s ease, letter-spacing 0.7s ease !important;
+        }
+        .nav-links a:hover {
+            letter-spacing: 1.5px !important;
+        }
+
+        /* Music nav link shimmer */
+        .music-nav-link {
+            position: relative !important;
+            overflow: hidden !important;
+        }
+        .music-nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 80%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            pointer-events: none;
+            animation: navShimmer 7s ease-in-out infinite;
+        }
+        @keyframes navShimmer {
+            0%, 70%, 100% { left: -100%; }
+            35% { left: 150%; }
+        }
+
+        /* Contact form focus glow */
+        input:focus, textarea:focus {
+            box-shadow: 0 0 0 3px rgba(168, 197, 181, 0.4), 0 0 20px rgba(168, 197, 181, 0.15) !important;
+            transform: scale(1.01);
+            transition: all 0.8s ease !important;
+        }
+
+        /* Stack nav arrow bounce */
+        .stack-prev, .stack-next {
+            transition: transform 0.85s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.6s ease !important;
+        }
+        .stack-prev:hover, .stack-next:hover {
+            transform: scale(1.22) !important;
+        }
+
+        /* Decorative star smooth transitions */
+        .doodle {
+            transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) !important;
         }
     </style>
 </head>
@@ -685,7 +733,7 @@
       </a>
     </div>
     <nav id="navbar">
-        <div class="logo"><a href="graphic-design.html"><img src="AB logo.png" alt="AB" class="logo-img">AMELIA'S PORTFOLIO</a></div>
+        <div class="logo"><a href="graphic-design.html"><img src="shared/AB logo.png" alt="AB" class="logo-img">AMELIA'S PORTFOLIO</a></div>
         <button class="menu-toggle" id="menuToggle" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
         <ul class="nav-links" id="navLinks">
             <li><a href="graphic-design.html" class="music-nav-link">Design Portfolio</a></li>
@@ -720,212 +768,81 @@
 
     <section>
         <h2>Videos</h2>
-        <div class="video-gallery">
-            <div class="video-item landscape fade-in">
-                <div class="video-container">
-                    <video controls preload="metadata" controlslist="nodownload">
-                        <source src="1.mov" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-                <div class="video-caption">
-                    <h4>Express This Way Rehearsal</h4>
-                    <p>Medley of Born This Way and Express Yourself from Limelight 2025</p>
-                </div>
+        <div class="stack-scene">
+          <button class="stack-nav stack-prev" aria-label="Previous"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></button>
+          <div class="card-stack card-stack-video">
+            <!-- Landscape videos -->
+            <div class="stack-card" data-title="Express This Way Rehearsal" data-desc="Medley of Born This Way and Express Yourself" data-year="2025">
+              <video controls preload="metadata" controlslist="nodownload"><source src="music/express-this-way-rehearsal.mp4" type="video/mp4"></video>
             </div>
-            
-            <div class="video-item landscape fade-in">
-                <div class="video-container">
-                    <video controls preload="metadata" controlslist="nodownload">
-                        <source src="2.mov" type="video/mp4">
-                    </video>
-                </div>
-                <div class="video-caption">
-                    <h4>My Island Home Solo</h4>
-                    <p>My main solo song from Limelight 2025</p>
-                </div>
+            <div class="stack-card" data-title="My Island Home Solo" data-desc="My main solo song — Limelight" data-year="2025">
+              <video controls preload="metadata" controlslist="nodownload"><source src="music/my-island-home-solo.mp4" type="video/mp4"></video>
             </div>
-
-            <div class="video-item portrait fade-in">
-                <div class="video-container">
-                    <video controls preload="metadata" controlslist="nodownload">
-                        <source src="3.mov" type="video/mp4">
-                    </video>
-                </div>
-                <div class="video-caption">
-                    <h4>Ain't No Mountain High Enough</h4>
-                    <p>Limelight 2025 performance</p>
-                </div>
+            <div class="stack-card" data-title="Express This Way Solo" data-desc="My solo part from Limelight rehearsal" data-year="2025">
+              <video controls preload="metadata" controlslist="nodownload"><source src="music/express this way solo.mp4" type="video/mp4"></video>
             </div>
-
-            <div class="video-item landscape fade-in">
-                <div class="video-container">
-                    <video controls preload="metadata" controlslist="nodownload">
-                        <source src="4.mov" type="video/mp4">
-                    </video>
-                </div>
-                <div class="video-caption">
-                    <h4>Express This Way Solo</h4>
-                    <p>My solo part from Limelight 2025 rehearsal</p>
-                </div>
+            <div class="stack-card" data-title="My Island Home" data-desc="Limelight solo" data-year="2025">
+              <video controls preload="metadata" controlslist="nodownload"><source src="music/my-island-home.mp4" type="video/mp4"></video>
             </div>
-
-            <div class="video-item portrait fade-in">
-                <div class="video-container">
-                    <video controls preload="metadata" controlslist="nodownload">
-                        <source src="5.mov" type="video/mp4">
-                    </video>
-                </div>
-                <div class="video-caption">
-                    <h4>Shut Up and Dance</h4>
-                    <p>Limelight 2025 Finale</p>
-                </div>
+            <div class="stack-card" data-title="Bags by Clairo" data-desc="Battle of the Bands — 1st place" data-year="2025">
+              <video controls preload="metadata" controlslist="nodownload"><source src="music/bags-by-clairo.mp4" type="video/mp4"></video>
             </div>
-
-            <div class="video-item landscape fade-in">
-                <div class="video-container">
-                    <video controls preload="metadata" controlslist="nodownload">
-                        <source src="6.mov" type="video/mp4">
-                    </video>
-                </div>
-                <div class="video-caption">
-                    <h4>My Island Home</h4>
-                    <p>Limelight 2025 solo</p>
-                </div>
+            <div class="stack-card" data-title="Iris — Goo Goo Dolls" data-desc="Contemporary Music" data-year="2024">
+              <video controls preload="metadata" controlslist="nodownload"><source src="music/iris-goo-goo-dolls.mp4" type="video/mp4"></video>
             </div>
-
-            <div class="video-item landscape fade-in">
-                <div class="video-container">
-                    <video controls preload="metadata" controlslist="nodownload">
-                        <source src="7.mov" type="video/mp4">
-                    </video>
-                </div>
-                <div class="video-caption">
-                    <h4>Bags by Clairo</h4>
-                    <p>Battle of the Bands - 1st place</p>
-                </div>
+            <div class="stack-card" data-title="Gondwana — Combined" data-desc="Sydney Opera House" data-year="2024">
+              <video controls preload="metadata" controlslist="nodownload"><source src="music/gondwana-combined.mp4" type="video/mp4"></video>
             </div>
-
-            <div class="video-item portrait fade-in">
-                <div class="video-container">
-                    <video controls preload="metadata" controlslist="nodownload">
-                        <source src="8.mov" type="video/mp4">
-                    </video>
-                </div>
-                <div class="video-caption">
-                    <h4>Shut Up and Dance - Featured Artists</h4>
-                    <p>Limelight 2025</p>
-                </div>
+            <div class="stack-card" data-title="Gondwana — Singers" data-desc="Sydney Opera House" data-year="2024">
+              <video controls preload="metadata" controlslist="nodownload"><source src="music/gondwana-singers.mp4" type="video/mp4"></video>
             </div>
-
-            <div class="video-item portrait fade-in">
-                <div class="video-container">
-                    <video controls preload="metadata" controlslist="nodownload">
-                        <source src="9.mov" type="video/mp4">
-                    </video>
-                </div>
-                <div class="video-caption">
-                    <h4>Ain't No Mountain High Enough</h4>
-                    <p>Limelight 2025</p>
-                </div>
+            <!-- Portrait videos -->
+            <div class="stack-card portrait" data-title="Ain't No Mountain High Enough" data-desc="Limelight performance" data-year="2025">
+              <video controls preload="metadata" controlslist="nodownload"><source src="music/aint-no-mountain-1.mp4" type="video/mp4"></video>
             </div>
-
-            <div class="video-item portrait fade-in">
-                <div class="video-container">
-                    <video controls preload="metadata" controlslist="nodownload">
-                        <source src="10.mov" type="video/mp4">
-                    </video>
-                </div>
-                <div class="video-caption">
-                    <h4>Underneath the Stars</h4>
-                    <p>Limelight 2024 solo</p>
-                </div>
+            <div class="stack-card portrait" data-title="Shut Up and Dance" data-desc="Limelight Finale" data-year="2025">
+              <video controls preload="metadata" controlslist="nodownload"><source src="music/shut-up-and-dance.mp4" type="video/mp4"></video>
             </div>
-
-            <div class="video-item landscape fade-in">
-                <div class="video-container">
-                    <video controls preload="metadata" controlslist="nodownload">
-                        <source src="13.mov" type="video/mp4">
-                    </video>
-                </div>
-                <div class="video-caption">
-                    <h4>Iris - Goo Goo Dolls</h4>
-                    <p>Contemporary Music 2024</p>
-                </div>
+            <div class="stack-card portrait" data-title="Shut Up and Dance — Featured Artists" data-desc="Limelight" data-year="2025">
+              <video controls preload="metadata" controlslist="nodownload"><source src="music/shut-up-and-dance-featured.mp4" type="video/mp4"></video>
             </div>
-
-            <div class="video-item landscape fade-in">
-                <div class="video-container">
-                    <video controls preload="metadata" controlslist="nodownload">
-                        <source src="14.mov" type="video/mp4">
-                    </video>
-                </div>
-                <div class="video-caption">
-                    <h4>Gondwana - Combined</h4>
-                    <p>Sydney Opera House 2024</p>
-                </div>
+            <div class="stack-card portrait" data-title="Underneath the Stars" data-desc="Limelight solo" data-year="2024">
+              <video controls preload="metadata" controlslist="nodownload"><source src="music/underneath-the-stars.mp4" type="video/mp4"></video>
             </div>
-
-            <div class="video-item landscape fade-in">
-                <div class="video-container">
-                    <video controls preload="metadata" controlslist="nodownload">
-                        <source src="15.mov" type="video/mp4">
-                    </video>
-                </div>
-                <div class="video-caption">
-                    <h4>Gondwana - Singers</h4>
-                    <p>Sydney Opera House 2024</p>
-                </div>
+            <div class="stack-card portrait" data-title="Glinda Rehearsal" data-desc="Wizard of Oz" data-year="2023">
+              <video controls preload="metadata" controlslist="nodownload"><source src="music/glinda rehersal.mp4" type="video/mp4"></video>
             </div>
+          </div>
+          <button class="stack-nav stack-next" aria-label="Next"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></button>
         </div>
+        <div class="stack-counter"></div>
+        <div class="stack-caption"><h4></h4><p></p><span class="stack-year"></span></div>
     </section>
 
     <section>
         <h2>Performance Gallery</h2>
-        <div class="music-photos-grid">
-            <div class="music-photo-item fade-in">
-                <img src="one.JPG" alt="Performance">
-            </div>
-            <div class="music-photo-item fade-in">
-                <img src="two.jpg" alt="Performance">
-            </div>
-            <div class="music-photo-item fade-in">
-                <img src="three.jpg" alt="Performance">
-            </div>
-            <div class="music-photo-item fade-in">
-                <img src="four.jpg" alt="Performance">
-            </div>
-            <div class="music-photo-item fade-in">
-                <img src="five.jpg" alt="Performance">
-            </div>
-            <div class="music-photo-item fade-in">
-                <img src="six.jpg" alt="Performance">
-            </div>
-            <div class="music-photo-item fade-in">
-                <img src="seven.jpg" alt="Performance">
-            </div>
-            <div class="music-photo-item fade-in">
-                <img src="eight.jpg" alt="Performance">
-            </div>
-            <div class="music-photo-item fade-in">
-                <img src="nine.jpg" alt="Performance">
-            </div>
-            <div class="music-photo-item fade-in">
-                <img src="ten.jpg" alt="Performance">
-            </div>
-            <div class="music-photo-item fade-in">
-                <img src="eleven.jpg" alt="Performance">
-            </div>
-            <div class="music-photo-item fade-in">
-                <img src="twelve.jpeg" alt="Performance">
-            </div>
-            <div class="music-photo-item fade-in">
-                <img src="thirteen.jpg" alt="Performance">
-            </div>
-            <div class="music-photo-item fade-in">
-                <img src="fourteen.jpg" alt="Performance">
-            </div>
+        <div class="stack-scene">
+          <button class="stack-nav stack-prev" aria-label="Previous"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></button>
+          <div class="card-stack card-stack-photo">
+            <div class="stack-card" data-title="Performance" data-desc=""><img src="music/one.jpg" alt="Performance"></div>
+            <div class="stack-card" data-title="Performance" data-desc=""><img src="music/two.jpg" alt="Performance"></div>
+            <div class="stack-card" data-title="Performance" data-desc=""><img src="music/three.jpg" alt="Performance"></div>
+            <div class="stack-card" data-title="Performance" data-desc=""><img src="music/four.jpg" alt="Performance"></div>
+            <div class="stack-card" data-title="Performance" data-desc=""><img src="music/five.jpg" alt="Performance"></div>
+            <div class="stack-card" data-title="Performance" data-desc=""><img src="music/six.jpg" alt="Performance"></div>
+            <div class="stack-card" data-title="Performance" data-desc=""><img src="music/seven.jpg" alt="Performance"></div>
+            <div class="stack-card" data-title="Performance" data-desc=""><img src="music/eight.jpg" alt="Performance"></div>
+            <div class="stack-card" data-title="Performance" data-desc=""><img src="music/nine.jpg" alt="Performance"></div>
+            <div class="stack-card" data-title="Performance" data-desc=""><img src="music/ten.jpg" alt="Performance"></div>
+            <div class="stack-card" data-title="Performance" data-desc=""><img src="music/eleven.jpg" alt="Performance"></div>
+            <div class="stack-card" data-title="Performance" data-desc=""><img src="music/twelve.jpeg" alt="Performance"></div>
+            <div class="stack-card" data-title="Performance" data-desc=""><img src="music/thirteen.jpg" alt="Performance"></div>
+            <div class="stack-card" data-title="Performance" data-desc=""><img src="music/fourteen.jpg" alt="Performance"></div>
+          </div>
+          <button class="stack-nav stack-next" aria-label="Next"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></button>
         </div>
+        <div class="stack-counter"></div>
+        <div class="stack-caption"><h4></h4><p></p></div>
     </section>
 
     <footer>
@@ -986,6 +903,109 @@
             observer.observe(el);
         });
 
+        // Card Stacks
+        document.querySelectorAll('.card-stack').forEach(stackEl => {
+          const cards = [...stackEl.querySelectorAll('.stack-card')];
+          const n = cards.length;
+          if (n === 0) return;
+          const rots = [0, -6, 4, -3, 5, -2, 7, -4, 3, -5, 6];
+          const captionEl = stackEl.closest('section').querySelector('.stack-caption');
+          const counterEl = stackEl.closest('section').querySelector('.stack-counter');
+          let front = 0, busy = false, hasNavigated = false;
+
+          function update() {
+            // Resize card stack if front card is portrait vs landscape
+            if (stackEl.classList.contains('card-stack-video')) {
+              const isPortrait = cards[front].classList.contains('portrait');
+              if (isPortrait) {
+                stackEl.style.width = '340px';
+                stackEl.style.height = '600px';
+              } else {
+                stackEl.style.width = '';
+                stackEl.style.height = '';
+              }
+            }
+            cards.forEach((card, i) => {
+              const pos = (i - front + n) % n;
+              const rot = rots[Math.min(pos, rots.length - 1)];
+              const scale = 1 - Math.min(pos, 5) * 0.03;
+              card._baseTransform = `rotate(${rot}deg) scale(${scale})`;
+              card.style.zIndex = n - pos;
+              card.style.transform = card._baseTransform;
+              card.style.filter = pos === 0 ? 'drop-shadow(13px 13px 14px rgba(0,0,0,0.95))' : 'none';
+              card.style.opacity = pos < 5 ? 1 : 0;
+              card.style.pointerEvents = pos === 0 ? 'auto' : 'none';
+              // Pause any video not at the front
+              const vid = card.querySelector('video');
+              if (vid && pos !== 0) vid.pause();
+            });
+            // Auto-play front video after navigation (not on initial load)
+            if (hasNavigated) {
+              const frontVid = cards[front].querySelector('video');
+              if (frontVid) {
+                if (frontVid.readyState >= 2) {
+                  frontVid.play().catch(() => {});
+                } else {
+                  frontVid.addEventListener('canplay', function handler() {
+                    frontVid.play().catch(() => {});
+                    frontVid.removeEventListener('canplay', handler);
+                  });
+                  frontVid.load();
+                }
+              }
+            }
+            if (counterEl) counterEl.textContent = (front + 1) + ' / ' + n;
+            if (captionEl) {
+              const fc = cards[front];
+              captionEl.querySelector('h4').textContent = fc.dataset.title || '';
+              captionEl.querySelector('p').textContent = fc.dataset.desc || '';
+              var yearEl = captionEl.querySelector('.stack-year');
+              if (yearEl) yearEl.textContent = fc.dataset.year || '';
+            }
+          }
+
+          function go(dir) {
+            if (busy) return;
+            busy = true;
+            hasNavigated = true;
+            front = (front + dir + n) % n;
+            update();
+            setTimeout(() => { busy = false; }, 650);
+          }
+
+          stackEl.closest('.stack-scene').querySelector('.stack-prev').addEventListener('click', () => go(-1));
+          stackEl.closest('.stack-scene').querySelector('.stack-next').addEventListener('click', () => go(1));
+
+          // Touch swipe support
+          var touchStartX = 0;
+          var touchStartY = 0;
+          var scene = stackEl.closest('.stack-scene');
+          scene.addEventListener('touchstart', function(e) {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+          }, { passive: true });
+          scene.addEventListener('touchend', function(e) {
+            var dx = e.changedTouches[0].clientX - touchStartX;
+            var dy = e.changedTouches[0].clientY - touchStartY;
+            if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+              go(dx < 0 ? 1 : -1);
+            }
+          });
+
+          cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+              if (card.style.pointerEvents === 'none') return;
+              const base = card._baseTransform || '';
+              card.style.transform = base.replace(/scale\(([^)]+)\)/, (_, s) => `scale(${parseFloat(s) * 1.04})`) + ' translateY(-7px)';
+            });
+            card.addEventListener('mouseleave', () => {
+              if (card._baseTransform) card.style.transform = card._baseTransform;
+            });
+          });
+
+          update();
+        });
+
         let ticking = false;
         document.addEventListener('mousemove', (e) => {
             if (window.innerWidth > 820 && !ticking) {
@@ -1002,7 +1022,23 @@
                 ticking = true;
             }
         });
+
+        // ── Animation enhancements ──
+        // Give h2 elements the animated class and observe them
+        document.querySelectorAll('h2').forEach(function(h2) {
+            h2.classList.add('will-animate');
+            observer.observe(h2);
+        });
+
+        // Stagger fade-in siblings so they cascade in one by one
+        document.querySelectorAll('.fade-in').forEach(function(el) {
+            var siblings = Array.from(el.parentElement.children).filter(function(c) {
+                return c.classList.contains('fade-in');
+            });
+            var idx = siblings.indexOf(el);
+            if (idx > 0) el.style.transitionDelay = (idx * 0.11) + 's';
+        });
     </script>
-<script src="lightbox.js"></script>
+<script src="shared/lightbox.js?v=5"></script>
 </body>
 </html>

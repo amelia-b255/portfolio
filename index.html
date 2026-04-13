@@ -14,9 +14,11 @@
 
     <style>
 
-        @import url('https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica:ital@0;1&display=swap');
 
         @import url('https://fonts.cdnfonts.com/css/made-sunflower');
+    @font-face { font-family: "Cavalhatriz"; src: url("fonts/Cavalhatriz.ttf") format("truetype"); font-weight: normal; font-style: normal; }
+    @font-face { font-family: "Georgia Custom"; src: url("fonts/georgia.ttf") format("truetype"); font-weight: normal; font-style: normal; }
+    @font-face { font-family: "Georgia Custom"; src: url("fonts/georgiab.ttf") format("truetype"); font-weight: bold; font-style: normal; }
 
         
 
@@ -46,13 +48,15 @@
 
         body {
 
-            font-family: 'IM Fell DW Pica', serif;
+            font-size: 1.1em;
+      font-family: Helvetica, Arial, sans-serif;
+            letter-spacing: -0.07em;
 
             background: linear-gradient(135deg, #f5c1cf 0%, #fceadb 20%, #e8d5ca 40%, #b4d4c3 60%, #f5e6e8 80%, #d4a5a5 100%);
 
             color: #5a5a5a;
 
-            font-weight: 400;
+            font-weight: 700;
 
             -webkit-font-smoothing: antialiased;
 
@@ -81,7 +85,7 @@
 
     height: 25px;
 
-    background: #d4a5a5;
+    background: #a8c5b5;
 
     clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
 
@@ -103,21 +107,21 @@
 
 .star5 { top: 45%; left: 5%; animation-delay: 1s; width: 18px; height: 18px; background: #f5c1cf; }
 
-.star6 { top: 35%; right: 25%; animation-delay: 1.5s; animation-duration: 7.5s; width: 22px; height: 22px; background: #e8d5ca; }
+.star6 { top: 35%; right: 25%; animation-delay: 1.5s; animation-duration: 7.5s; width: 22px; height: 22px; background: #fceadb; }
 
 .star7 { top: 70%; left: 30%; animation-delay: 2.5s; animation-duration: 6.5s; width: 28px; height: 28px; background: #f5c1cf; }
 
 .star8 { top: 10%; right: 35%; animation-delay: 0.5s; animation-duration: 8.5s; width: 16px; height: 16px; background: #a8c5b5; }
 
-.star9 { bottom: 35%; right: 20%; animation-delay: 3.5s; animation-duration: 7s; width: 24px; height: 24px; background: #d4a5a5; }
+.star9 { bottom: 35%; right: 20%; animation-delay: 3.5s; animation-duration: 7s; width: 24px; height: 24px; background: #a8c5b5; }
 
 .star10 { top: 50%; left: 20%; animation-delay: 1s; animation-duration: 9s; width: 35px; height: 35px; background: #a8c5b5; }
 
 .star11 { bottom: 10%; right: 15%; animation-delay: 2s; animation-duration: 6s; width: 20px; height: 20px; background: #f5c1cf; }
 
-.star12 { top: 80%; left: 10%; animation-delay: 4s; animation-duration: 8s; width: 26px; height: 26px; background: #e8d5ca; }
+.star12 { top: 80%; left: 10%; animation-delay: 4s; animation-duration: 8s; width: 26px; height: 26px; background: #fceadb; }
 
-.star13 { top: 20%; left: 40%; animation-delay: 3s; animation-duration: 7s; width: 19px; height: 19px; background: #d4a5a5; }
+.star13 { top: 20%; left: 40%; animation-delay: 3s; animation-duration: 7s; width: 19px; height: 19px; background: #a8c5b5; }
 
 .star14 { bottom: 50%; left: 8%; animation-delay: 0.8s; animation-duration: 8.2s; width: 32px; height: 32px; background: #a8c5b5; }
 
@@ -127,9 +131,9 @@
 
 .star17 { bottom: 25%; right: 30%; animation-delay: 0.3s; animation-duration: 8.8s; width: 27px; height: 27px; background: #f5c1cf; }
 
-.star18 { top: 55%; right: 18%; animation-delay: 2.8s; animation-duration: 6.8s; width: 17px; height: 17px; background: #e8d5ca; }
+.star18 { top: 55%; right: 18%; animation-delay: 2.8s; animation-duration: 6.8s; width: 17px; height: 17px; background: #fceadb; }
 
-.star19 { bottom: 15%; left: 35%; animation-delay: 3.2s; animation-duration: 7.4s; width: 29px; height: 29px; background: #d4a5a5; }
+.star19 { bottom: 15%; left: 35%; animation-delay: 3.2s; animation-duration: 7.4s; width: 29px; height: 29px; background: #a8c5b5; }
 
 .star20 { top: 30%; left: 12%; animation-delay: 1.2s; animation-duration: 8.6s; width: 24px; height: 24px; background: #a8c5b5; }
 
@@ -137,17 +141,17 @@
 
 .star22 { top: 65%; left: 22%; animation-delay: 0.7s; animation-duration: 9.2s; width: 33px; height: 33px; background: #a8c5b5; }
 
-.star23 { top: 8%; right: 22%; animation-delay: 2.4s; animation-duration: 7.6s; width: 18px; height: 18px; background: #e8d5ca; }
+.star23 { top: 8%; right: 22%; animation-delay: 2.4s; animation-duration: 7.6s; width: 18px; height: 18px; background: #fceadb; }
 
-.star24 { bottom: 30%; left: 18%; animation-delay: 3.8s; animation-duration: 6.4s; width: 25px; height: 25px; background: #d4a5a5; }
+.star24 { bottom: 30%; left: 18%; animation-delay: 3.8s; animation-duration: 6.4s; width: 25px; height: 25px; background: #a8c5b5; }
 
 .star25 { top: 75%; right: 25%; animation-delay: 1.4s; animation-duration: 8.4s; width: 22px; height: 22px; background: #f5c1cf; }
 
 .star26 { top: 42%; left: 32%; animation-delay: 2.6s; animation-duration: 7.2s; width: 19px; height: 19px; background: #a8c5b5; }
 
-.star27 { bottom: 18%; right: 8%; animation-delay: 0.9s; animation-duration: 8.9s; width: 26px; height: 26px; background: #e8d5ca; }
+.star27 { bottom: 18%; right: 8%; animation-delay: 0.9s; animation-duration: 8.9s; width: 26px; height: 26px; background: #fceadb; }
 
-.star28 { top: 52%; right: 28%; animation-delay: 3.6s; animation-duration: 6.6s; width: 21px; height: 21px; background: #d4a5a5; }
+.star28 { top: 52%; right: 28%; animation-delay: 3.6s; animation-duration: 6.6s; width: 21px; height: 21px; background: #a8c5b5; }
 
 .star29 { bottom: 45%; left: 28%; animation-delay: 1.6s; animation-duration: 8.2s; width: 30px; height: 30px; background: #f5c1cf; }
 
@@ -171,7 +175,7 @@
 
 
 
-        .announcement-banner{position:fixed;top:0;left:0;width:100%;height:38px;background:linear-gradient(90deg,#f5c1cf 0%,#fceadb 25%,#b4d4c3 55%,#f5c1cf 100%);background-size:300% 100%;animation:bannerShift 8s linear infinite;z-index:1002;overflow:hidden;display:flex;align-items:center}
+        .announcement-banner{position:fixed;top:0;left:0;width:100%;height:38px;background:linear-gradient(90deg, #f5c1cf 0%, #fceadb 25%, #b4d4c3 55%, #f5c1cf 100%);background-size:300% 100%;animation:bannerShift 8s linear infinite;z-index:1002;overflow:hidden;display:flex;align-items:center}
         .banner-link{display:block;width:100%;overflow:hidden;text-decoration:none;cursor:pointer}
         .banner-link:hover .banner-inner{animation-play-state:paused}
         .banner-inner{display:flex;white-space:nowrap;animation:marqueeScroll 28s linear infinite;will-change:transform}
@@ -211,7 +215,7 @@
 
             padding: 20px 60px;
 
-            box-shadow: 0 2px 20px rgba(212, 165, 165, 0.1);
+            box-shadow: 0 2px 20px rgba(168, 197, 181, 0.1);
 
         }
 
@@ -310,7 +314,7 @@
 
             font-weight: 500;
 
-            font-family: Georgia, serif;
+            font-family: 'Georgia Custom', Georgia, serif;
 
         }
 
@@ -394,7 +398,7 @@
 
             border-radius: 25px;
 
-            font-family: Georgia, serif;
+            font-family: 'Georgia Custom', Georgia, serif;
 
             font-size: 16px;
 
@@ -498,13 +502,13 @@
 
             animation: fadeInUp 1s ease 0.2s backwards;
 
-            font-family: Georgia, serif;
+            font-family: Helvetica, Arial, sans-serif;
 
-            font-style: italic;
+            font-style: normal;
 
-            font-weight: 400;
+            font-weight: 700;
 
-            letter-spacing: 0.3px;
+            letter-spacing: -0.07em;
 
         }
 
@@ -864,7 +868,7 @@
 
             font-size: 17px;
 
-            font-style: italic;
+            font-style: normal;
 
         }
 
@@ -982,7 +986,9 @@
 
             color: #5a5a5a;
 
-            font-family: Georgia, serif;
+            font-family: Helvetica, Arial, sans-serif;
+
+            letter-spacing: -0.07em;
 
         }
 
@@ -1166,7 +1172,9 @@
 
             font-size: 14px;
 
-            font-family: Georgia, serif;
+            font-family: Helvetica, Arial, sans-serif;
+
+            letter-spacing: -0.07em;
 
         }
 
@@ -1230,7 +1238,9 @@
 
             color: #5a5a5a;
 
-            font-family: Georgia, serif;
+            font-family: Helvetica, Arial, sans-serif;
+
+            letter-spacing: -0.07em;
 
         }
 
@@ -1306,7 +1316,7 @@
 
             font-size: 15px;
 
-            font-family: 'IM Fell DW Pica', serif;
+            font-family: Helvetica, Arial, sans-serif;
 
             transition: all 0.3s ease;
 
@@ -1409,6 +1419,10 @@
             color: #8b475d;
 
             font-size: 14px;
+
+            font-family: Helvetica, Arial, sans-serif;
+
+            letter-spacing: -0.07em;
 
         }
 
@@ -1592,6 +1606,10 @@
 
                 margin-bottom: 35px;
 
+                letter-spacing: 0px;
+
+                word-break: break-word;
+
             }
 
 
@@ -1738,6 +1756,10 @@
 
                 font-size: 24px !important;
 
+                letter-spacing: 0px;
+
+                word-break: break-word;
+
             }
 
 
@@ -1875,7 +1897,7 @@
     </div>
     <nav id="navbar">
 
-        <div class="logo"><a href="graphic-design.html"><img src="AB logo.png" alt="AB" class="logo-img">AMELIA'S PORTFOLIO</a></div>
+        <div class="logo"><a href="graphic-design.html"><img src="shared/AB logo.png" alt="AB" class="logo-img">AMELIA'S PORTFOLIO</a></div>
 
         <button class="menu-toggle" id="menuToggle" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
 
@@ -1939,7 +1961,7 @@
 
                 <div class="portfolio-image">
 
-                    <img src="cover1.png" alt="Light Rail Safety Campaign">
+                    <img src="shared/cover1.png" alt="Light Rail Safety Campaign">
 
                     <div class="portfolio-overlay">
 
@@ -1952,7 +1974,7 @@
                 <div class="portfolio-content">
 
                     <h3>Light Rail Safety Campaign</h3>
-                    <span style="font-size:12px; color:#8b475d; font-style:italic; display:block; margin-bottom:8px; letter-spacing:0.5px;">2025</span>
+                    <span style="font-size:14px; color:#8b475d; font-style:italic; display:block; margin-bottom:8px; letter-spacing:0.5px; font-family: 'Cavalhatriz', serif;">2025</span>
 
                     <p>1st Place Winner - CMET Competition 2025</p>
 
@@ -1981,7 +2003,7 @@
                 <div class="portfolio-content">
 
                     <h3>Brand Identity Design</h3>
-                    <span style="font-size:12px; color:#8b475d; font-style:italic; display:block; margin-bottom:8px; letter-spacing:0.5px;">2025</span>
+                    <span style="font-size:14px; color:#8b475d; font-style:italic; display:block; margin-bottom:8px; letter-spacing:0.5px; font-family: 'Cavalhatriz', serif;">2025</span>
 
                     <p>Logo, colour palette &amp; style guide</p>
 
@@ -2010,7 +2032,7 @@
                 <div class="portfolio-content">
 
                     <h3>Drawings, Posters &amp; Print</h3>
-                    <span style="font-size:12px; color:#8b475d; font-style:italic; display:block; margin-bottom:8px; letter-spacing:0.5px;">2024–2025</span>
+                    <span style="font-size:14px; color:#8b475d; font-style:italic; display:block; margin-bottom:8px; letter-spacing:0.5px; font-family: 'Cavalhatriz', serif;">2024–2025</span>
 
                     <p>Selected illustration, poster series, magazine layouts &amp; other design work</p>
 
@@ -2026,7 +2048,7 @@
 
                 <div class="portfolio-image">
 
-                    <img src="shortfilm.JPG" alt="Short Film">
+                    <img src="shared/shortfilm.JPG" alt="Short Film">
 
                     <div class="portfolio-overlay">
 
@@ -2039,7 +2061,7 @@
                 <div class="portfolio-content">
 
                     <h3>Short Film Production</h3>
-                    <span style="font-size:12px; color:#8b475d; font-style:italic; display:block; margin-bottom:8px; letter-spacing:0.5px;">2025</span>
+                    <span style="font-size:14px; color:#8b475d; font-style:italic; display:block; margin-bottom:8px; letter-spacing:0.5px; font-family: 'Cavalhatriz', serif;">2025</span>
 
                     <p>Blowing Out The Candles — poster &amp; trailer</p>
 
@@ -2055,7 +2077,7 @@
 
                 <div class="portfolio-image">
 
-                    <img src="musical.png" alt="Theatre Production">
+                    <img src="shared/musical.png" alt="Theatre Production">
 
                     <div class="portfolio-overlay">
 
@@ -2068,7 +2090,7 @@
                 <div class="portfolio-content">
 
                     <h3>Theatre Production Design</h3>
-                    <span style="font-size:12px; color:#8b475d; font-style:italic; display:block; margin-bottom:8px; letter-spacing:0.5px;">2023–2024</span>
+                    <span style="font-size:14px; color:#8b475d; font-style:italic; display:block; margin-bottom:8px; letter-spacing:0.5px; font-family: 'Cavalhatriz', serif;">2023–2024</span>
 
                     <p>Promotional materials</p>
 
@@ -2084,7 +2106,7 @@
 
                 <div class="portfolio-image">
 
-                    <img src="photo.jpeg" alt="Photography">
+                    <img src="shared/photo.jpeg" alt="Photography">
 
                     <div class="portfolio-overlay">
 
@@ -2097,7 +2119,7 @@
                 <div class="portfolio-content">
 
                     <h3>Photography Series</h3>
-                    <span style="font-size:12px; color:#8b475d; font-style:italic; display:block; margin-bottom:8px; letter-spacing:0.5px;">2023</span>
+                    <span style="font-size:14px; color:#8b475d; font-style:italic; display:block; margin-bottom:8px; letter-spacing:0.5px; font-family: 'Cavalhatriz', serif;">2023</span>
 
                     <p>1st Place — CMAG Secondary School Art Prize 2023</p>
 
@@ -2113,7 +2135,7 @@
 
                 <div class="portfolio-image">
 
-                    <img src="codingcover.png" alt="Creative Coding Projects">
+                    <img src="shared/codingcover.png" alt="Creative Coding Projects">
 
                     <div class="portfolio-overlay">
 
@@ -2126,7 +2148,7 @@
                 <div class="portfolio-content">
 
                     <h3>Creative Coding Projects</h3>
-                    <span style="font-size:12px; color:#8b475d; font-style:italic; display:block; margin-bottom:8px; letter-spacing:0.5px;">2025</span>
+                    <span style="font-size:14px; color:#8b475d; font-style:italic; display:block; margin-bottom:8px; letter-spacing:0.5px; font-family: 'Cavalhatriz', serif;">2025</span>
 
                     <p>Interactive p5.js experiments — hand tracking, generative art &amp; simulations</p>
 
@@ -2192,7 +2214,7 @@
 
                 <div class="skill-icon">
 
-                    <img src="graphicdesign.png" alt="Graphic Design Icon">
+                    <img src="shared/graphicdesign.png" alt="Graphic Design Icon">
 
                 </div>
 
@@ -2206,7 +2228,7 @@
 
                 <div class="skill-icon">
 
-                    <img src="illustrate.png" alt="Digital Illustration Icon">
+                    <img src="shared/illustrate.png" alt="Digital Illustration Icon">
 
                 </div>
 
@@ -2220,7 +2242,7 @@
 
                 <div class="skill-icon">
 
-                    <img src="camera1.png" alt="Media Production Icon">
+                    <img src="shared/camera1.png" alt="Media Production Icon">
 
                 </div>
 
@@ -2254,7 +2276,7 @@
 
                 <div class="contact-info-item">
 
-                    <img src="mail.png" alt="Email">
+                    <img src="shared/mail.png" alt="Email">
 
                     <p style="margin: 0;"><strong>Email:</strong> amelia.bobbin@gmail.com</p>
 
@@ -2264,7 +2286,7 @@
 
                 <div class="contact-info-item">
 
-                    <img src="pin.png" alt="Location">
+                    <img src="shared/pin.png" alt="Location">
 
                     <p style="margin: 0;"><strong>Location:</strong> Canberra, ACT</p>
 
@@ -2274,7 +2296,7 @@
 
                 <div class="contact-info-item">
 
-                    <img src="instagram.png" alt="Instagram">
+                    <img src="shared/instagram.png" alt="Instagram">
 
                     <p style="margin: 0;"><strong>Instagram:</strong> @ameliabobbin_</p>
 

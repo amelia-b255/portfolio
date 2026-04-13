@@ -6,8 +6,10 @@
     <title>Brand Identity Design - Amelia Bobbin</title>
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Cookie&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica:ital@0;1&display=swap');
         @import url('https://fonts.cdnfonts.com/css/made-sunflower');
+    @font-face { font-family: "Cavalhatriz"; src: url("fonts/Cavalhatriz.ttf") format("truetype"); font-weight: normal; font-style: normal; }
+    @font-face { font-family: "Georgia Custom"; src: url("fonts/georgia.ttf") format("truetype"); font-weight: normal; font-style: normal; }
+    @font-face { font-family: "Georgia Custom"; src: url("fonts/georgiab.ttf") format("truetype"); font-weight: bold; font-style: normal; }
         
         * {
             margin: 0;
@@ -22,10 +24,12 @@
         }
 
         body {
-            font-family: 'IM Fell DW Pica', serif;
+            font-size: 1.1em;
+      font-family: Helvetica, Arial, sans-serif;
+            letter-spacing: -0.07em;
             background: linear-gradient(135deg, #f5c1cf 0%, #fceadb 20%, #e8d5ca 40%, #b4d4c3 60%, #f5e6e8 80%, #d4a5a5 100%);
             color: #5a5a5a;
-            font-weight: 400;
+            font-weight: 700;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
@@ -132,7 +136,7 @@
             gap: 10px;
         }
         .logo-img { height: 48px; width: auto; flex-shrink: 0; }
-        .cv-button { padding:10px 25px; background:#8b475d; color:white !important; text-decoration:none; border-radius:25px; font-family:Georgia,serif; font-size:16px; transition:all 0.3s ease; margin-left:20px; box-shadow:0 3px 10px rgba(139,71,93,.3); display:inline-block; }
+        .cv-button { padding:10px 25px; background:#8b475d; color:white !important; text-decoration:none; border-radius:25px; font-family:'Georgia Custom', Georgia, serif; font-size:16px; transition:all 0.3s ease; margin-left:20px; box-shadow:0 3px 10px rgba(139,71,93,.3); display:inline-block; }
         .cv-button:hover { background:#a0617a; transform:translateY(-3px); box-shadow:0 6px 20px rgba(139,71,93,.5); }
         .cv-button::after { display:none !important; }
 
@@ -165,7 +169,7 @@
             position: relative;
             transition: all 0.3s ease;
             font-weight: 500;
-            font-family: Georgia, serif;
+            font-family: 'Georgia Custom', Georgia, serif;
         }
 
         .nav-links a::after {
@@ -223,7 +227,7 @@
 
         .hero-content h1 {
             font-family: 'MADE Sunflower', sans-serif; font-weight: 400;
-            font-size: 72px;
+            font-size: 58px;
             color: #8b475d;
             margin-bottom: 20px;
             line-height: 1.2;
@@ -232,15 +236,15 @@
         }
 
         .hero-content p {
-            font-size: 20px;
+            font-size: 17px;
             color: #a0617a;
             line-height: 1.7;
             max-width: 800px;
             margin: 0 auto;
-            font-family: Georgia, serif;
-            font-style: italic;
-            font-weight: 400;
-            letter-spacing: 0.3px;
+            font-family: Helvetica, Arial, sans-serif;
+            font-style: normal;
+            font-weight: 700;
+            letter-spacing: -0.07em;
             animation: fadeInUp 1s ease 0.25s forwards;
         }
 
@@ -250,14 +254,14 @@
         }
 
         section {
-            padding: 80px 60px;
+            padding: 60px 50px;
             position: relative;
             z-index: 10;
         }
 
         h2 {
             font-family: 'Archivo Black', sans-serif;
-            font-size: 48px;
+            font-size: 38px;
             text-align: center;
             color: #8b475d;
             margin-bottom: 50px;
@@ -288,18 +292,19 @@
 
         .project-info h3 {
             font-family: 'MADE Sunflower', sans-serif; font-weight: 400;
-            font-size: 28px;
+            font-size: 26px;
             color: #8b475d;
             margin-bottom: 25px;
             font-weight: 400;
         }
 
         .project-info p {
-            font-family: Georgia, serif;
-            font-size: 16px;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 17px;
             color: #5a5a5a;
-            line-height: 1.9;
+            line-height: 1.7;
             margin-bottom: 20px;
+            letter-spacing: -0.07em;
         }
 
         /* Brand elements grid */
@@ -355,11 +360,12 @@
         }
 
         .brand-caption p {
-            font-family: Georgia, serif;
+            font-family: Helvetica, Arial, sans-serif;
             font-size: 16px;
             color: #a0617a;
-            font-style: italic;
+            font-style: normal;
             line-height: 1.7;
+            letter-spacing: -0.07em;
         }
 
         footer {
@@ -368,7 +374,8 @@
             background: rgba(255, 255, 255, 0.5);
             color: #8b475d;
             font-size: 14px;
-            letter-spacing: 0.5px;
+            letter-spacing: -0.07em;
+            font-family: Helvetica, Arial, sans-serif;
         }
 
         .back-button {
@@ -480,12 +487,14 @@
             }
 
             h2 {
-                font-size: 28px !important;
+                font-size: 29px !important;
                 margin-bottom: 35px;
+                letter-spacing: 0px;
+                word-break: break-word;
             }
 
             section {
-                padding: 50px 20px !important;
+                padding: 48px 24px !important;
             }
 
             .project-info {
@@ -532,6 +541,8 @@
 
             h2 {
                 font-size: 24px !important;
+                letter-spacing: 0px;
+                word-break: break-word;
             }
 
             .project-info {
@@ -599,7 +610,7 @@
       </a>
     </div>
     <nav id="navbar">
-        <div class="logo"><a href="graphic-design.html"><img src="AB logo.png" alt="AB" class="logo-img">AMELIA'S PORTFOLIO</a></div>
+        <div class="logo"><a href="graphic-design.html"><img src="shared/AB logo.png" alt="AB" class="logo-img">AMELIA'S PORTFOLIO</a></div>
         <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
         <ul class="nav-links" id="navLinks">
             <li><a href="graphic-design.html#home">Home</a></li>
@@ -616,7 +627,7 @@
         <div class="hero-content">
             <h1>Brand Identity Design</h1>
             <p>A comprehensive personal brand identity system featuring logo design, color palette &amp; typography.</p>
-            <span style="font-size:15px; color:#8b475d; font-style:italic; margin-top:20px; display:block; letter-spacing:1px; animation:fadeInUp 1s ease 0.5s backwards;">2025</span>
+            <span style="font-size:17px; color:#8b475d; font-style:italic; margin-top:20px; display:block; letter-spacing:1px; font-family: 'Cavalhatriz', serif; animation:fadeInUp 1s ease 0.5s backwards;">2025</span>
             <div style="margin-top:25px; padding:15px 25px; background:rgba(139,71,93,0.1); border-radius:12px; border-left:3px solid #8b475d; animation:fadeInUp 1s ease 0.6s backwards; display:inline-block;">
               <p style="font-size:14px; color:#8b475d; margin:0; font-style:normal;">💡 <strong>Tip:</strong> Tap or click any image for fullscreen view</p>
             </div>
@@ -643,8 +654,8 @@
         <div class="brand-grid">
             <!-- Style Guide -->
             <div class="brand-item">
-                <a href="identitycover.png" target="_blank" class="brand-image" style="cursor:pointer; display:block;">
-                    <img src="identitycover.png" alt="Style Guide Cover">
+                <a href="brand/identitycover.png" target="_blank" class="brand-image" style="cursor:pointer; display:block;">
+                    <img src="brand/identitycover.png" alt="Style Guide Cover">
                 </a>
                 <div class="brand-caption">
                     <h3>Style Guide</h3>
@@ -654,8 +665,8 @@
 
             <!-- Logo & Variations -->
             <div class="brand-item">
-                <a href="logovarients.png" target="_blank" class="brand-image" style="cursor:pointer; display:block;">
-                    <img src="logovarients.png" alt="Logo and Alternative Logo">
+                <a href="brand/logovarients.png" target="_blank" class="brand-image" style="cursor:pointer; display:block;">
+                    <img src="brand/logovarients.png" alt="Logo and Alternative Logo">
                 </a>
                 <div class="brand-caption">
                     <h3>Logo &amp; Variations</h3>
@@ -665,8 +676,8 @@
 
             <!-- Colour Palette -->
             <div class="brand-item">
-                <a href="colour.png" target="_blank" class="brand-image" style="cursor:pointer; display:block;">
-                    <img src="colour.png" alt="Brand Colour Palette">
+                <a href="brand/colour.png" target="_blank" class="brand-image" style="cursor:pointer; display:block;">
+                    <img src="brand/colour.png" alt="Brand Colour Palette">
                 </a>
                 <div class="brand-caption">
                     <h3>Colour Palette</h3>
@@ -676,8 +687,8 @@
 
             <!-- Typography: Heading -->
             <div class="brand-item">
-                <a href="heading1.png" target="_blank" class="brand-image" style="cursor:pointer; display:block;">
-                    <img src="heading1.png" alt="Heading Typography Specimen">
+                <a href="brand/heading1.png" target="_blank" class="brand-image" style="cursor:pointer; display:block;">
+                    <img src="brand/heading1.png" alt="Heading Typography Specimen">
                 </a>
                 <div class="brand-caption">
                     <h3>Typography – Heading</h3>
@@ -687,8 +698,8 @@
 
             <!-- Typography: Subheading -->
             <div class="brand-item">
-                <a href="subheading1.png" target="_blank" class="brand-image" style="cursor:pointer; display:block;">
-                    <img src="subheading1.png" alt="Subheading Typography Specimen">
+                <a href="brand/subheading1.png" target="_blank" class="brand-image" style="cursor:pointer; display:block;">
+                    <img src="brand/subheading1.png" alt="Subheading Typography Specimen">
                 </a>
                 <div class="brand-caption">
                     <h3>Typography – Subheading</h3>
@@ -698,8 +709,8 @@
 
             <!-- Typography: Body -->
             <div class="brand-item">
-                <a href="Body1.png" target="_blank" class="brand-image" style="cursor:pointer; display:block;">
-                    <img src="Body1.png" alt="Body Typography Specimen">
+                <a href="brand/Body1.png" target="_blank" class="brand-image" style="cursor:pointer; display:block;">
+                    <img src="brand/Body1.png" alt="Body Typography Specimen">
                 </a>
                 <div class="brand-caption">
                     <h3>Typography – Body</h3>
@@ -771,6 +782,6 @@
             ticking = true;
         });
     </script>
-<script src="lightbox.js"></script>
+<script src="shared/lightbox.js?v=5"></script>
 </body>
 </html>
