@@ -10,17 +10,19 @@
     @font-face { font-family: "Cavalhatriz"; src: url("fonts/Cavalhatriz.ttf") format("truetype"); font-weight: normal; font-style: normal; }
     @font-face { font-family: "Georgia Custom"; src: url("fonts/georgia.ttf") format("truetype"); font-weight: normal; font-style: normal; }
     @font-face { font-family: "Georgia Custom"; src: url("fonts/georgiab.ttf") format("truetype"); font-weight: bold; font-style: normal; }
+    @font-face { font-family: "Griffiths"; src: url("fonts/Griffiths.otf") format("opentype"); font-weight: normal; font-style: normal; }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
+    html { scroll-behavior: smooth; }
     body {
       font-size: 1.1em;
-      font-family: Helvetica, Arial, sans-serif;
-      letter-spacing: -0.07em;
+      font-family: 'Georgia Custom', Georgia, serif;
+      letter-spacing: 0;
       background: linear-gradient(135deg, #f5c1cf 0%, #fceadb 20%, #e8d5ca 40%, #b4d4c3 60%, #f5e6e8 80%, #d4a5a5 100%);
       color: #5a5a5a;
       overflow-x: hidden;
-      font-weight: 700;
+      font-weight: 400;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
@@ -131,7 +133,7 @@
     }
     .hero-content p {
       font-size: 17px; color: #a0617a; line-height: 1.7; max-width: 800px; margin: 0 auto;
-      font-family: Helvetica, Arial, sans-serif; font-style: normal; font-weight: 700; letter-spacing: -0.07em; animation: fadeInUp 1s ease 0.3s backwards;
+      font-family: 'Georgia Custom', Georgia, serif; font-style: normal; font-weight: 400; letter-spacing: 0; animation: fadeInUp 1s ease 0.3s backwards;
     }
     @keyframes fadeInUp { from {opacity:0;transform:translateY(30px)} to {opacity:1;transform:translateY(0)} }
 
@@ -149,7 +151,7 @@
       box-shadow: 10px 10px 30px rgba(139,71,93,0.1);
     }
     .project-info h3 { font-family: "MADE Sunflower", sans-serif; font-size: 26px; color: #8b475d; margin-bottom: 25px; font-weight: 400; }
-    .project-info p { font-family: Helvetica, Arial, sans-serif; font-size: 17px; color: #5a5a5a; line-height: 1.7; margin-bottom: 20px; letter-spacing: -0.07em; }
+    .project-info p { font-family: 'Georgia Custom', Georgia, serif; font-size: 17px; color: #5a5a5a; line-height: 1.7; margin-bottom: 20px; letter-spacing: 0; }
 
     /* Trailer */
     .trailer-container {
@@ -162,7 +164,7 @@
     }
     .trailer-caption { padding: 30px; text-align: center; }
     .trailer-caption h3 { font-family: "MADE Sunflower", sans-serif; font-size: 24px; color: #8b475d; margin-bottom: 10px; font-weight: 400; }
-    .trailer-caption p { font-family: Helvetica, Arial, sans-serif; font-size: 16px; color: #a0617a; font-style: normal; letter-spacing: -0.07em; }
+    .trailer-caption p { font-family: 'Georgia Custom', Georgia, serif; font-size: 16px; color: #a0617a; font-style: normal; letter-spacing: 0; }
 
     /* Desktop iframe (unchanged) */
     .trailer-iframe { width: 100%; height: 100%; display: block; border: 0; }
@@ -184,14 +186,14 @@
     .still-card img { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; user-select: none; }
     .stills-nav { background: rgba(255,255,255,0.35); border: none; border-radius: 50%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; color: #8b475d; font-size: 36px; cursor: pointer; opacity: 0.75; transition: opacity 0.2s; padding: 0; line-height: 0; }
     .stills-nav:hover { opacity: 1; transform: scale(1.15); }
-    .stills-counter { font-family: Helvetica, Arial, sans-serif; font-size: 13px; color: #a0617a; text-align: center; margin-bottom: 10px; letter-spacing: 1px; }
+    .stills-counter { font-family: 'Georgia Custom', Georgia, serif; font-size: 13px; color: #a0617a; text-align: center; margin-bottom: 10px; letter-spacing: 1px; }
     @media (max-width: 768px) {
       .stills-card-stack { width: 340px; height: 191px; }
       .stills-stack-scene { gap: 16px; }
     }
 
     /* Footer & Back Button */
-    footer { text-align: center; padding: 50px 40px; background: rgba(255,255,255,0.5); color: #8b475d; font-size: 14px; letter-spacing: -0.07em; font-family: Helvetica, Arial, sans-serif; }
+    footer { text-align: center; padding: 50px 40px; background: rgba(255,255,255,0.5); color: #8b475d; font-size: 14px; letter-spacing: 0; font-family: 'Georgia Custom', Georgia, serif; }
     .back-button {
       display: inline-block; padding: 15px 35px; background: #8b475d; color: #fff; text-decoration: none;
       font-size: 16px; letter-spacing: 1px; transition: all 0.4s ease; font-family: "Archivo Black", sans-serif;
@@ -207,7 +209,7 @@
       .logo { font-size: 14px !important; letter-spacing: 1px; max-width: calc(100% - 70px); }
       .nav-links {
         position: fixed; top: 65px; left: -100%; width: 100%; height: calc(100vh - 65px);
-        background: rgba(255,255,255,0.98); backdrop-filter: blur(15px);
+        background: rgba(255,255,255,1); backdrop-filter: blur(15px);
         flex-direction: column; padding: 30px 20px; transition: left 0.3s ease;
         box-shadow: 0 4px 20px rgba(0,0,0,0.1); overflow-y: auto; gap: 0 !important; z-index: 999; align-items: stretch;
       }

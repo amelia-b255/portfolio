@@ -10,12 +10,14 @@
     @font-face { font-family: "Cavalhatriz"; src: url("fonts/Cavalhatriz.ttf") format("truetype"); font-weight: normal; font-style: normal; }
     @font-face { font-family: "Georgia Custom"; src: url("fonts/georgia.ttf") format("truetype"); font-weight: normal; font-style: normal; }
     @font-face { font-family: "Georgia Custom"; src: url("fonts/georgiab.ttf") format("truetype"); font-weight: bold; font-style: normal; }
+    @font-face { font-family: "Griffiths"; src: url("fonts/Griffiths.otf") format("opentype"); font-weight: normal; font-style: normal; }
 
     *{margin:0;padding:0;box-sizing:border-box}
 
+    html { scroll-behavior: smooth; }
     body{
       background:linear-gradient(135deg, #f5c1cf 0%, #fceadb 20%, #e8d5ca 40%, #b4d4c3 60%, #f5e6e8 80%, #d4a5a5 100%);
-      color:#5a5a5a;overflow-x:hidden;font-weight:700;font-family:Helvetica,Arial,sans-serif;letter-spacing:-0.07em;
+      color:#5a5a5a;overflow-x:hidden;font-weight:400;font-family:'Georgia Custom',Georgia,serif;letter-spacing:0;
       -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
     }
 
@@ -114,7 +116,7 @@
     /* Hero */
     .hero{min-height:60vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:150px 40px 100px}
     .hero-content h1{font-family:'MADE Sunflower',sans-serif;font-size:58px;color:#8b475d;margin-bottom:20px;line-height:1.2;animation:fadeInUp 1s ease;font-weight:400;}
-    .hero-content p{font-size:17px;color:#a0617a;line-height:1.7;max-width:800px;margin:0 auto;font-family:Helvetica,Arial,sans-serif;font-style:normal;font-weight:700;letter-spacing:-0.07em;animation:fadeInUp 1s ease .3s backwards}
+    .hero-content p{font-size:17px;color:#a0617a;line-height:1.7;max-width:800px;margin:0 auto;font-family:'Georgia Custom',Georgia,serif;font-style:normal;font-weight:400;letter-spacing:0;animation:fadeInUp 1s ease .3s backwards}
     @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
 
     section{padding:60px 50px;position:relative;z-index:10}
@@ -125,7 +127,7 @@
     /* Project info */
     .project-info{max-width:1000px;margin:0 auto;background:#fff;padding:50px;border-radius:20px;box-shadow:10px 10px 30px rgba(139,71,93,.1)}
     .project-info h3{font-family:'MADE Sunflower',sans-serif;font-size:26px;color:#8b475d;margin-bottom:25px;font-weight:400;}
-    .project-info p{font-family:Helvetica,Arial,sans-serif;font-size:17px;color:#5a5a5a;line-height:1.7;margin-bottom:20px;letter-spacing:-0.07em}
+    .project-info p{font-family:'Georgia Custom',Georgia,serif;font-size:17px;color:#5a5a5a;line-height:1.7;margin-bottom:20px;letter-spacing:0}
 
     /* Card stack */
     .stack-scene{display:flex;align-items:center;justify-content:center;gap:48px;margin:0 auto 16px}
@@ -134,15 +136,15 @@
     .stack-card img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;-webkit-user-select:none;user-select:none}
     .stack-nav{background:rgba(255,255,255,0.35);border:none;border-radius:50%;width:48px;height:48px;display:flex;align-items:center;justify-content:center;color:#8b475d;font-size:36px;cursor:pointer;opacity:0.75;transition:opacity 0.2s,transform 0.2s;padding:0;line-height:0;position:relative;z-index:50}
     .stack-nav:hover{opacity:1;transform:scale(1.15)}
-    .stack-counter{font-family:Helvetica,Arial,sans-serif;font-size:13px;color:#a0617a;text-align:center;margin-bottom:10px;letter-spacing:1px}
+    .stack-counter{font-family:'Georgia Custom',Georgia,serif;font-size:13px;color:#a0617a;text-align:center;margin-bottom:10px;letter-spacing:1px}
     .stack-caption{text-align:center;padding:0 20px 40px;min-height:64px}
     .stack-caption h4{font-family:'MADE Sunflower',sans-serif;font-size:20px;color:#8b475d;margin-bottom:6px;font-weight:400}
-    .stack-caption p{font-family:Helvetica,Arial,sans-serif;font-size:14px;color:#a0617a;font-style:normal;letter-spacing:-0.07em}
+    .stack-caption p{font-family:'Georgia Custom',Georgia,serif;font-size:14px;color:#a0617a;font-style:normal;letter-spacing:0}
     @media(max-width:968px){.card-stack{width:300px;height:424px}.stack-scene{gap:24px}}
     @media(max-width:480px){.card-stack{width:240px;height:340px}.stack-scene{gap:16px}}
 
     /* Footer / Back */
-    footer{text-align:center;padding:50px 40px;background:rgba(255,255,255,.5);color:#8b475d;font-size:14px;letter-spacing:-0.07em;font-family:Helvetica,Arial,sans-serif}
+    footer{text-align:center;padding:50px 40px;background:rgba(255,255,255,.5);color:#8b475d;font-size:14px;letter-spacing:0;font-family:'Georgia Custom',Georgia,serif}
     .back-button{display:inline-block;padding:15px 35px;background:#8b475d;color:#fff;text-decoration:none;font-size:16px;letter-spacing:1px;transition:all .4s ease;font-family:'Archivo Black',sans-serif;text-transform:uppercase;border-radius:5px;box-shadow:0 3px 10px rgba(139,71,93,.3);margin-top:40px}
     .back-button:hover{transform:translateY(-3px);box-shadow:0 8px 25px rgba(139,71,93,.4);background:#a0617a}
     .back-button-container{text-align:center;margin-top:60px}
@@ -154,7 +156,7 @@
       .logo{font-size:14px!important;letter-spacing:1px;max-width:calc(100% - 70px)}
       .nav-links{
         position:fixed;top:65px;left:-100%;width:100%;height:calc(100vh - 65px);
-        background:rgba(255,255,255,.98);backdrop-filter:blur(15px);
+        background:rgba(255,255,255,1);backdrop-filter:blur(15px);
         flex-direction:column;padding:30px 20px;transition:left .3s ease;
         box-shadow:0 4px 20px rgba(0,0,0,.1);overflow-y:auto;gap:0!important;z-index:999;align-items:stretch;
       }
