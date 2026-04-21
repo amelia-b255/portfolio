@@ -2037,11 +2037,6 @@
 
             </div>
 
-            <div class="hero-image">
-
-                <img src="covercovercover.png" alt="Hero Image">
-
-            </div>
 
         </div>
 
@@ -2615,6 +2610,71 @@
     </script>
 
 <script src="shared/theme.js"></script>
+
+<script>
+(function() {
+    if (!sessionStorage.getItem('spotlightDismissed')) {
+        var overlay = document.createElement('div');
+        overlay.id = 'spotlight-overlay';
+        overlay.innerHTML = '<div id="spotlight-box"><button id="spotlight-close" aria-label="Close">\u00D7</button><img src="$5Prints.png" alt="$5 Digital Prints"></div>';
+        document.body.appendChild(overlay);
+        requestAnimationFrame(function() { overlay.classList.add('spotlight-visible'); });
+        function dismiss() {
+            overlay.classList.remove('spotlight-visible');
+            overlay.addEventListener('transitionend', function() { overlay.remove(); }, { once: true });
+            sessionStorage.setItem('spotlightDismissed', '1');
+        }
+        document.getElementById('spotlight-close').addEventListener('click', dismiss);
+        overlay.addEventListener('click', function(e) { if (e.target === overlay) dismiss(); });
+    }
+})();
+</script>
+
+<style>
+#spotlight-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+#spotlight-overlay.spotlight-visible { opacity: 1; }
+#spotlight-box {
+    position: relative;
+    max-width: min(420px, 90vw);
+    max-height: 90vh;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    transform: scale(0.95);
+    transition: transform 0.5s ease;
+}
+#spotlight-overlay.spotlight-visible #spotlight-box { transform: scale(1); }
+#spotlight-box img { display: block; width: 100%; height: auto; }
+#spotlight-close {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    background: rgba(0,0,0,0.5);
+    border: none;
+    color: #fff;
+    font-size: 22px;
+    line-height: 1;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+#spotlight-close:hover { background: rgba(0,0,0,0.8); }
+</style>
 </body>
 
 </html>
