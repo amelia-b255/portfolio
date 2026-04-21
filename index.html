@@ -1121,11 +1121,18 @@
             transform: rotate(90deg) scale(1.52) !important;
         }
         @media (max-width: 820px) {
+            .portfolio-item:has(.drawing-card-img) .portfolio-image { overflow: hidden; }
             .drawing-card-img,
             .portfolio-item:hover .drawing-card-img {
-                transform: rotate(90deg) !important;
-                object-fit: contain !important;
-                background: #f5e6e8;
+                position: absolute !important;
+                top: 50% !important;
+                left: 50% !important;
+                width: 56% !important;
+                height: 178% !important;
+                object-fit: cover !important;
+                object-position: center !important;
+                transform: translate(-50%, -50%) rotate(90deg) !important;
+                background: transparent !important;
             }
         }
         /* ── Splash screen overlay ── */
@@ -1687,26 +1694,6 @@
         </div>
     </section>
 
-    <section id="about">
-        <h2>About Me</h2>
-        <div class="about-container fade-in">
-            <div class="about-image">
-                <img src="graphic-design/photoimage.jpg" alt="About Me">
-            </div>
-            <div class="about-content">
-                <h3>Hey! I'm Amelia</h3>
-                <p>I am a  graphic designer from Canberra, just graduated year 12 at Dickson College. My journey in design combines my passions for visual storytelling, music, and creative problem-solving.</p>
-                <p>I specialise in graphic design, digital illustration , creative computing and media production. My work has been recognised with awards including 1st place in the CMET Light Rail Safety Week Competition (2025) and the Canberra Museum and Gallery Secondary School Art Prize (2023).</p>
-                <p>&nbsp;My other passion is music,&nbsp; through national choirs, musical theatre productions and vocal training.</p>
-                
-                <a href="https://www.instagram.com/ameliabobbin_/?hl=es" target="_blank" class="instagram-link">
-                    <span class="instagram-icon">📸</span>
-                    <span class="instagram-text">Follow me on Instagram @ameliabobbin_</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
     <section id="skills">
         <h2>What I Do</h2>
         <div class="skills-grid">
@@ -1730,6 +1717,26 @@
                 </div>
                 <h3>Media Production</h3>
                 <p>Video editing, cinematography, screenplay writing &amp; film production</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="about-container fade-in">
+            <div class="about-image">
+                <img src="graphic-design/photoimage.jpg" alt="About Me">
+            </div>
+            <div class="about-content">
+                <h3>Hey! I'm Amelia</h3>
+                <p>I am a  graphic designer from Canberra, just graduated year 12 at Dickson College. My journey in design combines my passions for visual storytelling, music, and creative problem-solving.</p>
+                <p>I specialise in graphic design, digital illustration , creative computing and media production. My work has been recognised with awards including 1st place in the CMET Light Rail Safety Week Competition (2025) and the Canberra Museum and Gallery Secondary School Art Prize (2023).</p>
+                <p>&nbsp;My other passion is music,&nbsp; through national choirs, musical theatre productions and vocal training.</p>
+
+                <a href="https://www.instagram.com/ameliabobbin_/?hl=es" target="_blank" class="instagram-link">
+                    <span class="instagram-icon">📸</span>
+                    <span class="instagram-text">Follow me on Instagram @ameliabobbin_</span>
+                </a>
             </div>
         </div>
     </section>
@@ -1966,5 +1973,70 @@
     </script>
 <script src="shared/lightbox.js?v=5"></script>
 <script src="shared/theme.js"></script>
+
+<script>
+(function() {
+    if (!sessionStorage.getItem('spotlightDismissed')) {
+        var overlay = document.createElement('div');
+        overlay.id = 'spotlight-overlay';
+        overlay.innerHTML = '<div id="spotlight-box"><button id="spotlight-close" aria-label="Close">\u00D7</button><img src="$5Prints.png" alt="$5 Digital Prints"></div>';
+        document.body.appendChild(overlay);
+        requestAnimationFrame(function() { overlay.classList.add('spotlight-visible'); });
+        function dismiss() {
+            overlay.classList.remove('spotlight-visible');
+            overlay.addEventListener('transitionend', function() { overlay.remove(); }, { once: true });
+            sessionStorage.setItem('spotlightDismissed', '1');
+        }
+        document.getElementById('spotlight-close').addEventListener('click', dismiss);
+        overlay.addEventListener('click', function(e) { if (e.target === overlay) dismiss(); });
+    }
+})();
+</script>
+
+<style>
+#spotlight-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+#spotlight-overlay.spotlight-visible { opacity: 1; }
+#spotlight-box {
+    position: relative;
+    max-width: min(560px, 92vw);
+    max-height: 90vh;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    transform: scale(0.95);
+    transition: transform 0.5s ease;
+}
+#spotlight-overlay.spotlight-visible #spotlight-box { transform: scale(1); }
+#spotlight-box img { display: block; width: 100%; height: auto; }
+#spotlight-close {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    background: rgba(0,0,0,0.5);
+    border: none;
+    color: #fff;
+    font-size: 22px;
+    line-height: 1;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+#spotlight-close:hover { background: rgba(0,0,0,0.8); }
+</style>
 </body>
 </html>
