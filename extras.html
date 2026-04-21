@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
   <title>Posters &amp; Print - Amelia Bobbin</title>
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Cookie&display=swap" rel="stylesheet">
   <style>
@@ -250,56 +253,66 @@
     /* Mobile */
     @media (max-width: 968px){
       .menu-toggle{ display:block; }
-      .hero{ padding:120px 20px 30px; min-height:auto; align-items:flex-start; }
-      .hero-content h1{ font-size:32px; }
-      .hero-content p{ font-size:15px; }
-      .hero [style*="padding:15px"]{ padding:10px 16px !important; font-size:12px !important; }
-      h2{ font-size:29px; letter-spacing:0px; word-break:break-word; margin-bottom:20px !important; }
-      h3{ font-size:21px; margin-bottom:16px !important; }
-      nav{ padding:15px 20px !important; }
-      section{ padding:30px 16px; }
-      .stack-caption{ padding:0 12px 20px; min-height:48px; }
-      .stack-caption h4{ font-size:17px; }
-      .stack-caption p{ font-size:12px; }
-      .stack-counter{ font-size:11px; margin-bottom:4px; }
+      .hero{ padding:140px 16px 16px; min-height:auto; align-items:flex-start; }
+      .hero-content h1{ font-size:24px; }
+      .hero-content p{ font-size:13px; }
+      .hero [style*="padding:15px"]{ padding:8px 12px !important; font-size:11px !important; }
+      h2{ font-size:20px; letter-spacing:0px; word-break:break-word; margin-bottom:24px !important; }
+      h2::after{ bottom:-6px !important; width:60px !important; }
+      h3{ font-size:16px; margin-bottom:10px !important; }
+      nav{ padding:10px 16px !important; top: 30px !important; }
+      section{ padding:20px 14px; }
+      .stack-caption{ padding:0 10px 14px; min-height:36px; }
+      .stack-caption h4{ font-size:14px; }
+      .stack-caption p{ font-size:11px; }
+      .stack-counter{ font-size:10px; margin-bottom:2px; }
+      .logo{ font-size:15px !important; letter-spacing:0.5px; max-width:calc(100% - 60px); }
+      .logo-img{ height:40px !important; }
+      .announcement-banner{ height:30px !important; }
+      .banner-inner span{ font-size:10px !important; }
 
       .nav-links{
-        position:fixed; top:65px; left:-100%; width:100%; height:calc(100vh - 65px);
+        position:fixed; top:72px; left:-100%; width:100%; height:calc(100vh - 72px);
         background:rgba(255,255,255,1); backdrop-filter:blur(15px);
-        flex-direction:column; padding:30px 20px; transition:left .3s ease;
+        flex-direction:column; padding:16px; transition:left .3s ease;
         box-shadow:0 4px 20px rgba(0,0,0,.1); overflow-y:auto; gap:0 !important; z-index:999; align-items:stretch;
       }
       .nav-links.active{ left:0; }
       .nav-links li{ width:100%; margin:0; border-bottom:1px solid rgba(139,71,93,.1); }
-      .nav-links a{ display:block; padding:18px 10px !important; font-size:16px !important; text-align:center; white-space:normal; }
-      .music-nav-link{ margin:15px 0 !important; text-align:center; padding:15px 20px !important; }
-      .cv-button{ margin:15px 0 0 0 !important; width:100%; text-align:center; padding:15px 20px !important; }
+      .nav-links a{ display:block; padding:12px 10px !important; font-size:14px !important; text-align:center; white-space:normal; }
+      .music-nav-link{ margin:8px 0 !important; text-align:center; padding:12px 16px !important; }
+      .cv-button{ margin:8px 0 0 0 !important; width:100%; text-align:center; padding:12px 16px !important; font-size:13px !important; }
 
       .work-grid-3 > .work-item{ flex: 1 1 100%; }
-      .work-image{ padding:10px; }
+      .work-image{ padding:8px; }
 
       .magazine-grid{ grid-template-columns:1fr; grid-template-rows:auto; }
       .magazine-cover{ grid-row:auto; }
       .magazine-spread{ grid-column:auto; }
-      .magazine-spread .work-image{ padding:6px !important; }
+      .magazine-spread .work-image{ padding:4px !important; }
 
-      .art-program-grid .work-image{ padding:6px; }
+      .art-program-grid .work-image{ padding:4px; }
 
-      .star{ width:15px !important; height:15px !important; opacity:.4; }
+      .star{ width:10px !important; height:10px !important; opacity:.3; }
+      footer{ padding:20px 14px; font-size:10px; }
+
+      /* Year subtitle under headings */
+      section > p[style*="font-style:italic"]{ font-size:13px !important; margin-bottom:16px !important; margin-top:-8px !important; }
     }
 
     @media (max-width:480px){
-      .hero{ padding:110px 16px 20px !important; min-height:auto !important; }
-      .hero-content h1{ font-size:26px !important; }
-      .hero-content p{ font-size:14px !important; }
-      h2{ font-size:19px !important; letter-spacing:0px; word-break:break-word; }
-      section{ padding:24px 12px !important; }
-      .work-image{ padding:8px; }
-      .magazine-spread .work-image{ padding:4px !important; }
-      .art-program-grid .work-image{ padding:4px; }
-      .star{ width:12px !important; height:12px !important; opacity:.35; }
-      .back-button{ font-size:12px; padding:10px 22px !important; }
-      footer{ padding:24px 16px; font-size:11px; }
+      .hero{ padding:140px 12px 12px !important; min-height:auto !important; }
+      .hero-content h1{ font-size:22px !important; }
+      .hero-content p{ font-size:12px !important; }
+      h2{ font-size:17px !important; letter-spacing:0px; word-break:break-word; }
+      h3{ font-size:14px !important; }
+      section{ padding:16px 10px !important; }
+      .work-image{ padding:6px; }
+      .magazine-spread .work-image{ padding:3px !important; }
+      .art-program-grid .work-image{ padding:3px; }
+      .star{ width:8px !important; height:8px !important; opacity:.25; }
+      .back-button{ font-size:11px; padding:8px 18px !important; }
+      footer{ padding:16px 12px; font-size:9px; }
     }
 
     /* ===== CARD STACK ===== */
@@ -383,17 +396,19 @@
       letter-spacing: 1px;
     }
     @media (max-width: 968px) {
-      .card-stack { width: 300px; height: 424px; }
-      .stack-scene { gap: 12px; position: relative; }
-      .stack-nav { position: absolute; top: 50%; transform: translateY(-50%); z-index: 50; background: rgba(255,255,255,0.55); }
+      .card-stack { width: 340px; height: 481px; }
+      .stack-scene { gap: 8px; position: relative; }
+      .stack-nav { position: absolute; top: 50%; transform: translateY(-50%); z-index: 50; background: rgba(255,255,255,0.55); width: 36px; height: 36px; }
+      .stack-nav svg { width: 28px; height: 28px; }
       .stack-nav:hover { transform: translateY(-50%) scale(1.15); }
-      .stack-prev { left: 8px; }
-      .stack-next { right: 8px; }
+      .stack-prev { left: 6px; }
+      .stack-next { right: 6px; }
     }
     @media (max-width: 480px) {
-      .card-stack { width: 280px; height: 396px; }
-      .stack-scene { gap: 8px; }
-      .stack-nav { width: 40px; height: 40px; }
+      .card-stack { width: 300px; height: 424px; }
+      .stack-scene { gap: 4px; }
+      .stack-nav { width: 32px; height: 32px; }
+      .stack-nav svg { width: 24px; height: 24px; }
       .stack-prev { left: 4px; }
       .stack-next { right: 4px; }
     }
@@ -490,26 +505,6 @@
             letter-spacing: 1.5px !important;
         }
 
-        /* Music nav link shimmer */
-        .music-nav-link {
-            position: relative !important;
-            overflow: hidden !important;
-        }
-        .music-nav-link::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 80%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            pointer-events: none;
-            animation: navShimmer 7s ease-in-out infinite;
-        }
-        @keyframes navShimmer {
-            0%, 70%, 100% { left: -100%; }
-            35% { left: 150%; }
-        }
-
         /* Contact form focus glow */
         input:focus, textarea:focus {
             box-shadow: 0 0 0 3px rgba(168, 197, 181, 0.4), 0 0 20px rgba(168, 197, 181, 0.15) !important;
@@ -529,7 +524,62 @@
         .doodle {
             transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) !important;
         }
+    /* Theme toggle */
+    .theme-toggle-wrap { display:flex; align-items:center; gap:8px; flex-shrink:0; cursor:pointer; }
+    .theme-toggle-label { font-family:'Archivo Black',sans-serif; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:#8b475d; opacity:0.7; user-select:none; }
+    html:not(.light-mode) .theme-toggle-label { color:#e8a0b8 !important; }
+    .theme-toggle-track { width:36px; height:20px; background:#c4a0ae; border-radius:10px; position:relative; transition:background 0.3s; }
+    html:not(.light-mode) .theme-toggle-track { background:#3a2a32 !important; }
+    .theme-toggle-thumb { width:16px; height:16px; background:#8b475d; border-radius:50%; position:absolute; top:2px; left:18px; transition:left 0.3s, background 0.3s; }
+    html:not(.light-mode) .theme-toggle-thumb { left:2px !important; background:#e8a0b8 !important; }
+
+    /* ═══ DARK MODE (default) ═══ */
+    html:not(.light-mode) body { background: #000000 !important; color: #d4c5c8 !important; }
+    html:not(.light-mode) .star { background: #2a1a22 !important; opacity: 0.5 !important; }
+    html:not(.light-mode) .announcement-banner { background: linear-gradient(90deg, #2a1520 0%, #24121a 25%, #1e0f16 55%, #2a1520 100%) !important; background-size: 300% 100% !important; }
+    html:not(.light-mode) .banner-inner span { color: #e8a0b8 !important; }
+    html:not(.light-mode) nav { background: rgba(30,16,24,0.97) !important; }
+    html:not(.light-mode) nav.scrolled { box-shadow: 0 2px 20px rgba(139,71,93,0.15) !important; }
+    html:not(.light-mode) .logo, html:not(.light-mode) .logo a { color: #e8a0b8 !important; }
+    html:not(.light-mode) .menu-toggle { color: #e8a0b8 !important; }
+    html:not(.light-mode) .nav-links a { color: #e8a0b8 !important; }
+    html:not(.light-mode) .music-nav-link { background: linear-gradient(135deg, #5c2a3a, #3d1a2a) !important; }
+    html:not(.light-mode) h1 { color: #e8a0b8 !important; }
+    html:not(.light-mode) h2 { color: #e8a0b8 !important; }
+    html:not(.light-mode) h3 { color: #e8a0b8 !important; }
+    html:not(.light-mode) h4 { color: #e8a0b8 !important; }
+    html:not(.light-mode) h2::after { background: linear-gradient(90deg, #f5c1cf, #e8a0b8, #f5c1cf) !important; }
+    html:not(.light-mode) h2.will-animate.visible::after { background: linear-gradient(90deg, #f5c1cf, #e8a0b8, #f5c1cf) !important; }
+    html:not(.light-mode) section p { color: #d4c5c8 !important; }
+    html:not(.light-mode) .hero p, html:not(.light-mode) .hero-content p { color: #d4899e !important; }
+    html:not(.light-mode) .stack-caption h4 { color: #e8a0b8 !important; }
+    html:not(.light-mode) .stack-caption p { color: #d4899e !important; }
+    html:not(.light-mode) .stack-counter { color: #d4899e !important; }
+    html:not(.light-mode) .stack-nav { background: rgba(255,255,255,0.15) !important; color: #e8a0b8 !important; }
+    html:not(.light-mode) .back-button { color: #e8a0b8 !important; background: rgba(255,255,255,0.06) !important; border-color: rgba(232,160,184,0.3) !important; }
+    html:not(.light-mode) .back-button:hover { background: rgba(255,255,255,0.12) !important; }
+    html:not(.light-mode) footer { background: rgba(0,0,0,0.5) !important; }
+    html:not(.light-mode) footer p { color: #e8a0b8 !important; }
+    html:not(.light-mode) span[style*="color:#8b475d"] { color: #e8a0b8 !important; }
+    html:not(.light-mode) p[style*="color:#8b475d"] { color: #e8a0b8 !important; }
+    html:not(.light-mode) p[style*="color:#a0617a"] { color: #d4899e !important; }
+    html:not(.light-mode) div[style*="background:rgba(139,71,93,0.1)"] { background: rgba(232,160,184,0.15) !important; }
+    html:not(.light-mode) div[style*="border-left:3px solid #8b475d"] { border-left-color: #e8a0b8 !important; }
+    html:not(.light-mode) input:focus, html:not(.light-mode) textarea:focus { box-shadow: 0 0 0 3px rgba(232,160,184,0.4), 0 0 20px rgba(232,160,184,0.15) !important; }
+    @media (max-width: 820px) {
+        html:not(.light-mode) .nav-links { background: rgba(0,0,0,1) !important; }
+        html:not(.light-mode) .nav-links li { border-bottom-color: rgba(232,160,184,0.1) !important; }
+    }
+
+    @media (max-width: 820px) {
+        .theme-toggle-wrap { gap:0 !important; margin-left:auto; margin-right:4px; flex-direction:column !important; align-items:center !important; position:relative !important; }
+        .theme-toggle-label { font-size:7px !important; letter-spacing:1px !important; position:absolute !important; top:100% !important; left:50% !important; transform:translateX(-50%) !important; margin-top:2px !important; white-space:nowrap !important; }
+        .theme-toggle-track { width:30px !important; height:16px !important; }
+        .theme-toggle-thumb { width:12px !important; height:12px !important; }
+        html.light-mode .theme-toggle-thumb { left:16px !important; }
+    }
   </style>
+  <script>if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light-mode')</script>
 </head>
 <body>
   <!-- Decorative Stars -->
@@ -585,7 +635,11 @@
   </div>
   <!-- Navigation -->
   <nav id="navbar">
-    <div class="logo"><a href="graphic-design.html"><img src="shared/AB logo.png" alt="AB" class="logo-img">AMELIA'S PORTFOLIO</a></div>
+    <div class="logo"><a href="graphic-design.html"><img src="shared/AB logo light.png" alt="AB" class="logo-img">AMELIA'S PORTFOLIO</a></div>
+    <div class="theme-toggle-wrap" onclick="toggleTheme()" id="themeToggle" aria-label="Toggle theme">
+            <span class="theme-toggle-label" id="themeLabel">Light</span>
+            <div class="theme-toggle-track"><div class="theme-toggle-thumb"></div></div>
+        </div>
     <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
     <ul class="nav-links" id="navLinks">
       <li><a href="graphic-design.html#home">Home</a></li>
@@ -768,6 +822,40 @@
     <div class="stack-counter"></div>
     <div class="stack-caption"><h4></h4><p></p></div>
 
+  </section>
+
+  <!-- Musical Posters -->
+  <section>
+    <h2>Musical Posters</h2>
+    <p style="text-align:center; font-size:17px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:32px; letter-spacing:1px; font-family: 'Cavalhatriz', serif;">2023–2024</p>
+    <h3>The Wizard of Oz</h3>
+    <div class="stack-scene">
+      <button class="stack-nav stack-prev" aria-label="Previous"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></button>
+      <div class="card-stack">
+        <a href="theatre/dorothy.png" target="_blank" class="stack-card" data-title="Dorothy" data-desc="Character promotional poster"><img src="theatre/dorothy.png" alt="Dorothy Character Poster"></a>
+        <a href="theatre/glinda.png" target="_blank" class="stack-card" data-title="Glinda" data-desc="Character promotional poster"><img src="theatre/glinda.png" alt="Glinda Character Poster"></a>
+        <a href="theatre/witch.png" target="_blank" class="stack-card" data-title="Wicked Witch" data-desc="Character promotional poster"><img src="theatre/witch.png" alt="Wicked Witch Poster"></a>
+        <a href="theatre/wizardofoz.png" target="_blank" class="stack-card" data-title="The Wizard of Oz" data-desc="Final promotional poster"><img src="theatre/wizardofoz.png" alt="Rainbow Cast Poster"></a>
+        <a href="theatre/white.png" target="_blank" class="stack-card" data-title="School Production" data-desc="Alternate promotional poster"><img src="theatre/white.png" alt="School Production Poster"></a>
+      </div>
+      <button class="stack-nav stack-next" aria-label="Next"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></button>
+    </div>
+    <div class="stack-counter"></div>
+    <div class="stack-caption"><h4></h4><p></p></div>
+
+    <h3 style="margin-top:50px;">Love &amp; Information</h3>
+    <div class="stack-scene">
+      <button class="stack-nav stack-prev" aria-label="Previous"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></button>
+      <div class="card-stack">
+        <a href="theatre/loveandinformation1.png" target="_blank" class="stack-card" data-title="Light Version" data-desc="College production promotional poster"><img src="theatre/loveandinformation1.png" alt="Love and Information Light Poster"></a>
+        <a href="theatre/loveandinformation2.png" target="_blank" class="stack-card" data-title="Dark Version" data-desc="Alternative colour scheme"><img src="theatre/loveandinformation2.png" alt="Love and Information Dark Poster"></a>
+        <a href="theatre/loveandinfo.png" target="_blank" class="stack-card" data-title="Darker Draft" data-desc="Alternative style"><img src="theatre/loveandinfo.png" alt="Love and Information Darker Draft"></a>
+      </div>
+      <button class="stack-nav stack-next" aria-label="Next"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></button>
+    </div>
+    <div class="stack-counter"></div>
+    <div class="stack-caption"><h4></h4><p></p></div>
+
     <div class="back-button-container">
       <a href="graphic-design.html#portfolio" class="back-button">← Back to Portfolio</a>
     </div>
@@ -923,5 +1011,6 @@
         });
     })();
 </script>
+<script src="shared/theme.js"></script>
 </body>
 </html>

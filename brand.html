@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <title>Brand Identity Design - Amelia Bobbin</title>
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Cookie&display=swap" rel="stylesheet">
     <style>
@@ -418,21 +421,26 @@
             }
 
             nav {
-                padding: 15px 20px !important;
+                padding: 10px 16px !important;
+                top: 30px !important;
             }
 
             .logo {
-                font-size: 14px !important;
-                letter-spacing: 1px;
-                max-width: calc(100% - 70px);
+                font-size: 15px !important;
+                letter-spacing: 0.5px;
+                max-width: calc(100% - 60px);
+            }
+
+            .logo-img {
+                height: 40px;
             }
 
             .nav-links {
                 position: fixed;
-                top: 65px;
+                top: 50px;
                 left: -100%;
                 width: 100%;
-                height: calc(100vh - 65px);
+                height: calc(100vh - 50px);
                 background: rgba(255, 255, 255, 1);
                 backdrop-filter: blur(15px);
                 flex-direction: column;
@@ -457,8 +465,8 @@
 
             .nav-links a {
                 display: block;
-                padding: 18px 10px !important;
-                font-size: 16px !important;
+                padding: 12px 10px !important;
+                font-size: 14px !important;
                 text-align: center;
                 white-space: normal;
             }
@@ -466,41 +474,70 @@
             .music-nav-link {
                 margin: 15px 0 !important;
                 text-align: center;
-                padding: 15px 20px !important;
+                padding: 12px 16px !important;
             }
 
             .cv-button {
                 margin: 15px 0 0 0 !important;
                 width: 100%;
                 text-align: center;
-                padding: 15px 20px !important;
+                padding: 12px 16px !important;
+                font-size: 13px !important;
+            }
+
+            .announcement-banner {
+                height: 30px;
+            }
+
+            .banner-inner span {
+                font-size: 10px;
             }
 
             .hero {
-                padding: 90px 20px 50px !important;
+                padding: 140px 20px 50px !important;
             }
 
             .hero-content h1 {
-                font-size: 36px !important;
+                font-size: 26px !important;
             }
 
             .hero-content p {
-                font-size: 16px;
+                font-size: 14px;
             }
 
             h2 {
-                font-size: 29px !important;
-                margin-bottom: 35px;
+                font-size: 20px !important;
+                margin-bottom: 14px;
                 letter-spacing: 0px;
                 word-break: break-word;
             }
 
+            h2::after {
+                bottom: -6px !important;
+                width: 60px !important;
+            }
+
+            h3 {
+                font-size: 16px;
+            }
+
             section {
-                padding: 48px 24px !important;
+                padding: 20px 14px !important;
             }
 
             .project-info {
-                padding: 25px !important;
+                padding: 20px !important;
+            }
+
+            .project-info h3 {
+                font-size: 18px !important;
+                margin-bottom: 14px !important;
+            }
+
+            .project-info p {
+                font-size: 14px !important;
+                line-height: 1.6 !important;
+                margin-bottom: 14px !important;
             }
 
             .brand-grid {
@@ -517,7 +554,7 @@
             }
 
             .brand-caption h3 {
-                font-size: 20px !important;
+                font-size: 16px !important;
             }
 
             .brand-caption p {
@@ -530,34 +567,97 @@
             }
 
             .star {
-                width: 15px !important;
-                height: 15px !important;
-                opacity: 0.4;
+                width: 10px !important;
+                height: 10px !important;
+                opacity: 0.3;
+            }
+
+            footer {
+                padding: 20px 14px;
+                font-size: 10px;
             }
         }
 
         @media (max-width: 480px) {
             .hero-content h1 {
-                font-size: 32px !important;
+                font-size: 22px !important;
             }
 
             h2 {
-                font-size: 24px !important;
+                font-size: 17px !important;
+                margin-bottom: 12px;
                 letter-spacing: 0px;
                 word-break: break-word;
             }
 
+            section {
+                padding: 16px 10px !important;
+            }
+
             .project-info {
-                padding: 20px !important;
+                padding: 16px !important;
             }
 
             .star {
-                width: 12px !important;
-                height: 12px !important;
-                opacity: 0.35;
+                width: 8px !important;
+                height: 8px !important;
+                opacity: 0.25;
             }
         }
-    </style>
+    .theme-toggle-wrap { display:flex; align-items:center; gap:8px; flex-shrink:0; cursor:pointer; }
+    .theme-toggle-label { font-family:'Archivo Black',sans-serif; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:#8b475d; opacity:0.7; user-select:none; }
+    html:not(.light-mode) .theme-toggle-label { color:#e8a0b8 !important; }
+    .theme-toggle-track { width:36px; height:20px; background:#c4a0ae; border-radius:10px; position:relative; transition:background 0.3s; }
+    html:not(.light-mode) .theme-toggle-track { background:#3a2a32 !important; }
+    .theme-toggle-thumb { width:16px; height:16px; background:#8b475d; border-radius:50%; position:absolute; top:2px; left:18px; transition:left 0.3s, background 0.3s; }
+    html:not(.light-mode) .theme-toggle-thumb { left:2px !important; background:#e8a0b8 !important; }
+
+    html:not(.light-mode) body { background: #000000 !important; color: #d4c5c8 !important; }
+    html:not(.light-mode) .star { background: #2a1a22 !important; opacity: 0.5 !important; }
+    html:not(.light-mode) .announcement-banner { background: linear-gradient(90deg, #2a1520 0%, #24121a 25%, #1e0f16 55%, #2a1520 100%) !important; background-size: 300% 100% !important; }
+    html:not(.light-mode) .banner-inner span { color: #e8a0b8 !important; }
+    html:not(.light-mode) nav { background: rgba(30,16,24,0.97) !important; }
+    html:not(.light-mode) .logo, html:not(.light-mode) .logo a { color: #e8a0b8 !important; }
+    html:not(.light-mode) .menu-toggle { color: #e8a0b8 !important; }
+    html:not(.light-mode) .nav-links a { color: #e8a0b8 !important; }
+    html:not(.light-mode) .music-nav-link { background: linear-gradient(135deg, #5c2a3a, #3d1a2a) !important; }
+    html:not(.light-mode) h1, html:not(.light-mode) h2, html:not(.light-mode) h3, html:not(.light-mode) h4 { color: #e8a0b8 !important; }
+    html:not(.light-mode) h2::after { background: linear-gradient(90deg, #f5c1cf, #e8a0b8, #f5c1cf) !important; }
+    html:not(.light-mode) h2.will-animate.visible::after { background: linear-gradient(90deg, #f5c1cf, #e8a0b8, #f5c1cf) !important; }
+    html:not(.light-mode) section p { color: #d4c5c8 !important; }
+    html:not(.light-mode) .hero p, html:not(.light-mode) .hero-content p { color: #d4899e !important; }
+    html:not(.light-mode) .project-info { background: rgba(255,255,255,0.06) !important; }
+    html:not(.light-mode) .project-info h3 { color: #e8a0b8 !important; }
+    html:not(.light-mode) .project-info p, html:not(.light-mode) .project-info li { color: #d4c5c8 !important; }
+    html:not(.light-mode) .stack-caption h4 { color: #e8a0b8 !important; }
+    html:not(.light-mode) .stack-caption p { color: #d4899e !important; }
+    html:not(.light-mode) .stack-counter { color: #d4899e !important; }
+    html:not(.light-mode) .stack-nav { background: rgba(255,255,255,0.15) !important; color: #e8a0b8 !important; }
+    html:not(.light-mode) .back-button { color: #e8a0b8 !important; background: rgba(255,255,255,0.06) !important; border-color: rgba(232,160,184,0.3) !important; }
+    html:not(.light-mode) footer { background: rgba(0,0,0,0.5) !important; }
+    html:not(.light-mode) footer p { color: #e8a0b8 !important; }
+    html:not(.light-mode) span[style*="color:#8b475d"] { color: #e8a0b8 !important; }
+    html:not(.light-mode) p[style*="color:#8b475d"] { color: #e8a0b8 !important; }
+    html:not(.light-mode) p[style*="color:#a0617a"] { color: #d4899e !important; }
+    html:not(.light-mode) div[style*="background:rgba(139,71,93,0.1)"] { background: rgba(232,160,184,0.15) !important; }
+    @media (max-width: 820px) { html:not(.light-mode) .nav-links { background: rgba(0,0,0,1) !important; } }
+
+    /* Page-specific dark overrides */
+    html:not(.light-mode) .brand-item { background: rgba(255,255,255,0.06) !important; }
+    html:not(.light-mode) .brand-image { background: rgba(255,255,255,0.06) !important; }
+    html:not(.light-mode) .brand-caption h3 { color: #e8a0b8 !important; }
+    html:not(.light-mode) .brand-caption p { color: #d4899e !important; }
+    html:not(.light-mode) .image-tip { color: #d4899e !important; }
+  
+    @media (max-width: 820px) {
+        .theme-toggle-wrap { gap:0 !important; margin-left:auto; margin-right:4px; flex-direction:column !important; align-items:center !important; position:relative !important; }
+        .theme-toggle-label { font-size:7px !important; letter-spacing:1px !important; position:absolute !important; top:100% !important; left:50% !important; transform:translateX(-50%) !important; margin-top:2px !important; white-space:nowrap !important; }
+        .theme-toggle-track { width:30px !important; height:16px !important; }
+        .theme-toggle-thumb { width:12px !important; height:12px !important; }
+        html.light-mode .theme-toggle-thumb { left:16px !important; }
+    }
+  </style>
+    <script>if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light-mode')</script>
 </head>
 <body>
     <!-- Decorative stars -->
@@ -612,7 +712,11 @@
       </a>
     </div>
     <nav id="navbar">
-        <div class="logo"><a href="graphic-design.html"><img src="shared/AB logo.png" alt="AB" class="logo-img">AMELIA'S PORTFOLIO</a></div>
+        <div class="logo"><a href="graphic-design.html"><img src="shared/AB logo light.png" alt="AB" class="logo-img">AMELIA'S PORTFOLIO</a></div>
+        <div class="theme-toggle-wrap" onclick="toggleTheme()" id="themeToggle" aria-label="Toggle theme">
+            <span class="theme-toggle-label" id="themeLabel">Light</span>
+            <div class="theme-toggle-track"><div class="theme-toggle-thumb"></div></div>
+        </div>
         <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
         <ul class="nav-links" id="navLinks">
             <li><a href="graphic-design.html#home">Home</a></li>
@@ -785,5 +889,6 @@
         });
     </script>
 <script src="shared/lightbox.js?v=5"></script>
+<script src="shared/theme.js"></script>
 </body>
 </html>
