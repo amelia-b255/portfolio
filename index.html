@@ -1479,6 +1479,9 @@
         html.light-mode .hero-content p { color: #a0617a !important; }
         html.light-mode .hero-image { box-shadow: 0 20px 60px rgba(0,0,0,0.15) !important; }
         html.light-mode .hero-image:hover { box-shadow: 0 30px 80px rgba(0,0,0,0.2) !important; }
+        .hero-img-light { display: none; }
+        html.light-mode .hero-img-dark { display: none; }
+        html.light-mode .hero-img-light { display: block; }
         html.light-mode h2 { color: #8b475d !important; }
         html.light-mode h2::after { background: #f5c1cf !important; }
         html.light-mode h2.will-animate.visible::after { background: linear-gradient(90deg, #f5c1cf, #a8c5b5, #f5c1cf) !important; }
@@ -1593,7 +1596,8 @@
                 <a href="#portfolio" class="cta-button">View My Work</a>
             </div>
             <div class="hero-image">
-                <img src="extras/dogtag1-fullscreen.png" alt="Dog Tag Freestyle Poster">
+                <img src="extras/dogtag1-fullscreen.png" alt="Dog Tag Freestyle Poster" class="hero-img-dark">
+                <img src="extras/dogtag2-fullscreen.png" alt="Dog Tag Freestyle Poster" class="hero-img-light">
             </div>
         </div>
     </section>
