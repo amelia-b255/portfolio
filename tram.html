@@ -1096,6 +1096,8 @@
     body.gallery-mode .tram-vid-card {
       flex: 0 0 320px !important; width: 320px !important;
     }
+    /* Campaign in Action: hide photo descriptions/titles in gallery view */
+    body.gallery-mode .tram-action .gallery-card-title { display: none !important; }
     @media (max-width: 968px) {
       body.gallery-mode .tram-posters .stack-card {
         flex: 0 0 240px !important; width: 240px !important;
@@ -1652,5 +1654,6 @@
     })();
 </script>
 <script src="shared/theme.js?v=7"></script>
+<script src="shared/cursor-trail.js?v=2"></script>
 </body>
 </html>

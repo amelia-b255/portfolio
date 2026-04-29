@@ -1410,30 +1410,38 @@
     });
     // ── View toggle (stack ↔ gallery) ──
     var viewBtns = document.querySelectorAll('.view-btn');
-    // Briefly play+pause every muted video so iOS renders the first frame as a thumbnail
-    // (preload="metadata" loads no frames on mobile Safari). Safe to call repeatedly —
-    // already-loaded videos are skipped.
-    function loadAllVideoCovers() {
-      document.querySelectorAll('.card-stack-video .stack-card video').forEach(function(video) {
-        if (video.readyState >= 2) return;
-        video.muted = true;
-        video.preload = 'auto';
-        var p = video.play();
-        if (p && typeof p.then === 'function') {
-          p.then(function() { video.pause(); video.currentTime = 0; }).catch(function() {});
-        } else {
-          try { video.pause(); video.currentTime = 0; } catch(e) {}
-        }
+    // Lazy-load video first-frame thumbnails as cards scroll into view.
+    // Loading all 14 videos at once exhausts bandwidth and stalls every player.
+    function loadVideoCover(video) {
+      if (video.readyState >= 2) return;
+      video.muted = true;
+      video.preload = 'auto';
+      var p = video.play();
+      if (p && typeof p.then === 'function') {
+        p.then(function() { video.pause(); video.currentTime = 0; }).catch(function() {});
+      } else {
+        try { video.pause(); video.currentTime = 0; } catch(e) {}
+      }
+    }
+    var videoCards = document.querySelectorAll('.card-stack-video .stack-card video');
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            loadVideoCover(entry.target);
+            io.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: '200px' });
+      videoCards.forEach(function(v) { io.observe(v); });
+    } else {
+      videoCards.forEach(loadVideoCover);
+    }
+    // Also load any video that becomes the front of a stack (clicked next/prev)
+    document.querySelectorAll('.card-stack-video').forEach(function(stack) {
+      stack.addEventListener('click', function() {
+        stack.querySelectorAll('video').forEach(loadVideoCover);
       });
-    }
-    // Try immediately on script run + after window load (most browsers allow muted autoplay)
-    loadAllVideoCovers();
-    if (document.readyState !== 'complete') {
-      window.addEventListener('load', loadAllVideoCovers);
-    }
-    // Backup: fire on the first user interaction in case iOS blocked the autoplay attempt
-    ['touchstart', 'pointerdown', 'click', 'scroll'].forEach(function(evt) {
-      window.addEventListener(evt, loadAllVideoCovers, { once: true, capture: true, passive: true });
     });
 
     function setView(v) {
@@ -1498,5 +1506,6 @@
     </script>
 <script src="shared/lightbox.js?v=8"></script>
 <script src="shared/theme.js?v=7"></script>
+<script src="shared/cursor-trail.js?v=2"></script>
 </body>
 </html>

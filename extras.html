@@ -683,7 +683,7 @@
       text-align: center; line-height: 1.4;
     }
     body.gallery-mode .gallery-card-title { display: block; }
-    /* Year tag above the card image in gallery view */
+    /* Year tag above card image — only visible in gallery view, only on cards with data-year */
     .gallery-card-year-top { display: none; }
     body.gallery-mode .gallery-card-year-top {
       display: block;
@@ -1104,9 +1104,12 @@
           captionEl.querySelector('h4').textContent = fc.dataset.title || '';
           captionEl.querySelector('p').textContent = fc.dataset.desc || '';
         }
-        // Section year stays fixed (e.g., "2024") regardless of front card.
-        // Per-card years (e.g., 2026 on Drunk in Chinatown) appear above the
-        // card itself in gallery view, not in the section header.
+        // In stack view, section header year tracks the front card's data-year
+        // (e.g., 2026 when Drunk in Chinatown is front). Falls back to data-default.
+        if (yearEl && !document.body.classList.contains('gallery-mode')) {
+          var fc2 = cards[front];
+          yearEl.textContent = fc2.dataset.year || yearEl.dataset.default || yearEl.textContent;
+        }
       }
 
       function go(dir) {
@@ -1195,6 +1198,25 @@
       document.body.classList.toggle('gallery-mode', v === 'gallery');
       viewBtns.forEach(function(b) { b.classList.toggle('active', b.dataset.view === v); });
       try { localStorage.setItem('poster-view', v); } catch(e) {}
+      // Update each section's year based on view + front card
+      document.querySelectorAll('.section-year').forEach(function(el) {
+        if (v === 'gallery') {
+          if (el.dataset.default) el.textContent = el.dataset.default;
+        } else {
+          // Stack view: read front card (highest z-index) and use its data-year if set
+          var section = el.closest('section');
+          if (!section) return;
+          var cards = section.querySelectorAll('.stack-card');
+          if (!cards.length) return;
+          var frontCard = cards[0];
+          var maxZ = -Infinity;
+          cards.forEach(function(c) {
+            var z = parseInt(c.style.zIndex || '0', 10);
+            if (z > maxZ) { maxZ = z; frontCard = c; }
+          });
+          el.textContent = frontCard.dataset.year || el.dataset.default || el.textContent;
+        }
+      });
     }
     viewBtns.forEach(function(btn) {
       btn.addEventListener('click', function() {
@@ -1250,6 +1272,7 @@
     })();
 </script>
 <script src="shared/theme.js?v=7"></script>
+<script src="shared/cursor-trail.js?v=2"></script>
 
 <style>
 #swipe-hint-overlay {

@@ -761,15 +761,18 @@
         .business-card-wrap {
             margin-top: 50px;
             display: flex;
-            gap: 4px;
+            gap: 0;
             justify-content: center;
             align-items: stretch;
+            max-width: 820px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .business-card-img {
-            width: 100%;
-            max-width: 600px;
-            height: 380px;
+            width: 50%;
+            max-width: 410px;
+            height: 290px;
             object-fit: contain;
             border-radius: 0;
             box-shadow: none;
@@ -1755,8 +1758,11 @@
         <div class="hero-container" id="hero-container">
             <div class="hero-content">
                 <div id="name-cycler" onclick="cycleNameStyle()" title="Click to change font style">
-                    <h1 id="name-text">Amelia<br>Bobbin</h1>
-                    <img id="name-img" src="" alt="Amelia Bobbin" style="display:none;">
+                    <h1 id="name-text"><span class="hover-letter" data-letter="A">A</span><span class="hover-letter" data-letter="m">m</span><span class="hover-letter" data-letter="e">e</span><span class="hover-letter" data-letter="l">l</span><span class="hover-letter" data-letter="i">i</span><span class="hover-letter" data-letter="a">a</span><br><span class="hover-letter" data-letter="B">B</span><span class="hover-letter" data-letter="o">o</span><span class="hover-letter" data-letter="b">b</span><span class="hover-letter" data-letter="b">b</span><span class="hover-letter" data-letter="i">i</span><span class="hover-letter" data-letter="n">n</span></h1>
+                    <div id="name-img-wrap">
+                        <img id="name-img" src="" alt="Amelia Bobbin" style="display:none;">
+                        <div id="img-letter-grid"></div>
+                    </div>
                 </div>
                 <div id="name-dots" class="name-dots" aria-label="Name style"></div>
             </div>
@@ -2139,13 +2145,29 @@
             });
         });
 
-        // ── Scroll-based parallax for hero section ──
+        // ── Scroll-based parallax + blur fade for hero section ──
         var heroImage = document.querySelector('.hero-image');
         var heroContent = document.querySelector('.hero-content');
+        var heroNameCycler = document.getElementById('name-cycler');
+        var heroDots = document.getElementById('name-dots');
         window.addEventListener('scroll', function() {
-            if (window.innerWidth <= 820) return;
             var scrollY = window.scrollY;
-            if (scrollY < window.innerHeight) {
+            var vh = window.innerHeight;
+
+            // Blur + fade title as user scrolls (works on all devices)
+            if (heroNameCycler) {
+                var fadeStart = 0;
+                var fadeEnd = vh * 0.55;
+                var t = Math.min(1, Math.max(0, (scrollY - fadeStart) / (fadeEnd - fadeStart)));
+                var blur = t * 14;
+                var opacity = 1 - t;
+                heroNameCycler.style.filter = 'blur(' + blur + 'px)';
+                heroNameCycler.style.opacity = opacity;
+                if (heroDots) heroDots.style.opacity = opacity;
+            }
+
+            if (window.innerWidth <= 820) return;
+            if (scrollY < vh) {
                 var offset = scrollY * 0.15;
                 var contentOffset = scrollY * 0.08;
                 if (heroImage) heroImage.style.transform = 'translateY(' + (-offset) + 'px)';
@@ -2160,10 +2182,25 @@
     </script>
 <script src="shared/lightbox.js?v=5"></script>
 <script src="shared/theme.js?v=7"></script>
+<script src="shared/cursor-trail.js?v=2"></script>
 
 <script>
-// $5 prints spotlight — shows on every page load; dismiss removes it for this view only.
+// $5 prints spotlight — shows only on first visit / refresh (NOT on back/home navigation from sub-pages).
 (function() {
+    try {
+        var navEntries = performance.getEntriesByType('navigation');
+        var navType = navEntries.length ? navEntries[0].type : 'navigate';
+        // Skip: back/forward navigation (browser back button, bfcache restore)
+        if (navType === 'back_forward') return;
+        // Skip: navigate from same-origin page (clicking 'home' or sub-page nav link)
+        if (navType === 'navigate' && document.referrer) {
+            try {
+                var refOrigin = new URL(document.referrer).origin;
+                if (refOrigin === location.origin) return;
+            } catch (e) {}
+        }
+    } catch (e) {}
+
     var overlay = document.createElement('div');
     overlay.id = 'spotlight-overlay';
     overlay.innerHTML = '<div id="spotlight-box"><button id="spotlight-close" aria-label="Close">\u00D7</button><img src="$5Prints.webp" alt="$5 Digital Prints"></div>';
@@ -2181,12 +2218,12 @@
 var nameStyleIdx = 0;
 var NAME_V = '?v=3';
 var nameStyles = [
-    { type: 'text' },
-    { type: 'img', group: 'cursive', dark: '4DARK.png'+NAME_V, light: '4LIGHT.png'+NAME_V },
-    { type: 'img', group: 'cursive', dark: '5DARK.png'+NAME_V, light: '5LIGHT.png'+NAME_V },
     { type: 'img', group: 'bold',    dark: '1DARK.png'+NAME_V, light: '1LIGHT.png'+NAME_V },
     { type: 'img', group: 'bold',    dark: '2DARK.png'+NAME_V, light: '2LIGHT.png'+NAME_V },
     { type: 'img', group: 'bold',    dark: '3DARK.png'+NAME_V, light: '3LIGHT.png'+NAME_V },
+    { type: 'img', group: 'cursive', dark: '4DARK.png'+NAME_V, light: '4LIGHT.png'+NAME_V },
+    { type: 'img', group: 'cursive', dark: '5DARK.png'+NAME_V, light: '5LIGHT.png'+NAME_V },
+    { type: 'text' },
 ];
 
 function applyNameStyle() {
@@ -2199,7 +2236,7 @@ function applyNameStyle() {
     if (style.type === 'text') {
         h1.style.display = '';
         img.style.display = 'none';
-        if (container) { container.classList.remove('image-style'); container.classList.remove('cursive-style'); }
+        if (container) { container.classList.remove('image-style', 'cursive-style', 'bold-1'); }
     } else {
         h1.style.display = 'none';
         img.src = isLight ? style.light : style.dark;
@@ -2212,6 +2249,8 @@ function applyNameStyle() {
                 container.classList.remove('image-style');
                 container.classList.add('cursive-style');
             }
+            // Only the first bold style (1DARK) gets the letter-hotspot grid
+            container.classList.toggle('bold-1', nameStyleIdx === 0);
         }
     }
 }
@@ -2306,16 +2345,169 @@ function cycleHeroImage() {
     imgs[idx].classList.add('hero-img-anim');
     if (isLight) heroLightIdx = idx; else heroDarkIdx = idx;
 }
+
+// ── Image-letter hotspots for 1DARK style ──
+// Rectangles measured from 1DARK.png alpha channel — cells tile perfectly
+// using midpoints between adjacent letters so each letter has its own region.
+var IMG_LETTER_RECTS = [
+    // AMELIA row (top 50%)
+    [0,  0,     20.05, 50], // A
+    [0,  20.05, 20.65, 50], // M
+    [0,  40.7,  17.0,  50], // E
+    [0,  57.7,  15.25, 50], // L
+    [0,  72.95, 5.35,  50], // I
+    [0,  78.3,  21.7,  50], // A
+    // BOBBIN row (bottom 50%)
+    [50, 0,     19.25, 50], // B
+    [50, 19.25, 20.25, 50], // O
+    [50, 39.5,  18.1,  50], // B
+    [50, 57.6,  18.0,  50], // B
+    [50, 75.6,  6.35,  50], // I
+    [50, 81.95, 18.05, 50]  // N
+];
+// Actual letter centers (from 1DARK.png alpha analysis), used as transform-origin
+// so each letter scales from its OWN visual centre — keeping the bigger artwork
+// letter perfectly aligned over the underlying pink letter (no halo).
+var IMG_LETTER_CENTERS = [
+    // AMELIA — y center ~24.1%
+    [10.23, 24.1], [30.00, 24.1], [49.32, 24.1], [65.49, 24.1], [75.60, 24.1], [88.06, 24.1],
+    // BOBBIN — y center ~74.5%
+    [10.49, 74.5], [29.24, 74.5], [48.43, 74.5], [66.65, 74.5], [78.57, 74.5], [91.00, 74.5]
+];
+(function buildImgLetterGrid() {
+    var grid = document.getElementById('img-letter-grid');
+    if (!grid) return;
+    IMG_LETTER_RECTS.forEach(function(r, i) {
+        var T = r[0], L = r[1], W = r[2], H = r[3];
+        var cell = document.createElement('div');
+        cell.className = 'img-letter';
+        cell.dataset.idx = i;
+        cell.style.top = T + '%';
+        cell.style.left = L + '%';
+        cell.style.width = W + '%';
+        cell.style.height = H + '%';
+        // Wrap is sized to FULL parent and offset so its 0,0 = parent's 0,0.
+        // Then the 1DARK mask aligns perfectly with the original image.
+        // Eraser hides the underlying pink letter so the bigger artwork has
+        // no chance of pink showing through at sub-pixel edges.
+        var eraser = document.createElement('div');
+        eraser.className = 'letter-eraser';
+        eraser.style.top = (-100 * T / H) + '%';
+        eraser.style.left = (-100 * L / W) + '%';
+        eraser.style.width = (10000 / W) + '%';
+        eraser.style.height = (10000 / H) + '%';
+        var lc = IMG_LETTER_CENTERS[i];
+        eraser.style.transformOrigin = lc[0] + '% ' + lc[1] + '%';
+        cell.appendChild(eraser);
+
+        var wrap = document.createElement('div');
+        wrap.className = 'letter-art-wrap';
+        wrap.style.top = (-100 * T / H) + '%';
+        wrap.style.left = (-100 * L / W) + '%';
+        wrap.style.width = (10000 / W) + '%';
+        wrap.style.height = (10000 / H) + '%';
+        // Transform-origin = the LETTER's actual visual centre (not cell centre).
+        wrap.style.transformOrigin = lc[0] + '% ' + lc[1] + '%';
+        var art = document.createElement('img');
+        art.className = 'letter-art';
+        art.alt = '';
+        wrap.appendChild(art);
+        cell.appendChild(wrap);
+        cell.addEventListener('mouseenter', function() {
+            var isLight = document.documentElement.classList.contains('light-mode');
+            var src = (isLight ? LETTER_ARTWORKS_LIGHT : LETTER_ARTWORKS_DARK)[i];
+            if (art.dataset.src !== src) { art.src = src; art.dataset.src = src; }
+        });
+        grid.appendChild(cell);
+    });
+})();
+
+// Letter artwork mappings (used by the 1DARK image-style hotspots above).
+var LETTER_ARTWORKS_DARK = [
+    'extras/serendipity.webp', 'extras/euphoria.webp', 'extras/greenorchidart-fullscreen.webp',
+    'extras/poppies-fullscreen.webp', 'extras/joost-fullscreen.webp', 'extras/RADIANCE poster.webp',
+    'extras/dogtag1-fullscreen.webp', 'extras/allisfulloflove-fullscreen.webp', 'extras/luminosity.webp',
+    'extras/sometimesibeliveingod-fullscreen.webp', 'extras/wacotexas-fullscreen.webp', 'extras/feelinglucky-fullscreen.webp'
+];
+var LETTER_ARTWORKS_LIGHT = [
+    'extras/feelinglucky-fullscreen.webp', 'extras/allisfulloflove-fullscreen.webp', 'extras/luminosity.webp',
+    'extras/sometimesibeliveingod-fullscreen.webp', 'extras/wacotexas-fullscreen.webp', 'drawings/girl in room.webp',
+    'extras/serendipity.webp', 'extras/euphoria.webp', 'extras/greenorchidart-fullscreen.webp',
+    'extras/poppies-fullscreen.webp', 'extras/joost-fullscreen.webp', 'extras/RADIANCE poster.webp'
+];
 </script>
 
 <style>
 /* ── Name style cycler ── */
 #name-cycler {
-    cursor: default;
+    cursor: pointer;
     display: block;
     user-select: none;
     -webkit-user-select: none;
 }
+/* Image-style letter hotspots — only visible when bold-1 (1DARK) is active */
+#name-img-wrap {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+#img-letter-grid {
+    position: absolute;
+    inset: 0;
+    display: none;
+    pointer-events: none;
+}
+.hero-container.image-style.bold-1 #img-letter-grid { display: block; pointer-events: auto; }
+.img-letter {
+    position: absolute;
+    cursor: pointer;
+    overflow: hidden;
+}
+/* Wrap inside each cell extends to FULL parent image size. The 1DARK alpha
+   mask is applied so artwork shows only through the letter outline. The
+   cell's overflow:hidden clips everything outside this letter's region. */
+.letter-art-wrap, .letter-eraser {
+    position: absolute;
+    -webkit-mask-image: url('1DARK.png?v=3');
+    -webkit-mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-image: url('1DARK.png?v=3');
+    mask-size: 100% 100%;
+    mask-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    overflow: hidden;
+    /* transform-origin set per-cell in JS so each letter scales from its own centre */
+}
+/* Eraser sits BETWEEN the underlying pink letter and the artwork wrap.
+   Filled with the page background colour, slightly larger than the original
+   letter, so it completely hides the pink letter underneath the artwork. */
+.letter-eraser {
+    background: #000;
+}
+html.light-mode .letter-eraser { background: #f5e6e8; }
+.img-letter:hover .letter-eraser,
+.img-letter:hover .letter-art-wrap {
+    opacity: 1;
+}
+.letter-art {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.img-letter:hover .letter-art {
+    animation: letterArtPulse 7s ease-in-out infinite;
+}
+@keyframes letterArtPulse {
+    0%   { transform: scale(1)    rotate(0deg); }
+    50%  { transform: scale(1.08) rotate(0.4deg); }
+    100% { transform: scale(1)    rotate(0deg); }
+}
+
+/* .hover-letter spans render as plain inline text — no hover artwork swap */
+.hover-letter { display: inline; }
 #name-img {
     width: 100%;
     display: block;
@@ -2332,17 +2524,16 @@ function cycleHeroImage() {
     object-fit: initial;
     margin: 0;
 }
-/* Cursive: fixed height matching h1 so layout never shifts */
+/* Cursive/script: fills left column width, height scales naturally */
 .hero-container.cursive-style .hero-content {
     overflow: visible;
 }
 .hero-container.cursive-style #name-img {
-    width: auto;
-    max-width: 100%;
-    height: 168px;
+    width: 100%;
+    height: auto;
     object-fit: initial;
     margin-left: 0;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 /* Name style dot indicator */
 .name-dots {
@@ -2381,7 +2572,8 @@ html.light-mode .name-dots .dot.active { background: #8c3c5a; }
 
 @media (max-width: 480px) {
     .hero-container.cursive-style #name-img {
-        height: 92px !important;
+        width: 100% !important;
+        height: auto !important;
         margin-bottom: 14px !important;
     }
 }
