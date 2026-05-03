@@ -196,7 +196,7 @@
 
         .music-nav-link:hover {
             transform: scale(1.04);
-            box-shadow: 0 5px 15px rgba(139, 71, 93, 0.3);
+            box-shadow: 5px 5px 15px rgba(139, 71, 93, 0.3);
         }
 
         .music-nav-link::after {
@@ -215,17 +215,18 @@
             font-family: 'Georgia Custom', Georgia, serif;
             font-weight: 400;
             border-radius: 25px;
-            box-shadow: 0 3px 10px rgba(139, 71, 93, 0.3);
+            box-shadow: 3px 3px 10px rgba(139, 71, 93, 0.3);
         }
         .hero-cv-button {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
-            font-weight: 700 !important;
+            font-family: 'Archivo Black', sans-serif !important;
+            font-weight: 400 !important;
             text-transform: uppercase !important;
+            letter-spacing: 2px !important;
         }
 
         .music-cv-button:hover {
             transform: scale(1.04);
-            box-shadow: 0 8px 25px rgba(139, 71, 93, 0.45);
+            box-shadow: 8px 8px 25px rgba(139, 71, 93, 0.45);
             background: #a0617a;
         }
 
@@ -387,7 +388,7 @@
           z-index: 6;
           pointer-events: none;
           backdrop-filter: blur(4px);
-          box-shadow: 0 2px 6px rgba(0,0,0,0.35);
+          box-shadow: 2px 2px 6px rgba(0,0,0,0.35);
         }
         html:not(.light-mode) body.gallery-mode .video-badge {
           background: rgba(232,160,184,0.92);
@@ -486,7 +487,7 @@
                 flex-direction: column;
                 padding: 30px 20px;
                 transition: left 0.3s ease;
-                box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+                box-shadow: 4px 4px 20px rgba(0,0,0,0.1);
                 overflow-y: auto;
                 gap: 0 !important;
                 z-index: 999;
@@ -516,7 +517,10 @@
                 text-align: center;
                 padding: 12px 16px !important;
                 font-size: 13px !important;
-            }
+            font-family: 'Archivo Black', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
 
             .music-nav-link {
                 margin: 15px 0 !important;
@@ -706,6 +710,7 @@
         /* Shimmer sweep across buttons on hover */
         .cta-button, .cv-button {
             overflow: hidden !important;
+            font-family: 'Georgia Custom', Georgia, serif;
         }
         .cta-button::before, .cv-button::before {
             content: '';
@@ -727,7 +732,7 @@
         }
         .skill-card:hover {
             transform: translateY(-12px) scale(1.04) !important;
-            box-shadow: 12px 18px 40px rgba(139, 71, 93, 0.18) !important;
+            box-shadow: 18px 18px 40px rgba(139, 71, 93, 0.18) !important;
         }
 
         /* Navigation link colour transition */
@@ -800,7 +805,7 @@
     html:not(.light-mode) .music-achievements h3 { color: #e8a0b8 !important; }
     html:not(.light-mode) .music-achievements li { color: #d4c5c8 !important; }
     html:not(.light-mode) .music-achievements li::before { color: #e8a0b8 !important; }
-    html:not(.light-mode) .music-cv-button { background: #5c2a3a !important; color: #e8a0b8 !important; box-shadow: 0 3px 10px rgba(92,42,58,0.4) !important; }
+    html:not(.light-mode) .music-cv-button { background: #5c2a3a !important; color: #e8a0b8 !important; box-shadow: 3px 3px 10px rgba(92,42,58,0.4) !important; }
     html:not(.light-mode) .music-cv-button:hover { background: #7a3a50 !important; }
     html:not(.light-mode) .stack-year { color: #e8a0b8 !important; }
     html:not(.light-mode) .stack-card video { background: transparent !important; }
@@ -829,10 +834,10 @@
       font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
       cursor: pointer; transition: all 0.25s ease; opacity: 0.45;
     }
-    .view-btn.active { background: #8b475d; color: white; opacity: 1; box-shadow: 0 2px 8px rgba(139,71,93,0.28); }
+    .view-btn.active { background: #8b475d; color: white; opacity: 1; box-shadow: 2px 2px 8px rgba(139,71,93,0.28); }
     html:not(.light-mode) .view-toggle-wrap { background: rgba(232,160,184,0.07); border-color: rgba(232,160,184,0.18); }
     html:not(.light-mode) .view-btn { color: #e8a0b8; }
-    html:not(.light-mode) .view-btn.active { background: #4a1f30; color: #e8a0b8; box-shadow: 0 2px 8px rgba(0,0,0,0.45); }
+    html:not(.light-mode) .view-btn.active { background: #4a1f30; color: #e8a0b8; box-shadow: 2px 2px 8px rgba(0,0,0,0.45); }
 
     /* During view swap: suppress only transitions (NOT animations) so layout change is instant
        without restarting keyframe animations like the h2 underline shimmer */
@@ -872,7 +877,7 @@
       pointer-events: auto !important;
       border-radius: 0 !important;
       overflow: hidden !important;
-      box-shadow: 0 4px 16px rgba(139,71,93,0.13) !important;
+      box-shadow: 4px 4px 16px rgba(139,71,93,0.13) !important;
       transition: transform 0.3s ease, box-shadow 0.3s ease !important;
       background: transparent !important;
       display: flex !important;
@@ -882,7 +887,7 @@
     }
     body.gallery-mode .stack-card:hover {
       transform: translateY(-5px) !important;
-      box-shadow: 0 12px 28px rgba(139,71,93,0.22) !important;
+      box-shadow: 12px 12px 28px rgba(139,71,93,0.22) !important;
     }
     body.gallery-mode .stack-card[data-orient="landscape"] {
       flex: 0 0 360px !important; width: 360px !important;
@@ -923,9 +928,9 @@
     body.gallery-mode .card-stack-photo .gallery-card-title { display: none !important; }
     html:not(.light-mode) body.gallery-mode .stack-card {
       background: rgba(18,8,14,0.65) !important;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.4) !important;
+      box-shadow: 4px 4px 16px rgba(0,0,0,0.4) !important;
     }
-    html:not(.light-mode) body.gallery-mode .stack-card:hover { box-shadow: 0 12px 28px rgba(0,0,0,0.55) !important; }
+    html:not(.light-mode) body.gallery-mode .stack-card:hover { box-shadow: 12px 12px 28px rgba(0,0,0,0.55) !important; }
     html:not(.light-mode) .gallery-card-name { color: #e8a0b8; }
     html:not(.light-mode) .gallery-card-desc { color: #d4899e; }
     @media (max-width: 968px) {
@@ -950,10 +955,14 @@
         .theme-toggle-wrap { margin-right: 20px !important; }
         .nav-links { gap: 20px !important; }
         .nav-links a { font-size: 13px !important; }
-        .cv-button { padding: 7px 13px !important; font-size: 12px !important; margin-left: 0 !important; }
+        .cv-button { padding: 7px 13px !important; font-size: 12px !important; margin-left: 0 !important;
+            font-family: 'Georgia Custom', Georgia, serif;
+        }
         .music-nav-link { padding: 7px 13px !important; }
     }
-  </style>
+  
+
+        </style>
 </head>
 <body>
     <div class="doodle star star1"></div>
@@ -1506,6 +1515,6 @@
     </script>
 <script src="shared/lightbox.js?v=8"></script>
 <script src="shared/theme.js?v=7"></script>
-<script src="shared/cursor-trail.js?v=2"></script>
+<script src="shared/cursor-trail.js?v=4"></script>
 </body>
 </html>

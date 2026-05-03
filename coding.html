@@ -105,7 +105,7 @@
       backdrop-filter: blur(15px);
       transition: all 0.4s ease;
     }
-    nav.scrolled { padding: 20px 60px; box-shadow: 0 2px 20px rgba(168, 197, 181, 0.1); }
+    nav.scrolled { padding: 20px 60px; box-shadow: 2px 2px 20px rgba(168, 197, 181, 0.1); }
     .logo {
       font-family: 'Archivo Black', sans-serif;
       font-size: 24px; color: #8b475d; letter-spacing: 2px;
@@ -113,8 +113,9 @@
     }
     .logo a { color: #8b475d; text-decoration: none; display:flex; align-items:center; gap:10px; }
     .logo-img { height:38px; width:auto; flex-shrink:0; }
-    .cv-button { padding:10px 25px; background:#8b475d; color:white !important; text-decoration:none; border-radius:25px; font-family:'Georgia Custom', Georgia, serif; font-size:16px; transition:all 0.3s ease; margin-left:20px; box-shadow:0 3px 10px rgba(139,71,93,.3); display:inline-block; }
-    .cv-button:hover { background:#a0617a; transform: scale(1.04); box-shadow:0 6px 20px rgba(139,71,93,.5); }
+    .cv-button { padding:10px 25px; background:#8b475d; color:white !important; text-decoration:none; border-radius:25px; font-family: 'Georgia Custom', Georgia, serif; font-size: 16px; transition:all 0.3s ease; margin-left:20px; box-shadow:3px 3px 10px rgba(139,71,93,.3); display:inline-block;
+        }
+    .cv-button:hover { background:#a0617a; transform: scale(1.04); box-shadow:6px 6px 20px rgba(139,71,93,.5); }
     .cv-button::after { display:none !important; }
     .menu-toggle {
       display: none; background: none; border: none; font-size: 32px; color: #8b475d;
@@ -136,7 +137,7 @@
       padding: 10px 20px !important; border-radius: 20px;
       font-weight: 600 !important; transition: all 0.3s ease;
     }
-    .music-nav-link:hover { transform: scale(1.04); box-shadow: 0 5px 15px rgba(139, 71, 93, 0.3); }
+    .music-nav-link:hover { transform: scale(1.04); box-shadow: 5px 5px 15px rgba(139, 71, 93, 0.3); }
     .music-nav-link::after { display: none !important; }
 
     /* Hero */
@@ -270,7 +271,7 @@
     .toggle-btn.active {
       background: linear-gradient(135deg, #f5c1cf, #a8c5b5);
       color: #8b475d;
-      box-shadow: 0 3px 10px rgba(139, 71, 93, 0.2);
+      box-shadow: 3px 3px 10px rgba(139, 71, 93, 0.2);
     }
 
     .toggle-btn:hover:not(.active) {
@@ -510,13 +511,13 @@
       font-family: 'Archivo Black', sans-serif;
       text-transform: uppercase;
       border-radius: 5px;
-      box-shadow: 0 3px 10px rgba(139, 71, 93, 0.3);
+      box-shadow: 3px 3px 10px rgba(139, 71, 93, 0.3);
       margin-top: 40px;
     }
 
     .back-button:hover {
       transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(139, 71, 93, 0.4);
+      box-shadow: 8px 8px 25px rgba(139, 71, 93, 0.4);
       background: #a0617a;
     }
 
@@ -536,7 +537,7 @@
         position: fixed; top: 50px; left: -100%; width: 100%; height: calc(100vh - 50px);
         background: rgba(255, 255, 255, 1); backdrop-filter: blur(15px);
         flex-direction: column; padding: 30px 20px; transition: left 0.3s ease;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.1); overflow-y: auto; gap: 0 !important;
+        box-shadow: 4px 4px 20px rgba(0,0,0,0.1); overflow-y: auto; gap: 0 !important;
         z-index: 999; align-items: stretch;
       }
       .nav-links.active { left: 0; }.nav-links.active{top:0!important;height:100vh!important;padding-top:90px!important}nav.menu-open{z-index:1003!important}
@@ -635,6 +636,7 @@
         /* Shimmer sweep across buttons on hover */
         .cta-button, .cv-button {
             overflow: hidden !important;
+            font-family: 'Georgia Custom', Georgia, serif;
         }
         .cta-button::before, .cv-button::before {
             content: '';
@@ -656,7 +658,7 @@
         }
         .skill-card:hover {
             transform: translateY(-12px) scale(1.04) !important;
-            box-shadow: 12px 18px 40px rgba(139, 71, 93, 0.18) !important;
+            box-shadow: 18px 18px 40px rgba(139, 71, 93, 0.18) !important;
         }
 
         /* Navigation link colour transition */
@@ -767,10 +769,14 @@
         .theme-toggle-wrap { margin-right: 20px !important; }
         .nav-links { gap: 20px !important; }
         .nav-links a { font-size: 13px !important; }
-        .cv-button { padding: 7px 13px !important; font-size: 12px !important; margin-left: 0 !important; }
+        .cv-button { padding: 7px 13px !important; font-size: 12px !important; margin-left: 0 !important;
+            font-family: 'Georgia Custom', Georgia, serif;
+        }
         .music-nav-link { padding: 7px 13px !important; }
     }
-  </style>
+  
+
+        </style>
   <script>(function(){try{var t=performance.getEntriesByType('navigation'),n=t.length?t[0].type:'navigate',s=document.referrer&&(new URL(document.referrer)).origin===location.origin;if(n==='reload'||(n==='navigate'&&!s)){sessionStorage.removeItem('theme');}else if(sessionStorage.getItem('theme')==='light'){document.documentElement.classList.add('light-mode');}}catch(e){}})();</script>
 </head>
 
@@ -1239,7 +1245,7 @@
     })();
 </script>
   <script src="shared/theme.js?v=7"></script>
-<script src="shared/cursor-trail.js?v=2"></script>
+<script src="shared/cursor-trail.js?v=4"></script>
 
 <style>
 #mobile-note-overlay {
@@ -1262,7 +1268,7 @@
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     border-radius: 16px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    box-shadow: 20px 20px 60px rgba(0,0,0,0.5);
     transform: scale(0.95);
     transition: transform 0.5s ease;
     text-align: center;
@@ -1305,7 +1311,7 @@
 #mobile-note-close:hover { background: rgba(0,0,0,0.8); }
 html.light-mode #mobile-note-box {
     background: linear-gradient(135deg, rgba(255,255,255,0.22) 0%, rgba(245,193,207,0.22) 100%) !important;
-    box-shadow: 0 20px 60px rgba(139,71,93,0.25) !important;
+    box-shadow: 20px 20px 60px rgba(139,71,93,0.25) !important;
 }
 html.light-mode #mobile-note-box h3 { color: #8b475d !important; }
 html.light-mode #mobile-note-box p { color: #5a5a5a !important; }

@@ -114,7 +114,7 @@
 
         nav.scrolled {
             padding: 20px 60px;
-            box-shadow: 0 2px 20px rgba(168, 197, 181, 0.1);
+            box-shadow: 2px 2px 20px rgba(168, 197, 181, 0.1);
         }
 
         .logo {
@@ -135,8 +135,9 @@
             gap: 10px;
         }
         .logo-img { height: 48px; width: auto; flex-shrink: 0; }
-        .cv-button { padding:10px 25px; background:#8b475d; color:white !important; text-decoration:none; border-radius:25px; font-family:'Georgia Custom', Georgia, serif; font-size:16px; transition:all 0.3s ease; margin-left:20px; box-shadow:0 3px 10px rgba(139,71,93,.3); display:inline-block; }
-        .cv-button:hover { background:#a0617a; transform: scale(1.04); box-shadow:0 6px 20px rgba(139,71,93,.5); }
+        .cv-button { padding:10px 25px; background:#8b475d; color:white !important; text-decoration:none; border-radius:25px; font-family: 'Georgia Custom', Georgia, serif; font-size: 16px; transition:all 0.3s ease; margin-left:20px; box-shadow:3px 3px 10px rgba(139,71,93,.3); display:inline-block;
+        }
+        .cv-button:hover { background:#a0617a; transform: scale(1.04); box-shadow:6px 6px 20px rgba(139,71,93,.5); }
         .cv-button::after { display:none !important; }
 
         .menu-toggle {
@@ -199,7 +200,7 @@
 
         .music-nav-link:hover {
             transform: scale(1.04);
-            box-shadow: 0 5px 15px rgba(139, 71, 93, 0.3);
+            box-shadow: 5px 5px 15px rgba(139, 71, 93, 0.3);
         }
 
         .music-nav-link::after { display: none !important; }
@@ -563,13 +564,13 @@
             font-family: 'Archivo Black', sans-serif;
             text-transform: uppercase;
             border-radius: 5px;
-            box-shadow: 0 3px 10px rgba(139, 71, 93, 0.3);
+            box-shadow: 3px 3px 10px rgba(139, 71, 93, 0.3);
             margin-top: 40px;
         }
 
         .back-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(139, 71, 93, 0.4);
+            box-shadow: 8px 8px 25px rgba(139, 71, 93, 0.4);
             background: #a0617a;
         }
 
@@ -610,7 +611,7 @@
                 flex-direction: column;
                 padding: 30px 20px;
                 transition: left 0.3s ease;
-                box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+                box-shadow: 4px 4px 20px rgba(0,0,0,0.1);
                 overflow-y: auto;
                 gap: 0 !important;
                 z-index: 999;
@@ -639,7 +640,9 @@
                 padding: 12px 16px !important;
             }
 
-            .cv-button { margin:15px 0 0 0!important; width:100%; text-align:center; padding:12px 16px!important; font-size:13px!important; }
+            .cv-button { margin:15px 0 0 0!important; width:100%; text-align:center; padding:12px 16px!important; font-size:13px!important;
+            font-family: 'Georgia Custom', Georgia, serif;
+        }
             .announcement-banner { height: 30px !important; }
             .banner-inner span { font-size: 10px !important; }
 
@@ -719,7 +722,7 @@
             position: absolute; inset: 0; display: block; border-radius: 0; overflow: hidden;
             transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), filter 0.4s ease, opacity 0.4s ease;
             will-change: transform; cursor: pointer; text-decoration: none; background: transparent;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.55);
+            box-shadow: 10px 10px 40px rgba(0,0,0,0.55);
         }
         .stack-card img { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
         .stack-card video { width: 100%; height: 100%; object-fit: contain; display: block; border-radius: 4px; }
@@ -758,7 +761,7 @@
         }
         .stack-video video {
             width: 100%; border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(139,71,93,0.15);
+            box-shadow: 10px 10px 30px rgba(139,71,93,0.15);
         }
         .stack-video p {
             font-family: 'Georgia Custom', Georgia, serif; font-size: 14px; color: #a0617a;
@@ -827,6 +830,7 @@
         /* Shimmer sweep across buttons on hover */
         .cta-button, .cv-button {
             overflow: hidden !important;
+            font-family: 'Georgia Custom', Georgia, serif;
         }
         .cta-button::before, .cv-button::before {
             content: '';
@@ -848,7 +852,7 @@
         }
         .skill-card:hover {
             transform: translateY(-12px) scale(1.04) !important;
-            box-shadow: 12px 18px 40px rgba(139, 71, 93, 0.18) !important;
+            box-shadow: 18px 18px 40px rgba(139, 71, 93, 0.18) !important;
         }
 
         /* Navigation link colour transition */
@@ -926,8 +930,10 @@
         html:not(.light-mode) .link-text h4 { color: #e8a0b8 !important; }
         html:not(.light-mode) .link-text p { color: #d4c5c8 !important; }
         html:not(.light-mode) .image-tip { color: #d4899e !important; }
-        html:not(.light-mode) .cv-button { background: #5c2a3a !important; box-shadow: 0 3px 10px rgba(92,42,58,0.3) !important; }
-        html:not(.light-mode) .cv-button:hover { background: #7a3a50 !important; box-shadow: 0 6px 20px rgba(92,42,58,0.5) !important; }
+        html:not(.light-mode) .cv-button { background: #5c2a3a !important; box-shadow: 3px 3px 10px rgba(92,42,58,0.3) !important;
+            font-family: 'Georgia Custom', Georgia, serif;
+        }
+        html:not(.light-mode) .cv-button:hover { background: #7a3a50 !important; box-shadow: 6px 6px 20px rgba(92,42,58,0.5) !important; }
 
         /* Inline style overrides */
         html:not(.light-mode) span[style*="color:#8b475d"] { color: #e8a0b8 !important; }
@@ -969,10 +975,10 @@
       font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
       cursor: pointer; transition: all 0.25s ease; opacity: 0.45;
     }
-    .view-btn.active { background: #8b475d; color: white; opacity: 1; box-shadow: 0 2px 8px rgba(139,71,93,0.28); }
+    .view-btn.active { background: #8b475d; color: white; opacity: 1; box-shadow: 2px 2px 8px rgba(139,71,93,0.28); }
     html:not(.light-mode) .view-toggle-wrap { background: rgba(232,160,184,0.07); border-color: rgba(232,160,184,0.18); }
     html:not(.light-mode) .view-btn { color: #e8a0b8; }
-    html:not(.light-mode) .view-btn.active { background: #4a1f30; color: #e8a0b8; box-shadow: 0 2px 8px rgba(0,0,0,0.45); }
+    html:not(.light-mode) .view-btn.active { background: #4a1f30; color: #e8a0b8; box-shadow: 2px 2px 8px rgba(0,0,0,0.45); }
 
     /* During view swap: suppress only transitions (NOT animations) so layout change is instant
        without restarting keyframe animations like the h2 underline shimmer */
@@ -1012,7 +1018,7 @@
       pointer-events: auto !important;
       border-radius: 0 !important;
       overflow: hidden !important;
-      box-shadow: 0 4px 16px rgba(139,71,93,0.13) !important;
+      box-shadow: 4px 4px 16px rgba(139,71,93,0.13) !important;
       transition: transform 0.3s ease, box-shadow 0.3s ease !important;
       background: transparent !important;
       display: flex !important;
@@ -1022,7 +1028,7 @@
     }
     body.gallery-mode .stack-card:hover {
       transform: translateY(-5px) !important;
-      box-shadow: 0 12px 28px rgba(139,71,93,0.22) !important;
+      box-shadow: 12px 12px 28px rgba(139,71,93,0.22) !important;
     }
     body.gallery-mode .stack-card[data-orient="landscape"] {
       flex: 0 0 360px !important; width: 360px !important;
@@ -1048,9 +1054,9 @@
     body.gallery-mode .gallery-card-title { display: block; }
     html:not(.light-mode) body.gallery-mode .stack-card {
       background: rgba(18,8,14,0.65) !important;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.4) !important;
+      box-shadow: 4px 4px 16px rgba(0,0,0,0.4) !important;
     }
-    html:not(.light-mode) body.gallery-mode .stack-card:hover { box-shadow: 0 12px 28px rgba(0,0,0,0.55) !important; }
+    html:not(.light-mode) body.gallery-mode .stack-card:hover { box-shadow: 12px 12px 28px rgba(0,0,0,0.55) !important; }
     html:not(.light-mode) .gallery-card-name { color: #e8a0b8; }
     html:not(.light-mode) .gallery-card-desc { color: #d4899e; }
     @media (max-width: 968px) {
@@ -1077,7 +1083,7 @@
       font-size: 10px; letter-spacing: 1.5px;
       z-index: 6; pointer-events: none;
       backdrop-filter: blur(4px);
-      box-shadow: 0 2px 6px rgba(0,0,0,0.35);
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.35);
     }
     html:not(.light-mode) body.gallery-mode .video-badge {
       background: rgba(232,160,184,0.92);
@@ -1123,10 +1129,14 @@
         .theme-toggle-wrap { margin-right: 20px !important; }
         .nav-links { gap: 20px !important; }
         .nav-links a { font-size: 13px !important; }
-        .cv-button { padding: 7px 13px !important; font-size: 12px !important; margin-left: 0 !important; }
+        .cv-button { padding: 7px 13px !important; font-size: 12px !important; margin-left: 0 !important;
+            font-family: 'Georgia Custom', Georgia, serif;
+        }
         .music-nav-link { padding: 7px 13px !important; }
     }
-  </style>
+  
+
+        </style>
     <script>(function(){try{var t=performance.getEntriesByType('navigation'),n=t.length?t[0].type:'navigate',s=document.referrer&&(new URL(document.referrer)).origin===location.origin;if(n==='reload'||(n==='navigate'&&!s)){sessionStorage.removeItem('theme');}else if(sessionStorage.getItem('theme')==='light'){document.documentElement.classList.add('light-mode');}}catch(e){}})();</script>
 </head>
 <body>
@@ -1384,7 +1394,7 @@
                     card._baseTransform = `rotate(${rot}deg) scale(${scale})`;
                     card.style.zIndex = n - pos;
                     card.style.transform = card._baseTransform;
-                    card.style.filter = pos === 0 ? 'drop-shadow(0 20px 40px rgba(0,0,0,0.32))' : 'none';
+                    card.style.filter = pos === 0 ? 'drop-shadow(20px 20px 40px rgba(0,0,0,0.32))' : 'none';
                     card.style.opacity = pos < 5 ? 1 : 0;
                     card.style.pointerEvents = pos === 0 ? 'auto' : 'none';
                 });
@@ -1654,6 +1664,6 @@
     })();
 </script>
 <script src="shared/theme.js?v=7"></script>
-<script src="shared/cursor-trail.js?v=2"></script>
+<script src="shared/cursor-trail.js?v=4"></script>
 </body>
 </html>
