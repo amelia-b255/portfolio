@@ -751,7 +751,6 @@
         }
         .music-nav-link { padding: 7px 13px !important; }
     }
-  
 
         </style>
   <script>(function(){try{var t=performance.getEntriesByType('navigation'),n=t.length?t[0].type:'navigate',s=document.referrer&&(new URL(document.referrer)).origin===location.origin;if(n==='reload'||(n==='navigate'&&!s)){sessionStorage.removeItem('theme');}else if(sessionStorage.getItem('theme')==='light'){document.documentElement.classList.add('light-mode');}}catch(e){}})();</script>
@@ -1251,7 +1250,7 @@
     });
 
   </script>
-  <script src="shared/lightbox.js?v=5"></script>
+  <script src="shared/lightbox.js?v=6"></script>
 <script>
     // Scroll-triggered animations
     (function() {
@@ -1345,6 +1344,7 @@
     align-items: center;
     justify-content: center;
     transition: background 0.2s;
+    touch-action: manipulation;
 }
 #swipe-hint-close:hover { background: rgba(0,0,0,0.8); }
 html.light-mode #swipe-hint-box {
@@ -1364,14 +1364,20 @@ html.light-mode #swipe-hint-box p { color: #3a2030 !important; }
     overlay.innerHTML = '<div id="swipe-hint-box"><button id="swipe-hint-close" aria-label="Close">\u00D7</button><h3>Swipe to browse</h3><p>Swipe left or right on the cards to see more artwork.</p></div>';
     document.body.appendChild(overlay);
     setTimeout(function() { overlay.classList.add('spotlight-visible'); }, 1000);
-    function dismiss() {
+    function dismiss(e) {
+        if (e) { e.preventDefault(); e.stopPropagation(); }
+        window._lbCooldown = Date.now() + 600; // block ghost taps for 600ms
         overlay.classList.remove('spotlight-visible');
         overlay.addEventListener('transitionend', function() { overlay.remove(); }, { once: true });
     }
-    document.getElementById('swipe-hint-close').addEventListener('click', dismiss);
-    overlay.addEventListener('click', function(e) { if (e.target === overlay) dismiss(); });
+    var closeBtn = document.getElementById('swipe-hint-close');
+    closeBtn.addEventListener('touchend', dismiss, { passive: false });
+    closeBtn.addEventListener('click', dismiss);
+    overlay.addEventListener('click', function(e) { if (e.target === overlay) dismiss(e); });
 })();
 </script>
+
+<!-- lightbox swipe + drawer coordination handled in shared/lightbox.js -->
 
 <!-- ── $5 Prints slide-out tab ── -->
 <div id="prints-drawer">
@@ -1381,7 +1387,7 @@ html.light-mode #swipe-hint-box p { color: #3a2030 !important; }
     </svg>
   </button>
   <div id="prints-panel">
-    <img src="$5Prints.webp" alt="$5 Digital Prints">
+    <img src="$5Prints.webp" alt="$5 Digital Prints" draggable="false">
   </div>
 </div>
 
@@ -1396,6 +1402,7 @@ html.light-mode #swipe-hint-box p { color: #3a2030 !important; }
     align-items: center;
     transition: right 0.38s cubic-bezier(0.4,0,0.2,1);
     filter: drop-shadow(-4px 0 18px rgba(0,0,0,0.35));
+    touch-action: pan-y;
 }
 #prints-drawer.open { right: 0; }
 #prints-tab {
@@ -1411,6 +1418,7 @@ html.light-mode #swipe-hint-box p { color: #3a2030 !important; }
     color: #f5c1cf;
     flex-shrink: 0;
     transition: background 0.2s;
+    touch-action: manipulation;
 }
 #prints-tab:hover { background: linear-gradient(180deg, #9a4f69 0%, #7a3a55 100%); }
 #prints-arrow { transition: transform 0.38s ease; }
@@ -1420,10 +1428,14 @@ html.light-mode #swipe-hint-box p { color: #3a2030 !important; }
     background: #1e0f16;
     overflow: hidden;
     border-radius: 6px 0 0 6px;
+    touch-action: pan-y;
 }
 #prints-panel img {
     width: 360px;
     display: block;
+    -webkit-user-drag: none;
+    user-select: none;
+    -webkit-touch-callout: none;
 }
 html.light-mode #prints-tab { background: linear-gradient(180deg, #f5c1cf 0%, #e0a0b8 100%); color: #8b475d; }
 html.light-mode #prints-panel { background: #f5e6ec; }
@@ -1433,15 +1445,64 @@ html.light-mode #prints-panel { background: #f5e6ec; }
 (function() {
     var drawer = document.getElementById('prints-drawer');
     var tab    = document.getElementById('prints-tab');
+
     tab.addEventListener('click', function(e) {
         e.stopPropagation();
         drawer.classList.toggle('open');
     });
+
+    // Close when clicking outside
     document.addEventListener('click', function(e) {
         if (drawer.classList.contains('open') && !drawer.contains(e.target)) {
             drawer.classList.remove('open');
         }
     });
+
+    // Desktop: arrow keys — only when lightbox is not open
+    // ← pulls the drawer out, → pushes it back in
+    document.addEventListener('keydown', function(e) {
+        if (window.abLightboxIsOpen && window.abLightboxIsOpen()) return;
+        if (e.key === 'ArrowLeft')       drawer.classList.add('open');
+        else if (e.key === 'ArrowRight') drawer.classList.remove('open');
+    });
+
+    // Mobile: track touches at document level, only act if they start within the drawer
+    var tsX = null, tsY = null, tracking = false;
+
+    function touchStartedInDrawer(e) {
+        var t = e.touches[0];
+        var r = drawer.getBoundingClientRect();
+        // When closed, drawer extends off-screen; only the tab (right edge) is visible.
+        // getBoundingClientRect gives the on-screen visible portion already.
+        return t.clientX >= r.left && t.clientX <= r.right
+            && t.clientY >= r.top  && t.clientY <= r.bottom;
+    }
+
+    document.addEventListener('touchstart', function(e) {
+        if (!touchStartedInDrawer(e)) { tracking = false; return; }
+        tsX = e.touches[0].clientX;
+        tsY = e.touches[0].clientY;
+        tracking = true;
+    }, { passive: true, capture: true });
+
+    document.addEventListener('touchmove', function(e) {
+        if (!tracking) return;
+        var dx = Math.abs(e.touches[0].clientX - tsX);
+        var dy = Math.abs(e.touches[0].clientY - tsY);
+        if (dx > dy && dx > 8) {
+            try { e.preventDefault(); } catch(_) {}
+        }
+    }, { passive: false, capture: true });
+
+    document.addEventListener('touchend', function(e) {
+        if (!tracking) return;
+        tracking = false;
+        var dx = e.changedTouches[0].clientX - tsX;
+        var dy = e.changedTouches[0].clientY - tsY;
+        if (Math.abs(dx) < Math.abs(dy)) return; // mostly-vertical → ignore
+        if (dx > 25)       drawer.classList.add('open');
+        else if (dx < -25) drawer.classList.remove('open');
+    }, { passive: true, capture: true });
 })();
 </script>
 </body>

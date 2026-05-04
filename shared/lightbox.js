@@ -204,6 +204,9 @@
   // when the user presses the native fullscreen button on a card video.
   window.abOpenVideoSpotlight = openVideoLightbox;
 
+  // Expose open-state check so other scripts (e.g. drawer) can yield to the lightbox
+  window.abLightboxIsOpen = function() { return overlay.style.display !== 'none'; };
+
   /* ── Close ── */
 
   function closeLightbox() {
@@ -262,6 +265,25 @@
     // (Video cards play in-place — no lightbox interception. Native fullscreen
     //  button is available via the controls bar if the user wants fullscreen.)
   });
+
+  /* ── Touch swipe navigation ── */
+  var swTsX = 0, swTsY = 0, swDidSwipe = false;
+  overlay.addEventListener('touchstart', function(e) {
+    swTsX = e.touches[0].clientX;
+    swTsY = e.touches[0].clientY;
+    swDidSwipe = false;
+  }, { passive: true });
+  overlay.addEventListener('touchmove', function(e) {
+    var dx = Math.abs(e.touches[0].clientX - swTsX);
+    var dy = Math.abs(e.touches[0].clientY - swTsY);
+    if (dx > dy && dx > 10) { swDidSwipe = true; e.preventDefault(); }
+  }, { passive: false });
+  overlay.addEventListener('touchend', function(e) {
+    if (!swDidSwipe) return;
+    var dx = e.changedTouches[0].clientX - swTsX;
+    if (dx < -50) { if (isVideoMode) showVideoAt(currentVideoIdx + 1); else showAt(currentIdx + 1); }
+    else if (dx > 50) { if (isVideoMode) showVideoAt(currentVideoIdx - 1); else showAt(currentIdx - 1); }
+  }, { passive: true });
 
   /* ── Image download protection ── */
 
