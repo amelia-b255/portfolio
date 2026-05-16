@@ -846,6 +846,7 @@
     <div class="stack-scene">
       <button class="stack-nav stack-prev" aria-label="Previous"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></button>
       <div class="card-stack">
+        <a href="extras/skegss-fullscreen.webp" target="_blank" class="stack-card" data-title="Skegss" data-desc="Artist poster for Skegss using new album 'Pacific Highway Music' and song 'Stuck In Cheyenne'."><img src="extras/skegss-fullscreen.webp" alt="Skegss Poster"></a>
         <a href="extras/dogtag2-fullscreen.webp" target="_blank" class="stack-card" data-title="Dog Tag freestyle (Light)" data-desc="bassvicitm's Dog Tag freestyle song design poster. Using typography elements and image graphics."><img src="extras/dogtag2-fullscreen.webp" alt="Dog Tag Poster Light"></a>
         <a href="extras/dogtag1-fullscreen.webp" target="_blank" class="stack-card" data-title="Dog Tag freestyle (Dark)" data-desc="bassvicitm's Dog Tag freestyle song design poster. Using typography elements and image graphics."><img src="extras/dogtag1-fullscreen.webp" alt="Dog Tag Poster Dark"></a>
         <a href="extras/sunday-fullscreen.webp" target="_blank" class="stack-card" data-title="Sunday (1994)" data-desc="Artist poster for Sunday (1994)'s new album, Devotion. Using bitmap cybersigilism, overlay images and micro graphics."><img src="extras/sunday-fullscreen.webp" alt="Sunday Poster"></a>
@@ -879,6 +880,10 @@
     <div class="stack-scene">
       <button class="stack-nav stack-prev" aria-label="Previous"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></button>
       <div class="card-stack">
+        <a href="extras/eye-fullscreen.webp" target="_blank" class="stack-card" data-title="Eye (Original)" data-desc="Coloured version; using different image overlay and blending techniques, micrographics and other glow and texture effects."><img src="extras/eye-fullscreen.webp" alt="Eye Poster (Original)"></a>
+        <a href="extras/bw-eye-fullscreen.webp" target="_blank" class="stack-card" data-title="Eye (B&amp;W)" data-desc="Black and white version; using different image overlay and blending techniques, micrographics and other glow and texture effects."><img src="extras/bw-eye-fullscreen.webp" alt="Eye Poster (B&amp;W)"></a>
+        <a href="extras/anthropocene-fullscreen.webp" target="_blank" class="stack-card" data-title="Anthropocene (Original)" data-desc="Coloured version; using different overlays and blending techniques, scanned graffiti typography elements."><img src="extras/anthropocene-fullscreen.webp" alt="Anthropocene Poster (Original)"></a>
+        <a href="extras/bw-anthropocene-fullscreen.webp" target="_blank" class="stack-card" data-title="Anthropocene (B&amp;W)" data-desc="Black and white version; using different overlays and blending techniques, scanned graffiti typography elements."><img src="extras/bw-anthropocene-fullscreen.webp" alt="Anthropocene Poster (B&amp;W)"></a>
         <a href="extras/interesting-fullscreen.webp" target="_blank" class="stack-card" data-orient="square" data-title="Interesting" data-desc="Experimenting with texture overlays, typography elements and blending effects."><img src="extras/interesting-fullscreen.webp" alt="Interesting Poster"></a>
         <a href="extras/silver-fullscreen.webp" target="_blank" class="stack-card" data-title="Silver" data-desc="Experimenting with 3D emboss features and halftone visual effects."><img src="extras/silver-fullscreen.webp" alt="Silver Poster"></a>
         <a href="extras/caecilian-fullscreen.webp" target="_blank" class="stack-card" data-title="Caecilian" data-desc="Experimenting with image overlays and blending. Using micrographics, bitmap and 3D shape overlays."><img src="extras/caecilian-fullscreen.webp" alt="Caecilian Poster"></a>
@@ -1159,6 +1164,24 @@
         var dx = e.changedTouches[0].clientX - touchStartX;
         if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
       });
+
+      // Two-finger trackpad swipe: accumulate horizontal delta, fire once per
+      // deliberate swipe, then hold off 600ms so momentum tail is ignored.
+      // Attach to the section (wider target) so cursor doesn't need to be pixel-perfect.
+      var stackWheelAccum = 0, stackWheelCooldown = false;
+      var stackWheelTarget = scene.closest('section') || scene;
+      stackWheelTarget.addEventListener('wheel', function(e) {
+        if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+        e.preventDefault();
+        if (stackWheelCooldown) return;
+        stackWheelAccum += e.deltaX;
+        if (Math.abs(stackWheelAccum) >= 20) {
+          go(stackWheelAccum > 0 ? 1 : -1);
+          stackWheelCooldown = true;
+          stackWheelAccum = 0;
+          setTimeout(function() { stackWheelCooldown = false; }, 600);
+        }
+      }, { passive: false });
 
       cards.forEach(card => {
         card.addEventListener('mouseenter', () => {

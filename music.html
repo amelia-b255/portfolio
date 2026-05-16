@@ -1290,6 +1290,24 @@
             if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
           });
 
+          // Two-finger trackpad swipe: accumulate horizontal delta, fire once per
+          // deliberate swipe, then hold off 600ms so momentum tail is ignored.
+          // Attach to the section (wider target) so cursor doesn't need to be pixel-perfect.
+          var stackWheelAccum = 0, stackWheelCooldown = false;
+          var stackWheelTarget = scene.closest('section') || scene;
+          stackWheelTarget.addEventListener('wheel', function(e) {
+            if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+            e.preventDefault();
+            if (stackWheelCooldown) return;
+            stackWheelAccum += e.deltaX;
+            if (Math.abs(stackWheelAccum) >= 20) {
+              go(stackWheelAccum > 0 ? 1 : -1);
+              stackWheelCooldown = true;
+              stackWheelAccum = 0;
+              setTimeout(function() { stackWheelCooldown = false; }, 600);
+            }
+          }, { passive: false });
+
           cards.forEach(card => {
             card.addEventListener('mouseenter', () => {
               if (card.style.pointerEvents === 'none') return;

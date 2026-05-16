@@ -175,7 +175,7 @@
     }
 
     /* Icons grid */
-    .icons-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:20px; max-width:900px; margin:0 auto; }
+    .icons-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:20px; max-width:900px; margin:55px auto 0; }
     .icon-item{
       background:rgba(255,255,255,0.4); border-radius:12px; padding:16px; display:flex; align-items:center; justify-content:center;
       height:130px; width:130px; box-shadow:8px 8px 24px rgba(139,71,93,.1); transition:all .4s ease;
@@ -233,7 +233,7 @@
       .announcement-banner{ height:30px; }
       .banner-inner span{ font-size:10px; }
 
-      .icons-grid{ grid-template-columns:repeat(auto-fit,minmax(100px,1fr)); gap:12px; }
+      .icons-grid{ grid-template-columns:repeat(auto-fit,minmax(100px,1fr)); gap:12px; margin-top:38px; }
       .icon-item{ height:100px; width:auto; min-width:100px; padding:10px; }
       .icon-item img{ max-width:70px; max-height:70px; width:auto; height:auto; }
 
@@ -755,7 +755,7 @@
   <!-- Hero -->
   <section class="hero">
     <div class="hero-content">
-      <h1>Drawings</h1>
+      <h1>Illustrations</h1>
       <p>Digital illustration, character design, t-shirt artwork, and personal creative work.</p>
       <div style="margin-top:25px; padding:15px 25px; background:rgba(139,71,93,0.1); border-radius:12px; border-left:3px solid #8b475d; animation:fadeInUp 1s ease 0.6s backwards; display:inline-block;">
         <p style="font-size:14px; color:#8b475d; margin:0; font-style:normal;">💡 <strong>Tip:</strong> Tap or click any image for fullscreen view</p>
@@ -997,6 +997,24 @@
         var dx = e.changedTouches[0].clientX - touchStartX;
         if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
       });
+
+      // Two-finger trackpad swipe: accumulate horizontal delta, fire once per
+      // deliberate swipe, then hold off 600ms so momentum tail is ignored.
+      // Attach to the section (wider target) so cursor doesn't need to be pixel-perfect.
+      var stackWheelAccum = 0, stackWheelCooldown = false;
+      var stackWheelTarget = scene.closest('section') || scene;
+      stackWheelTarget.addEventListener('wheel', function(e) {
+        if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+        e.preventDefault();
+        if (stackWheelCooldown) return;
+        stackWheelAccum += e.deltaX;
+        if (Math.abs(stackWheelAccum) >= 20) {
+          go(stackWheelAccum > 0 ? 1 : -1);
+          stackWheelCooldown = true;
+          stackWheelAccum = 0;
+          setTimeout(function() { stackWheelCooldown = false; }, 600);
+        }
+      }, { passive: false });
 
       cards.forEach(card => {
         card.addEventListener('mouseenter', () => {
