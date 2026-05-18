@@ -818,6 +818,78 @@
         .theme-toggle-thumb { width:12px !important; height:12px !important; }
         html.light-mode .theme-toggle-thumb { left:16px !important; }
     }
+    /* ── Performance Masonry Gallery ── */
+    .perf-masonry {
+        columns: 4;
+        column-gap: 8px;
+        padding: 8px 0 0;
+    }
+    .perf-masonry a {
+        display: block;
+        break-inside: avoid;
+        margin-bottom: 8px;
+        border-radius: 14px;
+        overflow: hidden;
+        cursor: zoom-in;
+        position: relative;
+    }
+    .perf-masonry img {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: transform 0.35s cubic-bezier(.25,.46,.45,.94), opacity 0.3s ease;
+        border-radius: 14px;
+    }
+    .perf-masonry a:hover img { transform: scale(1.04); opacity: 0.88; }
+    @media (max-width: 900px)  { .perf-masonry { columns: 3; } }
+    @media (max-width: 560px)  { .perf-masonry { columns: 2; column-gap: 6px; } .perf-masonry a { margin-bottom: 6px; } }
+
+    /* ── Masonry lightbox ── */
+    #perf-lightbox {
+        display: none;
+        position: fixed; inset: 0;
+        background: rgba(8,4,8,0.92);
+        z-index: 9999;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        cursor: zoom-out;
+    }
+    #perf-lightbox.open { display: flex; }
+    #perf-lightbox img {
+        max-width: min(92vw, 1100px);
+        max-height: 90vh;
+        object-fit: contain;
+        border-radius: 10px;
+        box-shadow: 0 30px 80px rgba(0,0,0,0.7);
+        pointer-events: none;
+        cursor: default;
+        transition: opacity 0.2s ease;
+    }
+    .plb-close {
+        position: fixed; top: 18px; right: 22px;
+        background: rgba(255,255,255,0.12); border: none; border-radius: 50%;
+        width: 42px; height: 42px; font-size: 22px; color: #fff;
+        cursor: pointer; display: flex; align-items: center; justify-content: center;
+        transition: background 0.2s; z-index: 10000;
+    }
+    .plb-close:hover { background: rgba(255,255,255,0.25); }
+    .plb-arrow {
+        position: fixed; top: 50%; transform: translateY(-50%);
+        background: rgba(255,255,255,0.12); border: none; border-radius: 50%;
+        width: 48px; height: 48px; font-size: 24px; color: #fff;
+        cursor: pointer; display: flex; align-items: center; justify-content: center;
+        transition: background 0.2s; z-index: 10000;
+    }
+    .plb-arrow:hover { background: rgba(255,255,255,0.25); }
+    .plb-prev { left: 14px; }
+    .plb-next { right: 14px; }
+    @media (max-width: 560px) {
+        .plb-arrow { width: 38px; height: 38px; font-size: 18px; }
+        .plb-prev { left: 6px; } .plb-next { right: 6px; }
+    }
+
     /* ── View toggle (stack ↔ gallery) ── */
     .view-toggle-wrap {
       display: flex; align-items: center; gap: 0;
@@ -1107,31 +1179,55 @@
         <div class="stack-caption"><h4></h4><p></p><span class="stack-year"></span></div>
     </section>
 
+    <!-- Performance masonry lightbox -->
+    <div id="perf-lightbox" role="dialog" aria-modal="true">
+        <button class="plb-close" aria-label="Close">&#x2715;</button>
+        <button class="plb-arrow plb-prev" aria-label="Previous">&#x2039;</button>
+        <img src="" alt="Performance photo">
+        <button class="plb-arrow plb-next" aria-label="Next">&#x203A;</button>
+    </div>
+
     <section>
         <h2>Performance Gallery</h2>
-    <div style="text-align:center; position:relative; z-index:10; margin: 28px auto 20px;"><div class="view-toggle-wrap"><button class="view-btn active" data-view="stack"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="15.5" width="20" height="3" rx="1.5"/><rect x="2" y="10.5" width="20" height="3" rx="1.5" opacity="0.55"/><rect x="2" y="5.5" width="20" height="3" rx="1.5" opacity="0.25"/></svg> Stack</button><button class="view-btn" data-view="gallery"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg> Gallery</button></div></div>
-        <div class="stack-scene">
-          <button class="stack-nav stack-prev" aria-label="Previous"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></button>
-          <div class="card-stack card-stack-photo" data-no-watermark>
-            <a href="music/one.jpg" target="_blank" class="stack-card" data-title="Performance" data-desc=""><img src="music/one.jpg" alt="Performance"></a>
-            <a href="music/two.jpg" target="_blank" class="stack-card" data-title="Performance" data-desc=""><img src="music/two.jpg" alt="Performance"></a>
-            <a href="music/three.jpg" target="_blank" class="stack-card" data-title="Performance" data-desc=""><img src="music/three.jpg" alt="Performance"></a>
-            <a href="music/four.jpg" target="_blank" class="stack-card" data-title="Performance" data-desc=""><img src="music/four.jpg" alt="Performance"></a>
-            <a href="music/five.jpg" target="_blank" class="stack-card" data-title="Performance" data-desc=""><img src="music/five.jpg" alt="Performance"></a>
-            <a href="music/six.jpg" target="_blank" class="stack-card" data-title="Performance" data-desc=""><img src="music/six.jpg" alt="Performance"></a>
-            <a href="music/seven.jpg" target="_blank" class="stack-card" data-title="Performance" data-desc=""><img src="music/seven.jpg" alt="Performance"></a>
-            <a href="music/eight.jpg" target="_blank" class="stack-card" data-title="Performance" data-desc=""><img src="music/eight.jpg" alt="Performance"></a>
-            <a href="music/nine.jpg" target="_blank" class="stack-card" data-title="Performance" data-desc=""><img src="music/nine.jpg" alt="Performance"></a>
-            <a href="music/ten.jpg" target="_blank" class="stack-card" data-title="Performance" data-desc=""><img src="music/ten.jpg" alt="Performance"></a>
-            <a href="music/eleven.jpg" target="_blank" class="stack-card" data-title="Performance" data-desc=""><img src="music/eleven.jpg" alt="Performance"></a>
-            <a href="music/twelve.jpeg" target="_blank" class="stack-card" data-title="Performance" data-desc=""><img src="music/twelve.jpeg" alt="Performance"></a>
-            <a href="music/thirteen.jpg" target="_blank" class="stack-card" data-title="Performance" data-desc=""><img src="music/thirteen.jpg" alt="Performance"></a>
-            <a href="music/fourteen.jpg" target="_blank" class="stack-card" data-title="Performance" data-desc=""><img src="music/fourteen.jpg" alt="Performance"></a>
-          </div>
-          <button class="stack-nav stack-next" aria-label="Next"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></button>
+        <div class="perf-masonry" id="perf-masonry">
+            <a href="music/perf_1.webp" data-idx="0"><img src="music/perf_1.webp" alt="Performance photo 1" loading="lazy"></a>
+            <a href="music/perf_2.webp" data-idx="1"><img src="music/perf_2.webp" alt="Performance photo 2" loading="lazy"></a>
+            <a href="music/perf_3.webp" data-idx="2"><img src="music/perf_3.webp" alt="Performance photo 3" loading="lazy"></a>
+            <a href="music/perf_4.webp" data-idx="3"><img src="music/perf_4.webp" alt="Performance photo 4" loading="lazy"></a>
+            <a href="music/perf_5.webp" data-idx="4"><img src="music/perf_5.webp" alt="Performance photo 5" loading="lazy"></a>
+            <a href="music/perf_6.webp" data-idx="5"><img src="music/perf_6.webp" alt="Performance photo 6" loading="lazy"></a>
+            <a href="music/perf_7.webp" data-idx="6"><img src="music/perf_7.webp" alt="Performance photo 7" loading="lazy"></a>
+            <a href="music/perf_8.webp" data-idx="7"><img src="music/perf_8.webp" alt="Performance photo 8" loading="lazy"></a>
+            <a href="music/perf_9.webp" data-idx="8"><img src="music/perf_9.webp" alt="Performance photo 9" loading="lazy"></a>
+            <a href="music/perf_10.webp" data-idx="9"><img src="music/perf_10.webp" alt="Performance photo 10" loading="lazy"></a>
+            <a href="music/perf_11.webp" data-idx="10"><img src="music/perf_11.webp" alt="Performance photo 11" loading="lazy"></a>
+            <a href="music/perf_12.webp" data-idx="11"><img src="music/perf_12.webp" alt="Performance photo 12" loading="lazy"></a>
+            <a href="music/perf_13.webp" data-idx="12"><img src="music/perf_13.webp" alt="Performance photo 13" loading="lazy"></a>
+            <a href="music/perf_14.webp" data-idx="13"><img src="music/perf_14.webp" alt="Performance photo 14" loading="lazy"></a>
+            <a href="music/perf_15.webp" data-idx="14"><img src="music/perf_15.webp" alt="Performance photo 15" loading="lazy"></a>
+            <a href="music/perf_16.webp" data-idx="15"><img src="music/perf_16.webp" alt="Performance photo 16" loading="lazy"></a>
+            <a href="music/perf_17.webp" data-idx="16"><img src="music/perf_17.webp" alt="Performance photo 17" loading="lazy"></a>
+            <a href="music/perf_18.webp" data-idx="17"><img src="music/perf_18.webp" alt="Performance photo 18" loading="lazy"></a>
+            <a href="music/perf_19.webp" data-idx="18"><img src="music/perf_19.webp" alt="Performance photo 19" loading="lazy"></a>
+            <a href="music/perf_20.webp" data-idx="19"><img src="music/perf_20.webp" alt="Performance photo 20" loading="lazy"></a>
+            <a href="music/perf_21.webp" data-idx="20"><img src="music/perf_21.webp" alt="Performance photo 21" loading="lazy"></a>
+            <a href="music/perf_22.webp" data-idx="21"><img src="music/perf_22.webp" alt="Performance photo 22" loading="lazy"></a>
+            <a href="music/perf_23.webp" data-idx="22"><img src="music/perf_23.webp" alt="Performance photo 23" loading="lazy"></a>
+            <a href="music/perf_24.webp" data-idx="23"><img src="music/perf_24.webp" alt="Performance photo 24" loading="lazy"></a>
+            <a href="music/perf_25.webp" data-idx="24"><img src="music/perf_25.webp" alt="Performance photo 25" loading="lazy"></a>
+            <a href="music/perf_26.webp" data-idx="25"><img src="music/perf_26.webp" alt="Performance photo 26" loading="lazy"></a>
+            <a href="music/perf_27.webp" data-idx="26"><img src="music/perf_27.webp" alt="Performance photo 27" loading="lazy"></a>
+            <a href="music/perf_28.webp" data-idx="27"><img src="music/perf_28.webp" alt="Performance photo 28" loading="lazy"></a>
+            <a href="music/perf_29.webp" data-idx="28"><img src="music/perf_29.webp" alt="Performance photo 29" loading="lazy"></a>
+            <a href="music/perf_30.webp" data-idx="29"><img src="music/perf_30.webp" alt="Performance photo 30" loading="lazy"></a>
+            <a href="music/perf_31.webp" data-idx="30"><img src="music/perf_31.webp" alt="Performance photo 31" loading="lazy"></a>
+            <a href="music/perf_32.webp" data-idx="31"><img src="music/perf_32.webp" alt="Performance photo 32" loading="lazy"></a>
+            <a href="music/perf_33.webp" data-idx="32"><img src="music/perf_33.webp" alt="Performance photo 33" loading="lazy"></a>
+            <a href="music/perf_34.webp" data-idx="33"><img src="music/perf_34.webp" alt="Performance photo 34" loading="lazy"></a>
+            <a href="music/perf_35.webp" data-idx="34"><img src="music/perf_35.webp" alt="Performance photo 35" loading="lazy"></a>
+            <a href="music/perf_36.webp" data-idx="35"><img src="music/perf_36.webp" alt="Performance photo 36" loading="lazy"></a>
+            <a href="music/perf_37.webp" data-idx="36"><img src="music/perf_37.webp" alt="Performance photo 37" loading="lazy"></a>
         </div>
-        <div class="stack-counter"></div>
-        <div class="stack-caption"><h4></h4><p></p></div>
     </section>
 
     <footer>
@@ -1530,6 +1626,58 @@
             var idx = siblings.indexOf(el);
             if (idx > 0) el.style.transitionDelay = (idx * 0.11) + 's';
         });
+    // ── Performance masonry lightbox ──
+    (function() {
+        var lb       = document.getElementById('perf-lightbox');
+        var lbImg    = lb.querySelector('img');
+        var lbClose  = lb.querySelector('.plb-close');
+        var lbPrev   = lb.querySelector('.plb-prev');
+        var lbNext   = lb.querySelector('.plb-next');
+        var links    = Array.from(document.querySelectorAll('.perf-masonry a'));
+        var current  = 0;
+
+        function openLightbox(idx) {
+            current = idx;
+            lbImg.style.opacity = '0';
+            lb.classList.add('open');
+            document.body.style.overflow = 'hidden';
+            var src = links[idx].getAttribute('href');
+            var tmp = new Image();
+            tmp.onload = function() { lbImg.src = src; lbImg.style.opacity = '1'; };
+            tmp.src = src;
+        }
+        function closeLightbox() {
+            lb.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        function showPrev() { openLightbox((current - 1 + links.length) % links.length); }
+        function showNext() { openLightbox((current + 1) % links.length); }
+
+        links.forEach(function(a) {
+            a.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation(); // prevent shared lightbox.js from also intercepting
+                openLightbox(parseInt(a.getAttribute('data-idx')));
+            });
+        });
+        lbClose.addEventListener('click', closeLightbox);
+        lbPrev.addEventListener('click', function(e) { e.stopPropagation(); showPrev(); });
+        lbNext.addEventListener('click', function(e) { e.stopPropagation(); showNext(); });
+        lb.addEventListener('click', function(e) { if (e.target === lb) closeLightbox(); });
+        document.addEventListener('keydown', function(e) {
+            if (!lb.classList.contains('open')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') showPrev();
+            if (e.key === 'ArrowRight') showNext();
+        });
+        // Touch swipe support
+        var touchX = 0;
+        lb.addEventListener('touchstart', function(e) { touchX = e.touches[0].clientX; }, {passive:true});
+        lb.addEventListener('touchend', function(e) {
+            var dx = e.changedTouches[0].clientX - touchX;
+            if (Math.abs(dx) > 50) { dx < 0 ? showNext() : showPrev(); }
+        });
+    })();
     </script>
 <script src="shared/lightbox.js?v=8"></script>
 <script src="shared/theme.js?v=7"></script>
