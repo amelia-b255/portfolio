@@ -40,20 +40,19 @@
       font-family: 'Archivo Black', sans-serif;
       font-weight: bold;
       text-transform: uppercase;
-      letter-spacing: 2px;
-      color: #fff;
-      background: linear-gradient(135deg, #8b475d, #b4697e);
-      border: none;
-      border-radius: 40px;
+      letter-spacing: 0;
+      color: #aa7878;
+      background: transparent;
+      border: 2px solid #6e3c3c;
+      border-radius: 50px;
+      box-shadow: 4px 4px 0 #6e3c3c;
       cursor: pointer;
-      transition: all 0.4s ease;
-      box-shadow: 0 4px 20px rgba(139, 71, 93, 0.4);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
     }
 
     #allow-camera-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 28px rgba(139, 71, 93, 0.6);
-      background: linear-gradient(135deg, #a0566e, #c87a92);
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0 #6e3c3c;
     }
 
     #camera-prompt.hiding {

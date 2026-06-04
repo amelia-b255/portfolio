@@ -14,6 +14,7 @@
     @font-face { font-family: "Georgia Custom"; src: url("fonts/georgia.ttf") format("truetype"); font-weight: normal; font-style: normal; }
     @font-face { font-family: "Georgia Custom"; src: url("fonts/georgiab.ttf") format("truetype"); font-weight: bold; font-style: normal; }
     @font-face { font-family: "Griffiths"; src: url("fonts/Griffiths.otf") format("opentype"); font-weight: normal; font-style: normal; }
+    @font-face { font-family: "Aldyn Heart"; src: url("fonts/Aldyn Heart.woff2") format("woff2"), url("fonts/Aldyn Heart.ttf") format("truetype"); font-weight: normal; font-style: normal; }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -28,8 +29,8 @@
             font-size: 1.1em;
       font-family: 'Georgia Custom', Georgia, serif;
             letter-spacing: 0;
-            background: linear-gradient(135deg, #f5c1cf 0%, #fceadb 20%, #e8d5ca 40%, #b4d4c3 60%, #f5e6e8 80%, #d4a5a5 100%);
-            color: #5a5a5a;
+            background: linear-gradient(135deg, #bf9090 0%, #e6d0b8 20%, #d8c0a8 40%, #a4bca0 60%, #dcccc0 80%, #b08080 100%);
+            color: #7a4848;
             font-weight: 400;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
@@ -45,42 +46,42 @@
         .star {
             width: 25px;
             height: 25px;
-            background: #a8c5b5;
+            background: #a0b898;
             clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
             animation: gentleFloat 6s infinite ease-in-out;
             opacity: 0.5;
         }
 
         .star1 { top: 15%; left: 8%; animation-delay: 0s; animation-duration: 7s; }
-        .star2 { top: 25%; right: 12%; animation-delay: 2s; animation-duration: 8s; width: 20px; height: 20px; background: #a8c5b5; }
+        .star2 { top: 25%; right: 12%; animation-delay: 2s; animation-duration: 8s; width: 20px; height: 20px; background: #a0b898; }
         .star3 { bottom: 20%; left: 15%; animation-delay: 4s; animation-duration: 6s; }
         .star4 { top: 60%; right: 8%; animation-delay: 3s; animation-duration: 9s; width: 30px; height: 30px; }
-        .star5 { top: 45%; left: 5%; animation-delay: 1s; width: 18px; height: 18px; background: #f5c1cf; }
-        .star6 { top: 35%; right: 25%; animation-delay: 1.5s; animation-duration: 7.5s; width: 22px; height: 22px; background: #fceadb; }
-        .star7 { top: 70%; left: 30%; animation-delay: 2.5s; animation-duration: 6.5s; width: 28px; height: 28px; background: #f5c1cf; }
-        .star8 { top: 10%; right: 35%; animation-delay: 0.5s; animation-duration: 8.5s; width: 16px; height: 16px; background: #a8c5b5; }
-        .star9 { bottom: 35%; right: 20%; animation-delay: 3.5s; animation-duration: 7s; width: 24px; height: 24px; background: #a8c5b5; }
-        .star10 { top: 50%; left: 20%; animation-delay: 1s; animation-duration: 9s; width: 35px; height: 35px; background: #a8c5b5; }
-        .star11 { bottom: 10%; right: 15%; animation-delay: 2s; animation-duration: 6s; width: 20px; height: 20px; background: #f5c1cf; }
-        .star12 { top: 80%; left: 10%; animation-delay: 4s; animation-duration: 8s; width: 26px; height: 26px; background: #fceadb; }
-        .star13 { top: 20%; left: 40%; animation-delay: 3s; animation-duration: 7s; width: 19px; height: 19px; background: #a8c5b5; }
-        .star14 { bottom: 50%; left: 8%; animation-delay: 0.8s; animation-duration: 8.2s; width: 32px; height: 32px; background: #a8c5b5; }
-        .star15 { top: 40%; right: 5%; animation-delay: 2.2s; animation-duration: 7.8s; width: 23px; height: 23px; background: #f5c1cf; }
-        .star16 { top: 12%; left: 25%; animation-delay: 1.8s; animation-duration: 7.2s; width: 21px; height: 21px; background: #a8c5b5; }
-        .star17 { bottom: 25%; right: 30%; animation-delay: 0.3s; animation-duration: 8.8s; width: 27px; height: 27px; background: #f5c1cf; }
-        .star18 { top: 55%; right: 18%; animation-delay: 2.8s; animation-duration: 6.8s; width: 17px; height: 17px; background: #fceadb; }
-        .star19 { bottom: 15%; left: 35%; animation-delay: 3.2s; animation-duration: 7.4s; width: 29px; height: 29px; background: #a8c5b5; }
-        .star20 { top: 30%; left: 12%; animation-delay: 1.2s; animation-duration: 8.6s; width: 24px; height: 24px; background: #a8c5b5; }
-        .star21 { bottom: 40%; right: 10%; animation-delay: 4.2s; animation-duration: 6.2s; width: 20px; height: 20px; background: #f5c1cf; }
-        .star22 { top: 65%; left: 22%; animation-delay: 0.7s; animation-duration: 9.2s; width: 33px; height: 33px; background: #a8c5b5; }
-        .star23 { top: 8%; right: 22%; animation-delay: 2.4s; animation-duration: 7.6s; width: 18px; height: 18px; background: #fceadb; }
-        .star24 { bottom: 30%; left: 18%; animation-delay: 3.8s; animation-duration: 6.4s; width: 25px; height: 25px; background: #a8c5b5; }
-        .star25 { top: 75%; right: 25%; animation-delay: 1.4s; animation-duration: 8.4s; width: 22px; height: 22px; background: #f5c1cf; }
-        .star26 { top: 42%; left: 32%; animation-delay: 2.6s; animation-duration: 7.2s; width: 19px; height: 19px; background: #a8c5b5; }
-        .star27 { bottom: 18%; right: 8%; animation-delay: 0.9s; animation-duration: 8.9s; width: 26px; height: 26px; background: #fceadb; }
-        .star28 { top: 52%; right: 28%; animation-delay: 3.6s; animation-duration: 6.6s; width: 21px; height: 21px; background: #a8c5b5; }
-        .star29 { bottom: 45%; left: 28%; animation-delay: 1.6s; animation-duration: 8.2s; width: 30px; height: 30px; background: #f5c1cf; }
-        .star30 { top: 18%; right: 16%; animation-delay: 2.1s; animation-duration: 7.9s; width: 23px; height: 23px; background: #a8c5b5; }
+        .star5 { top: 45%; left: 5%; animation-delay: 1s; width: 18px; height: 18px; background: #bf9090; }
+        .star6 { top: 35%; right: 25%; animation-delay: 1.5s; animation-duration: 7.5s; width: 22px; height: 22px; background: #e6d0b8; }
+        .star7 { top: 70%; left: 30%; animation-delay: 2.5s; animation-duration: 6.5s; width: 28px; height: 28px; background: #bf9090; }
+        .star8 { top: 10%; right: 35%; animation-delay: 0.5s; animation-duration: 8.5s; width: 16px; height: 16px; background: #a0b898; }
+        .star9 { bottom: 35%; right: 20%; animation-delay: 3.5s; animation-duration: 7s; width: 24px; height: 24px; background: #a0b898; }
+        .star10 { top: 50%; left: 20%; animation-delay: 1s; animation-duration: 9s; width: 35px; height: 35px; background: #a0b898; }
+        .star11 { bottom: 10%; right: 15%; animation-delay: 2s; animation-duration: 6s; width: 20px; height: 20px; background: #bf9090; }
+        .star12 { top: 80%; left: 10%; animation-delay: 4s; animation-duration: 8s; width: 26px; height: 26px; background: #e6d0b8; }
+        .star13 { top: 20%; left: 40%; animation-delay: 3s; animation-duration: 7s; width: 19px; height: 19px; background: #a0b898; }
+        .star14 { bottom: 50%; left: 8%; animation-delay: 0.8s; animation-duration: 8.2s; width: 32px; height: 32px; background: #a0b898; }
+        .star15 { top: 40%; right: 5%; animation-delay: 2.2s; animation-duration: 7.8s; width: 23px; height: 23px; background: #bf9090; }
+        .star16 { top: 12%; left: 25%; animation-delay: 1.8s; animation-duration: 7.2s; width: 21px; height: 21px; background: #a0b898; }
+        .star17 { bottom: 25%; right: 30%; animation-delay: 0.3s; animation-duration: 8.8s; width: 27px; height: 27px; background: #bf9090; }
+        .star18 { top: 55%; right: 18%; animation-delay: 2.8s; animation-duration: 6.8s; width: 17px; height: 17px; background: #e6d0b8; }
+        .star19 { bottom: 15%; left: 35%; animation-delay: 3.2s; animation-duration: 7.4s; width: 29px; height: 29px; background: #a0b898; }
+        .star20 { top: 30%; left: 12%; animation-delay: 1.2s; animation-duration: 8.6s; width: 24px; height: 24px; background: #a0b898; }
+        .star21 { bottom: 40%; right: 10%; animation-delay: 4.2s; animation-duration: 6.2s; width: 20px; height: 20px; background: #bf9090; }
+        .star22 { top: 65%; left: 22%; animation-delay: 0.7s; animation-duration: 9.2s; width: 33px; height: 33px; background: #a0b898; }
+        .star23 { top: 8%; right: 22%; animation-delay: 2.4s; animation-duration: 7.6s; width: 18px; height: 18px; background: #e6d0b8; }
+        .star24 { bottom: 30%; left: 18%; animation-delay: 3.8s; animation-duration: 6.4s; width: 25px; height: 25px; background: #a0b898; }
+        .star25 { top: 75%; right: 25%; animation-delay: 1.4s; animation-duration: 8.4s; width: 22px; height: 22px; background: #bf9090; }
+        .star26 { top: 42%; left: 32%; animation-delay: 2.6s; animation-duration: 7.2s; width: 19px; height: 19px; background: #a0b898; }
+        .star27 { bottom: 18%; right: 8%; animation-delay: 0.9s; animation-duration: 8.9s; width: 26px; height: 26px; background: #e6d0b8; }
+        .star28 { top: 52%; right: 28%; animation-delay: 3.6s; animation-duration: 6.6s; width: 21px; height: 21px; background: #a0b898; }
+        .star29 { bottom: 45%; left: 28%; animation-delay: 1.6s; animation-duration: 8.2s; width: 30px; height: 30px; background: #bf9090; }
+        .star30 { top: 18%; right: 16%; animation-delay: 2.1s; animation-duration: 7.9s; width: 23px; height: 23px; background: #a0b898; }
 
         @keyframes gentleFloat {
             0%, 100% { transform: translate(0, 0) scale(1.45); opacity: 0.4; }
@@ -89,11 +90,11 @@
             75% { transform: translate(-15px, -10px) scale(1.45); opacity: 0.7; }
         }
 
-        .announcement-banner{position:fixed;top:0;left:0;width:100%;height:38px;background:linear-gradient(90deg, #f5c1cf 0%, #fceadb 25%, #b4d4c3 55%, #f5c1cf 100%);background-size:300% 100%;animation:bannerShift 8s linear infinite;z-index:1002;overflow:hidden;display:flex;align-items:center}
+        .announcement-banner{position:fixed;top:0;left:0;width:100%;height:38px;background:linear-gradient(90deg, #bf9090 0%, #e6d0b8 25%, #a4bca0 55%, #bf9090 100%);background-size:300% 100%;animation:bannerShift 8s linear infinite;z-index:1002;overflow:hidden;display:flex;align-items:center}
         .banner-link{display:block;width:100%;overflow:hidden;text-decoration:none;cursor:pointer}
         .banner-link:hover .banner-inner{animation-play-state:paused}
         .banner-inner{display:flex;white-space:nowrap;animation:marqueeScroll 28s linear infinite;will-change:transform}
-        .banner-inner span{font-family:'Archivo Black',sans-serif;font-size:12px;color:#8b475d;text-transform:uppercase;letter-spacing:2px;flex-shrink:0;padding-right:10px}
+        .banner-inner span{font-family:'Archivo Black',sans-serif;font-size:12px;color:#6e3c3c;text-transform:uppercase;letter-spacing:2px;flex-shrink:0;padding-right:10px}
         @keyframes bannerShift{0%{background-position:0% 0%}100%{background-position:100% 0%}}
         @keyframes marqueeScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
@@ -120,7 +121,7 @@
         .logo {
             font-family: 'Archivo Black', sans-serif;
             font-size: 24px;
-            color: #8b475d;
+            color: #6e3c3c;
             letter-spacing: 2px;
             transition: all 0.3s ease;
             font-weight: 400;
@@ -128,16 +129,16 @@
         }
 
         .logo a {
-            color: #8b475d;
+            color: #6e3c3c;
             text-decoration: none;
             display: flex;
             align-items: center;
             gap: 10px;
         }
         .logo-img { height: 48px; width: auto; flex-shrink: 0; }
-        .cv-button { padding:10px 25px; background:#8b475d; color:white !important; text-decoration:none; border-radius:25px; font-family: 'Georgia Custom', Georgia, serif; font-size: 16px; transition:all 0.3s ease; margin-left:20px; box-shadow:3px 3px 10px rgba(139,71,93,.3); display:inline-block;
+        .cv-button { padding:10px 25px; background:#6e3c3c; color:white !important; text-decoration:none; border-radius:25px; font-family: 'Georgia Custom', Georgia, serif; font-size: 16px; transition:all 0.3s ease; margin-left:20px; box-shadow:3px 3px 10px rgba(139,71,93,.3); display:inline-block;
         }
-        .cv-button:hover { background:#a0617a; transform: scale(1.04); box-shadow:6px 6px 20px rgba(139,71,93,.5); }
+        .cv-button:hover { background:#7a4848; transform: scale(1.04); box-shadow:6px 6px 20px rgba(139,71,93,.5); }
         .cv-button::after { display:none !important; }
 
         .menu-toggle {
@@ -145,7 +146,7 @@
             background: none;
             border: none;
             font-size: 32px;
-            color: #8b475d;
+            color: #6e3c3c;
             cursor: pointer;
             padding: 10px;
             z-index: 1001;
@@ -162,7 +163,7 @@
         }
 
         .nav-links a {
-            color: #8b475d;
+            color: #6e3c3c;
             text-decoration: none;
             font-size: 17px;
             letter-spacing: 0.5px;
@@ -180,18 +181,18 @@
             transform: translateX(-50%);
             width: 0;
             height: 2px;
-            background: #8b475d;
+            background: #6e3c3c;
             transition: width 0.3s ease;
         }
         .image-tip {
-            font-size:14px; color:#a8c5b5; margin-top:20px; font-style:normal;
+            font-size:14px; color:#a0b898; margin-top:20px; font-style:normal;
             animation: fadeInUp 1s ease 0.5s backwards;
         }
 
         .nav-links a:hover::after { width: 100%; }
 
         .music-nav-link {
-            background: linear-gradient(135deg, #f5c1cf, #a8c5b5);
+            background: linear-gradient(135deg, #bf9090, #a0b898);
             padding: 10px 20px !important;
             border-radius: 20px;
             font-weight: 600 !important;
@@ -200,7 +201,7 @@
 
         .music-nav-link:hover {
             transform: scale(1.04);
-            box-shadow: 5px 5px 15px rgba(139, 71, 93, 0.3);
+            
         }
 
         .music-nav-link::after { display: none !important; }
@@ -218,7 +219,7 @@
         .hero-content h1 {
             font-family: 'MADE Sunflower', sans-serif; font-weight: 400;
             font-size: 58px;
-            color: #8b475d;
+            color: #6e3c3c;
             margin-bottom: 20px;
             line-height: 1.2;
             animation: fadeInUp 1s ease;
@@ -227,12 +228,12 @@
 
         .award-badge {
             display: inline-block;
-            background: linear-gradient(135deg, #f5c1cf, #a8c5b5);
+            background: linear-gradient(135deg, #bf9090, #a0b898);
             padding: 12px 30px;
             border-radius: 30px;
             font-family: 'Archivo Black', sans-serif;
             font-size: 16px;
-            color: #8b475d;
+            color: #6e3c3c;
             letter-spacing: 1px;
             margin-bottom: 25px;
             animation: fadeInUp 1s ease 0.2s backwards;
@@ -241,7 +242,7 @@
 
         .hero-content p {
             font-size: 17px;
-            color: #a0617a;
+            color: #7a4848;
             line-height: 1.7;
             max-width: 800px;
             margin: 0 auto;
@@ -280,7 +281,7 @@
             aspect-ratio: 6/1;
             overflow: hidden;
             position: relative;
-            background: #f5e6e8;
+            background: #dcccc0;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -305,7 +306,7 @@
             font-family: 'Archivo Black', sans-serif;
             font-size: 38px;
             text-align: center;
-            color: #8b475d;
+            color: #6e3c3c;
             margin-bottom: 50px;
             letter-spacing: 2px;
             position: relative;
@@ -320,7 +321,7 @@
             transform: translateX(-50%);
             width: 100px;
             height: 3px;
-            background: #f5c1cf;
+            background: #bf9090;
         }
 
         /* Brief Section */
@@ -336,7 +337,7 @@
         .brief-container h3 {
             font-family: 'MADE Sunflower', sans-serif; font-weight: 400;
             font-size: 26px;
-            color: #8b475d;
+            color: #6e3c3c;
             margin-bottom: 25px;
             font-weight: 400;
         }
@@ -344,7 +345,7 @@
         .brief-container p {
             font-family: 'Georgia Custom', Georgia, serif;
             font-size: 17px;
-            color: #5a5a5a;
+            color: #7a4848;
             line-height: 1.7;
             margin-bottom: 20px;
             letter-spacing: 0;
@@ -359,7 +360,7 @@
         .brief-container li {
             font-family: 'Georgia Custom', Georgia, serif;
             font-size: 16px;
-            color: #5a5a5a;
+            color: #7a4848;
             line-height: 1.9;
             margin-bottom: 12px;
             position: relative;
@@ -370,7 +371,7 @@
             content: '→';
             position: absolute;
             left: 0;
-            color: #f5c1cf;
+            color: #bf9090;
             font-size: 18px;
         }
 
@@ -419,7 +420,7 @@
         .design-caption h3 {
             font-family: 'MADE Sunflower', sans-serif; font-weight: 400;
             font-size: 24px;
-            color: #8b475d;
+            color: #6e3c3c;
             margin-bottom: 10px;
             font-weight: 400;
         }
@@ -427,19 +428,19 @@
         .design-caption p {
             font-family: 'Georgia Custom', Georgia, serif;
             font-size: 16px;
-            color: #a0617a;
+            color: #7a4848;
             font-style: normal;
             letter-spacing: 0;
         }
 
         .winner-badge {
             display: inline-block;
-            background: linear-gradient(135deg, #f5c1cf, #a8c5b5);
+            background: linear-gradient(135deg, #bf9090, #a0b898);
             padding: 8px 20px;
             border-radius: 20px;
             font-family: 'Archivo Black', sans-serif;
             font-size: 12px;
-            color: #8b475d;
+            color: #6e3c3c;
             letter-spacing: 1px;
             margin-top: 10px;
             text-transform: uppercase;
@@ -472,7 +473,7 @@
             aspect-ratio: 4/3;
             overflow: hidden;
             position: relative;
-            background: #f5e6e8;
+            background: #dcccc0;
         }
 
         .still-image img,
@@ -491,7 +492,7 @@
         .still-caption p {
             font-family: 'Georgia Custom', Georgia, serif;
             font-size: 14px;
-            color: #a0617a;
+            color: #7a4848;
             font-style: normal;
             letter-spacing: 0;
         }
@@ -505,7 +506,7 @@
             gap: 20px;
             padding: 20px;
             margin-bottom: 15px;
-            background: #fceadb;
+            background: #e6d0b8;
             border-radius: 12px;
             text-decoration: none;
             transition: all 0.3s ease;
@@ -513,7 +514,7 @@
         }
 
         .media-link:hover {
-            background: #f5c1cf;
+            background: #bf9090;
             transform: translateX(10px);
         }
 
@@ -526,7 +527,7 @@
         .link-text h4 {
             font-family: 'MADE Sunflower', sans-serif; font-weight: 400;
             font-size: 18px;
-            color: #8b475d;
+            color: #6e3c3c;
             margin-bottom: 5px;
             font-weight: 400;
         }
@@ -534,7 +535,7 @@
         .link-text p {
             font-family: 'Georgia Custom', Georgia, serif;
             font-size: 14px;
-            color: #5a5a5a;
+            color: #7a4848;
             margin: 0;
             line-height: 1.5;
             letter-spacing: 0;
@@ -545,7 +546,7 @@
             text-align: center;
             padding: 50px 40px;
             background: rgba(255, 255, 255, 0.5);
-            color: #8b475d;
+            color: #6e3c3c;
             font-size: 14px;
             letter-spacing: 0;
             font-family: 'Georgia Custom', Georgia, serif;
@@ -555,7 +556,7 @@
         .back-button {
             display: inline-block;
             padding: 15px 35px;
-            background: #8b475d;
+            background: #6e3c3c;
             color: white;
             text-decoration: none;
             font-size: 16px;
@@ -571,7 +572,7 @@
         .back-button:hover {
             transform: translateY(-3px);
             box-shadow: 8px 8px 25px rgba(139, 71, 93, 0.4);
-            background: #a0617a;
+            background: #7a4848;
         }
 
         .back-button-container {
@@ -740,23 +741,23 @@
         .stack-nav {
             background: rgba(255,255,255,0.35); border: none; border-radius: 50%;
             width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;
-            cursor: pointer; color: #8b475d;
+            cursor: pointer; color: #6e3c3c;
             opacity: 0.75; transition: opacity 0.2s, transform 0.15s;
             padding: 0; flex-shrink: 0; line-height: 0;
             position: relative; z-index: 50;
         }
         .stack-nav:hover { opacity: 1; transform: scale(1.15); }
         .stack-counter {
-            font-family: 'Georgia Custom', Georgia, serif; font-size: 13px; color: #a0617a;
+            font-family: 'Georgia Custom', Georgia, serif; font-size: 13px; color: #7a4848;
             text-align: center; margin-bottom: 10px;
         }
         .stack-caption { text-align: center; margin-bottom: 32px; min-height: 48px; }
         .stack-caption h4 {
             font-family: 'MADE Sunflower', sans-serif; font-size: 18px;
-            color: #8b475d; margin-bottom: 6px; font-weight: 400;
+            color: #6e3c3c; margin-bottom: 6px; font-weight: 400;
         }
         .stack-caption p {
-            font-family: 'Georgia Custom', Georgia, serif; font-size: 14px; color: #a0617a; font-style: normal; letter-spacing: 0;
+            font-family: 'Georgia Custom', Georgia, serif; font-size: 14px; color: #7a4848; font-style: normal; letter-spacing: 0;
         }
         .stack-video {
             max-width: 500px; margin: 0 auto 40px; text-align: center;
@@ -766,7 +767,7 @@
             box-shadow: 10px 10px 30px rgba(139,71,93,0.15);
         }
         .stack-video p {
-            font-family: 'Georgia Custom', Georgia, serif; font-size: 14px; color: #a0617a;
+            font-family: 'Georgia Custom', Georgia, serif; font-size: 14px; color: #7a4848;
             font-style: normal; margin-top: 10px;
         }
         @media (max-width: 968px) { .card-stack { width: 280px; height: 396px; } .stack-scene { gap: 8px; position: relative; } .stack-nav { position: absolute; top: 50%; transform: translateY(-50%); z-index: 50; background: rgba(255,255,255,0.55); width: 36px; height: 36px; } .stack-nav svg { width: 28px; height: 28px; } .stack-nav:hover { transform: translateY(-50%) scale(1.15); } .stack-prev { left: 6px; } .stack-next { right: 6px; } }
@@ -819,7 +820,7 @@
 
         /* Section divider shimmer on h2 underline */
         h2.will-animate.visible::after {
-            background: linear-gradient(90deg, #f5c1cf, #a8c5b5, #f5c1cf) !important;
+            background: linear-gradient(90deg, #bf9090, #a0b898, #bf9090) !important;
             background-size: 200% 100% !important;
             animation: underlineShimmer 6s ease-in-out infinite !important;
         }
@@ -886,68 +887,68 @@
         }
         /* ── Theme Toggle ── */
         .theme-toggle-wrap { display:flex; align-items:center; gap:8px; flex-shrink:0; cursor:pointer; margin-left:auto; margin-right:35px; }
-        .theme-toggle-label { font-family:'Archivo Black',sans-serif; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:#8b475d; opacity:0.7; user-select:none; }
-        html:not(.light-mode) .theme-toggle-label { color:#e8a0b8 !important; }
-        .theme-toggle-track { width:36px; height:20px; background:#c4a0ae; border-radius:10px; position:relative; transition:background 0.3s; }
-        html:not(.light-mode) .theme-toggle-track { background:#3a2a32 !important; }
-        .theme-toggle-thumb { width:16px; height:16px; background:#8b475d; border-radius:50%; position:absolute; top:2px; left:18px; transition:left 0.3s, background 0.3s; }
-        html:not(.light-mode) .theme-toggle-thumb { left:2px !important; background:#e8a0b8 !important; }
+        .theme-toggle-label { font-family:'Archivo Black',sans-serif; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:#6e3c3c; opacity:0.85; user-select:none; }
+        html:not(.light-mode) .theme-toggle-label { color:#aa7878 !important; opacity:1 !important; }
+        .theme-toggle-track { width:46px; height:26px; background:#a88888; border-radius:13px; position:relative; transition:background 0.3s; }
+        html:not(.light-mode) .theme-toggle-track { background:#2a1818 !important;  }
+        .theme-toggle-thumb { width:20px; height:20px; background:#6e3c3c; border-radius:50%; position:absolute; top:3px; left:23px; transition:left 0.3s, background 0.3s; box-shadow:0 1px 4px rgba(0,0,0,0.4); }
+        html:not(.light-mode) .theme-toggle-thumb { left:1px !important; background:#aa7878 !important; }
 
         /* ── Dark Mode (default) ── */
-        html:not(.light-mode) body { background: #000000 !important; color: #d4c5c8 !important; }
+        html:not(.light-mode) body { background: #000000 !important; color: #aa7878 !important; }
         html:not(.light-mode) .star { background: #2a1a22 !important; opacity: 0.5 !important; }
         html:not(.light-mode) .announcement-banner { background: linear-gradient(90deg, #4a2537 0%, #40202e 25%, #361a27 55%, #4a2537 100%) !important; background-size: 300% 100% !important; }
-        html:not(.light-mode) .banner-inner span { color: #e8a0b8 !important; }
+        html:not(.light-mode) .banner-inner span { color: #aa7878 !important; }
         html:not(.light-mode) nav { background: rgba(30,16,24,0.97) !important; }
-        html:not(.light-mode) .logo, html:not(.light-mode) .logo a { color: #e8a0b8 !important; }
-        html:not(.light-mode) .menu-toggle { color: #e8a0b8 !important; }
-        html:not(.light-mode) .nav-links a { color: #e8a0b8 !important; }
-        html:not(.light-mode) .music-nav-link { background: linear-gradient(135deg, #5c2a3a, #3d1a2a) !important; }
-        html:not(.light-mode) h1 { color: #e8a0b8 !important; }
-        html:not(.light-mode) h2 { color: #e8a0b8 !important; }
-        html:not(.light-mode) h3 { color: #e8a0b8 !important; }
-        html:not(.light-mode) h4 { color: #e8a0b8 !important; }
-        html:not(.light-mode) h2::after { background: linear-gradient(90deg, #f5c1cf, #e8a0b8, #f5c1cf) !important; }
-        html:not(.light-mode) section p { color: #d4c5c8 !important; }
-        html:not(.light-mode) .hero p { color: #d4899e !important; }
+        html:not(.light-mode) .logo, html:not(.light-mode) .logo a { color: #aa7878 !important; }
+        html:not(.light-mode) .menu-toggle { color: #aa7878 !important; }
+        html:not(.light-mode) .nav-links a { color: #aa7878 !important; }
+        html:not(.light-mode) .music-nav-link { background: linear-gradient(135deg, #422020, #281816) !important; }
+        html:not(.light-mode) h1 { color: #aa7878 !important; }
+        html:not(.light-mode) h2 { color: #aa7878 !important; }
+        html:not(.light-mode) h3 { color: #aa7878 !important; }
+        html:not(.light-mode) h4 { color: #aa7878 !important; }
+        html:not(.light-mode) h2::after { background: linear-gradient(90deg, #bf9090, #aa7878, #bf9090) !important; }
+        html:not(.light-mode) section p { color: #aa7878 !important; }
+        html:not(.light-mode) .hero p { color: #aa7878 !important; }
         html:not(.light-mode) footer { background: rgba(0,0,0,0.5) !important; }
-        html:not(.light-mode) footer p { color: #e8a0b8 !important; }
+        html:not(.light-mode) footer p { color: #aa7878 !important; }
 
         /* Page-specific dark overrides */
-        html:not(.light-mode) .award-badge { background: linear-gradient(135deg, #5c2a3a, #3d1a2a) !important; color: #e8a0b8 !important; }
-        html:not(.light-mode) .winner-badge { background: linear-gradient(135deg, #5c2a3a, #3d1a2a) !important; color: #e8a0b8 !important; }
+        html:not(.light-mode) .award-badge { background: linear-gradient(135deg, #422020, #281816) !important; color: #aa7878 !important; }
+        html:not(.light-mode) .winner-badge { background: linear-gradient(135deg, #422020, #281816) !important; color: #aa7878 !important; }
         html:not(.light-mode) .brief-container { background: rgba(255,255,255,0.06) !important; box-shadow: 10px 10px 30px rgba(0,0,0,0.3) !important; }
-        html:not(.light-mode) .brief-container p { color: #d4c5c8 !important; }
-        html:not(.light-mode) .brief-container li { color: #d4c5c8 !important; }
-        html:not(.light-mode) .brief-container li::before { color: #e8a0b8 !important; }
+        html:not(.light-mode) .brief-container p { color: #aa7878 !important; }
+        html:not(.light-mode) .brief-container li { color: #aa7878 !important; }
+        html:not(.light-mode) .brief-container li::before { color: #aa7878 !important; }
         html:not(.light-mode) .train-wrap-item { background: rgba(255,255,255,0.06) !important; box-shadow: 10px 10px 30px rgba(0,0,0,0.3) !important; }
         html:not(.light-mode) .train-wrap-image { background: rgba(255,255,255,0.04) !important; }
-        html:not(.light-mode) .design-caption h3 { color: #e8a0b8 !important; }
-        html:not(.light-mode) .design-caption p { color: #d4899e !important; }
+        html:not(.light-mode) .design-caption h3 { color: #aa7878 !important; }
+        html:not(.light-mode) .design-caption p { color: #aa7878 !important; }
         html:not(.light-mode) .still-item { background: rgba(255,255,255,0.06) !important; box-shadow: 10px 10px 30px rgba(0,0,0,0.3) !important; }
         html:not(.light-mode) .still-image { background: rgba(255,255,255,0.04) !important; }
-        html:not(.light-mode) .still-caption p { color: #d4899e !important; }
+        html:not(.light-mode) .still-caption p { color: #aa7878 !important; }
         html:not(.light-mode) .media-link { background: rgba(255,255,255,0.06) !important; }
         html:not(.light-mode) .media-link:hover { background: rgba(232,160,184,0.15) !important; }
-        html:not(.light-mode) .link-text h4 { color: #e8a0b8 !important; }
-        html:not(.light-mode) .link-text p { color: #d4c5c8 !important; }
-        html:not(.light-mode) .image-tip { color: #d4899e !important; }
-        html:not(.light-mode) .cv-button { background: #5c2a3a !important; box-shadow: 3px 3px 10px rgba(92,42,58,0.3) !important;
+        html:not(.light-mode) .link-text h4 { color: #aa7878 !important; }
+        html:not(.light-mode) .link-text p { color: #aa7878 !important; }
+        html:not(.light-mode) .image-tip { color: #aa7878 !important; }
+        html:not(.light-mode) .cv-button { background: #422020 !important; box-shadow: 3px 3px 10px rgba(92,42,58,0.3) !important;
             font-family: 'Georgia Custom', Georgia, serif;
         }
         html:not(.light-mode) .cv-button:hover { background: #7a3a50 !important; box-shadow: 6px 6px 20px rgba(92,42,58,0.5) !important; }
 
         /* Inline style overrides */
-        html:not(.light-mode) span[style*="color:#8b475d"] { color: #e8a0b8 !important; }
-        html:not(.light-mode) p[style*="color:#8b475d"] { color: #e8a0b8 !important; }
+        html:not(.light-mode) span[style*="color:#6e3c3c"] { color: #aa7878 !important; }
+        html:not(.light-mode) p[style*="color:#6e3c3c"] { color: #aa7878 !important; }
         html:not(.light-mode) div[style*="background:rgba(139,71,93,0.1)"] { background: rgba(232,160,184,0.15) !important; }
 
         /* Card stack overrides */
-        html:not(.light-mode) .stack-caption h4 { color: #e8a0b8 !important; }
-        html:not(.light-mode) .stack-caption p { color: #d4899e !important; }
-        html:not(.light-mode) .stack-counter { color: #d4899e !important; }
-        html:not(.light-mode) .stack-nav { background: rgba(255,255,255,0.15) !important; color: #e8a0b8 !important; }
-        html:not(.light-mode) .back-button { color: #e8a0b8 !important; background: #2a1520 !important; }
+        html:not(.light-mode) .stack-caption h4 { color: #aa7878 !important; }
+        html:not(.light-mode) .stack-caption p { color: #aa7878 !important; }
+        html:not(.light-mode) .stack-counter { color: #aa7878 !important; }
+        html:not(.light-mode) .stack-nav { background: rgba(255,255,255,0.15) !important; color: #aa7878 !important; }
+        html:not(.light-mode) .back-button { color: #aa7878 !important; background: transparent !important; }
 
         /* Mobile nav dark override */
         @media (max-width: 820px) {
@@ -957,9 +958,9 @@
     @media (max-width: 820px) {
         .theme-toggle-wrap { gap:0 !important; flex-direction:column !important; align-items:center !important; position:absolute !important; right:68px !important; top:50% !important; transform:translateY(-50%) !important; margin:0 !important; }
         .theme-toggle-label { font-size:7px !important; letter-spacing:1px !important; position:absolute !important; top:100% !important; left:50% !important; transform:translateX(-50%) !important; margin-top:2px !important; white-space:nowrap !important; }
-        .theme-toggle-track { width:30px !important; height:16px !important; }
-        .theme-toggle-thumb { width:12px !important; height:12px !important; }
-        html.light-mode .theme-toggle-thumb { left:16px !important; }
+        .theme-toggle-track { width:36px !important; height:20px !important; }
+        .theme-toggle-thumb { width:16px !important; height:16px !important; }
+        html.light-mode .theme-toggle-thumb { left:19px !important; }
     }
     /* ── View toggle (stack ↔ gallery) ── */
     .view-toggle-wrap {
@@ -972,15 +973,15 @@
     .view-btn {
       display: flex; align-items: center; gap: 6px;
       padding: 7px 18px; border: none; border-radius: 25px;
-      background: transparent; color: #8b475d;
+      background: transparent; color: #6e3c3c;
       font-family: 'Archivo Black', sans-serif;
       font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
       cursor: pointer; transition: all 0.25s ease; opacity: 0.45;
     }
-    .view-btn.active { background: #8b475d; color: white; opacity: 1; box-shadow: 2px 2px 8px rgba(139,71,93,0.28); }
+    .view-btn.active { background: #6e3c3c; color: white; opacity: 1; box-shadow: 2px 2px 8px rgba(139,71,93,0.28); }
     html:not(.light-mode) .view-toggle-wrap { background: rgba(232,160,184,0.07); border-color: rgba(232,160,184,0.18); }
-    html:not(.light-mode) .view-btn { color: #e8a0b8; }
-    html:not(.light-mode) .view-btn.active { background: #4a1f30; color: #e8a0b8; box-shadow: 2px 2px 8px rgba(0,0,0,0.45); }
+    html:not(.light-mode) .view-btn { color: #aa7878; }
+    html:not(.light-mode) .view-btn.active { background: #4a1f30; color: #aa7878; box-shadow: 2px 2px 8px rgba(0,0,0,0.45); }
 
     /* During view swap: suppress only transitions (NOT animations) so layout change is instant
        without restarting keyframe animations like the h2 underline shimmer */
@@ -1045,12 +1046,12 @@
     }
     .gallery-card-name {
       font-family: 'MADE Sunflower', sans-serif;
-      font-size: 13px; color: #8b475d;
+      font-size: 13px; color: #6e3c3c;
       text-align: center; line-height: 1.3; margin-bottom: 4px;
     }
     .gallery-card-desc {
       font-family: 'Georgia Custom', Georgia, serif;
-      font-size: 11px; color: #a0617a;
+      font-size: 11px; color: #7a4848;
       text-align: center; line-height: 1.4;
     }
     body.gallery-mode .gallery-card-title { display: block; }
@@ -1059,8 +1060,8 @@
       box-shadow: 4px 4px 16px rgba(0,0,0,0.4) !important;
     }
     html:not(.light-mode) body.gallery-mode .stack-card:hover { box-shadow: 12px 12px 28px rgba(0,0,0,0.55) !important; }
-    html:not(.light-mode) .gallery-card-name { color: #e8a0b8; }
-    html:not(.light-mode) .gallery-card-desc { color: #d4899e; }
+    html:not(.light-mode) .gallery-card-name { color: #aa7878; }
+    html:not(.light-mode) .gallery-card-desc { color: #aa7878; }
     @media (max-width: 968px) {
       body.gallery-mode .card-stack { gap: 10px !important; }
       body.gallery-mode .stack-card { flex: 0 0 150px !important; width: 150px !important; }
@@ -1143,18 +1144,136 @@
         .caption-award {
             display: inline-flex; align-items: center; gap: 10px;
             margin-top: 10px; padding: 10px 22px;
-            background: transparent; border: 2px solid #8b475d; border-radius: 50px;
-            box-shadow: 4px 4px 0 #8b475d;
-            font-family: 'Archivo Black', sans-serif; font-size: 12px; color: #8b475d;
+            background: transparent; border: 2px solid #6e3c3c; border-radius: 50px;
+            box-shadow: 4px 4px 0 #6e3c3c;
+            font-family: 'Archivo Black', sans-serif; font-size: 12px; color: #6e3c3c;
             text-transform: uppercase; letter-spacing: 0.5px; text-decoration: none;
             transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
-        .caption-award:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 #8b475d; filter: none; }
-        .caption-award img { width: 30px; height: 30px; flex-shrink: 0; filter: brightness(0) saturate(100%) invert(30%) sepia(18%) saturate(800%) hue-rotate(290deg) brightness(82%); }
-        html:not(.light-mode) .caption-award { background: transparent; border-color: #e8a0b8; box-shadow: 4px 4px 0 #e8a0b8; color: #e8a0b8; }
-        html:not(.light-mode) .caption-award:hover { box-shadow: 2px 2px 0 #e8a0b8; }
+        .caption-award:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 #6e3c3c; filter: none; }
+        .caption-award img { width: 30px; height: 30px; flex-shrink: 0; filter: brightness(0) saturate(100%) invert(22%) sepia(30%) saturate(700%) hue-rotate(298deg) brightness(78%); }
+        html:not(.light-mode) .caption-award { background: transparent; border-color: #aa7878; box-shadow: 4px 4px 0 #aa7878; color: #aa7878; }
+        html:not(.light-mode) .caption-award:hover { box-shadow: 2px 2px 0 #aa7878; }
         html:not(.light-mode) .caption-award img { filter: none; }
-        </style>
+        
+    /* ── Nav links font: Helvetica Bold uppercase (serif elements only) ── */
+    nav .nav-links a,
+    nav .cv-button,
+    nav .music-nav-link {
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+        font-weight: 700 !important;
+        letter-spacing: -0.13em !important;
+        font-size: 0.87em !important;
+        text-transform: uppercase !important;
+    }
+
+    /* Remove h2 underlines sitewide */
+    h2::after, h2.will-animate::after, h2.will-animate.visible::after { display: none !important; }
+
+    /* ── Card titles: Helvetica Bold uppercase -90 (h2 keeps original font) ── */
+    h3, .work-caption h4, .stack-caption h4, .design-caption h3, .portfolio-content h3 {
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+        font-weight: 700 !important;
+        letter-spacing: -0.09em !important;
+        text-transform: uppercase !important;
+    }
+
+    /* CV button: 'Design' in Aldyn Heart script */
+    .cv-button .cv-design {
+        font-family: 'Aldyn Heart', serif !important;
+        text-transform: none !important;
+        letter-spacing: 0 !important;
+        font-size: 1.45em;
+        font-weight: 400 !important;
+    }
+
+    /* CV button: capital Archivo Black */
+    nav .cv-button, nav a.cv-button {
+        font-family: 'Archivo Black', sans-serif !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0 !important;
+        font-size: 0.78em !important;
+    }
+
+    /* Back button → caption-award pill style */
+    .back-button {
+        display: inline-flex !important; align-items: center !important;
+        background: transparent !important; border: 2px solid #6e3c3c !important;
+        border-radius: 50px !important; box-shadow: 4px 4px 0 #6e3c3c !important;
+        color: #aa7878 !important; padding: 10px 26px !important;
+        font-family: 'Archivo Black', sans-serif !important;
+        text-transform: uppercase !important; letter-spacing: 0 !important;
+        font-size: 12px !important; font-weight: 400 !important;
+        transition: transform 0.4s ease, box-shadow 0.4s ease !important;
+        margin-top: 40px;
+    }
+    .back-button:hover { transform: translate(2px,2px) !important; box-shadow: 2px 2px 0 #6e3c3c !important; background: transparent !important; }
+    html:not(.light-mode) .back-button { border-color:#aa7878 !important; box-shadow:4px 4px 0 #aa7878 !important; color:#aa7878 !important; background:transparent !important; }
+    html:not(.light-mode) .back-button:hover { box-shadow:2px 2px 0 #aa7878 !important; }
+    /* Stack/gallery toggle → theme colours */
+    .view-toggle-wrap { background: rgba(110,60,60,0.1) !important; border: 1.5px solid rgba(110,60,60,0.3) !important; }
+    .view-btn { color: #aa7878 !important; opacity: 0.6; }
+    .view-btn.active { background: #6e3c3c !important; color: #f0ddd0 !important; opacity: 1; box-shadow: 2px 2px 8px rgba(110,60,60,0.3) !important; }
+    html:not(.light-mode) .view-toggle-wrap { background: rgba(170,120,120,0.1) !important; border-color: rgba(170,120,120,0.3) !important; }
+    html:not(.light-mode) .view-btn { color: #aa7878 !important; }
+    html:not(.light-mode) .view-btn.active { background: #4a2020 !important; color: #aa7878 !important; }
+
+    /* Button text: no white — use theme colours */
+    .cv-button { color: #aa7878 !important; }
+    .cta-button { color: #f0ddd0 !important; }
+    html:not(.light-mode) .cv-button { color: #aa7878 !important; }
+
+    /* CV button: identical to Music nav link */
+    nav .cv-button, nav a.cv-button {
+        background: linear-gradient(135deg, #bf9090, #a0b898) !important;
+        border-radius: 20px !important;
+        padding: 10px 20px !important;
+        box-shadow: none !important;
+        animation: none !important;
+        border: none !important;
+        color: #6e3c3c !important;
+        margin-left: 4px !important;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+        font-weight: 700 !important;
+        font-size: 0.87em !important;
+        letter-spacing: -0.09em !important;
+        text-transform: uppercase !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        vertical-align: middle !important;
+        line-height: 1 !important;
+    }
+    nav .cv-button::before { display: none !important; }
+    html:not(.light-mode) nav .cv-button,
+    html:not(.light-mode) nav a.cv-button {
+        background: linear-gradient(135deg, #422020, #281816) !important;
+        color: #aa7878 !important;
+        box-shadow: none !important;
+    }
+    /* Music nav link: same alignment fix */
+    nav .music-nav-link {
+        display: inline-flex !important;
+        align-items: center !important;
+        vertical-align: middle !important;
+        line-height: 1 !important;
+    }
+
+        /* Consistent hover zoom for standalone posters */
+        .poster-zoom { transition: transform 0.45s cubic-bezier(0.22,1,0.36,1) !important; }
+        .poster-zoom:hover { transform: scale(1.04) !important; }
+
+        /* Light mode: darker text on pill buttons */
+        html.light-mode .back-button,
+        html.light-mode .download-button,
+        html.light-mode .caption-award,
+        html.light-mode .cta-button,
+        html.light-mode button[type="submit"],
+        html.light-mode .music-cv-button,
+        html.light-mode .hero-cv-button,
+        html.light-mode #allow-camera-btn {
+            color: #5a2e38 !important;
+        }
+</style>
     <script>(function(){try{var t=performance.getEntriesByType('navigation'),n=t.length?t[0].type:'navigate',s=document.referrer&&(new URL(document.referrer)).origin===location.origin;if(n==='reload'||(n==='navigate'&&!s)){sessionStorage.removeItem('theme');}else if(sessionStorage.getItem('theme')==='light'){document.documentElement.classList.add('light-mode');}}catch(e){}})();</script>
 </head>
 <body>
@@ -1194,18 +1313,18 @@
     <div class="announcement-banner">
       <a href="extras.html" class="banner-link">
         <div class="banner-inner">
-          <span>✦ NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-          <span>✦ NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-          <span>✦ NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-          <span>✦ NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-          <span>✦ NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-          <span>✦ NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-          <span>✦ NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-          <span>✦ NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-          <span>✦ NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-          <span>✦ NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-          <span>✦ NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-          <span>✦ NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <span> NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <span> NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <span> NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <span> NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <span> NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <span> NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <span> NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <span> NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <span> NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <span> NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <span> NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <span> NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
         </div>
       </a>
     </div>
@@ -1216,7 +1335,7 @@
             <span class="theme-toggle-label" id="themeLabel">Light</span>
             <div class="theme-toggle-track"><div class="theme-toggle-thumb"></div></div>
         </div>
-        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"></button>
         <ul class="nav-links" id="navLinks">
             <li><a href="index.html#home">Home</a></li>
             <li><a href="index.html">Work</a></li>
@@ -1224,7 +1343,7 @@
             <li><a href="index.html#skills">Skills</a></li>
             <li><a href="index.html#contact">Contact</a></li>
             <li><a href="music.html" class="music-nav-link">Music</a></li>
-            <li><a href="design-cv.html" class="cv-button">View Design CV</a></li>
+            <li><a href="design-cv.html" class="cv-button">Design CV</a></li>
         </ul>
     </nav>
 
@@ -1234,9 +1353,9 @@
           <div class="award-badge">1st Place Winner - CMET Competition 2025</div>
             <h1>Light Rail Safety Campaign</h1>
             <p>Campaign promoting light rail safety awareness for Canberra Metro Operations</p>
-            <span style="font-size:17px; color:#8b475d; font-style:italic; margin-top:20px; display:block; letter-spacing:1px; font-family: 'Cavalhatriz', serif; animation:fadeInUp 1s ease 0.5s backwards;">2025</span>
-            <div style="margin-top:25px; padding:15px 25px; background:rgba(139,71,93,0.1); border-radius:12px; border-left:3px solid #8b475d; animation:fadeInUp 1s ease 0.6s backwards; display:inline-block;">
-              <p style="font-size:14px; color:#8b475d; margin:0; font-style:normal;">💡 <strong>Tip:</strong> Tap or click any image for fullscreen view</p>
+            <span style="font-size:17px; color:#6e3c3c; font-style:italic; margin-top:20px; display:block; letter-spacing:1px; font-family: 'Cavalhatriz', serif; animation:fadeInUp 1s ease 0.5s backwards;">2025</span>
+            <div style="margin-top:25px; padding:15px 25px; background:rgba(139,71,93,0.1); border-radius:12px; border-left:3px solid #6e3c3c; animation:fadeInUp 1s ease 0.6s backwards; display:inline-block;">
+              <p style="font-size:14px; color:#6e3c3c; margin:0; font-style:normal;"> <strong>Tip:</strong> Tap or click any image for fullscreen view</p>
             </div>
         </div>
     </section>
@@ -1263,7 +1382,7 @@
         <div class="stack-scene">
             <button class="stack-nav stack-prev" aria-label="Previous"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></button>
             <div class="card-stack tram-posters">
-                <a href="tram/tram1-fullscreen.png" target="_blank" class="stack-card" data-title="&quot;Hit Me Baby NOT This Time&quot;" data-desc="Britney Spears reference — 🏆 1st Place Winner"><img src="tram/tram1-fullscreen.png" alt="Hit Me Baby NOT This Time"></a>
+                <a href="tram/tram1-fullscreen.png" target="_blank" class="stack-card" data-title="&quot;Hit Me Baby NOT This Time&quot;" data-desc="Britney Spears reference —  1st Place Winner"><img src="tram/tram1-fullscreen.png" alt="Hit Me Baby NOT This Time"></a>
                 <a href="tram/tramclown-fullscreen.png" target="_blank" class="stack-card" data-title="&quot;Don't Be a Clown&quot;" data-desc="Encouraging cyclists and pedestrians to slow down near light rail tracks"><img src="tram/tramclown-fullscreen.png" alt="Don't be a clown - SLOW DOWN!"></a>
             </div>
             <button class="stack-nav stack-next" aria-label="Next"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></button>
@@ -1310,11 +1429,11 @@
     <!-- Media Coverage & Links -->
     <section style="padding-top:0;">
         <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin-top:10px; margin-bottom:10px;">
-            <a href="https://cmet.com.au/rail-safety-week-2025/" target="_blank" class="caption-award"><img src="shared/website_symbol.webp" alt="">CMET Rail Safety Week 2025</a>
-            <a href="https://www.facebook.com/share/p/1ChfmVoBtK/" target="_blank" class="caption-award"><img src="shared/facebook_symbol.webp" alt="">CMET Facebook Post</a>
-            <a href="https://www.facebook.com/share/p/16Q1AEAvdp/" target="_blank" class="caption-award"><img src="shared/facebook_symbol.webp" alt="">Transport Canberra Facebook</a>
-            <a href="https://www.instagram.com/p/DNM8TbrhTYl/" target="_blank" class="caption-award"><img src="shared/instagram_symbol.webp" alt="">CMET Instagram Post</a>
-            <a href="https://www.instagram.com/p/DNRcw1QNKc0/" target="_blank" class="caption-award"><img src="shared/instagram_symbol.webp" alt="">Transport Canberra Instagram</a>
+            <a href="https://cmet.com.au/rail-safety-week-2025/" target="_blank" class="caption-award"><img src="shared/website_symbol.webp?v=4" alt="">CMET Rail Safety Week 2025</a>
+            <a href="https://www.facebook.com/share/p/1ChfmVoBtK/" target="_blank" class="caption-award"><img src="shared/facebook_symbol.webp?v=4" alt="">CMET Facebook Post</a>
+            <a href="https://www.facebook.com/share/p/16Q1AEAvdp/" target="_blank" class="caption-award"><img src="shared/facebook_symbol.webp?v=4" alt="">Transport Canberra Facebook</a>
+            <a href="https://www.instagram.com/p/DNM8TbrhTYl/" target="_blank" class="caption-award"><img src="shared/instagram_symbol.webp?v=4" alt="">CMET Instagram Post</a>
+            <a href="https://www.instagram.com/p/DNRcw1QNKc0/" target="_blank" class="caption-award"><img src="shared/instagram_symbol.webp?v=4" alt="">Transport Canberra Instagram</a>
         </div>
     </section>
 
@@ -1322,15 +1441,15 @@
     <section>
         <h2>Kompactus Choir Concert Poster</h2>
         <div style="display:flex; justify-content:center; margin:30px auto 20px; padding:10px 0;">
-            <a href="tram/kompactus-choir-fullscreen.webp" target="_blank" style="display:block; width:340px; height:481px; overflow:hidden; box-shadow:10px 10px 40px rgba(0,0,0,0.55); cursor:pointer; position:relative; filter:drop-shadow(20px 20px 40px rgba(0,0,0,0.32)); flex-shrink:0;">
+            <a href="tram/kompactus-choir-fullscreen.webp" target="_blank" class="poster-zoom" style="display:block; width:340px; height:481px; overflow:hidden; box-shadow:10px 10px 40px rgba(0,0,0,0.55); cursor:pointer; position:relative; filter:drop-shadow(20px 20px 40px rgba(0,0,0,0.32)); flex-shrink:0;">
                 <img src="tram/kompactus-choir-fullscreen.webp" alt="Kompactus Choir Concert Poster" style="width:100%; height:100%; object-fit:cover; display:block;">
             </a>
         </div>
         <div style="text-align:center; margin-top:16px;">
-            <p style="font-family:'Georgia Custom',Georgia,serif; font-size:16px; color:#a0617a; margin-bottom:16px; line-height:1.6;">
+            <p style="font-family:'Georgia Custom',Georgia,serif; font-size:16px; color:#7a4848; margin-bottom:16px; line-height:1.6;">
                 Designed a poster for Kompactus Youth Choir for their <em>'On The Edge'</em> concert.
             </p>
-            <a href="https://www.kompactus.org.au/" target="_blank" rel="noopener" class="caption-award"><img src="shared/website_symbol.webp" alt="">Visit Kompactus Youth Choir</a>
+            <a href="https://www.kompactus.org.au/" target="_blank" rel="noopener" class="caption-award"><img src="shared/website_symbol.webp?v=4" alt="">Visit Kompactus Youth Choir</a>
         </div>
 
     </section>
@@ -1338,10 +1457,10 @@
     <!-- New York Poster — Gang Gang Cafe -->
     <section>
         <h2>New York — Gang Gang Cafe</h2>
-        <p style="text-align:center; font-size:17px; color:#a0617a; line-height:1.7; max-width:700px; margin:-20px auto 40px; font-family:'Georgia Custom',Georgia,serif; font-style:normal; letter-spacing:0;">Commissioned by Gang Gang Cafe in Canberra to design a promotional poster for an event hosting the artists 'New York'.</p>
+        <p style="text-align:center; font-size:17px; color:#7a4848; line-height:1.7; max-width:700px; margin:-20px auto 40px; font-family:'Georgia Custom',Georgia,serif; font-style:normal; letter-spacing:0;">Commissioned by Gang Gang Cafe in Canberra to design a promotional poster for an event hosting the artists 'New York'.</p>
 
         <div style="display:flex; justify-content:center; margin:0 auto 40px; padding:10px 0;">
-            <a href="tram/newyork-poster.webp" target="_blank" style="display:block; width:340px; box-shadow:10px 10px 40px rgba(0,0,0,0.55); cursor:pointer; position:relative; filter:drop-shadow(20px 20px 40px rgba(0,0,0,0.32)); flex-shrink:0;">
+            <a href="tram/newyork-poster.webp" target="_blank" class="poster-zoom" style="display:block; width:340px; box-shadow:10px 10px 40px rgba(0,0,0,0.55); cursor:pointer; position:relative; filter:drop-shadow(20px 20px 40px rgba(0,0,0,0.32)); flex-shrink:0;">
                 <img src="tram/newyork-poster.webp" alt="New York Poster" style="width:100%; height:auto; display:block;">
             </a>
         </div>
@@ -1360,34 +1479,34 @@
         <div class="stack-caption"><h4></h4><p></p></div>
 
         <div style="text-align:center; margin-top:-35px; margin-bottom:40px;">
-            <a href="https://www.instagram.com/_n_e_w__y_o_r_k_/?hl=en" target="_blank" rel="noopener" class="caption-award"><img src="shared/instagram_symbol.webp" alt="">New York — Instagram</a>
+            <a href="https://www.instagram.com/_n_e_w__y_o_r_k_/?hl=en" target="_blank" rel="noopener" class="caption-award"><img src="shared/instagram_symbol.webp?v=4" alt="">New York — Instagram</a>
         </div>
     </section>
 
     <!-- Frostbite Burlesque Poster — Gang Gang Cafe -->
     <section>
         <h2>Frostbite Burlesque — Gang Gang Cafe</h2>
-        <p style="text-align:center; font-size:17px; color:#a0617a; line-height:1.7; max-width:700px; margin:-20px auto 40px; font-family:'Georgia Custom',Georgia,serif; font-style:normal; letter-spacing:0;">Commissioned by Gang Gang Cafe in Canberra to design a promotional poster for a burlesque night event.</p>
+        <p style="text-align:center; font-size:17px; color:#7a4848; line-height:1.7; max-width:700px; margin:-20px auto 40px; font-family:'Georgia Custom',Georgia,serif; font-style:normal; letter-spacing:0;">Commissioned by Gang Gang Cafe in Canberra to design a promotional poster for a burlesque night event.</p>
 
         <div style="display:flex; flex-wrap:wrap; gap:40px; justify-content:center; margin:0 auto 20px; padding:10px 0;">
             <div style="text-align:center;">
-                <a href="tram/burlesque-final.webp" target="_blank" style="display:block; width:300px; box-shadow:10px 10px 40px rgba(0,0,0,0.55); cursor:pointer; filter:drop-shadow(20px 20px 40px rgba(0,0,0,0.32));">
+                <a href="tram/burlesque-final.webp" target="_blank" class="poster-zoom" style="display:block; width:300px; box-shadow:10px 10px 40px rgba(0,0,0,0.55); cursor:pointer; filter:drop-shadow(20px 20px 40px rgba(0,0,0,0.32));">
                     <img src="tram/burlesque-final.webp" alt="Frostbite Burlesque Instagram Post" style="width:100%; height:auto; display:block;">
                 </a>
-                <p style="font-family:'Georgia Custom',Georgia,serif; font-size:14px; color:#a0617a; margin-top:12px;">Instagram Post</p>
+                <p style="font-family:'Georgia Custom',Georgia,serif; font-size:14px; color:#7a4848; margin-top:12px;">Instagram Post</p>
             </div>
             <div style="text-align:center;">
-                <a href="tram/burlesque-draft.webp" target="_blank" style="display:block; width:300px; box-shadow:10px 10px 40px rgba(0,0,0,0.55); cursor:pointer; filter:drop-shadow(20px 20px 40px rgba(0,0,0,0.32));">
+                <a href="tram/burlesque-draft.webp" target="_blank" class="poster-zoom" style="display:block; width:300px; box-shadow:10px 10px 40px rgba(0,0,0,0.55); cursor:pointer; filter:drop-shadow(20px 20px 40px rgba(0,0,0,0.32));">
                     <img src="tram/burlesque-draft.webp" alt="Frostbite Burlesque Final Poster" style="width:100%; height:auto; display:block;">
                 </a>
-                <p style="font-family:'Georgia Custom',Georgia,serif; font-size:14px; color:#a0617a; margin-top:12px;">Final Poster</p>
+                <p style="font-family:'Georgia Custom',Georgia,serif; font-size:14px; color:#7a4848; margin-top:12px;">Final Poster</p>
             </div>
         </div>
 
         <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin-top:30px; margin-bottom:20px;">
-            <a href="https://www.instagram.com/p/DZB8jZkTs5E/?hl=en" target="_blank" rel="noopener" class="caption-award"><img src="shared/instagram_symbol.webp" alt="">Instagram Post</a>
-            <a href="https://www.instagram.com/p/DZHZD84k1Na/?hl=en&img_index=1" target="_blank" rel="noopener" class="caption-award"><img src="shared/instagram_symbol.webp" alt="">Instagram Post</a>
-            <a href="https://www.facebook.com/photo/?fbid=122121672237266453&set=a.122096546781266453" target="_blank" rel="noopener" class="caption-award"><img src="shared/facebook_symbol.webp" alt="">Facebook Post</a>
+            <a href="https://www.instagram.com/p/DZB8jZkTs5E/?hl=en" target="_blank" rel="noopener" class="caption-award"><img src="shared/instagram_symbol.webp?v=4" alt="">Instagram Post</a>
+            <a href="https://www.instagram.com/p/DZHZD84k1Na/?hl=en&img_index=1" target="_blank" rel="noopener" class="caption-award"><img src="shared/instagram_symbol.webp?v=4" alt="">Instagram Post</a>
+            <a href="https://www.facebook.com/photo/?fbid=122121672237266453&set=a.122096546781266453" target="_blank" rel="noopener" class="caption-award"><img src="shared/facebook_symbol.webp?v=4" alt="">Facebook Post</a>
         </div>
 
         <div class="back-button-container">
@@ -1413,7 +1532,7 @@
 
         menuToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active');
-            menuToggle.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+            menuToggle.textContent = navLinks.classList.contains('active') ? '' : '';
         var nb=document.getElementById('navbar'); if(nb) nb.classList.toggle('menu-open', navLinks.classList.contains('active'));
         });
 
@@ -1422,7 +1541,7 @@
             const nav = document.getElementById('navbar');
             if (!nav.contains(e.target) && navLinks.classList.contains('active')) {
                 navLinks.classList.remove('active');
-                menuToggle.textContent = '☰';
+                menuToggle.textContent = '';
             }
         });
 
@@ -1430,7 +1549,7 @@
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
-                menuToggle.textContent = '☰';
+                menuToggle.textContent = '';
             });
         });
 

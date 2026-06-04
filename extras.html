@@ -14,6 +14,7 @@
     @font-face { font-family: "Georgia Custom"; src: url("fonts/georgia.ttf") format("truetype"); font-weight: normal; font-style: normal; }
     @font-face { font-family: "Georgia Custom"; src: url("fonts/georgiab.ttf") format("truetype"); font-weight: bold; font-style: normal; }
     @font-face { font-family: "Griffiths"; src: url("fonts/Griffiths.otf") format("opentype"); font-weight: normal; font-style: normal; }
+    @font-face { font-family: "Aldyn Heart"; src: url("fonts/Aldyn Heart.woff2") format("woff2"), url("fonts/Aldyn Heart.ttf") format("truetype"); font-weight: normal; font-style: normal; }
 
     * { margin:0; padding:0; box-sizing:border-box; }
 
@@ -23,48 +24,48 @@
     body{
       font-size: 1.1em;
       font-family:'Cavalhatriz', serif;
-      background: linear-gradient(135deg, #f5c1cf 0%, #fceadb 20%, #e8d5ca 40%, #b4d4c3 60%, #f5e6e8 80%, #d4a5a5 100%);
-      color:#5a5a5a; font-weight:400;
+      background: linear-gradient(135deg, #bf9090 0%, #e6d0b8 20%, #d8c0a8 40%, #a4bca0 60%, #dcccc0 80%, #b08080 100%);
+      color:#7a4848; font-weight:400;
       -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
     }
 
     /* Decorative Stars */
     .doodle{ display:none; position:fixed; pointer-events:none; z-index:1; }
     .star{
-      width:25px; height:25px; background:#a8c5b5; opacity:.4;
+      width:25px; height:25px; background:#a0b898; opacity:.4;
       clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
       animation:gentleFloat 6s infinite ease-in-out;
     }
     .star1{top:15%;left:8%;animation-delay:0s;animation-duration:7s}
-    .star2{top:25%;right:12%;width:20px;height:20px;background:#a8c5b5;animation-delay:2s;animation-duration:8s}
+    .star2{top:25%;right:12%;width:20px;height:20px;background:#a0b898;animation-delay:2s;animation-duration:8s}
     .star3{bottom:20%;left:15%;animation-delay:4s;animation-duration:6s}
     .star4{top:60%;right:8%;width:30px;height:30px;animation-delay:3s;animation-duration:9s}
-    .star5{top:45%;left:5%;width:18px;height:18px;background:#f5c1cf;animation-delay:1s}
+    .star5{top:45%;left:5%;width:18px;height:18px;background:#bf9090;animation-delay:1s}
     .star6{bottom:35%;right:20%;animation-delay:5s;animation-duration:7s}
-    .star7{top:10%;right:25%;width:35px;height:35px;background:#8b475d;opacity:.3;animation-delay:2.5s}
-    .star8{bottom:40%;left:30%;width:22px;height:22px;background:#a8c5b5;animation-delay:4.5s;animation-duration:8s}
-    .star9{top:70%;left:25%;width:28px;height:28px;background:#f5c1cf;animation-delay:1.5s}
-    .star10{top:35%;right:35%;width:16px;height:16px;background:#a8c5b5;animation-delay:3.5s;animation-duration:9s}
-    .star11{bottom:10%;right:15%;width:20px;height:20px;background:#f5c1cf;animation-delay:2s;animation-duration:6s}
-    .star12{top:80%;left:10%;width:26px;height:26px;background:#fceadb;animation-delay:4s;animation-duration:8s}
-    .star13{top:20%;left:40%;width:19px;height:19px;background:#a8c5b5;animation-delay:3s;animation-duration:7s}
-    .star14{bottom:50%;left:8%;width:32px;height:32px;background:#a8c5b5;animation-delay:.8s;animation-duration:8.2s}
-    .star15{top:40%;right:5%;width:23px;height:23px;background:#f5c1cf;animation-delay:2.2s;animation-duration:7.8s}
-    .star16{top:12%;left:25%;width:21px;height:21px;background:#a8c5b5;animation-delay:1.8s;animation-duration:7.2s}
-    .star17{bottom:25%;right:30%;width:27px;height:27px;background:#f5c1cf;animation-delay:.3s;animation-duration:8.8s}
-    .star18{top:55%;right:18%;width:17px;height:17px;background:#fceadb;animation-delay:2.8s;animation-duration:6.8s}
-    .star19{bottom:15%;left:35%;width:29px;height:29px;background:#a8c5b5;animation-delay:3.2s;animation-duration:7.4s}
-    .star20{top:30%;left:12%;width:24px;height:24px;background:#a8c5b5;animation-delay:1.2s;animation-duration:8.6s}
-    .star21{bottom:40%;right:10%;width:20px;height:20px;background:#f5c1cf;animation-delay:4.2s;animation-duration:6.2s}
-    .star22{top:65%;left:22%;width:33px;height:33px;background:#a8c5b5;animation-delay:.7s;animation-duration:9.2s}
-    .star23{top:8%;right:22%;width:18px;height:18px;background:#fceadb;animation-delay:2.4s;animation-duration:7.6s}
-    .star24{bottom:30%;left:18%;width:25px;height:25px;background:#a8c5b5;animation-delay:3.8s;animation-duration:6.4s}
-    .star25{top:75%;right:25%;width:22px;height:22px;background:#f5c1cf;animation-delay:1.4s;animation-duration:8.4s}
-    .star26{top:42%;left:32%;width:19px;height:19px;background:#a8c5b5;animation-delay:2.6s;animation-duration:7.2s}
-    .star27{bottom:18%;right:8%;width:26px;height:26px;background:#fceadb;animation-delay:.9s;animation-duration:8.9s}
-    .star28{top:52%;right:28%;width:21px;height:21px;background:#a8c5b5;animation-delay:3.6s;animation-duration:6.6s}
-    .star29{bottom:45%;left:28%;width:30px;height:30px;background:#f5c1cf;animation-delay:1.6s;animation-duration:8.2s}
-    .star30{top:18%;right:16%;width:23px;height:23px;background:#a8c5b5;animation-delay:2.1s;animation-duration:7.9s}
+    .star7{top:10%;right:25%;width:35px;height:35px;background:#6e3c3c;opacity:.3;animation-delay:2.5s}
+    .star8{bottom:40%;left:30%;width:22px;height:22px;background:#a0b898;animation-delay:4.5s;animation-duration:8s}
+    .star9{top:70%;left:25%;width:28px;height:28px;background:#bf9090;animation-delay:1.5s}
+    .star10{top:35%;right:35%;width:16px;height:16px;background:#a0b898;animation-delay:3.5s;animation-duration:9s}
+    .star11{bottom:10%;right:15%;width:20px;height:20px;background:#bf9090;animation-delay:2s;animation-duration:6s}
+    .star12{top:80%;left:10%;width:26px;height:26px;background:#e6d0b8;animation-delay:4s;animation-duration:8s}
+    .star13{top:20%;left:40%;width:19px;height:19px;background:#a0b898;animation-delay:3s;animation-duration:7s}
+    .star14{bottom:50%;left:8%;width:32px;height:32px;background:#a0b898;animation-delay:.8s;animation-duration:8.2s}
+    .star15{top:40%;right:5%;width:23px;height:23px;background:#bf9090;animation-delay:2.2s;animation-duration:7.8s}
+    .star16{top:12%;left:25%;width:21px;height:21px;background:#a0b898;animation-delay:1.8s;animation-duration:7.2s}
+    .star17{bottom:25%;right:30%;width:27px;height:27px;background:#bf9090;animation-delay:.3s;animation-duration:8.8s}
+    .star18{top:55%;right:18%;width:17px;height:17px;background:#e6d0b8;animation-delay:2.8s;animation-duration:6.8s}
+    .star19{bottom:15%;left:35%;width:29px;height:29px;background:#a0b898;animation-delay:3.2s;animation-duration:7.4s}
+    .star20{top:30%;left:12%;width:24px;height:24px;background:#a0b898;animation-delay:1.2s;animation-duration:8.6s}
+    .star21{bottom:40%;right:10%;width:20px;height:20px;background:#bf9090;animation-delay:4.2s;animation-duration:6.2s}
+    .star22{top:65%;left:22%;width:33px;height:33px;background:#a0b898;animation-delay:.7s;animation-duration:9.2s}
+    .star23{top:8%;right:22%;width:18px;height:18px;background:#e6d0b8;animation-delay:2.4s;animation-duration:7.6s}
+    .star24{bottom:30%;left:18%;width:25px;height:25px;background:#a0b898;animation-delay:3.8s;animation-duration:6.4s}
+    .star25{top:75%;right:25%;width:22px;height:22px;background:#bf9090;animation-delay:1.4s;animation-duration:8.4s}
+    .star26{top:42%;left:32%;width:19px;height:19px;background:#a0b898;animation-delay:2.6s;animation-duration:7.2s}
+    .star27{bottom:18%;right:8%;width:26px;height:26px;background:#e6d0b8;animation-delay:.9s;animation-duration:8.9s}
+    .star28{top:52%;right:28%;width:21px;height:21px;background:#a0b898;animation-delay:3.6s;animation-duration:6.6s}
+    .star29{bottom:45%;left:28%;width:30px;height:30px;background:#bf9090;animation-delay:1.6s;animation-duration:8.2s}
+    .star30{top:18%;right:16%;width:23px;height:23px;background:#a0b898;animation-delay:2.1s;animation-duration:7.9s}
 
     @keyframes gentleFloat{
       0%,100%{transform:translate(0,0) scale(1.45);opacity:.3}
@@ -78,11 +79,11 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    .announcement-banner{position:fixed;top:0;left:0;width:100%;height:38px;background:linear-gradient(90deg, #f5c1cf 0%, #fceadb 25%, #b4d4c3 55%, #f5c1cf 100%);background-size:300% 100%;animation:bannerShift 8s linear infinite;z-index:1002;overflow:hidden;display:flex;align-items:center}
+    .announcement-banner{position:fixed;top:0;left:0;width:100%;height:38px;background:linear-gradient(90deg, #bf9090 0%, #e6d0b8 25%, #a4bca0 55%, #bf9090 100%);background-size:300% 100%;animation:bannerShift 8s linear infinite;z-index:1002;overflow:hidden;display:flex;align-items:center}
     .banner-link{display:block;width:100%;overflow:hidden;text-decoration:none;cursor:pointer}
     .banner-link:hover .banner-inner{animation-play-state:paused}
     .banner-inner{display:flex;white-space:nowrap;animation:marqueeScroll 28s linear infinite;will-change:transform}
-    .banner-inner span{font-family:'Archivo Black',sans-serif;font-size:12px;color:#8b475d;text-transform:uppercase;letter-spacing:2px;flex-shrink:0;padding-right:10px}
+    .banner-inner span{font-family:'Archivo Black',sans-serif;font-size:12px;color:#6e3c3c;text-transform:uppercase;letter-spacing:2px;flex-shrink:0;padding-right:10px}
     @keyframes bannerShift{0%{background-position:0% 0%}100%{background-position:100% 0%}}
     @keyframes marqueeScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
@@ -96,32 +97,32 @@
     }
     nav.scrolled{ padding:20px 60px; box-shadow:2px 2px 20px rgba(212,165,165,.1); }
 
-    .logo{ font-family:'Archivo Black',sans-serif; font-size:24px; color:#8b475d; letter-spacing:2px; font-weight:400; text-transform:uppercase; }
-    .logo a{ color:#8b475d; text-decoration:none; display:flex; align-items:center; gap:10px; }
+    .logo{ font-family:'Archivo Black',sans-serif; font-size:24px; color:#6e3c3c; letter-spacing:2px; font-weight:400; text-transform:uppercase; }
+    .logo a{ color:#6e3c3c; text-decoration:none; display:flex; align-items:center; gap:10px; }
     .logo-img{ height:48px; width:auto; flex-shrink:0; }
-    .cv-button{ padding:10px 25px; background:#8b475d; color:white !important; text-decoration:none; border-radius:25px; font-family: 'Georgia Custom', Georgia, serif; font-size: 16px; transition:all 0.3s ease; margin-left:20px; box-shadow:3px 3px 10px rgba(139,71,93,.3); display:inline-block;
+    .cv-button{ padding:10px 25px; background:#6e3c3c; color:white !important; text-decoration:none; border-radius:25px; font-family: 'Georgia Custom', Georgia, serif; font-size: 16px; transition:all 0.3s ease; margin-left:20px; box-shadow:3px 3px 10px rgba(139,71,93,.3); display:inline-block;
         }
-    .cv-button:hover{ background:#a0617a; transform: scale(1.04); box-shadow:6px 6px 20px rgba(139,71,93,.5); }
+    .cv-button:hover{ background:#7a4848; transform: scale(1.04); box-shadow:6px 6px 20px rgba(139,71,93,.5); }
     .cv-button::after{ display:none !important; }
 
     .menu-toggle{
-      display:none; background:none; border:none; font-size:32px; color:#8b475d;
+      display:none; background:none; border:none; font-size:32px; color:#6e3c3c;
       cursor:pointer; padding:10px; z-index:1001; min-width:44px; min-height:44px;
     }
 
     .nav-links{ display:flex; gap:35px; list-style:none; align-items:center; }
     .nav-links a{
-      color:#8b475d; text-decoration:none; font-size:17px; letter-spacing:.5px; position:relative;
+      color:#6e3c3c; text-decoration:none; font-size:17px; letter-spacing:.5px; position:relative;
       transition:all .3s ease; font-weight:500; font-family:'Georgia Custom',Georgia,serif;
     }
     .nav-links a::after{
       content:''; position:absolute; bottom:-5px; left:50%; transform:translateX(-50%);
-      width:0; height:2px; background:#8b475d; transition:width .3s ease;
+      width:0; height:2px; background:#6e3c3c; transition:width .3s ease;
     }
     .nav-links a:hover::after{ width:100%; }
 
     .music-nav-link{
-      background:linear-gradient(135deg,#f5c1cf,#a8c5b5);
+      background:linear-gradient(135deg,#bf9090,#a0b898);
       padding:10px 20px !important; border-radius:20px; font-weight:600 !important; transition:all .3s ease;
     }
     .music-nav-link::after{ display:none !important; }
@@ -134,11 +135,11 @@
     }
     .hero-content h1{
       font-family:'MADE Sunflower',sans-serif; font-weight:400;
-      font-size:58px; color:#8b475d; margin-bottom:16px; line-height:1.2;
+      font-size:58px; color:#6e3c3c; margin-bottom:16px; line-height:1.2;
       animation: fadeInUp 1s ease;
     }
     .hero-content p{
-      font-size:17px; color:#a0617a; line-height:1.7; max-width:700px;
+      font-size:17px; color:#7a4848; line-height:1.7; max-width:700px;
       margin:0 auto; font-family:'Georgia Custom',Georgia,serif; font-style:normal; font-weight:400;
       letter-spacing:0; animation: fadeInUp 1s ease 0.3s backwards;
     }
@@ -148,16 +149,16 @@
 
     h2{
       font-family:'Archivo Black',sans-serif; font-size:38px; text-align:center;
-      color:#8b475d; margin-bottom:40px; letter-spacing:2px; position:relative;
+      color:#6e3c3c; margin-bottom:40px; letter-spacing:2px; position:relative;
       text-transform:uppercase; animation: fadeInUp 0.8s ease 0.1s backwards;
     }
     h2::after{
       content:''; position:absolute; bottom:-12px; left:50%; transform:translateX(-50%);
-      width:80px; height:2px; background:#f5c1cf;
+      width:80px; height:2px; background:#bf9090;
     }
     h3{
       font-family:'MADE Sunflower',sans-serif; font-weight:400; font-size:26px;
-      color:#8b475d; margin-bottom:32px; text-align:center;
+      color:#6e3c3c; margin-bottom:32px; text-align:center;
       animation: fadeInUp 0.8s ease 0.15s backwards;
     }
 
@@ -192,8 +193,8 @@
     .work-item:hover .work-image img{ transform:scale(1.05); }
 
     .work-caption{ padding:20px; text-align:center; }
-    .work-caption h4{ font-family:'MADE Sunflower',sans-serif; font-size:18px; color:#8b475d; margin-bottom:8px; font-weight:400;}
-    .work-caption p{ font-family:'Georgia Custom',Georgia,serif; font-size:13px; color:#a0617a; font-style:normal; line-height:1.6; letter-spacing:0; }
+    .work-caption h4{ font-family:'MADE Sunflower',sans-serif; font-size:18px; color:#6e3c3c; margin-bottom:8px; font-weight:400;}
+    .work-caption p{ font-family:'Georgia Custom',Georgia,serif; font-size:13px; color:#7a4848; font-style:normal; line-height:1.6; letter-spacing:0; }
 
     /* Magazine layout */
     .magazine-grid{ display:grid; grid-template-columns:1fr 1fr; grid-template-rows:auto auto; gap:28px; max-width:900px; margin:0 auto 56px; }
@@ -208,7 +209,7 @@
 
     /* NEW badge */
     .new-badge {
-      position: absolute; top: 10px; left: 10px; background: #8b475d; color: white;
+      position: absolute; top: 10px; left: 10px; background: #6e3c3c; color: white;
       font-family: 'Archivo Black', sans-serif; font-size: 10px; letter-spacing: 2px;
       text-transform: uppercase; padding: 5px 13px; border-radius: 999px; z-index: 10;
       box-shadow: 2px 2px 8px rgba(139,71,93,.4); pointer-events: none;
@@ -246,9 +247,9 @@
       max-width: none !important; max-height: none !important;
     }
 
-    footer{ text-align:center; padding:50px 40px; background:rgba(255,255,255,.5); color:#8b475d; font-size:14px; letter-spacing:0; font-family:'Georgia Custom',Georgia,serif; }
-    .back-button{ display:inline-block; padding:15px 35px; background:#8b475d; color:#fff; text-decoration:none; font-size:16px; letter-spacing:1px; transition:all .4s ease; font-family:'Archivo Black',sans-serif; text-transform:uppercase; border-radius:5px; box-shadow:3px 3px 10px rgba(139,71,93,.3); margin-top:40px; }
-    .back-button:hover{ transform:translateY(-3px); box-shadow:8px 8px 25px rgba(139,71,93,.4); background:#a0617a; }
+    footer{ text-align:center; padding:50px 40px; background:rgba(255,255,255,.5); color:#6e3c3c; font-size:14px; letter-spacing:0; font-family:'Georgia Custom',Georgia,serif; }
+    .back-button{ display:inline-block; padding:15px 35px; background:#6e3c3c; color:#fff; text-decoration:none; font-size:16px; letter-spacing:1px; transition:all .4s ease; font-family:'Archivo Black',sans-serif; text-transform:uppercase; border-radius:5px; box-shadow:3px 3px 10px rgba(139,71,93,.3); margin-top:40px; }
+    .back-button:hover{ transform:translateY(-3px); box-shadow:8px 8px 25px rgba(139,71,93,.4); }
     .back-button-container{ text-align:center; margin-top:60px; }
 
     /* Mobile */
@@ -371,14 +372,14 @@
     .stack-caption h4 {
       font-family: 'MADE Sunflower', sans-serif;
       font-size: 20px;
-      color: #8b475d;
+      color: #6e3c3c;
       margin-bottom: 6px;
       font-weight: 400;
     }
     .stack-caption p {
       font-family: 'Georgia Custom', Georgia, serif;
       font-size: 14px;
-      color: #a0617a;
+      color: #7a4848;
       font-style: normal;
       letter-spacing: 0;
     }
@@ -392,7 +393,7 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      color: #8b475d;
+      color: #6e3c3c;
       opacity: 0.75;
       transition: opacity 0.2s, transform 0.15s;
       padding: 0;
@@ -405,7 +406,7 @@
     .stack-counter {
       font-family: 'Georgia Custom', Georgia, serif;
       font-size: 13px;
-      color: #a0617a;
+      color: #7a4848;
       text-align: center;
       margin-bottom: 10px;
       letter-spacing: 1px;
@@ -475,7 +476,7 @@
 
         /* Section divider shimmer on h2 underline */
         h2.will-animate.visible::after {
-            background: linear-gradient(90deg, #f5c1cf, #a8c5b5, #f5c1cf) !important;
+            background: linear-gradient(90deg, #bf9090, #a0b898, #bf9090) !important;
             background-size: 200% 100% !important;
             animation: underlineShimmer 6s ease-in-out infinite !important;
         }
@@ -542,45 +543,45 @@
         }
     /* Theme toggle */
     .theme-toggle-wrap { display:flex; align-items:center; gap:8px; flex-shrink:0; cursor:pointer; margin-left:auto; margin-right:35px; }
-    .theme-toggle-label { font-family:'Archivo Black',sans-serif; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:#8b475d; opacity:0.7; user-select:none; }
-    html:not(.light-mode) .theme-toggle-label { color:#e8a0b8 !important; }
-    .theme-toggle-track { width:36px; height:20px; background:#c4a0ae; border-radius:10px; position:relative; transition:background 0.3s; }
-    html:not(.light-mode) .theme-toggle-track { background:#3a2a32 !important; }
-    .theme-toggle-thumb { width:16px; height:16px; background:#8b475d; border-radius:50%; position:absolute; top:2px; left:18px; transition:left 0.3s, background 0.3s; }
-    html:not(.light-mode) .theme-toggle-thumb { left:2px !important; background:#e8a0b8 !important; }
+    .theme-toggle-label { font-family:'Archivo Black',sans-serif; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:#6e3c3c; opacity:0.7; user-select:none; }
+    html:not(.light-mode) .theme-toggle-label { color:#aa7878 !important; }
+    .theme-toggle-track { width:46px; height:26px; background:#a88888; border-radius:13px; position:relative; transition:background 0.3s; }
+    html:not(.light-mode) .theme-toggle-track { background:#281a18 !important; }
+    .theme-toggle-thumb { width:20px; height:20px; background:#6e3c3c; border-radius:50%; position:absolute; top:3px; left:23px; box-shadow:0 1px 4px rgba(0,0,0,0.4); transition:left 0.3s, background 0.3s; }
+    html:not(.light-mode) .theme-toggle-thumb { left:1px !important; background:#aa7878 !important; }
 
     /* ═══ DARK MODE (default) ═══ */
-    html:not(.light-mode) body { background: #000000 !important; color: #d4c5c8 !important; }
+    html:not(.light-mode) body { background: #000000 !important; color: #aa7878 !important; }
     html:not(.light-mode) .star { background: #2a1a22 !important; opacity: 0.5 !important; }
     html:not(.light-mode) .announcement-banner { background: linear-gradient(90deg, #4a2537 0%, #40202e 25%, #361a27 55%, #4a2537 100%) !important; background-size: 300% 100% !important; }
-    html:not(.light-mode) .banner-inner span { color: #e8a0b8 !important; }
+    html:not(.light-mode) .banner-inner span { color: #aa7878 !important; }
     html:not(.light-mode) nav { background: rgba(30,16,24,0.97) !important; }
     html:not(.light-mode) nav.scrolled { box-shadow: 2px 2px 20px rgba(139,71,93,0.15) !important; }
-    html:not(.light-mode) .logo, html:not(.light-mode) .logo a { color: #e8a0b8 !important; }
-    html:not(.light-mode) .menu-toggle { color: #e8a0b8 !important; }
-    html:not(.light-mode) .nav-links a { color: #e8a0b8 !important; }
-    html:not(.light-mode) .music-nav-link { background: linear-gradient(135deg, #5c2a3a, #3d1a2a) !important; }
-    html:not(.light-mode) h1 { color: #e8a0b8 !important; }
-    html:not(.light-mode) h2 { color: #e8a0b8 !important; }
-    html:not(.light-mode) h3 { color: #e8a0b8 !important; }
-    html:not(.light-mode) h4 { color: #e8a0b8 !important; }
-    html:not(.light-mode) h2::after { background: linear-gradient(90deg, #f5c1cf, #e8a0b8, #f5c1cf) !important; }
-    html:not(.light-mode) h2.will-animate.visible::after { background: linear-gradient(90deg, #f5c1cf, #e8a0b8, #f5c1cf) !important; }
-    html:not(.light-mode) section p { color: #d4c5c8 !important; }
-    html:not(.light-mode) .hero p, html:not(.light-mode) .hero-content p { color: #d4899e !important; }
-    html:not(.light-mode) .stack-caption h4 { color: #e8a0b8 !important; }
-    html:not(.light-mode) .stack-caption p { color: #d4899e !important; }
-    html:not(.light-mode) .stack-counter { color: #d4899e !important; }
-    html:not(.light-mode) .stack-nav { background: rgba(255,255,255,0.15) !important; color: #e8a0b8 !important; }
-    html:not(.light-mode) .back-button { color: #e8a0b8 !important; background: #2a1520 !important; border-color: rgba(232,160,184,0.3) !important; }
-    html:not(.light-mode) .back-button:hover { background: #3a1d2c !important; }
+    html:not(.light-mode) .logo, html:not(.light-mode) .logo a { color: #aa7878 !important; }
+    html:not(.light-mode) .menu-toggle { color: #aa7878 !important; }
+    html:not(.light-mode) .nav-links a { color: #aa7878 !important; }
+    html:not(.light-mode) .music-nav-link { background: linear-gradient(135deg, #422020, #281816) !important; }
+    html:not(.light-mode) h1 { color: #aa7878 !important; }
+    html:not(.light-mode) h2 { color: #aa7878 !important; }
+    html:not(.light-mode) h3 { color: #aa7878 !important; }
+    html:not(.light-mode) h4 { color: #aa7878 !important; }
+    html:not(.light-mode) h2::after { background: linear-gradient(90deg, #bf9090, #aa7878, #bf9090) !important; }
+    html:not(.light-mode) h2.will-animate.visible::after { background: linear-gradient(90deg, #bf9090, #aa7878, #bf9090) !important; }
+    html:not(.light-mode) section p { color: #aa7878 !important; }
+    html:not(.light-mode) .hero p, html:not(.light-mode) .hero-content p { color: #aa7878 !important; }
+    html:not(.light-mode) .stack-caption h4 { color: #aa7878 !important; }
+    html:not(.light-mode) .stack-caption p { color: #aa7878 !important; }
+    html:not(.light-mode) .stack-counter { color: #aa7878 !important; }
+    html:not(.light-mode) .stack-nav { background: rgba(255,255,255,0.15) !important; color: #aa7878 !important; }
+    html:not(.light-mode) .back-button { color: #aa7878 !important; background: transparent !important; }
+    html:not(.light-mode) .back-button:hover { }
     html:not(.light-mode) footer { background: rgba(0,0,0,0.5) !important; }
-    html:not(.light-mode) footer p { color: #e8a0b8 !important; }
-    html:not(.light-mode) span[style*="color:#8b475d"] { color: #e8a0b8 !important; }
-    html:not(.light-mode) p[style*="color:#8b475d"] { color: #e8a0b8 !important; }
-    html:not(.light-mode) p[style*="color:#a0617a"] { color: #d4899e !important; }
+    html:not(.light-mode) footer p { color: #aa7878 !important; }
+    html:not(.light-mode) span[style*="color:#6e3c3c"] { color: #aa7878 !important; }
+    html:not(.light-mode) p[style*="color:#6e3c3c"] { color: #aa7878 !important; }
+    html:not(.light-mode) p[style*="color:#7a4848"] { color: #aa7878 !important; }
     html:not(.light-mode) div[style*="background:rgba(139,71,93,0.1)"] { background: rgba(232,160,184,0.15) !important; }
-    html:not(.light-mode) div[style*="border-left:3px solid #8b475d"] { border-left-color: #e8a0b8 !important; }
+    html:not(.light-mode) div[style*="border-left:3px solid #6e3c3c"] { border-left-color: #aa7878 !important; }
     html:not(.light-mode) input:focus, html:not(.light-mode) textarea:focus { box-shadow: 0 0 0 3px rgba(232,160,184,0.4), 0 0 20px rgba(232,160,184,0.15) !important; }
     @media (max-width: 820px) {
         html:not(.light-mode) .nav-links { background: rgba(0,0,0,1) !important; }
@@ -590,9 +591,9 @@
     @media (max-width: 820px) {
         .theme-toggle-wrap { gap:0 !important; flex-direction:column !important; align-items:center !important; position:absolute !important; right:68px !important; top:50% !important; transform:translateY(-50%) !important; margin:0 !important; }
         .theme-toggle-label { font-size:7px !important; letter-spacing:1px !important; position:absolute !important; top:100% !important; left:50% !important; transform:translateX(-50%) !important; margin-top:2px !important; white-space:nowrap !important; }
-        .theme-toggle-track { width:30px !important; height:16px !important; }
-        .theme-toggle-thumb { width:12px !important; height:12px !important; }
-        html.light-mode .theme-toggle-thumb { left:16px !important; }
+        .theme-toggle-track { width:36px !important; height:20px !important; }
+        .theme-toggle-thumb { width:16px !important; height:16px !important; }
+        html.light-mode .theme-toggle-thumb { left:19px !important; }
     }
     /* ── View toggle (stack ↔ gallery) ── */
     .view-toggle-wrap {
@@ -605,15 +606,15 @@
     .view-btn {
       display: flex; align-items: center; gap: 6px;
       padding: 7px 18px; border: none; border-radius: 25px;
-      background: transparent; color: #8b475d;
+      background: transparent; color: #6e3c3c;
       font-family: 'Archivo Black', sans-serif;
       font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
       cursor: pointer; transition: all 0.25s ease; opacity: 0.45;
     }
-    .view-btn.active { background: #8b475d; color: white; opacity: 1; box-shadow: 2px 2px 8px rgba(139,71,93,0.28); }
+    .view-btn.active { background: #6e3c3c; color: white; opacity: 1; box-shadow: 2px 2px 8px rgba(139,71,93,0.28); }
     html:not(.light-mode) .view-toggle-wrap { background: rgba(232,160,184,0.07); border-color: rgba(232,160,184,0.18); }
-    html:not(.light-mode) .view-btn { color: #e8a0b8; }
-    html:not(.light-mode) .view-btn.active { background: #4a1f30; color: #e8a0b8; box-shadow: 2px 2px 8px rgba(0,0,0,0.45); }
+    html:not(.light-mode) .view-btn { color: #aa7878; }
+    html:not(.light-mode) .view-btn.active { background: #4a1f30; color: #aa7878; box-shadow: 2px 2px 8px rgba(0,0,0,0.45); }
 
     /* During view swap: suppress only transitions (NOT animations) so layout change is instant
        without restarting keyframe animations like the h2 underline shimmer */
@@ -678,12 +679,12 @@
     }
     .gallery-card-name {
       font-family: 'MADE Sunflower', sans-serif;
-      font-size: 13px; color: #8b475d;
+      font-size: 13px; color: #6e3c3c;
       text-align: center; line-height: 1.3; margin-bottom: 4px;
     }
     .gallery-card-desc {
       font-family: 'Georgia Custom', Georgia, serif;
-      font-size: 11px; color: #a0617a;
+      font-size: 11px; color: #7a4848;
       text-align: center; line-height: 1.4;
     }
     body.gallery-mode .gallery-card-title { display: block; }
@@ -693,20 +694,20 @@
       display: block;
       font-family: 'Cavalhatriz', serif;
       font-size: 16px;
-      color: #8b475d;
+      color: #6e3c3c;
       font-style: italic;
       text-align: center;
       letter-spacing: 1px;
       padding: 6px 0 8px;
     }
-    html:not(.light-mode) body.gallery-mode .gallery-card-year-top { color: #e8a0b8; }
+    html:not(.light-mode) body.gallery-mode .gallery-card-year-top { color: #aa7878; }
     html:not(.light-mode) body.gallery-mode .stack-card {
       background: rgba(18,8,14,0.65) !important;
       box-shadow: 4px 4px 16px rgba(0,0,0,0.4) !important;
     }
     html:not(.light-mode) body.gallery-mode .stack-card:hover { box-shadow: 12px 12px 28px rgba(0,0,0,0.55) !important; }
-    html:not(.light-mode) .gallery-card-name { color: #e8a0b8; }
-    html:not(.light-mode) .gallery-card-desc { color: #d4899e; }
+    html:not(.light-mode) .gallery-card-name { color: #aa7878; }
+    html:not(.light-mode) .gallery-card-desc { color: #aa7878; }
     @media (max-width: 968px) {
       body.gallery-mode .card-stack { gap: 10px !important; }
       body.gallery-mode .stack-card { flex: 0 0 150px !important; width: 150px !important; }
@@ -752,7 +753,121 @@
         .music-nav-link { padding: 7px 13px !important; }
     }
 
-        </style>
+        
+    /* ── Nav links font: Helvetica Bold uppercase (serif elements only) ── */
+    nav .nav-links a,
+    nav .cv-button,
+    nav .music-nav-link {
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+        font-weight: 700 !important;
+        letter-spacing: -0.13em !important;
+        font-size: 0.87em !important;
+        text-transform: uppercase !important;
+    }
+
+    /* Remove h2 underlines sitewide */
+    h2::after, h2.will-animate::after, h2.will-animate.visible::after { display: none !important; }
+
+    /* ── Card titles: Helvetica Bold uppercase -90 (h2 keeps original font) ── */
+    h3, .work-caption h4, .stack-caption h4, .design-caption h3, .portfolio-content h3 {
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+        font-weight: 700 !important;
+        letter-spacing: -0.09em !important;
+        text-transform: uppercase !important;
+    }
+
+    /* CV button: 'Design' in Aldyn Heart script */
+    .cv-button .cv-design {
+        font-family: 'Aldyn Heart', serif !important;
+        text-transform: none !important;
+        letter-spacing: 0 !important;
+        font-size: 1.45em;
+        font-weight: 400 !important;
+    }
+
+    /* CV button: capital Archivo Black */
+    nav .cv-button, nav a.cv-button {
+        font-family: 'Archivo Black', sans-serif !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0 !important;
+        font-size: 0.78em !important;
+    }
+
+    /* Back button → caption-award pill style */
+    .back-button {
+        display: inline-flex !important; align-items: center !important;
+        background: transparent !important; border: 2px solid #6e3c3c !important;
+        border-radius: 50px !important; box-shadow: 4px 4px 0 #6e3c3c !important;
+        color: #aa7878 !important; padding: 10px 26px !important;
+        font-family: 'Archivo Black', sans-serif !important;
+        text-transform: uppercase !important; letter-spacing: 0 !important;
+        font-size: 12px !important; font-weight: 400 !important;
+        transition: transform 0.4s ease, box-shadow 0.4s ease !important;
+        margin-top: 40px;
+    }
+    .back-button:hover { transform: translate(2px,2px) !important; box-shadow: 2px 2px 0 #6e3c3c !important; background: transparent !important; }
+    html:not(.light-mode) .back-button { border-color:#aa7878 !important; box-shadow:4px 4px 0 #aa7878 !important; color:#aa7878 !important; background:transparent !important; }
+    html:not(.light-mode) .back-button:hover { box-shadow:2px 2px 0 #aa7878 !important; }
+    /* Stack/gallery toggle → theme colours */
+    .view-toggle-wrap { background: rgba(110,60,60,0.1) !important; border: 1.5px solid rgba(110,60,60,0.3) !important; }
+    .view-btn { color: #aa7878 !important; opacity: 0.6; }
+    .view-btn.active { background: #6e3c3c !important; color: #f0ddd0 !important; opacity: 1; box-shadow: 2px 2px 8px rgba(110,60,60,0.3) !important; }
+    html:not(.light-mode) .view-toggle-wrap { background: rgba(170,120,120,0.1) !important; border-color: rgba(170,120,120,0.3) !important; }
+    html:not(.light-mode) .view-btn { color: #aa7878 !important; }
+    html:not(.light-mode) .view-btn.active { background: #4a2020 !important; color: #aa7878 !important; }
+
+    /* Button text: no white — use theme colours */
+    .cv-button { color: #aa7878 !important; }
+    .cta-button { color: #f0ddd0 !important; }
+    html:not(.light-mode) .cv-button { color: #aa7878 !important; }
+
+    /* CV button: identical to Music nav link */
+    nav .cv-button, nav a.cv-button {
+        background: linear-gradient(135deg, #bf9090, #a0b898) !important;
+        border-radius: 20px !important;
+        padding: 10px 20px !important;
+        box-shadow: none !important;
+        animation: none !important;
+        border: none !important;
+        color: #6e3c3c !important;
+        margin-left: 4px !important;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+        font-weight: 700 !important;
+        font-size: 0.87em !important;
+        letter-spacing: -0.09em !important;
+        text-transform: uppercase !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        vertical-align: middle !important;
+        line-height: 1 !important;
+    }
+    nav .cv-button::before { display: none !important; }
+    html:not(.light-mode) nav .cv-button,
+    html:not(.light-mode) nav a.cv-button {
+        background: linear-gradient(135deg, #422020, #281816) !important;
+        color: #aa7878 !important;
+        box-shadow: none !important;
+    }
+    /* Music nav link: same alignment fix */
+    nav .music-nav-link {
+        display: inline-flex !important;
+        align-items: center !important;
+        vertical-align: middle !important;
+        line-height: 1 !important;
+    }
+
+        /* Light mode: darker text on pill buttons */
+        html.light-mode .back-button,
+        html.light-mode .download-button,
+        html.light-mode .caption-award,
+        html.light-mode .cta-button,
+        html.light-mode button[type="submit"],
+        html.light-mode .music-cv-button,
+        html.light-mode .hero-cv-button,
+        html.light-mode #allow-camera-btn {
+            color: #5a2e38 !important;
+        }
+</style>
   <script>(function(){try{var t=performance.getEntriesByType('navigation'),n=t.length?t[0].type:'navigate',s=document.referrer&&(new URL(document.referrer)).origin===location.origin;if(n==='reload'||(n==='navigate'&&!s)){sessionStorage.removeItem('theme');}else if(sessionStorage.getItem('theme')==='light'){document.documentElement.classList.add('light-mode');}}catch(e){}})();</script>
 </head>
 <body>
@@ -792,18 +907,18 @@
   <div class="announcement-banner">
     <a href="extras.html" class="banner-link">
       <div class="banner-inner">
-        <span>✦ NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span>✦ NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span>✦ NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span>✦ NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span>✦ NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span>✦ NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span>✦ NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span>✦ NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span>✦ NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span>✦ NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span>✦ NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span>✦ NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span> NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span> NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span> NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span> NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span> NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span> NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span> NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span> NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span> NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span> NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span> NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span> NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
       </div>
     </a>
   </div>
@@ -814,7 +929,7 @@
             <span class="theme-toggle-label" id="themeLabel">Light</span>
             <div class="theme-toggle-track"><div class="theme-toggle-thumb"></div></div>
         </div>
-    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"></button>
     <ul class="nav-links" id="navLinks">
       <li><a href="index.html#home">Home</a></li>
       <li><a href="index.html">Work</a></li>
@@ -822,7 +937,7 @@
       <li><a href="index.html#skills">Skills</a></li>
       <li><a href="index.html#contact">Contact</a></li>
       <li><a href="music.html" class="music-nav-link">Music</a></li>
-      <li><a href="design-cv.html" class="cv-button">View Design CV</a></li>
+      <li><a href="design-cv.html" class="cv-button">Design CV</a></li>
     </ul>
   </nav>
 
@@ -831,8 +946,8 @@
     <div class="hero-content">
       <h1>Posters &amp; Print</h1>
       <p>Poster series, magazine layouts, packaging design, and other print work.</p>
-      <div style="margin-top:25px; padding:15px 25px; background:rgba(139,71,93,0.1); border-radius:12px; border-left:3px solid #8b475d; animation:fadeInUp 1s ease 0.6s backwards; display:inline-block;">
-        <p style="font-size:14px; color:#8b475d; margin:0; font-style:normal;">💡 <strong>Tip:</strong> Tap or click any image for fullscreen view</p>
+      <div style="margin-top:25px; padding:15px 25px; background:rgba(139,71,93,0.1); border-radius:12px; border-left:3px solid #6e3c3c; animation:fadeInUp 1s ease 0.6s backwards; display:inline-block;">
+        <p style="font-size:14px; color:#6e3c3c; margin:0; font-style:normal;"> <strong>Tip:</strong> Tap or click any image for fullscreen view</p>
       </div>
     </div>
   </section>
@@ -840,9 +955,9 @@
   <!-- Artist Posters -->
   <section>
     <h2>Artist Posters</h2>
-    <p style="text-align:center; font-size:17px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:12px; letter-spacing:1px; font-family: 'Cavalhatriz', serif;">2026</p>
+    <p style="text-align:center; font-size:17px; color:#6e3c3c; font-style:italic; margin-top:-20px; margin-bottom:12px; letter-spacing:1px; font-family: 'Cavalhatriz', serif;">2026</p>
     <div style="text-align:center; position:relative; z-index:10; margin: 0 auto 12px;"><div class="view-toggle-wrap"><button class="view-btn active" data-view="stack"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="15.5" width="20" height="3" rx="1.5"/><rect x="2" y="10.5" width="20" height="3" rx="1.5" opacity="0.55"/><rect x="2" y="5.5" width="20" height="3" rx="1.5" opacity="0.25"/></svg> Stack</button><button class="view-btn" data-view="gallery"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg> Gallery</button></div></div>
-    <p style="text-align:center; font-size:12px; color:#a07080; margin:0 auto 32px; max-width:600px; line-height:1.6; opacity:0.85; font-family: Georgia, serif;">These are unofficial, fan-made design pieces created as personal projects. All artist names, song titles, and associated imagery remain the property of their respective rights holders. Not affiliated with or endorsed by any featured artist — no commercial use intended.</p>
+    <p style="text-align:center; font-size:12px; color:#aa7878; margin:0 auto 32px; max-width:600px; line-height:1.6; opacity:0.85; font-family: Georgia, serif;">These are unofficial, fan-made design pieces created as personal projects. All artist names, song titles, and associated imagery remain the property of their respective rights holders. Not affiliated with or endorsed by any featured artist — no commercial use intended.</p>
     <div class="stack-scene">
       <button class="stack-nav stack-prev" aria-label="Previous"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></button>
       <div class="card-stack">
@@ -875,11 +990,12 @@
   <!-- Posters -->
   <section>
     <h2>Posters</h2>
-    <p style="text-align:center; font-size:17px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:12px; letter-spacing:1px; font-family: 'Cavalhatriz', serif;">2026</p>
+    <p style="text-align:center; font-size:17px; color:#6e3c3c; font-style:italic; margin-top:-20px; margin-bottom:12px; letter-spacing:1px; font-family: 'Cavalhatriz', serif;">2026</p>
     <div style="text-align:center; position:relative; z-index:10; margin: 0 auto 20px;"><div class="view-toggle-wrap"><button class="view-btn active" data-view="stack"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="15.5" width="20" height="3" rx="1.5"/><rect x="2" y="10.5" width="20" height="3" rx="1.5" opacity="0.55"/><rect x="2" y="5.5" width="20" height="3" rx="1.5" opacity="0.25"/></svg> Stack</button><button class="view-btn" data-view="gallery"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg> Gallery</button></div></div>
     <div class="stack-scene">
       <button class="stack-nav stack-prev" aria-label="Previous"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></button>
       <div class="card-stack">
+        <a href="extras/open.png" target="_blank" class="stack-card" data-title="Open" data-desc="Exploring overlaying images and 3D effects in Photoshop"><img src="extras/open.png" alt="Open"></a>
         <a href="extras/eye-fullscreen.webp?v=2" target="_blank" class="stack-card" data-title="Eye (Original)" data-desc="Coloured version; using different image overlay and blending techniques, micrographics and other glow and texture effects."><img src="extras/eye-fullscreen.webp?v=2" alt="Eye Poster (Original)"></a>
         <a href="extras/bw-eye-fullscreen.webp?v=2" target="_blank" class="stack-card" data-title="Eye (B&amp;W)" data-desc="Black and white version; using different image overlay and blending techniques, micrographics and other glow and texture effects."><img src="extras/bw-eye-fullscreen.webp?v=2" alt="Eye Poster (B&amp;W)"></a>
         <a href="extras/anthropocene-fullscreen.webp?v=2" target="_blank" class="stack-card" data-title="Anthropocene (Original)" data-desc="Coloured version; using different overlays and blending techniques, scanned graffiti typography elements."><img src="extras/anthropocene-fullscreen.webp?v=2" alt="Anthropocene Poster (Original)"></a>
@@ -897,7 +1013,6 @@
         <a href="extras/feelinglucky-fullscreen.webp" target="_blank" class="stack-card" data-orient="square" data-title="Feeling Lucky" data-desc="Typography experimentation. Using bitmap image graphics and layout design."><img src="extras/feelinglucky-fullscreen.webp" alt="Feeling Lucky"></a>
         <a href="extras/itiswhatitis-fullscreen.webp" target="_blank" class="stack-card" data-title="It Is What It Is" data-desc="Experimenting with chrome design and 3D materials."><img src="extras/itiswhatitis-fullscreen.webp" alt="It Is What It Is"></a>
         <a href="extras/starart-fullscreen.webp" target="_blank" class="stack-card" data-title="Star" data-desc="Experimenting with 3D materials. Using traced cybersigilism and typography elements."><img src="extras/starart-fullscreen.webp" alt="Star Poster"></a>
-        <a href="extras/open.png" target="_blank" class="stack-card" data-title="Open" data-desc="Exploring overlaying images and 3D effects in Photoshop"><img src="extras/open.png" alt="Open"></a>
         <a href="extras/stargirl-fullscreen.webp?v=2" target="_blank" class="stack-card" data-title="Star Girl" data-desc="Illustration poster design. Using 3D elements, overlay text and typography elements."><img src="extras/stargirl-fullscreen.webp" alt="Star Girl Poster"></a>
         <a href="extras/koifishart-fullscreen.webp" target="_blank" class="stack-card" data-title="Nishikigoi" data-desc="Koi fish poster design. Using 3D elements, illustration and layout design."><img src="extras/koifishart-fullscreen.webp" alt="Koi Fish poster design"></a>
       </div>
@@ -910,7 +1025,7 @@
   <!-- Orchid Posters -->
   <section>
     <h2>Orchidaceae</h2>
-    <p style="text-align:center; font-size:17px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:12px; letter-spacing:1px; font-family: 'Cavalhatriz', serif;">2026</p>
+    <p style="text-align:center; font-size:17px; color:#6e3c3c; font-style:italic; margin-top:-20px; margin-bottom:12px; letter-spacing:1px; font-family: 'Cavalhatriz', serif;">2026</p>
     <div style="text-align:center; position:relative; z-index:10; margin: 0 auto 20px;"><div class="view-toggle-wrap"><button class="view-btn active" data-view="stack"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="15.5" width="20" height="3" rx="1.5"/><rect x="2" y="10.5" width="20" height="3" rx="1.5" opacity="0.55"/><rect x="2" y="5.5" width="20" height="3" rx="1.5" opacity="0.25"/></svg> Stack</button><button class="view-btn" data-view="gallery"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg> Gallery</button></div></div>
     <div class="stack-scene">
       <button class="stack-nav stack-prev" aria-label="Previous"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></button>
@@ -930,7 +1045,7 @@
   <!-- Magazine Project -->
   <section>
     <h2>Magazine Design</h2>
-    <p class="section-year" data-default="2024" style="text-align:center; font-size:17px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:12px; letter-spacing:1px; font-family: 'Cavalhatriz', serif;">2024</p>
+    <p class="section-year" data-default="2024" style="text-align:center; font-size:17px; color:#6e3c3c; font-style:italic; margin-top:-20px; margin-bottom:12px; letter-spacing:1px; font-family: 'Cavalhatriz', serif;">2024</p>
     <div style="text-align:center; position:relative; z-index:10; margin: 0 auto 20px;"><div class="view-toggle-wrap"><button class="view-btn active" data-view="stack"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="15.5" width="20" height="3" rx="1.5"/><rect x="2" y="10.5" width="20" height="3" rx="1.5" opacity="0.55"/><rect x="2" y="5.5" width="20" height="3" rx="1.5" opacity="0.25"/></svg> Stack</button><button class="view-btn" data-view="gallery"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg> Gallery</button></div></div>
     <h3>Covers &amp; Spreads</h3>
     <div class="stack-scene">
@@ -950,7 +1065,7 @@
   <!-- Packaging Design -->
   <section>
     <h2>Packaging Design</h2>
-    <p style="text-align:center; font-size:17px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:12px; letter-spacing:1px; font-family: 'Cavalhatriz', serif;">2024</p>
+    <p style="text-align:center; font-size:17px; color:#6e3c3c; font-style:italic; margin-top:-20px; margin-bottom:12px; letter-spacing:1px; font-family: 'Cavalhatriz', serif;">2024</p>
     <div style="text-align:center; position:relative; z-index:10; margin: 0 auto 20px;"><div class="view-toggle-wrap"><button class="view-btn active" data-view="stack"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="15.5" width="20" height="3" rx="1.5"/><rect x="2" y="10.5" width="20" height="3" rx="1.5" opacity="0.55"/><rect x="2" y="5.5" width="20" height="3" rx="1.5" opacity="0.25"/></svg> Stack</button><button class="view-btn" data-view="gallery"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg> Gallery</button></div></div>
     <h3>Sugar Blooms</h3>
     <div class="stack-scene">
@@ -972,7 +1087,7 @@
   <!-- Art Showcase poster & program -->
   <section>
     <h2>Art Showcase Design</h2>
-    <p style="text-align:center; font-size:17px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:12px; letter-spacing:1px; font-family: 'Cavalhatriz', serif;">2025</p>
+    <p style="text-align:center; font-size:17px; color:#6e3c3c; font-style:italic; margin-top:-20px; margin-bottom:12px; letter-spacing:1px; font-family: 'Cavalhatriz', serif;">2025</p>
     <div style="text-align:center; position:relative; z-index:10; margin: 0 auto 20px;"><div class="view-toggle-wrap"><button class="view-btn active" data-view="stack"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="15.5" width="20" height="3" rx="1.5"/><rect x="2" y="10.5" width="20" height="3" rx="1.5" opacity="0.55"/><rect x="2" y="5.5" width="20" height="3" rx="1.5" opacity="0.25"/></svg> Stack</button><button class="view-btn" data-view="gallery"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg> Gallery</button></div></div>
     <h3>Dickson College Art Showcase</h3>
     <div class="stack-scene">
@@ -993,7 +1108,7 @@
   <!-- Musical Posters -->
   <section>
     <h2>Musical Posters</h2>
-    <p style="text-align:center; font-size:17px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:12px; letter-spacing:1px; font-family: 'Cavalhatriz', serif;">2023</p>
+    <p style="text-align:center; font-size:17px; color:#6e3c3c; font-style:italic; margin-top:-20px; margin-bottom:12px; letter-spacing:1px; font-family: 'Cavalhatriz', serif;">2023</p>
     <div style="text-align:center; position:relative; z-index:10; margin: 0 auto 20px;"><div class="view-toggle-wrap"><button class="view-btn active" data-view="stack"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="15.5" width="20" height="3" rx="1.5"/><rect x="2" y="10.5" width="20" height="3" rx="1.5" opacity="0.55"/><rect x="2" y="5.5" width="20" height="3" rx="1.5" opacity="0.25"/></svg> Stack</button><button class="view-btn" data-view="gallery"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg> Gallery</button></div></div>
     <h3>The Wizard of Oz</h3>
     <div class="stack-scene">
@@ -1011,7 +1126,7 @@
     <div class="stack-counter"></div>
     <div class="stack-caption"><h4></h4><p></p></div>
 
-    <p style="text-align:center; font-size:17px; color:#8b475d; font-style:italic; margin-top:50px; margin-bottom:0; letter-spacing:1px; font-family: 'Cavalhatriz', serif;">2024</p>
+    <p style="text-align:center; font-size:17px; color:#6e3c3c; font-style:italic; margin-top:50px; margin-bottom:0; letter-spacing:1px; font-family: 'Cavalhatriz', serif;">2024</p>
     <h3 style="margin-top:8px;">Love &amp; Information</h3>
     <div class="stack-scene">
       <button class="stack-nav stack-prev" aria-label="Previous"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></button>
@@ -1045,20 +1160,20 @@
     const menuToggle = document.getElementById('menuToggle');
     menuToggle.addEventListener('click', () => {
       navLinks.classList.toggle('active');
-      menuToggle.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+      menuToggle.textContent = navLinks.classList.contains('active') ? '' : '';
         var nb=document.getElementById('navbar'); if(nb) nb.classList.toggle('menu-open', navLinks.classList.contains('active'));
     });
     document.addEventListener('click', (e) => {
       const nav = document.getElementById('navbar');
       if (!nav.contains(e.target) && navLinks.classList.contains('active')) {
         navLinks.classList.remove('active');
-        menuToggle.textContent = '☰';
+        menuToggle.textContent = '';
       }
     });
     document.querySelectorAll('.nav-links a').forEach(a=>{
       a.addEventListener('click',()=>{
         navLinks.classList.remove('active');
-        menuToggle.textContent='☰';
+        menuToggle.textContent='';
       });
     });
 
@@ -1342,7 +1457,7 @@
     font-size: 18px;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    color: #f5c1cf;
+    color: #bf9090;
     margin: 0 0 10px;
 }
 #swipe-hint-box p {
@@ -1432,14 +1547,14 @@ html.light-mode #swipe-hint-box p { color: #3a2030 !important; }
 #prints-tab {
     width: 22px;
     height: 44px;
-    background: linear-gradient(180deg, #8b475d 0%, #6d3049 100%);
+    background: linear-gradient(180deg, #6e3c3c 0%, #6d3049 100%);
     border: none;
     border-radius: 8px 0 0 8px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #f5c1cf;
+    color: #bf9090;
     flex-shrink: 0;
     transition: background 0.2s;
     touch-action: manipulation;
@@ -1461,7 +1576,7 @@ html.light-mode #swipe-hint-box p { color: #3a2030 !important; }
     user-select: none;
     -webkit-touch-callout: none;
 }
-html.light-mode #prints-tab { background: linear-gradient(180deg, #f5c1cf 0%, #e0a0b8 100%); color: #8b475d; }
+html.light-mode #prints-tab { background: linear-gradient(180deg, #bf9090 0%, #e0a0b8 100%); color: #6e3c3c; }
 html.light-mode #prints-panel { background: #f5e6ec; }
 </style>
 
