@@ -32,7 +32,7 @@
     }
 
     /* Decorative Stars */
-    .doodle { position: fixed; pointer-events: none; z-index: 0; }
+    .doodle { display:none; position: fixed; pointer-events: none; z-index: 0; }
     .star {
       width: 25px; height: 25px; background: #a8c5b5; opacity: 0.4;
       clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
@@ -457,6 +457,20 @@
         }
     html:not(.light-mode) .cv-button:hover { background: #7a3a50 !important; }
     html:not(.light-mode) .nav-links a::after { background: #e8a0b8 !important; }
+    .caption-award {
+        display: inline-flex; align-items: center; gap: 10px;
+        margin-top: 10px; padding: 10px 22px;
+        background: transparent; border: 2px solid #8b475d; border-radius: 50px;
+        box-shadow: 4px 4px 0 #8b475d;
+        font-family: 'Archivo Black', sans-serif; font-size: 12px; color: #8b475d;
+        text-transform: uppercase; letter-spacing: 0.5px; text-decoration: none;
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .caption-award:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 #8b475d; filter: none; }
+    .caption-award img { width: 30px; height: 30px; flex-shrink: 0; filter: brightness(0) saturate(100%) invert(30%) sepia(18%) saturate(800%) hue-rotate(290deg) brightness(82%); }
+    html:not(.light-mode) .caption-award { background: transparent; border-color: #e8a0b8; box-shadow: 4px 4px 0 #e8a0b8; color: #e8a0b8; }
+    html:not(.light-mode) .caption-award:hover { box-shadow: 2px 2px 0 #e8a0b8; }
+    html:not(.light-mode) .caption-award img { filter: none; }
     html:not(.light-mode) .back-button:hover { background: #3a1d2c !important; }
 
     @media (max-width: 820px) {
@@ -558,7 +572,7 @@
   <!-- Hero -->
   <section class="hero">
     <div class="hero-content">
-      <div class="award-badge">🏆 1st Place — CMAG Secondary School Art Prize 2023</div>
+      <div class="award-badge">1st Place — CMAG Secondary School Art Prize 2023</div>
       <h1>Photography</h1>
       <p>A photo that "captures Canberra".</p>
       <span style="font-size:17px; color:#8b475d; font-style:italic; margin-top:20px; display:block; letter-spacing:1px; font-family: 'Cavalhatriz', serif; animation:fadeInUp 1s ease 0.5s backwards;">2023</span>
@@ -596,23 +610,9 @@
   <!-- Media -->
   <section>
     <h2>Media Coverage</h2>
-    <div class="project-info">
-      <h3>Featured Coverage</h3>
-      <p>The award-winning photograph was featured in local media and CMAG's official channels.</p>
-      <a href="https://citynews.com.au/2023/amelias-reflective-photo-wins-the-prize/" target="_blank" class="media-link">
-        <div class="link-icon">📰</div>
-        <div class="link-text">
-          <h4>City News Article</h4>
-          <p>"Amelia's reflective photo wins the prize"</p>
-        </div>
-      </a>
-      <a href="https://www.instagram.com/p/CxSYCCyvnIs/?img_index=1" target="_blank" class="media-link">
-        <div class="link-icon">📸</div>
-        <div class="link-text">
-          <h4>CMAG Instagram Post</h4>
-          <p>Featured on Canberra Museum and Gallery's Instagram</p>
-        </div>
-      </a>
+    <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin-top:30px;">
+      <a href="https://citynews.com.au/2023/amelias-reflective-photo-wins-the-prize/" target="_blank" class="caption-award"><img src="shared/website_symbol.webp" alt="">City News Article</a>
+      <a href="https://www.instagram.com/p/CxSYCCyvnIs/?img_index=1" target="_blank" class="caption-award"><img src="shared/instagram_symbol.webp" alt="">CMAG Instagram Post</a>
     </div>
 
     <div class="back-button-container">

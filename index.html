@@ -40,7 +40,7 @@
         }
 
         /* Decorative Stars – shared across pages */
-.doodle {
+.doodle { display:none;
     position: fixed;
     pointer-events: none;
     z-index: 1;
@@ -904,35 +904,17 @@
             }
 
             .theme-toggle-wrap {
-                gap: 0 !important;
-                flex-direction: column !important;
-                align-items: center !important;
                 position: absolute !important;
-                right: 68px !important;
+                right: 60px !important;
                 top: 50% !important;
                 transform: translateY(-50%) !important;
                 margin: 0 !important;
+                padding: 2px !important;
             }
-            .theme-toggle-label {
-                font-size: 7px !important;
-                letter-spacing: 1px !important;
-                position: absolute !important;
-                top: 100% !important;
-                left: 50% !important;
-                transform: translateX(-50%) !important;
-                margin-top: 2px !important;
-                white-space: nowrap !important;
-            }
-            .theme-toggle-track {
-                width: 30px !important;
-                height: 16px !important;
-            }
-            .theme-toggle-thumb {
-                width: 12px !important;
-                height: 12px !important;
-            }
-            html.light-mode .theme-toggle-thumb {
-                left: 16px !important;
+            .theme-btn {
+                font-size: 8px !important;
+                padding: 4px 7px !important;
+                letter-spacing: 0.5px !important;
             }
 
             .logo-img {
@@ -1605,25 +1587,28 @@
             transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) !important;
         }
 
-        /* Theme toggle */
+        /* Theme toggle – 3-button pill */
         .theme-toggle-wrap {
-            display: flex; align-items: center; gap: 8px; flex-shrink: 0; cursor: pointer; margin-left: auto; margin-right: 35px;
+            display: flex; align-items: center; gap: 0; flex-shrink: 0;
+            margin-left: auto; margin-right: 35px;
+            background: rgba(255,255,255,0.08); border-radius: 20px; padding: 3px;
         }
-        .theme-toggle-label {
-            font-family: 'Archivo Black', sans-serif; font-size: 10px; letter-spacing: 1.5px;
-            text-transform: uppercase; color: #e8a0b8; opacity: 0.7; user-select: none;
+        .theme-btn {
+            font-family: 'Archivo Black', sans-serif; font-size: 10px; letter-spacing: 1px;
+            text-transform: uppercase; color: #e8a0b8; opacity: 0.6;
+            background: none; border: none; padding: 5px 10px; border-radius: 16px;
+            cursor: pointer; transition: all 0.25s ease; user-select: none; white-space: nowrap;
         }
-        html.light-mode .theme-toggle-label { color: #8b475d !important; }
-        .theme-toggle-track {
-            width: 36px; height: 20px; background: #3a2a32; border-radius: 10px;
-            position: relative; transition: background 0.3s;
+        .theme-btn:hover { opacity: 0.9; }
+        .theme-btn.active {
+            background: rgba(255,255,255,0.15); opacity: 1; color: #fff;
         }
-        html.light-mode .theme-toggle-track { background: #c4a0ae !important; }
-        .theme-toggle-thumb {
-            width: 16px; height: 16px; background: #e8a0b8; border-radius: 50%;
-            position: absolute; top: 2px; left: 2px; transition: left 0.3s, background 0.3s;
-        }
-        html.light-mode .theme-toggle-thumb { left: 18px !important; background: #8b475d !important; }
+        html.light-mode .theme-toggle-wrap { background: rgba(139,71,93,0.1) !important; }
+        html.light-mode .theme-btn { color: #8b475d !important; }
+        html.light-mode .theme-btn.active { background: rgba(139,71,93,0.2) !important; color: #8b475d !important; }
+        html.warm-mode .theme-toggle-wrap { background: rgba(139,26,20,0.15) !important; }
+        html.warm-mode .theme-btn { color: #F5E0D8 !important; }
+        html.warm-mode .theme-btn.active { background: rgba(139,26,20,0.35) !important; color: #F5E0D8 !important; }
 
         /* ═══ LIGHT MODE OVERRIDES ═══ */
         html.light-mode body { background: linear-gradient(135deg, #f5c1cf 0%, #fceadb 20%, #e8d5ca 40%, #b4d4c3 60%, #f5e6e8 80%, #d4a5a5 100%) !important; color: #5a5a5a !important; }
@@ -1716,8 +1701,62 @@
                 transform: scale(1.13) !important;
             }
         }
+
+        /* ═══ CRIMSON MODE OVERRIDES ═══ */
+        html.warm-mode body { background: #0E0303 !important; color: #F0DDD8 !important; }
+        html.warm-mode .announcement-banner { background: linear-gradient(90deg, #3D0808 0%, #8B1A14 25%, #3D0808 55%, #8B1A14 100%) !important; background-size: 300% 100% !important; }
+        html.warm-mode .banner-inner span { color: #F5E0D8 !important; }
+        html.warm-mode nav { background: rgba(14, 3, 3, 0.97) !important; }
+        html.warm-mode nav.scrolled { box-shadow: 2px 2px 20px rgba(139,26,20,0.3) !important; }
+        html.warm-mode .logo { color: #F5E0D8 !important; }
+        html.warm-mode .logo:hover { color: #F0C8C0 !important; }
+        html.warm-mode .menu-toggle { color: #F5E0D8 !important; }
+        html.warm-mode .nav-links a { color: #F5E0D8 !important; }
+        html.warm-mode .nav-links a::after { background: #8B1A14 !important; }
+        html.warm-mode .music-nav-link { background: linear-gradient(135deg, #8B1A14, #3D0808) !important; color: #F5E0D8 !important; }
+        html.warm-mode nav#navbar .nav-links li a.music-nav-link { color: #F5E0D8 !important; }
+        html.warm-mode .nav-links a.music-nav-link { color: #F5E0D8 !important; }
+        html.warm-mode .nav-links a.cv-button { color: #F5E0D8 !important; }
+        html.warm-mode .cv-button { background: #8B1A14 !important; box-shadow: 3px 3px 10px rgba(139,26,20,0.4) !important; }
+        html.warm-mode .cv-button:hover { background: #701212 !important; box-shadow: 6px 6px 20px rgba(139,26,20,0.6) !important; }
+        html.warm-mode .hero-content h1 { color: #F5E0D8 !important; }
+        html.warm-mode .hero-bio p { color: #E8C8BC !important; }
+        html.warm-mode h1, html.warm-mode h2, html.warm-mode h3, html.warm-mode h4 { color: #F5E0D8 !important; }
+        html.warm-mode h2::after { background: linear-gradient(90deg, #8B1A14, #C43020, #8B1A14) !important; }
+        html.warm-mode h2.will-animate.visible::after { background: linear-gradient(90deg, #8B1A14, #C43020, #8B1A14) !important; animation: none !important; }
+        html.warm-mode .portfolio-item { background: rgba(255,255,255,0.04) !important; box-shadow: 10px 10px 30px rgba(139,26,20,0.2) !important; }
+        html.warm-mode .portfolio-item:hover { box-shadow: 25px 25px 50px rgba(139,26,20,0.35) !important; }
+        html.warm-mode .portfolio-content h3 { color: #F5E0D8 !important; }
+        html.warm-mode .portfolio-content p { color: #E8C8BC !important; }
+        html.warm-mode .portfolio-content span { color: #C43020 !important; }
+        html.warm-mode .portfolio-overlay { background: rgba(90,10,10,0.88) !important; }
+        html.warm-mode .about-content { background: rgba(255,255,255,0.04) !important; box-shadow: 10px 10px 30px rgba(139,26,20,0.2) !important; }
+        html.warm-mode .about-content h3 { color: #F5E0D8 !important; }
+        html.warm-mode .about-content p { color: #F0DDD8 !important; }
+        html.warm-mode .instagram-link { background: rgba(139,26,20,0.1) !important; }
+        html.warm-mode .instagram-text { color: #F5E0D8 !important; }
+        html.warm-mode .skill-card { background: rgba(255,255,255,0.04) !important; box-shadow: 5px 5px 20px rgba(139,26,20,0.15) !important; }
+        html.warm-mode .skill-card:hover { box-shadow: 18px 18px 40px rgba(139,26,20,0.3) !important; }
+        html.warm-mode .skill-icon { background: linear-gradient(135deg, #3D0808, #8B1A14) !important; }
+        html.warm-mode .skill-card h3 { color: #F5E0D8 !important; }
+        html.warm-mode .skill-card p { color: #E8C8BC !important; }
+        html.warm-mode .contact-info, html.warm-mode .contact-form { background: rgba(255,255,255,0.04) !important; box-shadow: 10px 10px 30px rgba(139,26,20,0.2) !important; }
+        html.warm-mode .contact-info h3 { color: #F5E0D8 !important; }
+        html.warm-mode .contact-info p { color: #F0DDD8 !important; }
+        html.warm-mode .form-group label { color: #F5E0D8 !important; }
+        html.warm-mode input:focus, html.warm-mode textarea:focus { box-shadow: 0 0 0 3px rgba(139,26,20,0.4), 0 0 20px rgba(139,26,20,0.2) !important; }
+        html.warm-mode .cta-button { background: #8B1A14 !important; }
+        @keyframes pulseGlowWarm { 0%, 100% { box-shadow: 0 0 20px rgba(139,26,20,0.4); } 50% { box-shadow: 0 0 35px rgba(139,26,20,0.7); } }
+        html.warm-mode footer { background: rgba(14,3,3,0.6) !important; color: #F5E0D8 !important; }
+        html.warm-mode footer p { color: #F5E0D8 !important; }
+        html.warm-mode .caption-award { border-color: #8B1A14 !important; box-shadow: 4px 4px 0 #8B1A14 !important; color: #F5E0D8 !important; }
+        html.warm-mode .caption-award img { filter: none !important; }
+        @media (max-width: 820px) {
+            html.warm-mode .nav-links { background: rgba(14,3,3,1) !important; }
+            html.warm-mode .nav-links li { border-bottom-color: rgba(139,26,20,0.2) !important; }
+        }
     </style>
-    <script>(function(){try{var t=performance.getEntriesByType('navigation'),n=t.length?t[0].type:'navigate',s=document.referrer&&(new URL(document.referrer)).origin===location.origin;if(n==='reload'||(n==='navigate'&&!s)){sessionStorage.removeItem('theme');}else if(sessionStorage.getItem('theme')==='light'){document.documentElement.classList.add('light-mode');}}catch(e){}})();</script>
+    <script>(function(){try{var t=performance.getEntriesByType('navigation'),n=t.length?t[0].type:'navigate',s=document.referrer&&(new URL(document.referrer)).origin===location.origin;if(n==='reload'||(n==='navigate'&&!s)){sessionStorage.removeItem('theme');}else{var th=sessionStorage.getItem('theme');if(th==='light'){document.documentElement.classList.add('light-mode');}else if(th==='warm'){document.documentElement.classList.add('warm-mode');}}}catch(e){}})();</script>
 </head>
 <body>
 
@@ -1776,9 +1815,10 @@
 
     <nav id="navbar">
         <div class="logo"><img src="shared/AB logo light.png" alt="AB" class="logo-img">AMELIA'S PORTFOLIO</div>
-        <div class="theme-toggle-wrap" onclick="toggleTheme()" id="themeToggle" aria-label="Toggle theme">
-            <span class="theme-toggle-label" id="themeLabel">Light</span>
-            <div class="theme-toggle-track"><div class="theme-toggle-thumb"></div></div>
+        <div class="theme-toggle-wrap" id="themeToggle" aria-label="Choose theme">
+            <button class="theme-btn" id="themeBtnDark"  onclick="setTheme('dark')"  aria-label="Dark mode">Dark</button>
+            <button class="theme-btn" id="themeBtnLight" onclick="setTheme('light')" aria-label="Light mode">Light</button>
+            <button class="theme-btn" id="themeBtnWarm"  onclick="setTheme('warm')"  aria-label="Warm mode">Warm</button>
         </div>
         <button class="menu-toggle" id="menuToggle" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
         <ul class="nav-links" id="navLinks">
@@ -2218,6 +2258,53 @@
         });
     </script>
 <script src="shared/lightbox.js?v=5"></script>
+<script>
+/* ── Warm-aware theme system (overrides theme.js toggleTheme) ── */
+function setTheme(name) {
+    var html = document.documentElement;
+    html.classList.remove('light-mode', 'warm-mode');
+    if (name === 'light') html.classList.add('light-mode');
+    else if (name === 'warm') html.classList.add('warm-mode');
+    try { sessionStorage.setItem('theme', name); } catch(e) {}
+    updateThemeUI();
+}
+
+function toggleTheme() {
+    // Legacy: cycle dark → light → dark (warm is only via 3-button pill)
+    var html = document.documentElement;
+    var isLight = html.classList.contains('light-mode');
+    setTheme(isLight ? 'dark' : 'light');
+}
+
+function updateThemeUI() {
+    var html = document.documentElement;
+    var isLight = html.classList.contains('light-mode');
+    var isWarm  = html.classList.contains('warm-mode');
+    var theme = isLight ? 'light' : (isWarm ? 'warm' : 'dark');
+
+    // Active state on pill buttons
+    ['Dark','Light','Warm'].forEach(function(t) {
+        var btn = document.getElementById('themeBtn' + t);
+        if (btn) btn.classList.toggle('active', t.toLowerCase() === theme);
+    });
+
+    // Logo swap
+    document.querySelectorAll('.logo-img').forEach(function(img) {
+        img.src = isLight ? 'shared/AB logo.png' : 'shared/AB logo light.png';
+    });
+
+    // Re-apply name style image if present (dark/light variants)
+    if (typeof applyNameStyle === 'function') applyNameStyle();
+}
+
+// Apply on DOMContentLoaded
+document.addEventListener('DOMContentLoaded', function() {
+    var stored;
+    try { stored = sessionStorage.getItem('theme'); } catch(e) { stored = null; }
+    // Head script already added the class; just sync the UI
+    updateThemeUI();
+});
+</script>
 <script src="shared/theme.js?v=7"></script>
 <script src="shared/cursor-trail.js?v=4"></script>
 

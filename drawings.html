@@ -29,7 +29,7 @@
     }
 
     /* Decorative Stars */
-    .doodle{ position:fixed; pointer-events:none; z-index:1; }
+    .doodle{ display:none; position:fixed; pointer-events:none; z-index:1; }
     .star{
       width:25px; height:25px; background:#a8c5b5; opacity:.4;
       clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
@@ -322,22 +322,19 @@
       color: inherit;
     }
     .caption-award {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 6px 14px;
-      background: linear-gradient(135deg, #f9d2df, #d4ede8);
-      border-radius: 20px;
-      font-family: 'Archivo Black', sans-serif;
-      font-size: 11px;
-      color: #8b475d;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      text-decoration: none;
+      display: inline-flex; align-items: center; gap: 10px;
+      margin-top: 10px; padding: 10px 22px;
+      background: transparent; border: 2px solid #8b475d; border-radius: 50px;
+      box-shadow: 4px 4px 0 #8b475d;
+      font-family: 'Archivo Black', sans-serif; font-size: 12px; color: #8b475d;
+      text-transform: uppercase; letter-spacing: 0.5px; text-decoration: none;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
     }
-    html:not(.light-mode) .caption-award {
-      background: linear-gradient(135deg, #5c2a3a, #3d1a2a);
-      color: #e8a0b8;
-    }
+    .caption-award:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 #8b475d; }
+    .caption-award img { width: 30px; height: 30px; flex-shrink: 0; filter: brightness(0) saturate(100%) invert(30%) sepia(18%) saturate(800%) hue-rotate(290deg) brightness(82%); }
+    html:not(.light-mode) .caption-award { background: transparent; border-color: #e8a0b8; box-shadow: 4px 4px 0 #e8a0b8; color: #e8a0b8; }
+    html:not(.light-mode) .caption-award:hover { box-shadow: 2px 2px 0 #e8a0b8; }
+    html:not(.light-mode) .caption-award img { filter: none; }
     .stack-nav {
       background: rgba(255,255,255,0.35);
       border: none;
@@ -771,7 +768,7 @@
     <div class="stack-scene">
       <button class="stack-nav stack-prev" aria-label="Previous"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></button>
       <div class="card-stack">
-        <a href="shared/gettingready1.webp" target="_blank" class="stack-card" data-orient="landscape" data-title="Getting Ready" data-desc="Digital Illustration depicting girlhood and female friendship.&lt;br&gt;&lt;a class=&quot;caption-award&quot; href=&quot;https://www.instagram.com/p/DQ-c1TFiRtE/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;🏆 Finalist, M16 Artspace Digital Drawing Prize&lt;/a&gt;"><img src="shared/gettingready1.webp" alt="Getting Ready - Four Girls"></a>
+        <a href="shared/gettingready1.webp" target="_blank" class="stack-card" data-orient="landscape" data-title="Getting Ready" data-desc="Digital Illustration depicting girlhood and female friendship.&lt;br&gt;&lt;a class=&quot;caption-award&quot; href=&quot;https://www.instagram.com/p/DQ-c1TFiRtE/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;img src=&quot;shared/instagram_symbol.webp&quot; alt=&quot;&quot;&gt;Finalist, M16 Artspace Digital Drawing Prize&lt;/a&gt;"><img src="shared/gettingready1.webp" alt="Getting Ready - Four Girls"></a>
         <a href="drawings/seadragon.png" target="_blank" class="stack-card" data-tight="light" data-title="Summer Sea Dragon" data-desc="Leafy sea dragon mermaid artwork. Australian native animal incorporation."><img src="drawings/seadragon.png" alt="Summer Sea Dragon"></a>
         <a href="drawings/aworldalone.webp" target="_blank" class="stack-card" data-orient="landscape" data-title="A World Alone" data-desc="Drawing based on a photo taken of two of my best friends."><img src="drawings/aworldalone.webp" alt="A World Alone"></a>
         <a href="drawings/girl in room.webp" target="_blank" class="stack-card" data-orient="landscape" data-title="Lost in My Bedroom" data-desc="Sky Ferreira inspired digital illustration depicting teenage girlhood."><img src="drawings/girl in room.webp" alt="Girl in Room"></a>

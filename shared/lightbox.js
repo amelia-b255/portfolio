@@ -42,9 +42,10 @@
       width: 30%;
       min-width: 120px;
       max-width: 300px;
-      opacity: 0.38;
+      opacity: 1;
       pointer-events: none;
-      filter: drop-shadow(0 0 8px rgba(0,0,0,0.4));
+      filter: brightness(0);
+      mix-blend-mode: multiply;
     }
     .ab-lightbox-close {
       position: fixed; top: 20px; right: 30px;
