@@ -299,7 +299,7 @@
 
         .hero-container {
             display: grid;
-            grid-template-columns: 1.35fr 0.65fr;
+            grid-template-columns: 1.1fr 0.9fr;
             grid-template-rows: auto auto;
             grid-template-areas: "content image" "bio image";
             column-gap: 0;
@@ -325,7 +325,7 @@
             grid-area: image;
             align-self: stretch;
             width: 100%;
-            padding-left: 2vw;
+            padding-left: 0;
             height: 100%;
             min-height: calc(100vh + 158px);
             margin-top: -158px;
@@ -335,8 +335,8 @@
             overflow: hidden;
             position: relative;
             transition: transform 0.4s ease;
-            -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 22%), linear-gradient(to bottom, transparent 0%, #000 12%, #000 88%, transparent 100%);
-            mask-image: linear-gradient(to right, transparent 0%, #000 22%), linear-gradient(to bottom, transparent 0%, #000 12%, #000 88%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 15%), linear-gradient(to bottom, transparent 0%, #000 12%, #000 88%, transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0%, #000 15%), linear-gradient(to bottom, transparent 0%, #000 12%, #000 88%, transparent 100%);
             -webkit-mask-composite: source-in;
             mask-composite: intersect;
             -webkit-mask-size: 100% 100%;
@@ -423,13 +423,13 @@
 
         .cta-button {
             display: inline-block;
-            padding: 12px 30px;
+            padding: 14px 36px;
             background: transparent;
             border: 2px solid #6e3c3c;
             box-shadow: 4px 4px 0 #6e3c3c;
             color: #aa7878;
             text-decoration: none;
-            font-size: 12px;
+            font-size: 14px;
             transition: transform 0.4s ease, box-shadow 0.4s ease;
             position: relative;
             font-family: 'Archivo Black', sans-serif;
@@ -543,8 +543,8 @@
             transition: transform 0.45s cubic-bezier(0.22,1,0.36,1);
         }
         .portfolio-year {
-            font-family: 'Aldyn Heart', serif;
-            font-size: 26px;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 18px;
             color: #e8d0c4;
             display: block;
             margin-bottom: 8px;
@@ -979,19 +979,26 @@
                 white-space: normal;
             }
 
+            .nav-links li:has(.cv-button),
+            .nav-links li:has(.music-nav-link) {
+                display: flex !important;
+                justify-content: center !important;
+            }
+
             .cv-button {
-                margin: 10px 0 0 0 !important;
-                width: 100%;
+                margin: 10px 0 !important;
+                width: auto !important;
                 text-align: center;
-                padding: 12px 16px !important;
+                padding: 12px 24px !important;
                 font-size: 13px !important;
-            font-family: 'Georgia Custom', Georgia, serif;
-        }
+                font-family: 'Georgia Custom', Georgia, serif;
+            }
 
             .music-nav-link {
                 margin: 10px 0 !important;
+                width: auto !important;
                 text-align: center;
-                padding: 12px 16px !important;
+                padding: 12px 24px !important;
             }
 
             .hero {
@@ -1021,6 +1028,8 @@
 
             .hero-content {
                 text-align: center !important;
+                padding-left: 0 !important;
+                padding-right: 0 !important;
             }
 
             .hero-content h1 {
@@ -1060,6 +1069,8 @@
             .hero-bio,
             .hero-bio p {
                 text-align: center !important;
+                padding-left: 0 !important;
+                padding-right: 0 !important;
             }
             .hero-bio .cta-button {
                 display: inline-block !important;
@@ -1096,20 +1107,89 @@
                 gap: 12px;
             }
 
+            /* Mobile card order: Posters → Commissioned → Illustrations → rest */
+            .portfolio-grid > a:nth-child(1) { order: 1; } /* Posters & Print */
+            .portfolio-grid > a:nth-child(2) { order: 3; } /* Illustrations */
+            .portfolio-grid > a:nth-child(3) { order: 4; } /* Coding */
+            .portfolio-grid > a:nth-child(4) { order: 5; } /* Film */
+            .portfolio-grid > a:nth-child(5) { order: 6; } /* Photography */
+            .portfolio-grid > a:nth-child(6) { order: 2; } /* Commissioned Works */
+
+            /* On mobile: show info below image, not on hover */
+            .portfolio-item {
+                overflow: visible !important;
+                border-radius: 15px !important;
+            }
             .portfolio-image {
-                height: 160px;
+                overflow: visible !important;
+                height: auto !important;
+                aspect-ratio: auto !important;
+                display: flex !important;
+                flex-direction: column !important;
             }
-
-            .portfolio-content {
-                padding: 10px !important;
+            .portfolio-image img {
+                width: 100% !important;
+                aspect-ratio: 5/3 !important;
+                height: auto !important;
+                object-fit: cover !important;
+                object-position: center center !important;
+                border-radius: 15px 15px 0 0 !important;
+                display: block !important;
+                position: relative !important;
+                z-index: 1 !important;
+                transform: none !important;
             }
-
-            .portfolio-content h3 {
+            .portfolio-overlay {
+                position: static !important;
+                opacity: 1 !important;
+                background: rgba(58, 30, 26, 0.88) !important;
+                backdrop-filter: none !important;
+                padding: 12px 14px 14px !important;
+                border-radius: 0 0 15px 15px !important;
+            }
+            .portfolio-overlay h3 {
                 font-size: 13px !important;
+                color: #aa7878 !important;
+                transform: none !important;
+                transition: none !important;
             }
-
-            .portfolio-content p {
+            .portfolio-year {
+                font-size: 11px !important;
+                color: #aa7878 !important;
+                margin-bottom: 4px !important;
+                transform: none !important;
+                transition: none !important;
+            }
+            .portfolio-overlay p {
                 font-size: 10px !important;
+                color: #aa7878 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+            .portfolio-item:hover .portfolio-image img {
+                transform: none !important;
+            }
+            .portfolio-image img.drawing-card-img {
+                transform: scale(1.06) !important;
+                width: 100% !important;
+                margin: 0 !important;
+                display: block !important;
+            }
+            .portfolio-image {
+                background: #3a1e1a !important;
+                border-radius: 15px 15px 0 0 !important;
+                overflow: hidden !important;
+            }
+            /* Title image: kill sticky :hover zoom on touch (was shifting it off-centre) */
+            #name-img-wrap {
+                transform-origin: center center !important;
+            }
+            #name-cycler:hover #name-img-wrap,
+            .hero-container.image-style #name-cycler:hover #name-img-wrap {
+                transform: none !important;
+            }
+            .portfolio-content {
+                display: none !important;
             }
 
             .about-container,
@@ -1795,7 +1875,7 @@
 
     /* Button text: no white — use theme colours */
     .cv-button { color: #aa7878 !important; }
-    .cta-button { color: #f0ddd0 !important; }
+    .cta-button { color: #aa7878 !important; }
     html:not(.light-mode) .cv-button { color: #aa7878 !important; }
 
     /* CV button: identical to Music nav link */
@@ -1908,7 +1988,7 @@
             <span class="theme-toggle-label" id="themeLabel">Light</span>
             <div class="theme-toggle-track"><div class="theme-toggle-thumb"></div></div>
         </div>
-        <button class="menu-toggle" id="menuToggle" onclick="toggleMenu()" aria-label="Toggle menu"></button>
+        <button class="menu-toggle" id="menuToggle" onclick="toggleMenu()" aria-label="Toggle menu">&#9776;</button>
         <ul class="nav-links" id="navLinks">
             <li><a href="#home">Home</a></li>
             <li><a href="#portfolio">Work</a></li>
@@ -1934,7 +2014,7 @@
             </div>
             <div class="hero-bio">
                 <p>Aspiring graphic designer passionate about combining storytelling and visual design. Skilled in Adobe Creative Suite and creative computing, with experience in branding, digital illustration, and visual communication.</p>
-                <a href="#portfolio" class="cta-button">View My Work</a>
+                <a href="#portfolio" class="cta-button">View My Work <span style="color:#aa7878;">&#9733;</span></a>
             </div>
             <div class="hero-image" id="hero-image-cycler" onclick="cycleHeroImage()" title="Click to change image" style="cursor:pointer;">
                 <img src="extras/serendipity.webp?v=2" alt="" class="hero-img-dark active">
@@ -2130,7 +2210,7 @@
             const navLinks = document.getElementById('navLinks');
             const menuToggle = document.getElementById('menuToggle');
             navLinks.classList.toggle('active');
-            menuToggle.textContent = navLinks.classList.contains('active') ? '' : '';
+            menuToggle.textContent = navLinks.classList.contains('active') ? '×' : '☰';
         var nb=document.getElementById('navbar'); if(nb) nb.classList.toggle('menu-open', navLinks.classList.contains('active'));
         }
 
@@ -2141,7 +2221,7 @@
             
             if (!nav.contains(event.target) && navLinks.classList.contains('active')) {
                 navLinks.classList.remove('active');
-                menuToggle.textContent = '';
+                menuToggle.textContent = '☰';
             }
         });
 
@@ -2150,7 +2230,7 @@
                 const navLinks = document.getElementById('navLinks');
                 const menuToggle = document.getElementById('menuToggle');
                 navLinks.classList.remove('active');
-                menuToggle.textContent = '';
+                menuToggle.textContent = '☰';
             });
         });
 
@@ -2405,12 +2485,11 @@
 var nameStyleIdx = 0;
 var NAME_V = '?v=12';
 var nameStyles = [
-    { type: 'img', group: 'cursive', dark: '6DARK.png'+NAME_V, light: '6LIGHT.png'+NAME_V },
-    { type: 'img', group: 'cursive', dark: '4DARK.png'+NAME_V, light: '4LIGHT.png'+NAME_V },
-    { type: 'img', group: 'cursive', dark: '5DARK.png'+NAME_V, light: '5LIGHT.png'+NAME_V },
     { type: 'img', group: 'bold',    dark: '1DARK.png'+NAME_V, light: '1LIGHT.png'+NAME_V },
     { type: 'img', group: 'bold',    dark: '2DARK.png'+NAME_V, light: '2LIGHT.png'+NAME_V },
     { type: 'img', group: 'bold',    dark: '3DARK.png'+NAME_V, light: '3LIGHT.png'+NAME_V },
+    { type: 'img', group: 'cursive', dark: '4DARK.png'+NAME_V, light: '4LIGHT.png'+NAME_V },
+    { type: 'img', group: 'cursive', dark: '5DARK.png'+NAME_V, light: '5LIGHT.png'+NAME_V },
 ];
 
 function applyNameStyle() {
@@ -2936,8 +3015,8 @@ html.light-mode .name-dots .dot.active { background: #6e3c3c; }
 
 /* Hero image swap animation */
 @keyframes heroImgIn {
-    from { opacity: 0; transform: scale(1.04); filter: blur(12px); }
-    to   { opacity: 1; transform: scale(1); filter: blur(0px); }
+    from { opacity: 0; filter: blur(12px); }
+    to   { opacity: 1; filter: blur(0px); }
 }
 .hero-img-anim {
     animation: heroImgIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
