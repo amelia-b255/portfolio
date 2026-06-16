@@ -529,10 +529,28 @@
     @media (max-width: 820px) { .back-button { font-size:11px!important; padding:8px 18px!important; } }
 
     /* Responsive */
-    @media (max-width: 820px) {
-      .menu-toggle { display: block !important; }
+        .mobile-back-btn {
+        display: none;
+        position: fixed;
+        top: 49px;
+        right: 16px;
+        z-index: 1005;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        padding: 4px;
+        text-decoration: none;
+        line-height: 1;
+        opacity: 0.9;
+        transition: opacity 0.2s ease;
+    }
+    .mobile-back-btn:active { opacity: 0.5; }
+
+@media (max-width: 820px) {
+      .menu-toggle { display: none !important; }
+      .mobile-back-btn { display: inline-flex; align-items: center; }
       nav { padding: 10px 16px !important; top: 30px !important; }
-      .logo { font-size: 16px !important; letter-spacing: 0.5px; max-width: calc(100% - 60px); }
+      .logo { font-size: 16px !important; letter-spacing: 0.5px; max-width: calc(100% - 110px); }
       .logo-img { height: 43px; }
       .nav-links {
         position: fixed; top: 50px; left: -100%; width: 100%; height: calc(100vh - 50px);
@@ -954,7 +972,7 @@
             <span class="theme-toggle-label" id="themeLabel">Light</span>
             <div class="theme-toggle-track"><div class="theme-toggle-thumb"></div></div>
         </div>
-    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"></button>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">&#9776;</button>
     <ul class="nav-links" id="navLinks">
       <li><a href="index.html#home">Home</a></li>
       <li><a href="index.html">Work</a></li>
@@ -1233,7 +1251,7 @@
     const menuToggle = document.getElementById('menuToggle');
     menuToggle.addEventListener('click', () => {
       navLinks.classList.toggle('active');
-      menuToggle.textContent = navLinks.classList.contains('active') ? '' : '';
+      menuToggle.textContent = navLinks.classList.contains('active') ? '×' : '☰';
         var nb=document.getElementById('navbar'); if(nb) nb.classList.toggle('menu-open', navLinks.classList.contains('active'));
     });
 
@@ -1242,7 +1260,7 @@
       const nav = document.getElementById('navbar');
       if (!nav.contains(e.target) && navLinks.classList.contains('active')) {
         navLinks.classList.remove('active');
-        menuToggle.textContent = '';
+        menuToggle.textContent = '☰';
       }
     });
 
@@ -1456,5 +1474,6 @@ html.light-mode #mobile-note-box p { color: #7a4848 !important; }
     overlay.addEventListener('click', function(e) { if (e.target === overlay) dismiss(); });
 })();
 </script>
+<a href="index.html" class="mobile-back-btn" aria-label="Back to portfolio"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#aa7878" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></a>
 </body>
 </html>
