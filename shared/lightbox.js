@@ -44,35 +44,42 @@
       max-width: 300px;
       opacity: 1;
       pointer-events: none;
-      filter: brightness(0);
+      filter: brightness(0) invert(0.48) sepia(0.55) saturate(1.5) hue-rotate(-8deg);
       mix-blend-mode: multiply;
     }
     .ab-lightbox-close {
       position: fixed; top: 20px; right: 30px;
-      color: #fff; font-size: 36px;
+      color: #b87c70; font-size: 40px; font-weight: 700;
       font-family: Arial, sans-serif;
       cursor: pointer; z-index: 10001;
-      opacity: 0.7; transition: opacity 0.2s;
-      line-height: 1;
+      opacity: 0.92; transition: opacity 0.2s, transform 0.12s;
+      line-height: 1; text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+      -webkit-text-stroke: 0.6px #b87c70;
     }
-    .ab-lightbox-close:hover { opacity: 1; }
+    .ab-lightbox-close:hover { opacity: 1; transform: scale(1.06); }
     .ab-lightbox-prev,
     .ab-lightbox-next {
       position: fixed; top: 50%; transform: translateY(-50%);
       background: none; border: none;
-      color: #fff; font-size: 48px;
+      color: #b87c70; font-size: 56px; font-weight: 700;
       cursor: pointer; z-index: 10001;
-      opacity: 0.6; transition: opacity 0.2s;
+      opacity: 0.92; transition: opacity 0.2s, transform 0.12s;
       padding: 16px; line-height: 1;
       font-family: Arial, sans-serif;
-      user-select: none;
+      user-select: none; text-shadow: 0 2px 6px rgba(0,0,0,0.55);
+      -webkit-text-stroke: 1.1px #b87c70;
     }
     .ab-lightbox-prev { left: 16px; }
     .ab-lightbox-next { right: 16px; }
     .ab-lightbox-prev:hover,
-    .ab-lightbox-next:hover { opacity: 1; }
+    .ab-lightbox-next:hover { opacity: 1; transform: translateY(-50%) scale(1.06); }
     .ab-lightbox-prev.hidden,
     .ab-lightbox-next.hidden { visibility: hidden; }
+    @media (max-width: 700px) {
+      .ab-lightbox-prev, .ab-lightbox-next { display: none !important; }
+      .ab-lightbox-close { left: 50%; right: auto; top: auto; bottom: 40px; transform: translateX(-50%); }
+      .ab-lightbox-close:hover { transform: translateX(-50%) scale(1.06); }
+    }
   `;
   document.head.appendChild(css);
 

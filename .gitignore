@@ -1,0 +1,24 @@
+# OS junk
+.DS_Store
+**/.DS_Store
+
+# archives / backups / temp
+*.zip
+*.bak
+*.bak-*
+*.tmp
+*.tmp$$
+_color-backup/
+_color-backup-images/
+_color-backup-warmbrown/
+_color-backup-redpink-index.html.bak
+_backup-what-i-do-section.html
+fonts_tmp/
+CONCEPTDRAFT*.png
+
+# local dev helpers / scratch (not part of the deployed site)
+serve.py
+t.html
+
+# tooling
+.claude/

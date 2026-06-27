@@ -1,0 +1,60 @@
+/* ============================================================================
+   SHARED TEXTURE RECIPE (reversible) — nav bar + marquee + headings/text +
+   filled buttons + tip box + logo tint.  Does NOT touch page backgrounds or
+   artwork.  Paths are ../textures/* because this file lives in /shared/.
+   Loaded LAST (before </body>) on each page so it wins the cascade.
+   ========================================================================== */
+
+/* nav bar + marquee ------------------------------------------------------- */
+#navbar::after, .announcement-banner::after {
+  content: ''; position: absolute; inset: 0; z-index: 1002; pointer-events: none;
+  background: url('../textures/tex-glass.jpg') center / cover no-repeat,
+              url('../textures/tex-concrete.jpg') center / cover no-repeat,
+              url('../textures/tex-plaster.jpg') center / cover no-repeat;
+  background-blend-mode: overlay;
+  filter: contrast(1.3) brightness(1.05);
+  mix-blend-mode: overlay; opacity: 0.3;
+}
+html:not(.light-mode) #navbar::after,
+html:not(.light-mode) .announcement-banner::after { opacity: 0.3; }
+
+/* FILLED buttons (e.g. STACK toggle): texture overlaid at 80%, clipped to shape */
+.view-btn.active { position: relative; overflow: hidden; }
+.view-btn.active::after {
+  content: '' !important; display: block !important;
+  position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  background: url('../textures/tex-concrete.jpg') center / 130px auto repeat;
+  mix-blend-mode: overlay; opacity: 0.8; border-radius: inherit;
+}
+
+/* tip popup: texture the WHOLE box (bg, text and the X) ------------------- */
+#tip-box::after {
+  content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  background: url('../textures/tex-concrete.jpg') center / 200px auto repeat;
+  mix-blend-mode: overlay; opacity: 0.6; border-radius: inherit;
+}
+html:not(.light-mode) #tip-box::after { opacity: 0.4; }
+
+/* headings + descriptions: overlay concrete on the glyphs, clipped to text - */
+/* drop the title's outline stroke so the letter is one solid shape */
+.hero-content h1 { -webkit-text-stroke: 0 !important; }
+.hero-content h1, section h2, .hero-content p, section > p { position: relative; }
+.hero-content h1::before, section h2::before,
+.hero-content p::before, section > p::before {
+  content: attr(data-text);
+  position: absolute; left: 0; top: 0; width: 100%; height: 100%; z-index: 1;
+  pointer-events: none;
+  letter-spacing: inherit; text-transform: inherit; text-align: inherit;
+  background: url('../textures/tex-concrete.jpg') center / 700px auto;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+  mix-blend-mode: overlay; opacity: 1;
+}
+
+/* logo monogram tinted to match the AMELIA'S PORTFOLIO text colour -------- */
+html:not(.light-mode) .logo-img {
+  filter: brightness(0) invert(70%) sepia(16%) saturate(1300%) hue-rotate(318deg) brightness(77%) contrast(92%) !important;
+}
+html.light-mode .logo-img {
+  filter: brightness(0) invert(27%) sepia(22%) saturate(1000%) hue-rotate(316deg) brightness(90%) contrast(88%) !important;
+}

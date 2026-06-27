@@ -9,7 +9,8 @@
   <title>Posters &amp; Print - Amelia Bobbin</title>
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Cookie&display=swap" rel="stylesheet">
   <style>
-    @import url('https://fonts.cdnfonts.com/css/made-sunflower');
+    /* @import url('https://fonts.cdnfonts.com/css/made-sunflower');  <- swapped to Birds of Paradise */
+    @font-face { font-family: 'Birds of Paradise'; src: url('fonts/BirdsOfParadise.ttf') format('truetype'); font-weight: normal; font-style: normal; }
     @font-face { font-family: "Cavalhatriz"; src: url("fonts/Cavalhatriz.ttf") format("truetype"); font-weight: normal; font-style: normal; }
     @font-face { font-family: "Georgia Custom"; src: url("fonts/georgia.ttf") format("truetype"); font-weight: normal; font-style: normal; }
     @font-face { font-family: "Georgia Custom"; src: url("fonts/georgiab.ttf") format("truetype"); font-weight: bold; font-style: normal; }
@@ -24,7 +25,7 @@
     body{
       font-size: 1.1em;
       font-family:'Cavalhatriz', serif;
-      background: linear-gradient(135deg, #bf9090 0%, #e6d0b8 20%, #d8c0a8 40%, #a4bca0 60%, #dcccc0 80%, #b08080 100%);
+      background: linear-gradient(135deg, #b89488 0%, #ddccb6 20%, #cdb89c 40%, #aaa784 60%, #d1c3b2 80%, #a8847a 100%);
       color:#7a4848; font-weight:400;
       -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
     }
@@ -32,40 +33,40 @@
     /* Decorative Stars */
     .doodle{ display:none; position:fixed; pointer-events:none; z-index:1; }
     .star{
-      width:25px; height:25px; background:#a0b898; opacity:.4;
+      width:25px; height:25px; background:#a39c78; opacity:.4;
       clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
       animation:gentleFloat 6s infinite ease-in-out;
     }
     .star1{top:15%;left:8%;animation-delay:0s;animation-duration:7s}
-    .star2{top:25%;right:12%;width:20px;height:20px;background:#a0b898;animation-delay:2s;animation-duration:8s}
+    .star2{top:25%;right:12%;width:20px;height:20px;background:#a39c78;animation-delay:2s;animation-duration:8s}
     .star3{bottom:20%;left:15%;animation-delay:4s;animation-duration:6s}
     .star4{top:60%;right:8%;width:30px;height:30px;animation-delay:3s;animation-duration:9s}
-    .star5{top:45%;left:5%;width:18px;height:18px;background:#bf9090;animation-delay:1s}
+    .star5{top:45%;left:5%;width:18px;height:18px;background:#b89488;animation-delay:1s}
     .star6{bottom:35%;right:20%;animation-delay:5s;animation-duration:7s}
     .star7{top:10%;right:25%;width:35px;height:35px;background:#6e3c3c;opacity:.3;animation-delay:2.5s}
-    .star8{bottom:40%;left:30%;width:22px;height:22px;background:#a0b898;animation-delay:4.5s;animation-duration:8s}
-    .star9{top:70%;left:25%;width:28px;height:28px;background:#bf9090;animation-delay:1.5s}
-    .star10{top:35%;right:35%;width:16px;height:16px;background:#a0b898;animation-delay:3.5s;animation-duration:9s}
-    .star11{bottom:10%;right:15%;width:20px;height:20px;background:#bf9090;animation-delay:2s;animation-duration:6s}
-    .star12{top:80%;left:10%;width:26px;height:26px;background:#e6d0b8;animation-delay:4s;animation-duration:8s}
-    .star13{top:20%;left:40%;width:19px;height:19px;background:#a0b898;animation-delay:3s;animation-duration:7s}
-    .star14{bottom:50%;left:8%;width:32px;height:32px;background:#a0b898;animation-delay:.8s;animation-duration:8.2s}
-    .star15{top:40%;right:5%;width:23px;height:23px;background:#bf9090;animation-delay:2.2s;animation-duration:7.8s}
-    .star16{top:12%;left:25%;width:21px;height:21px;background:#a0b898;animation-delay:1.8s;animation-duration:7.2s}
-    .star17{bottom:25%;right:30%;width:27px;height:27px;background:#bf9090;animation-delay:.3s;animation-duration:8.8s}
-    .star18{top:55%;right:18%;width:17px;height:17px;background:#e6d0b8;animation-delay:2.8s;animation-duration:6.8s}
-    .star19{bottom:15%;left:35%;width:29px;height:29px;background:#a0b898;animation-delay:3.2s;animation-duration:7.4s}
-    .star20{top:30%;left:12%;width:24px;height:24px;background:#a0b898;animation-delay:1.2s;animation-duration:8.6s}
-    .star21{bottom:40%;right:10%;width:20px;height:20px;background:#bf9090;animation-delay:4.2s;animation-duration:6.2s}
-    .star22{top:65%;left:22%;width:33px;height:33px;background:#a0b898;animation-delay:.7s;animation-duration:9.2s}
-    .star23{top:8%;right:22%;width:18px;height:18px;background:#e6d0b8;animation-delay:2.4s;animation-duration:7.6s}
-    .star24{bottom:30%;left:18%;width:25px;height:25px;background:#a0b898;animation-delay:3.8s;animation-duration:6.4s}
-    .star25{top:75%;right:25%;width:22px;height:22px;background:#bf9090;animation-delay:1.4s;animation-duration:8.4s}
-    .star26{top:42%;left:32%;width:19px;height:19px;background:#a0b898;animation-delay:2.6s;animation-duration:7.2s}
-    .star27{bottom:18%;right:8%;width:26px;height:26px;background:#e6d0b8;animation-delay:.9s;animation-duration:8.9s}
-    .star28{top:52%;right:28%;width:21px;height:21px;background:#a0b898;animation-delay:3.6s;animation-duration:6.6s}
-    .star29{bottom:45%;left:28%;width:30px;height:30px;background:#bf9090;animation-delay:1.6s;animation-duration:8.2s}
-    .star30{top:18%;right:16%;width:23px;height:23px;background:#a0b898;animation-delay:2.1s;animation-duration:7.9s}
+    .star8{bottom:40%;left:30%;width:22px;height:22px;background:#a39c78;animation-delay:4.5s;animation-duration:8s}
+    .star9{top:70%;left:25%;width:28px;height:28px;background:#b89488;animation-delay:1.5s}
+    .star10{top:35%;right:35%;width:16px;height:16px;background:#a39c78;animation-delay:3.5s;animation-duration:9s}
+    .star11{bottom:10%;right:15%;width:20px;height:20px;background:#b89488;animation-delay:2s;animation-duration:6s}
+    .star12{top:80%;left:10%;width:26px;height:26px;background:#ddccb6;animation-delay:4s;animation-duration:8s}
+    .star13{top:20%;left:40%;width:19px;height:19px;background:#a39c78;animation-delay:3s;animation-duration:7s}
+    .star14{bottom:50%;left:8%;width:32px;height:32px;background:#a39c78;animation-delay:.8s;animation-duration:8.2s}
+    .star15{top:40%;right:5%;width:23px;height:23px;background:#b89488;animation-delay:2.2s;animation-duration:7.8s}
+    .star16{top:12%;left:25%;width:21px;height:21px;background:#a39c78;animation-delay:1.8s;animation-duration:7.2s}
+    .star17{bottom:25%;right:30%;width:27px;height:27px;background:#b89488;animation-delay:.3s;animation-duration:8.8s}
+    .star18{top:55%;right:18%;width:17px;height:17px;background:#ddccb6;animation-delay:2.8s;animation-duration:6.8s}
+    .star19{bottom:15%;left:35%;width:29px;height:29px;background:#a39c78;animation-delay:3.2s;animation-duration:7.4s}
+    .star20{top:30%;left:12%;width:24px;height:24px;background:#a39c78;animation-delay:1.2s;animation-duration:8.6s}
+    .star21{bottom:40%;right:10%;width:20px;height:20px;background:#b89488;animation-delay:4.2s;animation-duration:6.2s}
+    .star22{top:65%;left:22%;width:33px;height:33px;background:#a39c78;animation-delay:.7s;animation-duration:9.2s}
+    .star23{top:8%;right:22%;width:18px;height:18px;background:#ddccb6;animation-delay:2.4s;animation-duration:7.6s}
+    .star24{bottom:30%;left:18%;width:25px;height:25px;background:#a39c78;animation-delay:3.8s;animation-duration:6.4s}
+    .star25{top:75%;right:25%;width:22px;height:22px;background:#b89488;animation-delay:1.4s;animation-duration:8.4s}
+    .star26{top:42%;left:32%;width:19px;height:19px;background:#a39c78;animation-delay:2.6s;animation-duration:7.2s}
+    .star27{bottom:18%;right:8%;width:26px;height:26px;background:#ddccb6;animation-delay:.9s;animation-duration:8.9s}
+    .star28{top:52%;right:28%;width:21px;height:21px;background:#a39c78;animation-delay:3.6s;animation-duration:6.6s}
+    .star29{bottom:45%;left:28%;width:30px;height:30px;background:#b89488;animation-delay:1.6s;animation-duration:8.2s}
+    .star30{top:18%;right:16%;width:23px;height:23px;background:#a39c78;animation-delay:2.1s;animation-duration:7.9s}
 
     @keyframes gentleFloat{
       0%,100%{transform:translate(0,0) scale(1.45);opacity:.3}
@@ -79,7 +80,7 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    .announcement-banner{position:fixed;top:0;left:0;width:100%;height:38px;background:linear-gradient(90deg, #bf9090 0%, #e6d0b8 25%, #a4bca0 55%, #bf9090 100%);background-size:300% 100%;animation:bannerShift 8s linear infinite;z-index:1002;overflow:hidden;display:flex;align-items:center}
+    .announcement-banner{position:fixed;top:0;left:0;width:100%;height:38px;background:linear-gradient(90deg, #ddccb6 0%, #cdb89c 25%, #b89488 55%, #ddccb6 100%);background-size:300% 100%;animation:bannerShift 8s linear infinite;z-index:1002;overflow:hidden;display:flex;align-items:center}
     .banner-link{display:block;width:100%;overflow:hidden;text-decoration:none;cursor:pointer}
     .banner-link:hover .banner-inner{animation-play-state:paused}
     .banner-inner{display:flex;white-space:nowrap;animation:marqueeScroll 28s linear infinite;will-change:transform}
@@ -92,7 +93,7 @@
       position:fixed; top:38px; width:100%;
       padding:25px 60px;
       display:flex; justify-content:space-between; align-items:center;
-      z-index:1000; background:rgba(255,255,255,.85); backdrop-filter:blur(15px);
+      z-index:1000; background:rgba(244,236,226,.9); backdrop-filter:blur(15px);
       transition:all .4s ease;
     }
     nav.scrolled{ padding:20px 60px; box-shadow:2px 2px 20px rgba(212,165,165,.1); }
@@ -122,7 +123,7 @@
     .nav-links a:hover::after{ width:100%; }
 
     .music-nav-link{
-      background:linear-gradient(135deg,#bf9090,#a0b898);
+      background:linear-gradient(135deg,#ddccb6,#b89488);
       padding:10px 20px !important; border-radius:20px; font-weight:600 !important; transition:all .3s ease;
     }
     .music-nav-link::after{ display:none !important; }
@@ -134,7 +135,7 @@
       text-align:center; padding:160px 40px 70px;
     }
     .hero-content h1{
-      font-family:'MADE Sunflower',sans-serif; font-weight:400;
+      font-family:'Birds of Paradise',sans-serif; font-weight:400;
       font-size:58px; color:#6e3c3c; margin-bottom:16px; line-height:1.2;
       animation: fadeInUp 1s ease;
     }
@@ -154,10 +155,10 @@
     }
     h2::after{
       content:''; position:absolute; bottom:-12px; left:50%; transform:translateX(-50%);
-      width:80px; height:2px; background:#bf9090;
+      width:80px; height:2px; background:#b89488;
     }
     h3{
-      font-family:'MADE Sunflower',sans-serif; font-weight:400; font-size:26px;
+      font-family:'Birds of Paradise',sans-serif; font-weight:400; font-size:26px;
       color:#6e3c3c; margin-bottom:32px; text-align:center;
       animation: fadeInUp 0.8s ease 0.15s backwards;
     }
@@ -193,7 +194,7 @@
     .work-item:hover .work-image img{ transform:scale(1.05); }
 
     .work-caption{ padding:20px; text-align:center; }
-    .work-caption h4{ font-family:'MADE Sunflower',sans-serif; font-size:18px; color:#6e3c3c; margin-bottom:8px; font-weight:400;}
+    .work-caption h4{ font-family:'Birds of Paradise',sans-serif; font-size:18px; color:#6e3c3c; margin-bottom:8px; font-weight:400;}
     .work-caption p{ font-family:'Georgia Custom',Georgia,serif; font-size:13px; color:#7a4848; font-style:normal; line-height:1.6; letter-spacing:0; }
 
     /* Magazine layout */
@@ -297,7 +298,7 @@
         flex-direction:column; padding:16px; transition:left .3s ease;
         box-shadow:4px 4px 20px rgba(0,0,0,.1); overflow-y:auto; gap:0 !important; z-index:999; align-items:stretch;
       }
-      .nav-links.active{ left:0; top:0!important; height:100vh!important; padding-top:90px!important; }
+      .nav-links.active{ left:0; top:0!important; height:100vh!important; padding-top:66px!important; }
       nav.menu-open{z-index:1003!important}
       .nav-links li{ width:100%; margin:0; border-bottom:1px solid rgba(139,71,93,.1); }
       .nav-links a{ display:block; padding:12px 10px !important; font-size:14px !important; text-align:center; white-space:normal; }
@@ -388,7 +389,7 @@
       min-height: 64px;
     }
     .stack-caption h4 {
-      font-family: 'MADE Sunflower', sans-serif;
+      font-family: 'Birds of Paradise', sans-serif;
       font-size: 20px;
       color: #6e3c3c;
       margin-bottom: 6px;
@@ -420,7 +421,7 @@
       position: relative;
       z-index: 50;
     }
-    .stack-nav:hover { opacity: 1; transform: scale(1.15); }
+    .stack-nav:hover { opacity: 1; }
     .stack-counter {
       font-family: 'Georgia Custom', Georgia, serif;
       font-size: 13px;
@@ -434,7 +435,7 @@
       .stack-scene { gap: 8px; position: relative; }
       .stack-nav { position: absolute; top: 50%; transform: translateY(-50%); z-index: 50; background: rgba(255,255,255,0.55); width: 36px; height: 36px; }
       .stack-nav svg { width: 28px; height: 28px; }
-      .stack-nav:hover { transform: translateY(-50%) scale(1.15); }
+      .stack-nav:hover { transform: translateY(-50%); }
       .stack-prev { left: 6px; }
       .stack-next { right: 6px; }
     }
@@ -494,7 +495,7 @@
 
         /* Section divider shimmer on h2 underline */
         h2.will-animate.visible::after {
-            background: linear-gradient(90deg, #bf9090, #a0b898, #bf9090) !important;
+            background: linear-gradient(90deg, #b89488, #a39c78, #b89488) !important;
             background-size: 200% 100% !important;
             animation: underlineShimmer 6s ease-in-out infinite !important;
         }
@@ -561,45 +562,57 @@
         }
     /* Theme toggle */
     .theme-toggle-wrap { display:flex; align-items:center; gap:8px; flex-shrink:0; cursor:pointer; margin-left:auto; margin-right:35px; }
+        @keyframes bulbPop {
+            0%   { transform: scale(1); }
+            40%  { transform: scale(1.18); }
+            100% { transform: scale(1); }
+        }
+        .lb-icon { height:28px; width:auto; object-fit:contain; transition:transform 0.25s ease; display:none; }
+        .theme-toggle-label { display: none !important; }
+        .theme-toggle-wrap:hover .lb-icon { transform: scale(1.12); }
+        .theme-toggle-wrap:active .lb-icon { transform: scale(1.22); }
+        html:not(.light-mode) .lb-dark  { display: block; }
+        html.light-mode .lb-light { display: block; }
+        .theme-toggle-track, .theme-toggle-thumb { display: none !important; }
     .theme-toggle-label { font-family:'Archivo Black',sans-serif; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:#6e3c3c; opacity:0.7; user-select:none; }
-    html:not(.light-mode) .theme-toggle-label { color:#aa7878 !important; }
+    html:not(.light-mode) .theme-toggle-label { color:#b87c70 !important; }
     .theme-toggle-track { width:46px; height:26px; background:#a88888; border-radius:13px; position:relative; transition:background 0.3s; }
     html:not(.light-mode) .theme-toggle-track { background:#281a18 !important; }
     .theme-toggle-thumb { width:20px; height:20px; background:#6e3c3c; border-radius:50%; position:absolute; top:3px; left:23px; box-shadow:0 1px 4px rgba(0,0,0,0.4); transition:left 0.3s, background 0.3s; }
-    html:not(.light-mode) .theme-toggle-thumb { left:1px !important; background:#aa7878 !important; }
+    html:not(.light-mode) .theme-toggle-thumb { left:1px !important; background:#b87c70 !important; }
 
     /* ═══ DARK MODE (default) ═══ */
-    html:not(.light-mode) body { background: #000000 !important; color: #aa7878 !important; }
-    html:not(.light-mode) .star { background: #2a1a22 !important; opacity: 0.5 !important; }
-    html:not(.light-mode) .announcement-banner { background: linear-gradient(90deg, #4a2537 0%, #40202e 25%, #361a27 55%, #4a2537 100%) !important; background-size: 300% 100% !important; }
-    html:not(.light-mode) .banner-inner span { color: #aa7878 !important; }
-    html:not(.light-mode) nav { background: rgba(30,16,24,0.97) !important; }
+    html:not(.light-mode) body { background: #1e1018 !important; color: #b87c70 !important; }
+    html:not(.light-mode) .star { background: #2a1212 !important; opacity: 0.5 !important; }
+    html:not(.light-mode) .announcement-banner { background: linear-gradient(90deg, #823a3e 0%, #823a3e 25%, #3d141e 55%, #823a3e 100%) !important; background-size: 300% 100% !important; }
+    html:not(.light-mode) .banner-inner span { color: #b87c70 !important; }
+    html:not(.light-mode) nav { background: rgba(61, 20, 30, 0.97) !important; }
     html:not(.light-mode) nav.scrolled { box-shadow: 2px 2px 20px rgba(139,71,93,0.15) !important; }
-    html:not(.light-mode) .logo, html:not(.light-mode) .logo a { color: #aa7878 !important; }
-    html:not(.light-mode) .menu-toggle { color: #aa7878 !important; }
-    html:not(.light-mode) .nav-links a { color: #aa7878 !important; }
-    html:not(.light-mode) .music-nav-link { background: linear-gradient(135deg, #422020, #281816) !important; }
-    html:not(.light-mode) h1 { color: #aa7878 !important; }
-    html:not(.light-mode) h2 { color: #aa7878 !important; }
-    html:not(.light-mode) h3 { color: #aa7878 !important; }
-    html:not(.light-mode) h4 { color: #aa7878 !important; }
-    html:not(.light-mode) h2::after { background: linear-gradient(90deg, #bf9090, #aa7878, #bf9090) !important; }
-    html:not(.light-mode) h2.will-animate.visible::after { background: linear-gradient(90deg, #bf9090, #aa7878, #bf9090) !important; }
-    html:not(.light-mode) section p { color: #aa7878 !important; }
-    html:not(.light-mode) .hero p, html:not(.light-mode) .hero-content p { color: #aa7878 !important; }
-    html:not(.light-mode) .stack-caption h4 { color: #aa7878 !important; }
-    html:not(.light-mode) .stack-caption p { color: #aa7878 !important; }
-    html:not(.light-mode) .stack-counter { color: #aa7878 !important; }
-    html:not(.light-mode) .stack-nav { background: rgba(255,255,255,0.15) !important; color: #aa7878 !important; }
-    html:not(.light-mode) .back-button { color: #aa7878 !important; background: transparent !important; }
+    html:not(.light-mode) .logo, html:not(.light-mode) .logo a { color: #b87c70 !important; }
+    html:not(.light-mode) .menu-toggle { color: #b87c70 !important; }
+    html:not(.light-mode) .nav-links a { color: #b87c70 !important; }
+    html:not(.light-mode) .music-nav-link { background: linear-gradient(135deg, #823a3e, #3d141e) !important; }
+    html:not(.light-mode) h1 { color: #b87c70 !important; }
+    html:not(.light-mode) h2 { color: #b87c70 !important; }
+    html:not(.light-mode) h3 { color: #b87c70 !important; }
+    html:not(.light-mode) h4 { color: #b87c70 !important; }
+    html:not(.light-mode) h2::after { background: linear-gradient(90deg, #b89488, #b87c70, #b89488) !important; }
+    html:not(.light-mode) h2.will-animate.visible::after { background: linear-gradient(90deg, #b89488, #b87c70, #b89488) !important; }
+    html:not(.light-mode) section p { color: #b87c70 !important; }
+    html:not(.light-mode) .hero p, html:not(.light-mode) .hero-content p { color: #b87c70 !important; }
+    html:not(.light-mode) .stack-caption h4 { color: #b87c70 !important; }
+    html:not(.light-mode) .stack-caption p { color: #b87c70 !important; }
+    html:not(.light-mode) .stack-counter { color: #b87c70 !important; }
+    html:not(.light-mode) .stack-nav { background: rgba(255,255,255,0.15) !important; color: #b87c70 !important; }
+    html:not(.light-mode) .back-button { color: #b87c70 !important; background: transparent !important; }
     html:not(.light-mode) .back-button:hover { }
     html:not(.light-mode) footer { background: rgba(0,0,0,0.5) !important; }
-    html:not(.light-mode) footer p { color: #aa7878 !important; }
-    html:not(.light-mode) span[style*="color:#6e3c3c"] { color: #aa7878 !important; }
-    html:not(.light-mode) p[style*="color:#6e3c3c"] { color: #aa7878 !important; }
-    html:not(.light-mode) p[style*="color:#7a4848"] { color: #aa7878 !important; }
+    html:not(.light-mode) footer p { color: #b87c70 !important; }
+    html:not(.light-mode) span[style*="color:#6e3c3c"] { color: #b87c70 !important; }
+    html:not(.light-mode) p[style*="color:#6e3c3c"] { color: #b87c70 !important; }
+    html:not(.light-mode) p[style*="color:#7a4848"] { color: #b87c70 !important; }
     html:not(.light-mode) div[style*="background:rgba(139,71,93,0.1)"] { background: rgba(232,160,184,0.15) !important; }
-    html:not(.light-mode) div[style*="border-left:3px solid #6e3c3c"] { border-left-color: #aa7878 !important; }
+    html:not(.light-mode) div[style*="border-left:3px solid #6e3c3c"] { border-left-color: #b87c70 !important; }
     html:not(.light-mode) input:focus, html:not(.light-mode) textarea:focus { box-shadow: 0 0 0 3px rgba(232,160,184,0.4), 0 0 20px rgba(232,160,184,0.15) !important; }
     @media (max-width: 820px) {
         html:not(.light-mode) .nav-links { background: rgba(0,0,0,1) !important; }
@@ -631,8 +644,8 @@
     }
     .view-btn.active { background: #6e3c3c; color: white; opacity: 1; box-shadow: 2px 2px 8px rgba(139,71,93,0.28); }
     html:not(.light-mode) .view-toggle-wrap { background: rgba(232,160,184,0.07); border-color: rgba(232,160,184,0.18); }
-    html:not(.light-mode) .view-btn { color: #aa7878; }
-    html:not(.light-mode) .view-btn.active { background: #4a1f30; color: #aa7878; box-shadow: 2px 2px 8px rgba(0,0,0,0.45); }
+    html:not(.light-mode) .view-btn { color: #b87c70; }
+    html:not(.light-mode) .view-btn.active { background: #4a1f30; color: #b87c70; box-shadow: 2px 2px 8px rgba(0,0,0,0.45); }
 
     /* During view swap: suppress only transitions (NOT animations) so layout change is instant
        without restarting keyframe animations like the h2 underline shimmer */
@@ -696,7 +709,7 @@
       display: none; padding: 8px 10px 10px; flex-shrink: 0;
     }
     .gallery-card-name {
-      font-family: 'MADE Sunflower', sans-serif;
+      font-family: 'Birds of Paradise', sans-serif;
       font-size: 13px; color: #6e3c3c;
       text-align: center; line-height: 1.3; margin-bottom: 4px;
     }
@@ -718,14 +731,14 @@
       letter-spacing: 1px;
       padding: 6px 0 8px;
     }
-    html:not(.light-mode) body.gallery-mode .gallery-card-year-top { color: #aa7878; }
+    html:not(.light-mode) body.gallery-mode .gallery-card-year-top { color: #b87c70; }
     html:not(.light-mode) body.gallery-mode .stack-card {
       background: rgba(18,8,14,0.65) !important;
       box-shadow: 4px 4px 16px rgba(0,0,0,0.4) !important;
     }
     html:not(.light-mode) body.gallery-mode .stack-card:hover { box-shadow: 12px 12px 28px rgba(0,0,0,0.55) !important; }
-    html:not(.light-mode) .gallery-card-name { color: #aa7878; }
-    html:not(.light-mode) .gallery-card-desc { color: #aa7878; }
+    html:not(.light-mode) .gallery-card-name { color: #b87c70; }
+    html:not(.light-mode) .gallery-card-desc { color: #b87c70; }
     @media (max-width: 968px) {
       body.gallery-mode .card-stack { gap: 10px !important; }
       body.gallery-mode .stack-card { flex: 0 0 150px !important; width: 150px !important; }
@@ -776,11 +789,11 @@
     nav .nav-links a,
     nav .cv-button,
     nav .music-nav-link {
-        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
-        font-weight: 700 !important;
-        letter-spacing: -0.13em !important;
+        font-family: 'Archivo Black', sans-serif !important;
+        font-weight: 400 !important;
+        letter-spacing: -0.12em !important;
         font-size: 0.87em !important;
-        text-transform: uppercase !important;
+        text-transform: lowercase !important;
     }
 
     /* Remove h2 underlines sitewide */
@@ -806,8 +819,8 @@
     /* CV button: capital Archivo Black */
     nav .cv-button, nav a.cv-button {
         font-family: 'Archivo Black', sans-serif !important;
-        text-transform: uppercase !important;
-        letter-spacing: 0 !important;
+        text-transform: lowercase !important;
+        letter-spacing: -0.12em !important;
         font-size: 0.78em !important;
     }
 
@@ -816,7 +829,7 @@
         display: inline-flex !important; align-items: center !important;
         background: transparent !important; border: 2px solid #6e3c3c !important;
         border-radius: 50px !important; box-shadow: 4px 4px 0 #6e3c3c !important;
-        color: #aa7878 !important; padding: 10px 26px !important;
+        color: #b87c70 !important; padding: 10px 26px !important;
         font-family: 'Archivo Black', sans-serif !important;
         text-transform: uppercase !important; letter-spacing: 0 !important;
         font-size: 12px !important; font-weight: 400 !important;
@@ -824,24 +837,24 @@
         margin-top: 40px;
     }
     .back-button:hover { transform: translate(2px,2px) !important; box-shadow: 2px 2px 0 #6e3c3c !important; background: transparent !important; }
-    html:not(.light-mode) .back-button { border-color:#aa7878 !important; box-shadow:4px 4px 0 #aa7878 !important; color:#aa7878 !important; background:transparent !important; }
-    html:not(.light-mode) .back-button:hover { box-shadow:2px 2px 0 #aa7878 !important; }
+    html:not(.light-mode) .back-button { border-color:#b87c70 !important; box-shadow:4px 4px 0 #b87c70 !important; color:#b87c70 !important; background:transparent !important; }
+    html:not(.light-mode) .back-button:hover { box-shadow:2px 2px 0 #b87c70 !important; }
     /* Stack/gallery toggle → theme colours */
     .view-toggle-wrap { background: rgba(110,60,60,0.1) !important; border: 1.5px solid rgba(110,60,60,0.3) !important; }
-    .view-btn { color: #aa7878 !important; opacity: 0.6; }
+    .view-btn { color: #b87c70 !important; opacity: 0.6; }
     .view-btn.active { background: #6e3c3c !important; color: #f0ddd0 !important; opacity: 1; box-shadow: 2px 2px 8px rgba(110,60,60,0.3) !important; }
     html:not(.light-mode) .view-toggle-wrap { background: rgba(170,120,120,0.1) !important; border-color: rgba(170,120,120,0.3) !important; }
-    html:not(.light-mode) .view-btn { color: #aa7878 !important; }
-    html:not(.light-mode) .view-btn.active { background: #4a2020 !important; color: #aa7878 !important; }
+    html:not(.light-mode) .view-btn { color: #b87c70 !important; }
+    html:not(.light-mode) .view-btn.active { background: #4a2020 !important; color: #b87c70 !important; }
 
     /* Button text: no white — use theme colours */
-    .cv-button { color: #aa7878 !important; }
+    .cv-button { color: #b87c70 !important; }
     .cta-button { color: #f0ddd0 !important; }
-    html:not(.light-mode) .cv-button { color: #aa7878 !important; }
+    html:not(.light-mode) .cv-button { color: #b87c70 !important; }
 
     /* CV button: identical to Music nav link */
     nav .cv-button, nav a.cv-button {
-        background: linear-gradient(135deg, #bf9090, #a0b898) !important;
+        background: linear-gradient(135deg, #ddccb6, #b89488) !important;
         border-radius: 20px !important;
         padding: 10px 20px !important;
         box-shadow: none !important;
@@ -849,11 +862,11 @@
         border: none !important;
         color: #6e3c3c !important;
         margin-left: 4px !important;
-        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
-        font-weight: 700 !important;
+        font-family: 'Archivo Black', sans-serif !important;
+        font-weight: 400 !important;
         font-size: 0.87em !important;
-        letter-spacing: -0.09em !important;
-        text-transform: uppercase !important;
+        letter-spacing: -0.12em !important;
+        text-transform: lowercase !important;
         display: inline-flex !important;
         align-items: center !important;
         vertical-align: middle !important;
@@ -862,8 +875,8 @@
     nav .cv-button::before { display: none !important; }
     html:not(.light-mode) nav .cv-button,
     html:not(.light-mode) nav a.cv-button {
-        background: linear-gradient(135deg, #422020, #281816) !important;
-        color: #aa7878 !important;
+        background: linear-gradient(135deg, #823a3e, #3d141e) !important;
+        color: #b87c70 !important;
         box-shadow: none !important;
     }
     /* Music nav link: same alignment fix */
@@ -945,14 +958,13 @@
     <div class="logo"><a href="index.html"><img src="shared/AB logo light.png" alt="AB" class="logo-img">AMELIA'S PORTFOLIO</a></div>
     <div class="theme-toggle-wrap" onclick="toggleTheme()" id="themeToggle" aria-label="Toggle theme">
             <span class="theme-toggle-label" id="themeLabel">Light</span>
-            <div class="theme-toggle-track"><div class="theme-toggle-thumb"></div></div>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70 90" aria-hidden="true" class="lb-svg"><g class="lb-ray" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"><line x1="35" y1="2" x2="35" y2="10"/><line x1="57" y1="8" x2="51" y2="14"/><line x1="67" y1="30" x2="59" y2="30"/><line x1="57" y1="52" x2="51" y2="46"/><line x1="13" y1="8" x2="19" y2="14"/><line x1="3" y1="30" x2="11" y2="30"/><line x1="13" y1="52" x2="19" y2="46"/></g><path fill="currentColor" d="M35 12C23 12 14 21 14 32c0 9.5 5.5 17 13 20.5V59c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-6.5C51 49 56 41.5 56 32c0-11-9-20-21-20z"/><rect fill="currentColor" x="27" y="63" width="16" height="3.5" rx="1.75"/><rect fill="currentColor" x="29" y="68.5" width="12" height="3" rx="1.5"/><rect fill="currentColor" x="31" y="73.5" width="8" height="3" rx="1.5"/></svg>
         </div>
     <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">&#9776;</button>
     <ul class="nav-links" id="navLinks">
       <li><a href="index.html#home">Home</a></li>
       <li><a href="index.html">Work</a></li>
       <li><a href="index.html#about">About</a></li>
-      <li><a href="index.html#skills">Skills</a></li>
       <li><a href="index.html#contact">Contact</a></li>
       <li><a href="music.html" class="music-nav-link">Music</a></li>
       <li><a href="design-cv.html" class="cv-button">Design CV</a></li>
@@ -964,9 +976,6 @@
     <div class="hero-content">
       <h1>Posters &amp; Print</h1>
       <p>Poster series, magazine layouts, packaging design, and other print work.</p>
-      <div style="margin-top:25px; padding:15px 25px; background:rgba(139,71,93,0.1); border-radius:12px; border-left:3px solid #6e3c3c; animation:fadeInUp 1s ease 0.6s backwards; display:inline-block;">
-        <p style="font-size:14px; color:#6e3c3c; margin:0; font-style:normal;"> <strong>Tip:</strong> Tap or click any image for fullscreen view</p>
-      </div>
     </div>
   </section>
 
@@ -975,21 +984,24 @@
     <h2>Artist Posters</h2>
     <p style="text-align:center; font-size:17px; color:#6e3c3c; font-style:italic; margin-top:-20px; margin-bottom:12px; letter-spacing:1px; font-family: 'Cavalhatriz', serif;">2026</p>
     <div style="text-align:center; position:relative; z-index:10; margin: 0 auto 12px;"><div class="view-toggle-wrap"><button class="view-btn active" data-view="stack"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="15.5" width="20" height="3" rx="1.5"/><rect x="2" y="10.5" width="20" height="3" rx="1.5" opacity="0.55"/><rect x="2" y="5.5" width="20" height="3" rx="1.5" opacity="0.25"/></svg> Stack</button><button class="view-btn" data-view="gallery"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg> Gallery</button></div></div>
-    <p style="text-align:center; font-size:12px; color:#aa7878; margin:0 auto 32px; max-width:600px; line-height:1.6; opacity:0.85; font-family: Georgia, serif;">These are unofficial, fan-made design pieces created as personal projects. All artist names, song titles, and associated imagery remain the property of their respective rights holders. Not affiliated with or endorsed by any featured artist — no commercial use intended.</p>
+    <p style="text-align:center; font-size:12px; color:#b87c70; margin:0 auto 32px; max-width:600px; line-height:1.6; opacity:0.85; font-family: Georgia, serif;">These are unofficial, fan-made design pieces created as personal projects. All artist names, song titles, and associated imagery remain the property of their respective rights holders. Not affiliated with or endorsed by any featured artist — no commercial use intended.</p>
     <div class="stack-scene">
       <button class="stack-nav stack-prev" aria-label="Previous"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></button>
       <div class="card-stack">
         <a href="extras/skegss-fullscreen.webp?v=2" target="_blank" class="stack-card" data-title="Skegss" data-desc="Artist poster for Skegss using new album 'Pacific Highway Music' and song 'Stuck In Cheyenne'."><img src="extras/skegss-fullscreen.webp?v=2" alt="Skegss Poster"></a>
         <a href="extras/dogtag2-fullscreen.webp" target="_blank" class="stack-card" data-title="Dog Tag freestyle (Light)" data-desc="bassvicitm's Dog Tag freestyle song design poster. Using typography elements and image graphics."><img src="extras/dogtag2-fullscreen.webp" alt="Dog Tag Poster Light"></a>
         <a href="extras/dogtag1-fullscreen.webp" target="_blank" class="stack-card" data-title="Dog Tag freestyle (Dark)" data-desc="bassvicitm's Dog Tag freestyle song design poster. Using typography elements and image graphics."><img src="extras/dogtag1-fullscreen.webp" alt="Dog Tag Poster Dark"></a>
+        <a href="extras/erykahbadu-fullscreen.webp" target="_blank" class="stack-card" data-title="Erykah Badu" data-desc="Artist poster for Erykah Badu using a pop-art style bright colour palette as well as type and layout design"><img src="extras/erykahbadu-fullscreen.webp" alt="Erykah Badu Poster"></a>
+        <a href="extras/noahkahan-fullscreen.webp" target="_blank" class="stack-card" data-title="Noah Kahan" data-desc="Artist poster for Noah Kahan using overlaying textures, blended images and typography"><img src="extras/noahkahan-fullscreen.webp" alt="Noah Kahan Poster"></a>
         <a href="extras/sunday-fullscreen.webp" target="_blank" class="stack-card" data-title="Sunday (1994)" data-desc="Artist poster for Sunday (1994)'s new album, Devotion. Using bitmap cybersigilism, overlay images and micro graphics."><img src="extras/sunday-fullscreen.webp" alt="Sunday Poster"></a>
         <a href="extras/bjork-fullscreen.webp" target="_blank" class="stack-card" data-title="Venus as a Boy" data-desc="Bjork's Venus as a Boy song design poster. Using traced cybersigilism and typography elements."><img src="extras/bjork-fullscreen.webp" alt="Björk Venus as a Boy Poster"></a>
         <a href="extras/pit-fullscreen.webp" target="_blank" class="stack-card" data-title="27a Pitfield St" data-desc="bassvicitm's 27a Pitfiled St song design poster. Using traced cybersigilism and outlined graphics."><img src="extras/pit-fullscreen.webp" alt="27a Pitfield St Poster"></a>
         <a href="extras/sometimesibeliveingod-fullscreen.webp" target="_blank" class="stack-card" data-title="Sometimes I believe in God (Sometimes I believe in Me)" data-desc="bassvicitm's Sometimes I believe in God song design poster. Using typography elements and traced, outlined graphics."><img src="extras/sometimesibeliveingod-fullscreen.webp" alt="Sometimes I Believe in God Poster"></a>
         <a href="extras/pinkpantheress-fullscreen.webp" target="_blank" class="stack-card" data-title="PinkPantheress" data-desc="Artist poster for PinkPantheress. Image traced photo from Melbourne Laneway 2026."><img src="extras/pinkpantheress-fullscreen.webp" alt="PinkPantheress Poster"></a>
         <a href="extras/allisfulloflove-fullscreen.webp" target="_blank" class="stack-card" data-title="All is Full of Love" data-desc="Bjork's All is Full of Love song design poster. Using traced images (coffee latte art) and typography elements."><img src="extras/allisfulloflove-fullscreen.webp" alt="Björk Poster"></a>
+        <a href="extras/oklou-fullscreen.webp" target="_blank" class="stack-card" data-title="Harvest Sky" data-desc="Oklou's Harvest Sky song design poster. Image traced photo from Melbourne Laneway 2026."><img src="extras/oklou-fullscreen.webp" alt="Oklou Poster"></a>
         <div class="gallery-break"></div>
-        <a href="extras/bangbangkisskiss-fullscreen.webp" target="_blank" class="stack-card fourup" data-title="Bang Bang kiss Kiss" data-desc="Lana Del Rey's Venice Bitch song design poster. Using bitmap image graphics and typography elements."><img src="extras/bangbangkisskiss-fullscreen.webp" alt="Bang Bang Kiss Kiss"></a>
+        <a href="extras/bangbangkisskiss-fullscreen.webp?v=2" target="_blank" class="stack-card" data-title="Bang Bang kiss Kiss" data-desc="Lana Del Rey's Venice Bitch song design poster. Using bitmap image graphics and typography elements."><img src="extras/bangbangkisskiss-fullscreen.webp?v=2" alt="Bang Bang Kiss Kiss"></a>
         <a href="extras/poppies-fullscreen.webp" target="_blank" class="stack-card fourup" data-orient="square" data-title="Poppies" data-desc="Marcy Playground's Poppies song design poster. Using traced cybersigilism and traced image graphics."><img src="extras/poppies-fullscreen.webp" alt="Poppies Poster"></a>
         <a href="extras/wacotexas-fullscreen.webp" target="_blank" class="stack-card fourup fourup-bottomrow" data-orient="square" data-title="Waco Texas" data-desc="Ethel Cain's Waco Texas song design poster. Using traced cybersigilism, typography elements and traced images (coffee latte art)."><img src="extras/wacotexas-fullscreen.webp" alt="Waco Texas Poster"></a>
         <a href="extras/movies-fullscreen.webp" target="_blank" class="stack-card fourup fourup-bottomrow" data-orient="square" data-title="Movies" data-desc="Weyes Blood's Movies song design poster. Using hand written and cursive typography elements."><img src="extras/movies-fullscreen.webp" alt="Movies Poster"></a>
@@ -997,7 +1009,6 @@
         <a href="extras/joost-fullscreen.webp" target="_blank" class="stack-card" data-title="Joost Klein" data-desc="Artist poster for Joost Klein, featuring new album Kleinkunst. Using bitmap cybersigilism, textured graphics and typography elements."><img src="extras/joost-fullscreen.webp" alt="Joost Klein Poster 1"></a>
         <a href="extras/joost2-fullscreen.webp" target="_blank" class="stack-card" data-title="Luchtballon" data-desc="Joost Klein's Luchtballon song and album design poster. Using bitmap cybersigilism and layout design."><img src="extras/joost2-fullscreen.webp" alt="Joost Klein Poster 2"></a>
         <a href="extras/language-fullscreen.webp" target="_blank" class="stack-card" data-title="Language" data-desc="Spirit Blue's Language song design poster. Using textured and bitmap graphics and typography elements."><img src="extras/language-fullscreen.webp" alt="Language Poster"></a>
-        <a href="extras/oklou-fullscreen.webp" target="_blank" class="stack-card" data-title="Harvest Sky" data-desc="Oklou's Harvest Sky song design poster. Image traced photo from Melbourne Laneway 2026."><img src="extras/oklou-fullscreen.webp" alt="Oklou Poster"></a>
       </div>
       <button class="stack-nav stack-next" aria-label="Next"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></button>
     </div>
@@ -1013,10 +1024,14 @@
     <div class="stack-scene">
       <button class="stack-nav stack-prev" aria-label="Previous"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></button>
       <div class="card-stack">
-        <a href="extras/new-backrooms.webp" target="_blank" class="stack-card" data-title="Second Backrooms Poster" data-desc="Inspired by Kane Pixel's YouTube Backrooms series, in particular his 'Found Footage' videos."><img src="extras/new-backrooms.webp" alt="Second Backrooms Poster"></a>
+        <a href="extras/tv-glow-1.webp" target="_blank" class="stack-card" data-title="I Saw The TV Glow I" data-desc="Movie poster for I Saw The TV Glow, experimenting with image distortion, image blending technique, typography, and layout design"><img src="extras/tv-glow-1.webp" alt="I Saw The TV Glow I"></a>
+        <a href="extras/tv-glow-2.webp" target="_blank" class="stack-card" data-title="I Saw The TV Glow II" data-desc="Movie poster for I Saw The TV Glow, experimenting with image distortion, image blending technique, typography, and layout design"><img src="extras/tv-glow-2.webp" alt="I Saw The TV Glow II"></a>
+        <a href="extras/httyd-fullscreen.webp" target="_blank" class="stack-card" data-title="How To Train Your Dragon" data-desc="Movie poster for How To Train Your Dragon, using different overlaying images, textures, type and layout design"><img src="extras/httyd-fullscreen.webp" alt="How To Train Your Dragon Poster"></a>
         <a href="extras/open.png" target="_blank" class="stack-card" data-title="Open" data-desc="Exploring overlaying images and 3D effects in Photoshop"><img src="extras/open.png" alt="Open"></a>
         <a href="extras/eye-fullscreen.webp?v=2" target="_blank" class="stack-card" data-title="Eye (Original)" data-desc="Coloured version; using different image overlay and blending techniques, micrographics and other glow and texture effects."><img src="extras/eye-fullscreen.webp?v=2" alt="Eye Poster (Original)"></a>
         <a href="extras/bw-eye-fullscreen.webp?v=2" target="_blank" class="stack-card" data-title="Eye (B&amp;W)" data-desc="Black and white version; using different image overlay and blending techniques, micrographics and other glow and texture effects."><img src="extras/bw-eye-fullscreen.webp?v=2" alt="Eye Poster (B&amp;W)"></a>
+        <a href="extras/backrooms-fullscreen.webp" target="_blank" class="stack-card" data-title="Backrooms I" data-desc="Movie poster for A24's new Backrooms movie. Using traced cybersigilism, typography elements and micrographics."><img src="extras/backrooms-fullscreen.webp" alt="Backrooms I"></a>
+        <a href="extras/new-backrooms.webp" target="_blank" class="stack-card" data-title="Backrooms II" data-desc="Inspired by Kane Pixel's YouTube Backrooms series, in particular his 'Found Footage' videos."><img src="extras/new-backrooms.webp" alt="Backrooms II"></a>
         <a href="extras/anthropocene-fullscreen.webp?v=2" target="_blank" class="stack-card" data-title="Anthropocene (Original)" data-desc="Coloured version; using different overlays and blending techniques, scanned graffiti typography elements."><img src="extras/anthropocene-fullscreen.webp?v=2" alt="Anthropocene Poster (Original)"></a>
         <a href="extras/bw-anthropocene-fullscreen.webp?v=2" target="_blank" class="stack-card" data-title="Anthropocene (B&amp;W)" data-desc="Black and white version; using different overlays and blending techniques, scanned graffiti typography elements."><img src="extras/bw-anthropocene-fullscreen.webp?v=2" alt="Anthropocene Poster (B&amp;W)"></a>
         <a href="extras/interesting-fullscreen.webp" target="_blank" class="stack-card" data-orient="square" data-title="Interesting" data-desc="Experimenting with texture overlays, typography elements and blending effects."><img src="extras/interesting-fullscreen.webp" alt="Interesting Poster"></a>
@@ -1027,7 +1042,6 @@
         <a href="extras/serendipity.webp" target="_blank" class="stack-card" data-title="Serendipity" data-desc="Experimenting with image overlays and blending."><img src="extras/serendipity.webp" alt="Serendipity Poster"></a>
         <a href="extras/thorns-fullscreen.webp" target="_blank" class="stack-card" data-title="Thorns" data-desc="Experimenting with Photoshop shapes and effects. Using texture and simple typography elements."><img src="extras/thorns-fullscreen.webp" alt="Thorns Poster"></a>
         <a href="extras/RADIANCE poster.webp" target="_blank" class="stack-card" data-title="Radiance" data-desc="Drawing elements in Photoshop, Using glow effects and micro graphics."><img src="extras/RADIANCE poster.webp" alt="Radiance Poster"></a>
-        <a href="extras/backrooms-fullscreen.webp" target="_blank" class="stack-card" data-title="Backrooms" data-desc="Movie poster for A24's new Backrooms movie. Using traced cybersigilism, typography elements and micrographics."><img src="extras/backrooms-fullscreen.webp" alt="Backrooms Poster"></a>
         <a href="extras/reverie-fullscreen.webp" target="_blank" class="stack-card" data-title="Reverie" data-desc="Experimenting with image overlays and blending. Using micro graphics, typography elements and layout design."><img src="extras/reverie-fullscreen.webp" alt="Reverie Poster"></a>
         <a href="extras/feelinglucky-fullscreen.webp" target="_blank" class="stack-card" data-orient="square" data-title="Feeling Lucky" data-desc="Typography experimentation. Using bitmap image graphics and layout design."><img src="extras/feelinglucky-fullscreen.webp" alt="Feeling Lucky"></a>
         <a href="extras/itiswhatitis-fullscreen.webp" target="_blank" class="stack-card" data-title="It Is What It Is" data-desc="Experimenting with chrome design and 3D materials."><img src="extras/itiswhatitis-fullscreen.webp" alt="It Is What It Is"></a>
@@ -1048,9 +1062,10 @@
     <div style="text-align:center; position:relative; z-index:10; margin: 0 auto 20px;"><div class="view-toggle-wrap"><button class="view-btn active" data-view="stack"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="15.5" width="20" height="3" rx="1.5"/><rect x="2" y="10.5" width="20" height="3" rx="1.5" opacity="0.55"/><rect x="2" y="5.5" width="20" height="3" rx="1.5" opacity="0.25"/></svg> Stack</button><button class="view-btn" data-view="gallery"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg> Gallery</button></div></div>
     <div class="stack-scene">
       <button class="stack-nav stack-prev" aria-label="Previous"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></button>
-      <div class="card-stack">
+      <div class="card-stack keep-custom pl-grid">
         <a href="extras/orchidposterart-fullscreen.webp" target="_blank" class="stack-card" data-title="Orchid Poster I" data-desc="Botanical orchid poster. Using illustration, typography elements and layout design."><img src="extras/orchidposterart-fullscreen.webp" alt="Orchid Poster Trio Layout"></a>
         <a href="extras/orchidposter2-fullscreen.webp" target="_blank" class="stack-card" data-title="Orchid Poster II" data-desc="Botanical orchid poster. Using illustration, typography elements and layout design."><img src="extras/orchidposter2-fullscreen.webp" alt="Orchid Poster on Burgundy Background"></a>
+        <div class="gallery-break"></div>
         <div class="gallery-break"></div>
         <a href="extras/landscapeorchid-fullscreen.webp" target="_blank" class="stack-card lsm" data-orient="landscape" data-title="Landscape Poster" data-desc="Botanical orchid poster. Using illustration, typography elements and layout design."><img src="extras/landscapeorchid-fullscreen.webp" alt="Rotated Orchid Poster Layout"></a>
         <a href="extras/greenorchidart-fullscreen.webp" target="_blank" class="stack-card lsm" data-orient="landscape" data-title="Green Orchid" data-desc="Orchid close up illustration poster."><img src="extras/greenorchidart-fullscreen.webp" alt="Green Orchid Design"></a>
@@ -1069,11 +1084,11 @@
     <h3>Covers &amp; Spreads</h3>
     <div class="stack-scene">
       <button class="stack-nav stack-prev" aria-label="Previous"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></button>
-      <div class="card-stack">
-        <a href="extras/magazinecover-fullscreen.webp" target="_blank" class="stack-card" data-title="Augustine" data-desc="Magazine cover using illustration, typography elements and layout design."><img src="extras/magazinecover-fullscreen.webp" alt="Augustine Magazine Cover"></a>
+      <div class="card-stack mag-grid">
+        <a href="extras/magazinecover-fullscreen.webp" target="_blank" class="stack-card gallery-center" data-title="Augustine" data-desc="Magazine cover using illustration, typography elements and layout design."><img src="extras/magazinecover-fullscreen.webp" alt="Augustine Magazine Cover"></a>
         <a href="extras/magazinespread-fullscreen.webp" target="_blank" class="stack-card" data-orient="landscape" data-title="Augustine" data-desc="Magazine spread using illustration and layout design."><img src="extras/magazinespread-fullscreen.webp" alt="We Never Go Out of Style Spread"></a>
         <a href="extras/magazinedrafts-fullscreen.webp" target="_blank" class="stack-card" data-orient="landscape" data-title="Augustine sketches" data-desc="Magazine illustration concepts and drafts."><img src="extras/magazinedrafts-fullscreen.webp" alt="Magazine Drafts"></a>
-        <a href="extras/poemspread-fullscreen.webp" target="_blank" class="stack-card" data-orient="landscape" data-year="2026" data-title="Drunk in Chinatown" data-desc="Melina Liu's Drunk in Chinatown poem magazine spread. Using traced image graphics (coffee latte art), typography elements and layout design."><img src="extras/poemspread-fullscreen.webp" alt="Magazine Spread"></a>
+        <a href="extras/poemspread-fullscreen.webp" target="_blank" class="stack-card chinatown-big" data-orient="landscape" data-year="2026" data-title="Drunk in Chinatown" data-desc="Melina Liu's Drunk in Chinatown poem magazine spread. Using traced image graphics (coffee latte art), typography elements and layout design."><img src="extras/poemspread-fullscreen.webp" alt="Magazine Spread"></a>
       </div>
       <button class="stack-nav stack-next" aria-label="Next"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></button>
     </div>
@@ -1089,13 +1104,14 @@
     <h3>Sugar Blooms</h3>
     <div class="stack-scene">
       <button class="stack-nav stack-prev" aria-label="Previous"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></button>
-      <div class="card-stack">
-        <a href="extras/packaging design full screen.webp" target="_blank" class="stack-card" data-orient="landscape" data-title="Sugar Blooms" data-desc="Dieline design"><img src="extras/packaging design full screen.webp" alt="Packaging Design"></a>
+      <div class="card-stack keep-custom">
+        <a href="extras/packaging design full screen.webp" target="_blank" class="stack-card pkg-wide" data-orient="landscape" data-title="Sugar Blooms" data-desc="Dieline design"><img src="extras/packaging design full screen.webp" alt="Packaging Design"></a>
         <div class="gallery-break"></div>
-        <a href="extras/sugar bloom full screen image1.webp" target="_blank" class="stack-card" data-title="Sugar Blooms" data-desc="3D packaging design for Sugar Blooms confectionery brand"><img src="extras/sugar bloom full screen image1.webp" alt="Sugar Blooms Packaging 1"></a>
-        <a href="extras/sugar bloom full screen image2.webp" target="_blank" class="stack-card" data-title="Sugar Blooms" data-desc="3D packaging design for Sugar Blooms confectionery brand"><img src="extras/sugar bloom full screen image2.webp" alt="Sugar Blooms Packaging 2"></a>
-        <a href="extras/sugar bloom full screen image3.webp" target="_blank" class="stack-card" data-title="Sugar Blooms" data-desc="3D packaging design for Sugar Blooms confectionery brand"><img src="extras/sugar bloom full screen image3.webp" alt="Sugar Blooms Packaging 3"></a>
-        <a href="extras/sugar bloom full screen image4.webp" target="_blank" class="stack-card" data-title="Sugar Blooms" data-desc="3D packaging design for Sugar Blooms confectionery brand"><img src="extras/sugar bloom full screen image4.webp" alt="Sugar Blooms Packaging 4"></a>
+        <div class="gallery-break"></div>
+        <a href="extras/sugar bloom full screen image1.webp" target="_blank" class="stack-card fourup" data-title="Sugar Blooms" data-desc="3D packaging design for Sugar Blooms confectionery brand"><img src="extras/sugar bloom full screen image1.webp" alt="Sugar Blooms Packaging 1"></a>
+        <a href="extras/sugar bloom full screen image2.webp" target="_blank" class="stack-card fourup" data-title="Sugar Blooms" data-desc="3D packaging design for Sugar Blooms confectionery brand"><img src="extras/sugar bloom full screen image2.webp" alt="Sugar Blooms Packaging 2"></a>
+        <a href="extras/sugar bloom full screen image3.webp" target="_blank" class="stack-card fourup" data-title="Sugar Blooms" data-desc="3D packaging design for Sugar Blooms confectionery brand"><img src="extras/sugar bloom full screen image3.webp" alt="Sugar Blooms Packaging 3"></a>
+        <a href="extras/sugar bloom full screen image4.webp" target="_blank" class="stack-card fourup" data-title="Sugar Blooms" data-desc="3D packaging design for Sugar Blooms confectionery brand"><img src="extras/sugar bloom full screen image4.webp" alt="Sugar Blooms Packaging 4"></a>
       </div>
       <button class="stack-nav stack-next" aria-label="Next"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></button>
     </div>
@@ -1111,9 +1127,10 @@
     <h3>Dickson College Art Showcase</h3>
     <div class="stack-scene">
       <button class="stack-nav stack-prev" aria-label="Previous"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></button>
-      <div class="card-stack">
+      <div class="card-stack keep-custom pl-grid">
         <a href="extras/artshowcaseposter-fullscreen.webp" target="_blank" class="stack-card" data-title="Event Poster" data-desc="Promotional poster for the Dickson College Art Showcase"><img src="extras/artshowcaseposter-fullscreen.webp" alt="Art Showcase Poster"></a>
         <a href="extras/menuart-fullscreen.png" target="_blank" class="stack-card" data-title="Menu" data-desc="Event menu items"><img src="extras/menuart-fullscreen.png" alt="Art Showcase Artwork Detail"></a>
+        <div class="gallery-break"></div>
         <div class="gallery-break"></div>
         <a href="extras/artshowcaseoutside-fullscreen.webp" target="_blank" class="stack-card lsm" data-orient="landscape" data-title="Program – Outside Spread" data-desc="Front and back of the program"><img src="extras/artshowcaseoutside-fullscreen.webp" alt="Art Showcase Programme Outside Spread"></a>
         <a href="extras/artshowcaseinside-fullscreen.webp" target="_blank" class="stack-card lsm" data-orient="landscape" data-title="Program – Inside Spread" data-desc="Overview, timings and menu"><img src="extras/artshowcaseinside-fullscreen.webp" alt="Art Showcase Programme Inside Spread"></a>
@@ -1132,13 +1149,13 @@
     <h3>The Wizard of Oz</h3>
     <div class="stack-scene">
       <button class="stack-nav stack-prev" aria-label="Previous"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></button>
-      <div class="card-stack">
+      <div class="card-stack centered-row">
         <a href="theatre/dorothy.webp" target="_blank" class="stack-card" data-title="Dorothy" data-desc="Illustrated character poster for Lyneham High School's 2023 Wizard of Oz musical."><img src="theatre/dorothy.webp" alt="Dorothy Character Poster"></a>
-        <a href="theatre/glinda.webp" target="_blank" class="stack-card" data-title="Glinda the Good" data-desc="Illustrated character poster for Lyneham High School's 2023 Wizard of Oz musical."><img src="theatre/glinda.webp" alt="Glinda Character Poster"></a>
         <a href="theatre/witch.webp" target="_blank" class="stack-card" data-title="Wicked Witch" data-desc="Illustrated character poster for Lyneham High School's 2023 Wizard of Oz musical."><img src="theatre/witch.webp" alt="Wicked Witch Poster"></a>
-        <div class="gallery-break"></div>
-        <a href="theatre/wizardofoz.webp" target="_blank" class="stack-card" data-title="The Wizard of Oz I" data-desc="Illustrated promotional poster for Lyneham High School's 2023 Wizard of Oz musical."><img src="theatre/wizardofoz.webp" alt="Rainbow Cast Poster"></a>
+        <a href="theatre/glinda.webp" target="_blank" class="stack-card" data-title="Glinda the Good" data-desc="Illustrated character poster for Lyneham High School's 2023 Wizard of Oz musical."><img src="theatre/glinda.webp" alt="Glinda Character Poster"></a>
+        <div class="gallery-break woz-break"></div>
         <a href="theatre/white.webp" target="_blank" class="stack-card" data-title="The Wizard of Oz II" data-desc="Illustrated promotional poster for Lyneham High School's 2023 Wizard of Oz musical."><img src="theatre/white.webp" alt="School Production Poster"></a>
+        <a href="theatre/wizardofoz.webp" target="_blank" class="stack-card" data-title="The Wizard of Oz I" data-desc="Illustrated promotional poster for Lyneham High School's 2023 Wizard of Oz musical."><img src="theatre/wizardofoz.webp" alt="Rainbow Cast Poster"></a>
       </div>
       <button class="stack-nav stack-next" aria-label="Next"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></button>
     </div>
@@ -1149,7 +1166,7 @@
     <h3 style="margin-top:8px;">Love &amp; Information</h3>
     <div class="stack-scene">
       <button class="stack-nav stack-prev" aria-label="Previous"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></button>
-      <div class="card-stack">
+      <div class="card-stack centered-row">
         <a href="theatre/loveandinformation1.png" target="_blank" class="stack-card" data-title="Love &amp; Information I" data-desc="Promotional poster design for Dickson College's 2024 Love &amp; Information play."><img src="theatre/loveandinformation1.png" alt="Love and Information Light Poster"></a>
         <a href="theatre/loveandinformation2.png" target="_blank" class="stack-card" data-title="Love &amp; Information II" data-desc="Promotional poster design for Dickson College's 2024 Love &amp; Information play."><img src="theatre/loveandinformation2.png" alt="Love and Information Dark Poster"></a>
         <a href="theatre/loveandinfo.webp" target="_blank" class="stack-card" data-title="Love &amp; Information III" data-desc="Promotional poster design for Dickson College's 2024 Love &amp; Information play."><img src="theatre/loveandinfo.webp" alt="Love and Information Darker Draft"></a>
@@ -1348,7 +1365,7 @@
         if (hasTitle) {
           var n = document.createElement('div');
           n.className = 'gallery-card-name';
-          n.textContent = card.dataset.title;
+          n.innerHTML = card.dataset.title.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/[0-9]+/g,'<span class="gnum">$&</span>');
           wrap.appendChild(n);
         }
         if (hasDesc) {
@@ -1408,7 +1425,7 @@
     });
 
   </script>
-  <script src="shared/lightbox.js?v=6"></script>
+  <script src="shared/lightbox.js?v=14"></script>
 <script>
     // Scroll-triggered animations
     (function() {
@@ -1442,98 +1459,7 @@
 <script src="shared/theme.js?v=7"></script>
 <script src="shared/cursor-trail.js?v=4"></script>
 
-<style>
-#swipe-hint-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.75);
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-}
-#swipe-hint-overlay.spotlight-visible { opacity: 1; }
-#swipe-hint-box {
-    position: relative;
-    max-width: min(400px, 86vw);
-    padding: 36px 28px 30px;
-    background: linear-gradient(135deg, rgba(61,26,42,0.96) 0%, rgba(92,42,58,0.96) 100%);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border-radius: 16px;
-    box-shadow: 20px 20px 60px rgba(0,0,0,0.5);
-    transform: scale(0.95);
-    transition: transform 0.5s ease;
-    text-align: center;
-    color: #fff;
-    font-family: 'Georgia Custom', Georgia, serif;
-}
-#swipe-hint-overlay.spotlight-visible #swipe-hint-box { transform: scale(1); }
-#swipe-hint-box h3 {
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 18px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: #bf9090;
-    margin: 0 0 10px;
-}
-#swipe-hint-box p {
-    font-size: 13px;
-    line-height: 1.5;
-    margin: 0;
-    color: #fde0e3;
-}
-#swipe-hint-close {
-    position: absolute;
-    top: 10px;
-    right: 12px;
-    background: rgba(0,0,0,0.5);
-    border: none;
-    color: #fff;
-    font-size: 22px;
-    line-height: 1;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s;
-    touch-action: manipulation;
-}
-#swipe-hint-close:hover { background: rgba(0,0,0,0.8); }
-html.light-mode #swipe-hint-box {
-    background: linear-gradient(135deg, rgba(255,245,248,0.97) 0%, rgba(245,225,232,0.97) 100%) !important;
-    box-shadow: 20px 20px 60px rgba(139,71,93,0.3) !important;
-}
-html.light-mode #swipe-hint-box h3 { color: #4a1a2e !important; }
-html.light-mode #swipe-hint-box p { color: #3a2030 !important; }
-</style>
 
-<script>
-(function() {
-    if (!window.matchMedia('(max-width: 1380px)').matches) return;
-
-    var overlay = document.createElement('div');
-    overlay.id = 'swipe-hint-overlay';
-    overlay.innerHTML = '<div id="swipe-hint-box"><button id="swipe-hint-close" aria-label="Close">\u00D7</button><h3>Swipe to browse</h3><p>Swipe left or right on the cards to see more artwork.</p></div>';
-    document.body.appendChild(overlay);
-    setTimeout(function() { overlay.classList.add('spotlight-visible'); }, 1000);
-    function dismiss(e) {
-        if (e) { e.preventDefault(); e.stopPropagation(); }
-        window._lbCooldown = Date.now() + 600; // block ghost taps for 600ms
-        overlay.classList.remove('spotlight-visible');
-        overlay.addEventListener('transitionend', function() { overlay.remove(); }, { once: true });
-    }
-    var closeBtn = document.getElementById('swipe-hint-close');
-    closeBtn.addEventListener('touchend', dismiss, { passive: false });
-    closeBtn.addEventListener('click', dismiss);
-    overlay.addEventListener('click', function(e) { if (e.target === overlay) dismiss(e); });
-})();
-</script>
 
 <!-- lightbox swipe + drawer coordination handled in shared/lightbox.js -->
 
@@ -1573,7 +1499,7 @@ html.light-mode #swipe-hint-box p { color: #3a2030 !important; }
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #bf9090;
+    color: #b89488;
     flex-shrink: 0;
     transition: background 0.2s;
     touch-action: manipulation;
@@ -1595,8 +1521,17 @@ html.light-mode #swipe-hint-box p { color: #3a2030 !important; }
     user-select: none;
     -webkit-touch-callout: none;
 }
-html.light-mode #prints-tab { background: linear-gradient(180deg, #bf9090 0%, #e0a0b8 100%); color: #6e3c3c; }
+html.light-mode #prints-tab { background: linear-gradient(180deg, #b89488 0%, #e0a0b8 100%); color: #6e3c3c; }
 html.light-mode #prints-panel { background: #f5e6ec; }
+
+        /* SVG Lightbulb */
+        .lb-svg { height: 28px; width: auto; display: block; flex-shrink: 0; transition: transform 0.25s ease; }
+        html:not(.light-mode) .lb-svg { color: #b87c70; }
+        html.light-mode .lb-svg { color: #7a4848; filter: drop-shadow(0 0 3px rgba(184,148,136,0.45)); }
+        .lb-ray { opacity: 0; transition: opacity 0.35s ease; }
+        html.light-mode .lb-ray { opacity: 1; }
+        .theme-toggle-wrap:hover .lb-svg { transform: scale(1.12); }
+        .theme-toggle-wrap:active .lb-svg { transform: scale(1.22); }
 </style>
 
 <script>
@@ -1663,6 +1598,740 @@ html.light-mode #prints-panel { background: #f5e6ec; }
     }, { passive: true, capture: true });
 })();
 </script>
-<a href="index.html" class="mobile-back-btn" aria-label="Back to portfolio"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#aa7878" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></a>
+<a href="index.html" class="mobile-back-btn" aria-label="Home"><svg width="25" height="25" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></a>
+
+<style>
+/* Tip popup */
+#tip-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:9999;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.5s ease;pointer-events:none;}
+#tip-overlay.tip-visible{opacity:1;pointer-events:all;}
+#tip-box{position:relative;max-width:min(400px,86vw);padding:44px 32px 36px;background:url('tipbox-dark.svg?v=3') center/cover;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:16px;box-shadow:20px 20px 60px rgba(0,0,0,0.5);transform:scale(0.95);transition:transform 0.5s ease;text-align:center;}
+#tip-overlay.tip-visible #tip-box{transform:scale(1);}
+#tip-close{position:absolute;top:10px;right:12px;background:transparent;border:none;color:#fff;font-size:28px;line-height:1;width:32px;height:32px;border-radius:0;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;touch-action:manipulation;}
+#tip-close:hover{background:transparent;opacity:0.7;}
+.tip-popup-heading{font-family:'Archivo Black',sans-serif;font-size:32px;letter-spacing:-0.12em;text-transform:uppercase;color:#b89488;margin:0 0 8px;line-height:1.1;}
+.tip-popup-body{font-family:'Archivo Black',sans-serif;font-size:14px;letter-spacing:-0.12em;color:#e0c8c0;margin:0;line-height:1.5;}
+.tip-popup-divider{width:50%;height:1px;background:rgba(255,255,255,0.2);margin:18px auto;}
+html.light-mode #tip-box{background:url('tipbox-light.svg?v=3') center/cover!important;box-shadow:20px 20px 60px rgba(120,60,50,0.2)!important;}
+html.light-mode .tip-popup-heading{color:#4a1a2e!important;}
+html.light-mode .tip-popup-body{color:#5a3020!important;}
+html.light-mode #tip-close{color:#4a1a2e!important;background:rgba(0,0,0,0.1)!important;}
+</style>
+<div id="tip-overlay"><div id="tip-box"><button id="tip-close" aria-label="Close">&times;</button><div id="tip-swipe-section"><p class="tip-popup-heading">swipe to browse</p><p class="tip-popup-body">swipe left or right on the cards to see more artwork</p><div class="tip-popup-divider"></div></div><p class="tip-popup-heading">tip</p><p class="tip-popup-body">tap or click any image for fullscreen view</p></div></div>
+<script>
+(function(){
+  var o=document.getElementById('tip-overlay');
+  var s=document.getElementById('tip-swipe-section');
+  if(s) s.style.display=window.matchMedia('(max-width:1380px)').matches?'':'none';
+  setTimeout(function(){o.classList.add('tip-visible');},900);
+  function dismiss(e){if(e){e.preventDefault();e.stopPropagation();}o.classList.remove('tip-visible');o.style.pointerEvents='auto';var sw=false,swallow=function(ev){if(!sw){sw=true;ev.preventDefault();ev.stopPropagation();}};document.addEventListener('click',swallow,true);setTimeout(function(){o.style.display='none';o.style.pointerEvents='';document.removeEventListener('click',swallow,true);},700);}
+  var _tc=document.getElementById('tip-close');_tc.addEventListener('click',dismiss);_tc.addEventListener('touchend',function(e){e.preventDefault();dismiss(e);});
+  o.addEventListener('click',function(e){if(e.target===o)dismiss();});
+})();
+</script>
+<style>
+/* === BIRDS OF PARADISE TITLE STYLING (reversible: restore from _backup-sunflower-font/) === */
+.hero-content h1 {
+    text-transform: lowercase !important;
+    letter-spacing: 0.3em !important;
+    -webkit-text-stroke: 1px currentColor;
+}
+/* "Other" Archivo Black section headings (h2) thickened to match */
+.project-info h3, .brief-container h3, .statement-view h3, .music-achievements h3 {
+    -webkit-text-stroke: 1px currentColor;
+}
+</style>
+<style>
+/* De-highlight music + design cv — render as plain nav links (match homepage) */
+nav .music-nav-link, nav .cv-button, nav a.cv-button,
+html:not(.light-mode) nav .music-nav-link, html:not(.light-mode) nav .cv-button, html:not(.light-mode) nav a.cv-button,
+html.light-mode nav .music-nav-link, html.light-mode nav .cv-button {
+    background: none !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    margin-left: 0 !important;
+}
+nav .music-nav-link:hover, nav .cv-button:hover { transform: none !important; }
+/* Darken faded disclaimer / fine-print description in light mode */
+html.light-mode p[style*="opacity:0.85"] { color: #6e3c3c !important; opacity: 1 !important; }
+</style>
+<style>
+/* === STRETCHED PAGE TITLE (reversible: delete this whole style+script block) === */
+.hero-content h1 {
+    font-size: clamp(20px, 4.5vw, 42px) !important;
+    white-space: nowrap !important;
+    display: inline-block !important;
+    transform-origin: center center !important;
+    max-width: none !important;
+    animation: none !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 32px !important;
+    margin-bottom: 74px !important;
+}
+.hero-content p { margin-top: 26px !important; }
+.tech-badge, .award-badge, .winner-badge { display: block !important; width: -moz-fit-content !important; width: fit-content !important; margin-left: auto !important; margin-right: auto !important; }
+</style>
+<script>
+(function(){
+  function stretchTitle(){
+    var h1=document.querySelector('.hero-content h1');
+    if(!h1) return;
+    h1.style.transform='none';
+    var natural=h1.getBoundingClientRect().width;
+    if(!natural) return;
+    var vw=document.documentElement.clientWidth;
+    var leftOver=0, rightOver=0;
+    try{
+      var cs=getComputedStyle(h1);
+      var ctx=(window.__mctx||(window.__mctx=document.createElement('canvas').getContext('2d')));
+      ctx.font=cs.fontStyle+' '+cs.fontWeight+' '+parseFloat(cs.fontSize)+'px '+cs.fontFamily;
+      var txt=(h1.textContent||h1.innerText||'');
+      if(cs.textTransform==='lowercase') txt=txt.toLowerCase(); else if(cs.textTransform==='uppercase') txt=txt.toUpperCase();
+      var m=ctx.measureText(txt);
+      if(m.actualBoundingBoxLeft!=null){ leftOver=m.actualBoundingBoxLeft; rightOver=Math.max(0,m.actualBoundingBoxRight-m.width); }
+    }catch(e){}
+    var N=(vw*(vw<600?0.80:0.93))/(natural+leftOver+rightOver);
+    h1.style.transform='scaleX('+N.toFixed(4)+')';
+    var rr=h1.getBoundingClientRect();
+    var inkCenter=((rr.left-leftOver*N)+(rr.right+rightOver*N))/2;
+    var off=(vw/2)-inkCenter;
+    h1.style.transform='translateX('+off.toFixed(1)+'px) scaleX('+N.toFixed(4)+')';
+  }
+  if(document.fonts && document.fonts.ready){ document.fonts.ready.then(stretchTitle); }
+  window.addEventListener('load', stretchTitle);
+  window.addEventListener('resize', stretchTitle);
+  setTimeout(stretchTitle, 300);
+  setTimeout(stretchTitle, 800);
+})();
+</script>
+<script>
+/* === HERO SCROLL BLUR (reversible: delete this script block) === */
+(function(){
+  var h1=document.querySelector('.hero-content h1');
+  var desc=document.querySelectorAll('.hero-content p, .hero p');
+  var ticking=false;
+  function onScroll(){
+    if(ticking) return; ticking=true;
+    requestAnimationFrame(function(){
+      var vh=window.innerHeight;
+      var t=Math.min(1, Math.max(0, window.scrollY/(vh*0.55)));
+      var blur=(t*14).toFixed(1), op=(1-t).toFixed(3);
+      if(h1){ h1.style.filter='blur('+blur+'px)'; h1.style.opacity=op; }
+      desc.forEach(function(p){ p.style.filter='blur('+(t*11).toFixed(1)+'px)'; p.style.opacity=op; });
+      ticking=false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+})();
+</script>
+<style>/* remove nav-link underline animation (match homepage) */
+.nav-links a::after { display: none !important; }
+</style>
+<style>/* light-mode nav: cream instead of white (match palette) */
+html.light-mode nav { background: rgba(244,236,226,0.92) !important; }
+</style>
+<style>
+/* === GALLERY PINTEREST/MASONRY LAYOUT + numbers in Archivo Black (reversible: delete this block) === */
+.gallery-card-name .gnum { font-family: 'Archivo Black', sans-serif; font-size: 0.8em; letter-spacing: 0; }
+body.gallery-mode .card-stack {
+    display: block !important;
+    columns: 4;
+    column-gap: 14px;
+    width: 100% !important;
+    max-width: 1100px !important;
+    margin: 0 auto !important;
+    height: auto !important;
+    position: static !important;
+}
+body.gallery-mode .stack-card {
+    break-inside: avoid !important;
+    width: 100% !important;
+    margin: 0 0 14px 0 !important;
+}
+body.gallery-mode .stack-card[data-orient="landscape"] {
+    -webkit-column-span: all !important;
+    column-span: all !important;
+    break-inside: avoid !important;
+    width: 100% !important;
+    max-width: 600px !important;
+    margin: 22px auto !important;
+}
+body.gallery-mode .stack-card.chinatown-big { max-width: 820px !important; }
+body.gallery-mode .stack-card.gallery-center { -webkit-column-span: all !important; column-span: all !important; break-inside: avoid !important; width: 100% !important; max-width: 360px !important; margin: 0 auto 22px !important; }
+body.gallery-mode .stack-card img { border-radius: 6px !important; }
+@media (max-width: 900px) { body.gallery-mode .card-stack { columns: 3; } }
+@media (max-width: 560px) { body.gallery-mode .card-stack { columns: 2; column-gap: 8px; } }
+</style>
+<style>
+/* === GALLERY CENTERED LAYOUT (overrides earlier masonry; reversible: delete this block) === */
+body.gallery-mode .card-stack {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    gap: 18px !important;
+    column-gap: 18px !important;
+    width: 100% !important;
+    max-width: 1080px !important;
+    margin: 0 auto !important;
+    height: auto !important;
+    position: static !important;
+    columns: auto !important;
+}
+body.gallery-mode .stack-card {
+    -webkit-column-span: none !important;
+    column-span: none !important;
+    break-inside: auto !important;
+    flex: 0 1 280px !important;
+    width: 280px !important;
+    max-width: 280px !important;
+    margin: 0 !important;
+}
+body.gallery-mode .card-stack .stack-card[data-orient="landscape"] {
+    flex: 0 1 340px !important;
+    width: 340px !important;
+    max-width: 340px !important;
+}
+body.gallery-mode .card-stack .stack-card.lsm[data-orient="landscape"],
+body.gallery-mode .card-stack .stack-card.fourup[data-orient="landscape"] {
+    flex: 0 1 500px !important;
+    width: 500px !important;
+    max-width: 500px !important;
+}
+body.gallery-mode .card-stack .stack-card.chinatown-big,
+body.gallery-mode .card-stack .stack-card.chinatown-big[data-orient="landscape"] {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    max-width: 760px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+body.gallery-mode .stack-card.chinatown-big { max-width: 780px !important; }
+body.gallery-mode .stack-card.gallery-center { flex: 0 1 320px !important; width: 320px !important; max-width: 320px !important; }
+@media (max-width: 640px) {
+    body.gallery-mode .stack-card { flex-basis: 86% !important; width: 86% !important; max-width: 86% !important; }
+    body.gallery-mode .stack-card[data-orient="landscape"], body.gallery-mode .stack-card.chinatown-big { max-width: 100% !important; }
+}
+</style>
+<style>
+/* === MAGAZINE 2-COLUMN GRID: cover beside stacked spread/drafts (reversible: delete this block + remove mag-grid class) === */
+body.gallery-mode .card-stack.mag-grid {
+    display: grid !important;
+    grid-template-columns: 440px 380px !important;
+    grid-auto-rows: auto !important;
+    justify-content: center !important;
+    align-items: start !important;
+    gap: 18px !important;
+    columns: auto !important;
+}
+body.gallery-mode .card-stack.mag-grid .stack-card { margin: 0 !important; transform: none !important; filter: none !important; opacity: 1 !important; }
+body.gallery-mode .card-stack.mag-grid .gallery-center {
+    grid-column: 1 !important;
+    grid-row: 1 / span 2 !important;
+    flex: none !important;
+    width: 440px !important; max-width: 440px !important;
+    align-self: start !important;
+}
+body.gallery-mode .card-stack.mag-grid .stack-card[data-orient="landscape"]:not(.chinatown-big) {
+    grid-column: 2 !important;
+    flex: none !important;
+    width: 380px !important; max-width: 380px !important;
+}
+body.gallery-mode .card-stack.mag-grid .chinatown-big {
+    grid-column: 1 / -1 !important;
+    flex: none !important;
+    width: 100% !important; max-width: 760px !important;
+    margin: 18px auto 0 !important;
+    justify-self: center !important;
+}
+@media (max-width: 760px) {
+    body.gallery-mode .card-stack.mag-grid { display: flex !important; }
+}
+</style>
+<style>
+/* Page description under title: Archivo Black, lowercase, -100 tracking (same size) */
+.hero-content p, .hero p {
+    font-family: 'Archivo Black', sans-serif !important;
+    text-transform: lowercase !important;
+    letter-spacing: -0.1em !important;
+}
+</style>
+<style>
+/* Award/instagram button inside gallery card descriptions: much smaller */
+body.gallery-mode .gallery-card-desc .caption-award {
+    font-size: 8px !important;
+    padding: 4px 10px !important;
+    margin-top: 6px !important;
+    letter-spacing: 0 !important;
+    border-width: 1.5px !important;
+    box-shadow: 2px 2px 0 #b87c70 !important;
+    gap: 5px !important;
+}
+body.gallery-mode .gallery-card-desc .caption-award img { width: 14px !important; height: 14px !important; }
+</style>
+<style>
+/* Sugar Blooms dieline a bit bigger (reversible) */
+body.gallery-mode .card-stack .stack-card.pkg-wide[data-orient="landscape"] {
+    flex: 0 1 460px !important;
+    width: 460px !important;
+    max-width: 460px !important;
+}
+</style>
+<style>
+/* Gallery card titles: Archivo Black, UPPERCASE */
+.gallery-card-name, .gallery-card-name .gnum { font-size: inherit;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: -0.09em !important;
+    -webkit-text-stroke: 0 !important;
+}
+</style>
+<style>
+/* === PINTEREST MASONRY (gallery view) — consistent across all galleries; reversible: delete this block === */
+body.gallery-mode .card-stack,
+body.gallery-mode .card-stack.mag-grid {
+  display: block !important;
+  column-count: 3 !important;
+  column-gap: 16px !important;
+  width: 100% !important;
+  max-width: 1060px !important;
+  margin: 0 auto !important;
+  grid-template-columns: none !important;
+}
+body.gallery-mode .card-stack .stack-card,
+body.gallery-mode .stack-card,
+body.gallery-mode .card-stack .stack-card[data-orient="landscape"],
+body.gallery-mode .stack-card.fourup,
+body.gallery-mode .stack-card.lsm,
+body.gallery-mode .stack-card.pkg-wide,
+body.gallery-mode .stack-card.chinatown-big,
+body.gallery-mode .stack-card.gallery-center,
+body.gallery-mode .card-stack.mag-grid .stack-card,
+body.gallery-mode .card-stack.mag-grid .stack-card.gallery-center {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  flex: none !important;
+  grid-column: auto !important;
+  grid-row: auto !important;
+  column-span: none !important;
+  -webkit-column-span: none !important;
+  break-inside: avoid !important;
+  -webkit-column-break-inside: avoid !important;
+  page-break-inside: avoid !important;
+  margin: 0 0 16px 0 !important;
+  align-self: auto !important;
+  transform: none !important;
+}
+body.gallery-mode .stack-card img,
+body.gallery-mode .stack-card video { border-radius: 12px !important; display: block; }
+@media (max-width: 900px){ body.gallery-mode .card-stack, body.gallery-mode .card-stack.mag-grid { column-count: 2 !important; } }
+@media (max-width: 560px){ body.gallery-mode .card-stack, body.gallery-mode .card-stack.mag-grid { column-count: 1 !important; } }
+</style>
+<style>
+/* GALLERY HOVER-REVEAL TITLES — image only; title/desc overlay on hover (like homepage covers) */
+body.gallery-mode .stack-card { position: relative !important; }
+body.gallery-mode .gallery-card-title {
+  position: absolute !important;
+  inset: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  text-align: center;
+  gap: 3px;
+  padding: 16px 14px 18px !important;
+  background: linear-gradient(to top, rgba(38,16,20,0.94) 0%, rgba(38,16,20,0.6) 42%, rgba(38,16,20,0) 100%) !important;
+  opacity: 0 !important;
+  transition: opacity 0.35s ease !important;
+  pointer-events: none !important;
+  border-radius: 12px !important;
+  z-index: 4;
+}
+body.gallery-mode .stack-card:hover .gallery-card-title { opacity: 1 !important; }
+body.gallery-mode .gallery-card-title .gallery-card-name { color: #f4e6dd !important; -webkit-text-stroke: 0 !important; }
+body.gallery-mode .gallery-card-title .gallery-card-desc { color: #ecd6cd !important; }
+body.gallery-mode .gallery-card-title .gallery-card-year { color: #f4e6dd !important; }
+</style>
+<style>
+/* GALLERY CENTERED ROWS (overrides masonry) + gallery-break row support */
+body.gallery-mode .card-stack,
+body.gallery-mode .card-stack.mag-grid {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
+  column-count: auto !important;
+  gap: 18px !important;
+  column-gap: 18px !important;
+  width: 100% !important;
+  max-width: 1120px !important;
+  margin: 0 auto !important;
+  grid-template-columns: none !important;
+}
+body.gallery-mode .card-stack .stack-card,
+body.gallery-mode .stack-card,
+body.gallery-mode .card-stack.mag-grid .stack-card {
+  display: block !important;
+  flex: 0 0 260px !important;
+  width: 260px !important;
+  max-width: 260px !important;
+  margin: 0 !important;
+  break-inside: auto !important;
+  column-span: none !important;
+  grid-column: auto !important;
+  grid-row: auto !important;
+}
+body.gallery-mode .card-stack .stack-card[data-orient="landscape"],
+body.gallery-mode .stack-card[data-orient="landscape"] {
+  flex: 0 0 360px !important;
+  width: 360px !important;
+  max-width: 360px !important;
+}
+body.gallery-mode .gallery-break {
+  display: block !important;
+  flex: 0 0 100% !important;
+  width: 100% !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+</style>
+<style>
+/* MAGAZINE 2-COLUMN GRID (cover smaller; spread+drafts stacked, same total height; chinatown below) */
+body.gallery-mode .card-stack.mag-grid {
+  display: grid !important;
+  grid-template-columns: 320px 270px !important;
+  grid-template-rows: 1fr 1fr auto !important;
+  gap: 10px !important;
+  justify-content: center !important;
+  align-items: stretch !important;
+  column-count: auto !important;
+  width: 100% !important;
+  max-width: 620px !important;
+  margin: 0 auto !important;
+}
+body.gallery-mode .card-stack.mag-grid .stack-card { margin: 0 !important; transform: none !important; flex: none !important; min-height: 0 !important; }
+body.gallery-mode .card-stack.mag-grid .stack-card.gallery-center {
+  grid-column: 1 !important; grid-row: 1 / 3 !important; width: 100% !important; max-width: 320px !important;
+  column-span: none !important; -webkit-column-span: none !important;
+}
+body.gallery-mode .card-stack.mag-grid .stack-card.gallery-center img { width: 100% !important; height: auto !important; }
+body.gallery-mode .card-stack.mag-grid .stack-card[data-orient="landscape"]:not(.chinatown-big) {
+  grid-column: 2 !important; width: 100% !important; max-width: 270px !important; min-height: 0 !important;
+}
+body.gallery-mode .card-stack.mag-grid .stack-card[data-orient="landscape"]:not(.chinatown-big) img {
+  width: 100% !important; height: 100% !important; object-fit: cover !important;
+}
+body.gallery-mode .card-stack.mag-grid .stack-card.chinatown-big {
+  grid-column: 1 / -1 !important; grid-row: 3 !important; width: 100% !important; max-width: 570px !important;
+  margin: 4px auto 0 !important; justify-self: center !important;
+}
+</style>
+<style>
+/* Gallery: slightly curved corners on images/videos */
+body.gallery-mode .stack-card img, body.gallery-mode .stack-card video { border-radius: 12px !important; }
+</style>
+<style>
+/* pkg-wide dieline bigger */
+body.gallery-mode .card-stack .stack-card.pkg-wide[data-orient="landscape"],
+body.gallery-mode .stack-card.pkg-wide { flex: 0 0 560px !important; width: 560px !important; max-width: 560px !important; }
+</style>
+<style>
+/* card-level rounding+clip (ensures every image is curved in gallery view) */
+body.gallery-mode .stack-card { border-radius: 12px !important; overflow: hidden !important; clip-path: inset(0 round 12px) !important; }
+</style>
+<style>
+/* Tip box: smaller on phones */
+@media (max-width: 600px) {
+  #tip-box { max-width: min(300px, 80vw) !important; padding: 28px 22px 24px !important; }
+  .tip-popup-heading { font-size: 23px !important; margin-bottom: 6px !important; }
+  .tip-popup-body { font-size: 11.5px !important; }
+  .tip-popup-divider { margin: 13px auto !important; }
+  #tip-close { top: 7px !important; right: 8px !important; font-size: 24px !important; }
+}
+</style>
+<style>
+/* Sub-page nav: desktop shows only Home + lightbulb; mobile back btn = house (currentColor) */
+.mobile-back-btn { color: #b87c70; }
+html.light-mode .mobile-back-btn { color: #7a4848; }
+@media (min-width: 969px) {
+  #navbar .nav-links li:not(:first-child) { display: none !important; }
+}
+/* Lightbulb nudged down a touch so it lines up with the menu/back icon */
+.lb-svg { position: relative; top: -1px; }
+@media (max-width: 968px){ .lb-svg { top: 4px; left: 8px; } }
+</style>
+<style>
+/* Mobile gallery: scroll-reveal title/desc on the card nearest screen centre */
+body.gallery-mode .stack-card.scroll-active .gallery-card-title { opacity: 1 !important; transition: opacity 0.55s ease 0.16s !important; }
+</style>
+<script>
+(function(){
+  var mq = window.matchMedia('(hover: none), (max-width: 820px)');
+  function clearAll(){ document.querySelectorAll('.stack-card.scroll-active').forEach(function(c){c.classList.remove('scroll-active');}); }
+  function update(){
+    if(!document.body.classList.contains('gallery-mode') || !mq.matches){ clearAll(); return; }
+    var cards = [].slice.call(document.querySelectorAll('body.gallery-mode .stack-card'));
+    var focal = window.innerHeight * 0.42, best=null, bestDist=Infinity, vh=window.innerHeight, _cx=window.innerWidth/2;
+    cards.forEach(function(c){
+      var r=c.getBoundingClientRect();
+      if(r.bottom < vh*0.08 || r.top > vh*0.92) return;
+      var _stag=(r.left > _cx-20)?r.height*0.55:0;
+      var d=Math.abs((r.top+r.height/2+_stag)-focal);
+      if(d<bestDist){ bestDist=d; best=c; }
+    });
+    cards.forEach(function(c){ c.classList.toggle('scroll-active', c===best); });
+    if(best){ if(hideTimer) clearTimeout(hideTimer); hideTimer=setTimeout(clearAll,500); } else { clearAll(); }
+  }
+  var ticking=false, lastY=window.scrollY, settleTimer=null, hideTimer=null;
+  function onScroll(){
+    var y=window.scrollY, v=Math.abs(y-lastY); lastY=y;
+    if(hideTimer) clearTimeout(hideTimer);
+    if(settleTimer) clearTimeout(settleTimer);
+    settleTimer=setTimeout(update,120);
+    if(v>50){ clearAll(); return; }
+    if(!ticking){ requestAnimationFrame(function(){update();ticking=false;}); ticking=true; }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll, {passive:true});
+  document.addEventListener('click', function(e){ if(e.target.closest('.view-btn')) setTimeout(update, 120); }, true);
+  setTimeout(update, 400);
+})();
+</script>
+<style>
+/* Mobile gallery: two cards per row */
+@media (max-width: 700px) {
+  body.gallery-mode .card-stack .stack-card,
+  body.gallery-mode .stack-card,
+  body.gallery-mode .card-stack .stack-card[data-orient="landscape"],
+  body.gallery-mode .stack-card.fourup,
+  body.gallery-mode .stack-card.lsm,
+  body.gallery-mode .stack-card.pkg-wide {
+    flex: 0 0 calc(50% - 8px) !important;
+    width: calc(50% - 8px) !important;
+    max-width: calc(50% - 8px) !important;
+  }
+  body.gallery-mode .card-stack { gap: 12px !important; column-gap: 12px !important; max-width: 100% !important; padding: 0 6px !important; }
+  /* magazine: stack in one column on phone */
+  body.gallery-mode .card-stack.mag-grid { display: flex !important; flex-wrap: wrap !important; max-width: 100% !important; }
+  body.gallery-mode .card-stack.mag-grid .stack-card,
+  body.gallery-mode .card-stack.mag-grid .stack-card.gallery-center,
+  body.gallery-mode .card-stack.mag-grid .stack-card.chinatown-big {
+    flex: 0 0 100% !important; width: 100% !important; max-width: 100% !important; grid-column: auto !important; grid-row: auto !important; height: auto !important;
+  }
+  body.gallery-mode .card-stack.mag-grid .stack-card[data-orient="landscape"]:not(.chinatown-big) img { height: auto !important; }
+}
+</style>
+<style>
+/* magazine cover smaller on phone */
+@media (max-width: 700px) {
+  body.gallery-mode .card-stack.mag-grid .stack-card.gallery-center {
+    flex: 0 0 auto !important; width: 64% !important; max-width: 64% !important; margin: 0 auto 4px !important;
+  }
+}
+</style>
+<style>
+/* sugar blooms dieline: match the photo row width on phone */
+@media (max-width: 700px) {
+  body.gallery-mode .card-stack .stack-card.pkg-wide[data-orient="landscape"],
+  body.gallery-mode .stack-card.pkg-wide {
+    flex: 0 0 100% !important; width: 100% !important; max-width: 100% !important; margin: 0 auto !important;
+  }
+}
+</style>
+<style>
+/* stack-nav phone position: keep prev/next inside the screen */
+@media (max-width: 700px) {
+  .stack-scene { position: relative; }
+  body:not(.gallery-mode) .stack-nav { position: absolute !important; top: 50% !important; transform: translateY(-50%) !important; z-index: 30 !important; width: 40px !important; height: 40px !important; background: rgba(255,255,255,0.55) !important; }
+  body:not(.gallery-mode) .stack-prev { left: 2px !important; }
+  body:not(.gallery-mode) .stack-next { right: 2px !important; }
+}
+</style>
+<style>
+/* CLEAN MASONRY (final override — no middle gaps, ragged only at the bottom) */
+body.gallery-mode .card-stack:not(.keep-custom):not(.mag-grid) { display:block !important; columns:4 !important; column-gap:14px !important; width:100% !important; max-width:1100px !important; margin:0 auto !important; height:auto !important; position:static !important; }
+body.gallery-mode .card-stack:not(.keep-custom):not(.mag-grid) .stack-card,
+body.gallery-mode .card-stack:not(.keep-custom):not(.mag-grid) .stack-card[data-orient="landscape"],
+body.gallery-mode .card-stack:not(.keep-custom):not(.mag-grid) .stack-card.lsm,
+body.gallery-mode .card-stack:not(.keep-custom):not(.mag-grid) .stack-card.lsm[data-orient="landscape"],
+body.gallery-mode .card-stack:not(.keep-custom):not(.mag-grid) .stack-card.gallery-center {
+  display:block !important; break-inside:avoid !important; -webkit-column-break-inside:avoid !important; page-break-inside:avoid !important;
+  column-span:none !important; -webkit-column-span:none !important;
+  width:100% !important; max-width:100% !important; margin:0 0 14px 0 !important; flex:none !important;
+}
+body.gallery-mode .card-stack:not(.keep-custom):not(.mag-grid) .stack-card img { width:100% !important; height:auto !important; display:block !important; object-fit:contain !important; }
+body.gallery-mode .card-stack:not(.keep-custom):not(.mag-grid) .gallery-break { display:none !important; }
+@media (max-width:900px){ body.gallery-mode .card-stack:not(.keep-custom):not(.mag-grid) { columns:3 !important; } }
+@media (max-width:560px){ body.gallery-mode .card-stack:not(.keep-custom):not(.mag-grid) { columns:2 !important; column-gap:8px !important; } }
+</style>
+<style>
+/* Orchidaceae + Art Showcase: portraits left, two landscapes stacked at right (desktop); 2 portrait + 2 landscape rows (phone) */
+@media (min-width:701px){
+  body.gallery-mode .pl-grid { display:grid !important; grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) !important; gap:16px !important; align-items:start !important; justify-content:center !important; max-width:1000px !important; width:100% !important; margin:0 auto !important; columns:auto !important; }
+  body.gallery-mode .pl-grid .stack-card { width:100% !important; max-width:100% !important; min-width:0 !important; flex:none !important; margin:0 !important; position:static !important; transform:none !important; justify-self:stretch !important; }
+  body.gallery-mode .pl-grid .stack-card:not([data-orient="landscape"]) { grid-row: span 2 !important; }
+  body.gallery-mode .pl-grid .stack-card.lsm,
+  body.gallery-mode .pl-grid .stack-card[data-orient="landscape"],
+  body.gallery-mode .pl-grid .stack-card.lsm[data-orient="landscape"] { width:100% !important; min-width:0 !important; max-width:100% !important; flex:none !important; min-height:0 !important; aspect-ratio:1.53 !important; height:auto !important; overflow:hidden !important; }
+  body.gallery-mode .pl-grid .stack-card[data-orient="landscape"] img { width:100% !important; max-width:100% !important; height:100% !important; object-fit:cover !important; min-height:0 !important; }
+  body.gallery-mode .pl-grid .gallery-break { display:none !important; }
+  body.gallery-mode .pl-grid .stack-card img { width:100% !important; height:auto !important; max-width:100% !important; }
+}
+@media (max-width:700px){
+  body.gallery-mode .pl-grid { display:flex !important; flex-wrap:wrap !important; justify-content:center !important; align-items:flex-start !important; gap:8px !important; columns:auto !important; }
+  body.gallery-mode .pl-grid .stack-card,
+  body.gallery-mode .pl-grid .stack-card[data-orient="landscape"],
+  body.gallery-mode .pl-grid .stack-card.lsm[data-orient="landscape"] { flex:0 0 calc(50% - 6px) !important; width:calc(50% - 6px) !important; max-width:calc(50% - 6px) !important; margin:0 !important; }
+  body.gallery-mode .pl-grid .gallery-break { display:block !important; flex:0 0 100% !important; width:100% !important; height:0 !important; margin:0 !important; }
+}
+</style>
+<style>
+/* Magazine: phone matches the computer 2-col grid (scaled to fit) */
+@media (max-width: 700px) {
+  body.gallery-mode .card-stack.mag-grid {
+    display: grid !important;
+    grid-template-columns: minmax(0,1.07fr) minmax(0,1fr) !important;
+    grid-template-rows: 1fr 1fr auto !important;
+    gap: 8px !important; justify-content: center !important; align-items: stretch !important;
+    width: 100% !important; max-width: 100% !important; padding: 0 6px !important; margin: 0 auto !important;
+  }
+  body.gallery-mode .card-stack.mag-grid .stack-card.gallery-center {
+    grid-column: 1 !important; grid-row: 1 / 3 !important; width: 100% !important; max-width: 100% !important; margin: 0 !important; flex: none !important;
+  }
+  body.gallery-mode .card-stack.mag-grid .stack-card[data-orient="landscape"]:not(.chinatown-big) {
+    grid-column: 2 !important; width: 100% !important; max-width: 100% !important; flex: none !important; min-height: 0 !important;
+  }
+  body.gallery-mode .card-stack.mag-grid .stack-card[data-orient="landscape"]:not(.chinatown-big) img {
+    width: 100% !important; height: 100% !important; object-fit: cover !important;
+  }
+  body.gallery-mode .card-stack.mag-grid .stack-card.chinatown-big {
+    grid-column: 1 / -1 !important; grid-row: 3 !important; width: 100% !important; max-width: 100% !important; margin: 4px auto 0 !important; flex: none !important;
+  }
+}
+</style>
+<style>
+/* Phone: general poster galleries -> uniform gap-free 2-col grid (curated galleries excluded) */
+@media (max-width: 700px) {
+  body.gallery-mode .card-stack:not(.keep-custom):not(.mag-grid) {
+    display: flex !important; flex-wrap: wrap !important; justify-content: center !important; align-items: flex-start !important;
+    columns: auto !important; column-count: auto !important; column-gap: 0 !important; gap: 8px !important;
+    width: 100% !important; max-width: 100% !important; margin: 0 auto !important; padding: 0 6px !important;
+  }
+  body.gallery-mode .card-stack:not(.keep-custom):not(.mag-grid) .stack-card,
+  body.gallery-mode .card-stack:not(.keep-custom):not(.mag-grid) .stack-card[data-orient="landscape"] {
+    flex: 0 0 calc(50% - 5px) !important; width: calc(50% - 5px) !important; max-width: calc(50% - 5px) !important;
+    aspect-ratio: 0.71 !important; height: auto !important; margin: 0 !important; break-inside: auto !important;
+    overflow: hidden !important; border-radius: 8px !important;
+  }
+  body.gallery-mode .card-stack:not(.keep-custom):not(.mag-grid) .stack-card img {
+    width: 100% !important; height: 100% !important; object-fit: cover !important; border-radius: 8px !important;
+  }
+}
+</style>
+<style>
+/* Musical Posters (WoZ + Love & Info): centered rows on desktop; woz row break = 3 characters / 2 productions */
+@media (min-width: 701px) {
+  body.gallery-mode .card-stack.centered-row:not(.mag-grid) {
+    display: flex !important; flex-wrap: wrap !important; justify-content: center !important; align-items: flex-start !important;
+    columns: auto !important; column-count: auto !important; gap: 18px !important;
+    width: 100% !important; max-width: 1000px !important; margin: 0 auto !important;
+  }
+  body.gallery-mode .card-stack.centered-row:not(.mag-grid) .stack-card {
+    flex: 0 0 240px !important; width: 240px !important; max-width: 240px !important; height: auto !important;
+    margin: 0 !important; break-inside: auto !important; column-span: none !important; aspect-ratio: auto !important; position: static !important;
+  }
+  body.gallery-mode .card-stack.centered-row:not(.mag-grid) .stack-card img { width: 100% !important; height: auto !important; object-fit: contain !important; }
+  body.gallery-mode .card-stack.centered-row:not(.mag-grid) .woz-break { display: block !important; flex: 0 0 100% !important; width: 100% !important; height: 0 !important; margin: 0 !important; }
+}
+@media (max-width: 700px) { body.gallery-mode .centered-row .woz-break { display: none !important; } }
+</style>
+<style>
+/* Stack/stills arrows: no circle background; bolder, shadowed arrows so they stay obvious */
+.stack-nav, .stills-nav,
+body:not(.gallery-mode) .stack-nav, body:not(.gallery-mode) .stills-nav,
+html:not(.light-mode) .stack-nav, html:not(.light-mode) .stills-nav,
+html.light-mode .stack-nav, html.light-mode .stills-nav {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  opacity: 1 !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+.stack-nav svg, .stills-nav svg { width: 46px !important; height: 46px !important; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.55)) !important; }
+html.light-mode .stack-nav svg, html.light-mode .stills-nav svg { filter: drop-shadow(0 1px 3px rgba(255,255,255,0.7)) !important; }
+.stack-nav svg path, .stills-nav svg path { stroke: currentColor !important; stroke-width: 1.3 !important; stroke-linejoin: round !important; stroke-linecap: round !important; }
+.stack-nav svg, .stills-nav svg { transition: none !important; }
+.stack-nav:hover, .stills-nav:hover { background: transparent !important; }
+.stack-nav:hover svg, .stills-nav:hover svg { transform: none !important; }
+</style>
+<style>/* arrows slightly smaller on phone */ @media (max-width:700px){ .stack-nav svg, .stills-nav svg { width:36px !important; height:36px !important; } }</style>
+<style>
+/* pl-grid landscape captions: smaller on phone so they aren't cut off */
+@media (max-width: 700px) {
+  body.gallery-mode .pl-grid .stack-card[data-orient="landscape"] .gallery-card-name { font-size: 12px !important; letter-spacing: -0.03em !important; line-height: 1.05 !important; }
+  body.gallery-mode .pl-grid .stack-card[data-orient="landscape"] .gallery-card-desc { font-size: 8px !important; line-height: 1.2 !important; }
+  body.gallery-mode .pl-grid .stack-card[data-orient="landscape"] .gallery-card-title { padding-bottom: 6px !important; }
+}
+</style>
+<style>
+/* burger menu (phone): blur-in animation for items, alongside the existing slide */
+@media (max-width: 968px) {
+  @keyframes navItemBlurIn {
+    from { opacity: 0; filter: blur(20px); transform: translateY(16px); }
+    to   { opacity: 1; filter: blur(0); transform: translateY(0); }
+  }
+  .nav-links.active li { animation: navItemBlurIn 0.75s cubic-bezier(.2,.7,.3,1) both; }
+  .nav-links.active li:nth-child(1){ animation-delay:.12s }
+  .nav-links.active li:nth-child(2){ animation-delay:.22s }
+  .nav-links.active li:nth-child(3){ animation-delay:.32s }
+  .nav-links.active li:nth-child(4){ animation-delay:.42s }
+  .nav-links.active li:nth-child(5){ animation-delay:.52s }
+  .nav-links.active li:nth-child(6){ animation-delay:.62s }
+}
+</style>
+<style>
+/* burger menu (phone): pull the black box up & make it taller so it fills the iOS gap below the nav */
+@media (max-width: 968px) {
+  .nav-links.active {
+    margin-top: -60px !important;
+    padding-top: 126px !important;
+    height: calc(100vh + 60px) !important;
+  }
+  .nav-links.active::before {
+    content: ''; position: absolute; left: 0; right: 0; bottom: 100%;
+    height: 320px; background: inherit; pointer-events: none;
+  }
+  /* lift the nav bar contents above the menu box so they stay visible */
+  nav.menu-open .logo { position: relative !important; z-index: 1004 !important; }
+  nav.menu-open .theme-toggle-wrap { z-index: 1004 !important; }
+  /* show the maroon nav bar on top of the black menu box */
+  nav.menu-open::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 1000; pointer-events: none; background: rgba(61, 20, 30, 0.97); }
+  html.light-mode nav.menu-open::before { background: rgba(244, 236, 226, 0.92); }
+}
+</style>
+<style>
+/* burger menu (phone): uniform row height for every item so the spacing is even */
+@media (max-width: 968px) {
+  .nav-links.active li > a {
+    min-height: 46px !important;
+    display: flex !important; align-items: center !important; justify-content: center !important;
+    box-sizing: border-box !important; margin: 0 !important;
+    background: none !important; border: none !important; box-shadow: none !important; border-radius: 0 !important;
+  }
+}
+</style>
+<link rel="stylesheet" href="shared/texture.css?v=1">
+<script src="shared/texture.js?v=1"></script>
+<style>/* move back-button up slightly on phone */ @media (max-width:700px){ .back-button-container{ margin-top:24px !important; } .back-button{ margin-top:16px !important; } }</style>
 </body>
 </html>
