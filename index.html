@@ -3570,5 +3570,10 @@ html.light-mode .pword-img { filter: drop-shadow(0 3px 10px rgba(255,255,255,0.5
   if(img.classList.contains('name-anim')) animTex();
 })();
 </script>
+<style>
+/* light mode: portfolio card overlays go light on DESKTOP too (previously only mobile) */
+html.light-mode .portfolio-overlay { background: linear-gradient(to top, rgba(210,183,162,0.96) 0%, rgba(210,183,162,0.74) 42%, rgba(210,183,162,0) 100%); }
+html.light-mode .portfolio-overlay h3, html.light-mode .portfolio-overlay p, html.light-mode .portfolio-year { color: #823a3e; }
+</style>
 </body>
 </html>

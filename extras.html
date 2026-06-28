@@ -979,6 +979,24 @@
     </div>
   </section>
 
+  <!-- Anti-Design Posters -->
+  <section>
+    <h2>Anti-Design</h2>
+    <p style="text-align:center; font-size:17px; color:#6e3c3c; font-style:italic; margin-top:-20px; margin-bottom:12px; letter-spacing:1px; font-family: 'Cavalhatriz', serif;">2026</p>
+    <div style="text-align:center; position:relative; z-index:10; margin: 0 auto 20px;"><div class="view-toggle-wrap"><button class="view-btn active" data-view="stack"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="15.5" width="20" height="3" rx="1.5"/><rect x="2" y="10.5" width="20" height="3" rx="1.5" opacity="0.55"/><rect x="2" y="5.5" width="20" height="3" rx="1.5" opacity="0.25"/></svg> Stack</button><button class="view-btn" data-view="gallery"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg> Gallery</button></div></div>
+    <div class="stack-scene">
+      <button class="stack-nav stack-prev" aria-label="Previous"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></button>
+      <div class="card-stack gallery-centered">
+        <a href="extras/antidesign-1.webp" target="_blank" class="stack-card" data-title="Anti-Design I" data-desc="Experimenting with anti-design, the use of defying basic design elements such as colour, layout, balance, etc. Making something purposely 'unappealing' or 'ugly' to create an art style. I was inspired by Charli XCX's 'BRAT' campaign and her use of anti-design throughout its visual identity."><img src="extras/antidesign-1.webp" alt="Anti-Design I"></a>
+        <a href="extras/antidesign-2.webp" target="_blank" class="stack-card" data-title="Anti-Design II" data-desc="Overlaying images and shapes, experimenting with different blend modes and brighter colours."><img src="extras/antidesign-2.webp" alt="Anti-Design II"></a>
+        <a href="extras/antidesign-3.webp" target="_blank" class="stack-card" data-title="Anti-Design III" data-desc="Overlaying images and shapes, experimenting with different blend modes, type, symbols, patterns and colours."><img src="extras/antidesign-3.webp" alt="Anti-Design III"></a>
+      </div>
+      <button class="stack-nav stack-next" aria-label="Next"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></button>
+    </div>
+    <div class="stack-counter"></div>
+    <div class="stack-caption"><h4></h4><p></p></div>
+  </section>
+
   <!-- Artist Posters -->
   <section>
     <h2>Artist Posters</h2>
@@ -2333,5 +2351,58 @@ html.light-mode .stack-nav svg, html.light-mode .stills-nav svg { filter: drop-s
 <link rel="stylesheet" href="shared/texture.css?v=1">
 <script src="shared/texture.js?v=1"></script>
 <style>/* move back-button up slightly on phone */ @media (max-width:700px){ .back-button-container{ margin-top:24px !important; } .back-button{ margin-top:16px !important; } }</style>
+<style>
+/* gallery-centered override: sections with only a few cards center them (instead of the
+   masonry column-count, which left-aligns a partial row). Reversible: delete this block. */
+body.gallery-mode .card-stack.gallery-centered {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
+  column-count: auto !important;
+  gap: 18px !important;
+  max-width: 1060px !important;
+  margin: 0 auto !important;
+}
+body.gallery-mode .card-stack.gallery-centered .stack-card {
+  display: block !important;
+  flex: 0 1 290px !important;
+  width: 290px !important;
+  max-width: 290px !important;
+  margin: 0 !important;
+}
+@media (max-width: 640px) {
+  body.gallery-mode .card-stack.gallery-centered .stack-card {
+    flex-basis: 44% !important; width: 44% !important; max-width: 44% !important;
+  }
+}
+</style>
+<script>
+/* gallery-centered enforcer: the gallery masonry (column-count) left-aligns a partial row,
+   so for .card-stack.gallery-centered we force a centered flex row via inline !important. */
+(function(){
+  function imp(el,p,v){ el.style.setProperty(p,v,'important'); }
+  function clr(el,ps){ ps.forEach(function(p){ el.style.removeProperty(p); }); }
+  function apply(){
+    var on=document.body.classList.contains('gallery-mode'), mobile=window.innerWidth<=640;
+    document.querySelectorAll('.card-stack.gallery-centered').forEach(function(cs){
+      if(on){
+        imp(cs,'display','flex'); imp(cs,'flex-wrap','wrap'); imp(cs,'justify-content','center');
+        imp(cs,'column-count','auto'); imp(cs,'gap','18px');
+        cs.querySelectorAll('.stack-card').forEach(function(c){
+          var w=mobile?'44%':'290px';
+          imp(c,'display','block'); imp(c,'margin','0'); imp(c,'flex','0 1 '+w); imp(c,'width',w); imp(c,'max-width',w);
+        });
+      } else {
+        clr(cs,['display','flex-wrap','justify-content','column-count','gap']);
+        cs.querySelectorAll('.stack-card').forEach(function(c){ clr(c,['display','flex','width','max-width','margin']); });
+      }
+    });
+  }
+  new MutationObserver(apply).observe(document.body,{attributes:true,attributeFilter:['class']});
+  window.addEventListener('resize',apply);
+  setTimeout(apply,60); apply();
+})();
+</script>
 </body>
 </html>
