@@ -92,7 +92,7 @@
     <div class="ab-lightbox-wrap">
       <img class="ab-lightbox-img" src="" alt="">
       <video class="ab-lightbox-vid" controls playsinline controlslist="nodownload"></video>
-      <img class="ab-lightbox-watermark" src="shared/AB logo.png" alt="">
+      <img class="ab-lightbox-watermark" src="shared/AB logo.webp" alt="">
     </div>
     <button class="ab-lightbox-next">&#8250;</button>
   `;

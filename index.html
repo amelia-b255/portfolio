@@ -2036,7 +2036,7 @@
 
         /* Per-style size tuning (all use trimmed, transparent PNGs now) */
         .hero-container.newtitle-style #name-img-wrap { height: auto !important; overflow: visible !important; }
-        .hero-container.newtitle-style #name-img { height: auto !important; max-height: 30vh !important; max-width: 82vw !important; object-position: center !important; }
+        .hero-container.newtitle-style #name-img { height: auto !important; max-height: 22vh !important; max-width: 64vw !important; object-position: center !important; }
         .hero-container.image-style  #name-img { max-height: 30vh !important; max-width: 80vw !important; }
         .hero-container.cursive-style #name-img { max-height: 34vh !important; max-width: 80vw !important; }
 
@@ -2104,7 +2104,7 @@
                 margin: 0 auto !important; display: block !important;
             }
             .hero-container.image-style  #name-img { max-height: 24vh !important; max-width: 80vw !important; }
-            .hero-container.newtitle-style #name-img { max-height: 22vh !important; }
+            .hero-container.newtitle-style #name-img { max-height: 16vh !important; max-width: 64vw !important; }
             .hero-container.cursive-style #name-img { max-height: 26vh !important; }
             .hero-bio { bottom: 4% !important; }
             .hero-bio p { font-size: 13px !important; }
@@ -2130,6 +2130,8 @@
 
         /* Follow-me Instagram icon: use recoloured PNGs, swap by mode */
         .instagram-link img.ig-follow { width: 28px !important; height: 28px !important; filter: none !important; }
+        /* phone: nudge the icon slightly larger */
+        @media (max-width: 600px) { .instagram-link img.ig-follow { width: 34px !important; height: 34px !important; } }
         .ig-follow-light { display: none; }
         html.light-mode .ig-follow-dark { display: none; }
         html.light-mode .ig-follow-light { display: inline-block; }
@@ -2161,6 +2163,10 @@
         }
 </style>
     <script>(function(){try{var t=performance.getEntriesByType('navigation'),n=t.length?t[0].type:'navigate',s=document.referrer&&(new URL(document.referrer)).origin===location.origin;if(n==='reload'||(n==='navigate'&&!s)){sessionStorage.removeItem('theme');}else if(sessionStorage.getItem('theme')==='light'){document.documentElement.classList.add('light-mode');}}catch(e){}})();</script>
+    <link rel="preload" as="image" href="newtitle2-trim.webp?v=16">
+    <link rel="preload" as="image" href="newtitle1-trim.webp?v=16">
+    <link rel="preload" as="image" href="portfolio word-trim.webp?v=4">
+    <link rel="preload" as="image" href="portoflio word dark-trim.webp?v=4">
 </head>
 <body>
 
@@ -2218,7 +2224,7 @@
 
 
     <nav id="navbar">
-        <div class="logo"><img src="shared/AB logo light.png" alt="AB" class="logo-img">AMELIA'S PORTFOLIO</div>
+        <div class="logo"><img src="shared/AB logo light.webp" alt="AB" class="logo-img">AMELIA'S PORTFOLIO</div>
         <div class="theme-toggle-wrap" onclick="toggleTheme()" id="themeToggle" aria-label="Toggle theme">
             <span class="theme-toggle-label" id="themeLabel">Light</span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70 90" aria-hidden="true" class="lb-svg"><g class="lb-ray" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"><line x1="35" y1="2" x2="35" y2="10"/><line x1="57" y1="8" x2="51" y2="14"/><line x1="67" y1="30" x2="59" y2="30"/><line x1="57" y1="52" x2="51" y2="46"/><line x1="13" y1="8" x2="19" y2="14"/><line x1="3" y1="30" x2="11" y2="30"/><line x1="13" y1="52" x2="19" y2="46"/></g><path fill="currentColor" d="M35 12C23 12 14 21 14 32c0 9.5 5.5 17 13 20.5V59c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-6.5C51 49 56 41.5 56 32c0-11-9-20-21-20z"/><rect fill="currentColor" x="27" y="63" width="16" height="3.5" rx="1.75"/><rect fill="currentColor" x="29" y="68.5" width="12" height="3" rx="1.5"/><rect fill="currentColor" x="31" y="73.5" width="8" height="3" rx="1.5"/></svg>
@@ -2238,8 +2244,8 @@
     <section id="home" class="hero">
         <div class="hero-container" id="hero-container">
             <div class="hero-image" id="hero-image-cycler">
-                <img src="extras/header-cover-dark.webp?v=2" alt="" class="hero-img-dark active">
-                <img src="extras/header-cover-light.webp?v=2" alt="" class="hero-img-light active">
+                <img src="extras/header-cover-dark-v3.webp?v=3" alt="" class="hero-img-dark active" fetchpriority="high" decoding="async">
+                <img src="extras/header-cover-light-v3.webp?v=3" alt="" class="hero-img-light active" loading="lazy" fetchpriority="low" decoding="async">
             </div>
             <div class="hero-content">
                 <div id="name-cycler" class="field-blur">
@@ -2249,8 +2255,8 @@
                         <div id="img-letter-grid"></div>
                     </div>
                     <div id="portfolio-word-wrap">
-                        <img src="portfolio word-trim.png?v=4" class="pword-img pword-light" alt="portfolio">
-                        <img src="portoflio word dark-trim.png?v=4" class="pword-img pword-dark" alt="portfolio">
+                        <img src="portfolio word-trim.webp?v=4" class="pword-img pword-light" alt="portfolio">
+                        <img src="portoflio word dark-trim.webp?v=4" class="pword-img pword-dark" alt="portfolio">
                     </div>
                 </div>
                 <div id="name-dots" class="name-dots" aria-label="Name style"></div>
@@ -2268,7 +2274,7 @@
             <a href="extras.html" style="text-decoration: none; color: inherit; display: block;">
             <div class="portfolio-item fade-in">
                 <div class="portfolio-image">
-                    <img src="extras/tv-glow-cover.webp" alt="Posters and Print Work">
+                    <img loading="lazy" decoding="async" src="extras/tv-glow-cover.webp" alt="Posters and Print Work">
                     <div class="portfolio-overlay">
                         <h3>Posters &amp; Print</h3>
                         <span class="portfolio-year">2024–2026</span>
@@ -2280,7 +2286,7 @@
             <a href="coding.html" class="coding-card" style="text-decoration: none; color: inherit; display: block;">
             <div class="portfolio-item fade-in">
                 <div class="portfolio-image">
-                    <img src="shared/codingcover.png" alt="Creative Coding Projects">
+                    <img loading="lazy" decoding="async" src="shared/codingcover.webp" alt="Creative Coding Projects">
                     <div class="portfolio-overlay">
                         <h3>Creative Coding Projects</h3>
                         <span class="portfolio-year">2025</span>
@@ -2292,7 +2298,7 @@
             <a href="drawings.html" style="text-decoration: none; color: inherit; display: block;">
             <div class="portfolio-item fade-in">
                 <div class="portfolio-image">
-                    <img src="shared/gettingready1.jpg?v=4" alt="Drawings and Illustration" class="drawing-card-img">
+                    <img loading="lazy" decoding="async" src="shared/gettingready1.jpg?v=4" alt="Drawings and Illustration" class="drawing-card-img">
                     <div class="portfolio-overlay">
                         <h3>Illustrations</h3>
                         <span class="portfolio-year">2024–2026</span>
@@ -2304,7 +2310,7 @@
             <a href="shortfilm.html" style="text-decoration: none; color: inherit; display: block;">
             <div class="portfolio-item fade-in">
                 <div class="portfolio-image">
-                    <img src="shared/shortfilm.webp" alt="Short Film">
+                    <img loading="lazy" decoding="async" src="shared/shortfilm.webp" alt="Short Film">
                     <div class="portfolio-overlay">
                         <h3>Short Film Production</h3>
                         <span class="portfolio-year">2025</span>
@@ -2316,7 +2322,7 @@
             <a href="photography.html" style="text-decoration: none; color: inherit; display: block;">
             <div class="portfolio-item fade-in">
                 <div class="portfolio-image">
-                    <img src="shared/photo.webp" alt="Photography">
+                    <img loading="lazy" decoding="async" src="shared/photo.webp" alt="Photography">
                     <div class="portfolio-overlay">
                         <h3>Photography Series</h3>
                         <span class="portfolio-year">2023</span>
@@ -2328,7 +2334,7 @@
             <a href="commissioned-works.html" style="text-decoration: none; color: inherit; display: block;">
             <div class="portfolio-item fade-in">
                 <div class="portfolio-image">
-                    <img src="tram/sojourn-poster.webp" alt="Commissioned Works">
+                    <img loading="lazy" decoding="async" src="tram/sojourn-poster.webp" alt="Commissioned Works">
                     <div class="portfolio-overlay">
                         <h3>Commissioned Works</h3>
                         <span class="portfolio-year">2025–2026</span>
@@ -2724,12 +2730,12 @@
 var nameStyleIdx = 0;
 var NAME_V = '?v=16';
 var nameStyles = [
-    { type: 'img', group: 'newtitle', dark: 'newtitle2-trim.png'+NAME_V, light: 'newtitle1-trim.png'+NAME_V },
-    { type: 'img', group: 'bold',    dark: '1DARK-trim.png'+NAME_V, light: '1LIGHT-trim.png'+NAME_V },
-    { type: 'img', group: 'bold',    dark: '2DARK-trim.png'+NAME_V, light: '2LIGHT-trim.png'+NAME_V },
-    { type: 'img', group: 'bold',    dark: '3DARK-trim.png'+NAME_V, light: '3LIGHT-trim.png'+NAME_V },
-    { type: 'img', group: 'cursive', dark: '4DARK-trim.png'+NAME_V, light: '4LIGHT-trim.png'+NAME_V },
-    { type: 'img', group: 'cursive', dark: '5DARK-trim.png'+NAME_V, light: '5LIGHT-trim.png'+NAME_V },
+    { type: 'img', group: 'newtitle', dark: 'newtitle2-trim.webp'+NAME_V, light: 'newtitle1-trim.webp'+NAME_V },
+    { type: 'img', group: 'bold',    dark: '1DARK-trim.webp'+NAME_V, light: '1LIGHT-trim.webp'+NAME_V },
+    { type: 'img', group: 'bold',    dark: '2DARK-trim.webp'+NAME_V, light: '2LIGHT-trim.webp'+NAME_V },
+    { type: 'img', group: 'bold',    dark: '3DARK-trim.webp'+NAME_V, light: '3LIGHT-trim.webp'+NAME_V },
+    { type: 'img', group: 'cursive', dark: '4DARK-trim.webp'+NAME_V, light: '4LIGHT-trim.webp'+NAME_V },
+    { type: 'img', group: 'cursive', dark: '5DARK-trim.webp'+NAME_V, light: '5LIGHT-trim.webp'+NAME_V },
 ];
 
 function applyNameStyle() {
@@ -3537,8 +3543,8 @@ html.light-mode .pword-img { filter: drop-shadow(0 3px 10px rgba(255,255,255,0.5
   content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 3;
   background: url('textures/tex-concrete.jpg') center / 160px auto;
   mix-blend-mode: overlay; opacity: 0.85;
-  -webkit-mask: url('portfolio word-trim.png?v=4') 50% 0% / contain no-repeat;
-  mask: url('portfolio word-trim.png?v=4') 50% 0% / contain no-repeat;
+  -webkit-mask: url('portfolio word-trim.webp?v=4') 50% 0% / contain no-repeat;
+  mask: url('portfolio word-trim.webp?v=4') 50% 0% / contain no-repeat;
 }
 </style>
 <script>
@@ -3575,5 +3581,615 @@ html.light-mode .pword-img { filter: drop-shadow(0 3px 10px rgba(255,255,255,0.5
 html.light-mode .portfolio-overlay { background: linear-gradient(to top, rgba(210,183,162,0.96) 0%, rgba(210,183,162,0.74) 42%, rgba(210,183,162,0) 100%); }
 html.light-mode .portfolio-overlay h3, html.light-mode .portfolio-overlay p, html.light-mode .portfolio-year { color: #823a3e; }
 </style>
+<script src="shared/typewriter.js?v=2"></script>
+<script>
+/* portfolio card-title typewriter: types the overlay title each time the card
+   reveals (hover on desktop, scroll-active on mobile). Quicker than the section
+   headings. The untyped remainder stays in an invisible span so the overlay
+   layout never shifts while typing. */
+(function(){
+  var SPEED = 40; // ms per character
+  var items = [].slice.call(document.querySelectorAll('.portfolio-item'));
+  items.forEach(function(item){
+    var h3 = item.querySelector('.portfolio-overlay h3');
+    if(!h3 || h3.children.length) return;
+    var full = (h3.textContent||'').replace(/\s+/g,' ').trim();
+    if(!full) return;
+    function render(n){
+      h3.textContent = '';
+      h3.appendChild(document.createTextNode(full.slice(0,n)));
+      var sp = document.createElement('span');
+      sp.style.opacity = '0';
+      sp.setAttribute('aria-hidden','true');
+      sp.textContent = full.slice(n);
+      h3.appendChild(sp);
+    }
+    function typeIt(){
+      var gen = (h3.__gen = (h3.__gen||0)+1);
+      var i = 0;
+      render(0);
+      (function step(){
+        if(h3.__gen !== gen) return;
+        i++;
+        render(i);
+        if(i < full.length) setTimeout(step, SPEED);
+      })();
+    }
+    function reset(){ h3.__gen = (h3.__gen||0)+1; h3.textContent = full; }
+    // desktop hover
+    item.addEventListener('mouseenter', typeIt);
+    item.addEventListener('mouseleave', reset);
+    // mobile scroll-reveal (.scroll-active toggled by the scroll script)
+    var wasActive = false;
+    new MutationObserver(function(){
+      var active = item.classList.contains('scroll-active');
+      if(active && !wasActive) typeIt();
+      else if(!active && wasActive) reset();
+      wasActive = active;
+    }).observe(item, {attributes:true, attributeFilter:['class']});
+  });
+})();
+</script>
+<style>
+@keyframes bioCursorBlink { 0%,49%{opacity:1} 50%,100%{opacity:0} }
+.bio-cursor { display:inline-block; width:0; overflow:visible; animation:bioCursorBlink 0.9s steps(1) infinite; }
+</style>
+<script>
+/* hero bio typewriter: mechanical rhythm + blinking cursor. Types on load,
+   and RE-TYPES when you scroll back to the top or toggle light/dark mode.
+   The untyped remainder stays as an invisible span so the paragraph keeps its
+   height and the button below never jumps. */
+(function(){
+  var BASE = 6, JITTER = 14, DELAY = 350;
+  var p = document.querySelector('.hero-bio p');
+  if(!p || p.children.length) return;
+  var full = (p.textContent||'').replace(/\s+/g,' ').trim();
+  if(!full) return;
+  var gen = 0;
+  function render(n, withCursor){
+    p.textContent = '';
+    p.appendChild(document.createTextNode(full.slice(0,n)));
+    if(withCursor){
+      var cur = document.createElement('span');
+      cur.className = 'bio-cursor';
+      cur.textContent = '\u258d';
+      p.appendChild(cur);
+    }
+    var sp = document.createElement('span');
+    sp.style.opacity = '0';
+    sp.setAttribute('aria-hidden','true');
+    sp.textContent = full.slice(n);
+    p.appendChild(sp);
+  }
+  function pauseAfter(ch){
+    if(ch === '.') return 120;
+    if(ch === ',') return 55;
+    if(Math.random() < 0.06) return 90;
+    return 0;
+  }
+  function type(){
+    var g = ++gen, i = 0;
+    render(0, true);
+    (function step(){
+      if(g !== gen) return;
+      i++;
+      var done = i >= full.length;
+      render(i, !done);
+      if(!done) setTimeout(step, BASE + Math.random()*JITTER + pauseAfter(full.charAt(i-1)));
+      else p.textContent = full;
+    })();
+  }
+  setTimeout(type, DELAY);
+  var armed = false;
+  window.addEventListener('scroll', function(){
+    var y = window.pageYOffset;
+    if(y > 420) armed = true;
+    else if(armed && y < 60){ armed = false; type(); }
+  }, {passive:true});
+  new MutationObserver(function(){ type(); })
+    .observe(document.documentElement, {attributes:true, attributeFilter:['class']});
+})();
+</script>
+<style>
+/* hero swirl flourishes: single ornamental line per side + mouse wind */
+#home { position: relative; }
+.hero-swirl { position:absolute; width:clamp(320px,36vw,640px); height:min(86vh,760px); pointer-events:none; z-index:8; will-change:filter,opacity; }
+.hero-swirl.sw-left { left:0; top:auto; bottom:-30px; }
+.hero-swirl.sw-right { right:0; top:60px; }
+.hero-swirl canvas { width:100%; height:100%; display:block; }
+@media (max-width:900px){
+  .hero-swirl { width:132px; height:840px; }
+  .hero-swirl.sw-left { width:132px; height:860px; left:0; bottom:31%; top:auto; transform-origin:bottom left; transform:scale(0.50); }
+  .hero-swirl.sw-right { width:132px; height:840px; right:0; top:14%; transform-origin:top right; transform:scale(0.50); }
+}
+/* phone: hand-placed swirl branches drawn full-bleed over the hero, behind the text */
+@media (max-width:600px){
+  .hero-swirl, .hero-swirl.sw-left, .hero-swirl.sw-right {
+    width:100% !important; height:100% !important; left:0 !important; right:auto !important;
+    top:0 !important; bottom:auto !important; transform:none !important; z-index:9 !important;
+  }
+  #home .hero-content, #home .hero-bio { position:relative; z-index:3; }
+}
+</style>
+<script>
+/* hero swirl flourishes: two serpentine lines per side ending in fiddlehead
+   spirals, dressed as ORCHID branches — a stylised phalaenopsis bloom at each
+   tip (five bezier petals + lip + centre) and small buds along the stems,
+   drawn in line-art with a translucent fill. LEFT grows up into its bloom;
+   RIGHT is the upside-down twin growing down into its bloom. Growth is
+   scrubbed by scroll (with the title-like blur) and the cursor sways
+   everything with the tree sketch's mouse-wind physics. */
+(function(){
+  var hero=document.getElementById('home'); if(!hero) return;
+  var DARK=['#d9a091','#e9bda9','#c68a7b'], LIGHT=['#7a4848','#98595b','#6e3c3c'];
+  function isLight(){ return document.documentElement.classList.contains('light-mode'); }
+  function mk(cls){ var d=document.createElement('div'); d.className='hero-swirl '+cls;
+    var cv=document.createElement('canvas'); d.appendChild(cv); hero.appendChild(d); return d; }
+  var LEl=mk('sw-left'), REl=mk('sw-right');
+  function J(a,b){ return a+Math.random()*(b-a); }
+  /* deterministic J-alike: same seed → same sequence (used for the fixed phone vines) */
+  function mkRnd(seed){ var s=(seed>>>0)||1; return function(a,b){ s=(s*1664525+1013904223)>>>0; return a+(s/4294967296)*(b-a); }; }
+  function hexA(hex,a){ var n=parseInt(hex.slice(1),16); return 'rgba('+(n>>16)+','+((n>>8)&255)+','+(n&255)+','+a+')'; }
+
+  function petal(ctx,ang,L,W){
+    ctx.save(); ctx.rotate(ang);
+    ctx.beginPath();
+    ctx.moveTo(0,0);
+    ctx.bezierCurveTo(W*0.55,-L*0.30, W*0.50,-L*0.80, 0,-L);
+    ctx.bezierCurveTo(-W*0.50,-L*0.80, -W*0.55,-L*0.30, 0,0);
+    ctx.closePath(); ctx.fill(); ctx.stroke();
+    ctx.restore();
+  }
+  /* stylised phalaenopsis: top petal, two wide laterals, two lower sepals,
+     small lip + centre dot */
+  function drawOrchid(ctx,x,y,ang,size,cols,e,sh,lwf){
+    if(e<=0) return;
+    sh=sh||{open:1,wr:1,sep:1}; lwf=lwf||1;      /* lwf: outline-weight factor (thinner on phone heads) */
+    var lat=1.25*sh.open;                       /* lateral petal spread */
+    var sep=Math.min(2.45*Math.min(sh.open,1.08),2.75); /* sepal spread */
+    ctx.save(); ctx.translate(x,y); ctx.rotate(ang); ctx.scale(e,e);
+    ctx.lineWidth=1.15*lwf; ctx.globalAlpha=0.95;
+    ctx.strokeStyle=cols[0]; ctx.fillStyle=hexA(cols[1],0.22);
+    petal(ctx, 0,    size,             size*0.42*sh.wr);
+    petal(ctx,  lat, size*0.92,        size*0.55*sh.wr);
+    petal(ctx, -lat, size*0.92,        size*0.55*sh.wr);
+    petal(ctx,  sep, size*0.62*sh.sep, size*0.34);
+    petal(ctx, -sep, size*0.62*sh.sep, size*0.34);
+    ctx.fillStyle=hexA(cols[0],0.55);
+    petal(ctx, Math.PI, size*0.34, size*0.30);
+    ctx.globalAlpha=1; ctx.fillStyle=cols[0];
+    ctx.beginPath(); ctx.arc(0,0,1.7,0,6.2832); ctx.fill();
+    /* cybersigilism centre: fine radiating spikes + stamen dots */
+    ctx.globalAlpha=0.85; ctx.strokeStyle=cols[0]; ctx.lineWidth=0.85*lwf;
+    for(var cs=0;cs<6;cs++){ var ca=cs*1.047+0.5;
+      ctx.beginPath(); ctx.moveTo(Math.cos(ca)*size*0.12,Math.sin(ca)*size*0.12); ctx.lineTo(Math.cos(ca)*size*0.42,Math.sin(ca)*size*0.42); ctx.stroke(); }
+    ctx.globalAlpha=0.7;
+    for(var cd=0;cd<5;cd++){ var da=cd*1.257+0.3; ctx.beginPath(); ctx.arc(Math.cos(da)*size*0.24,Math.sin(da)*size*0.24,0.9,0,6.2832); ctx.fill(); }
+    ctx.restore();
+  }
+  /* closed bud: two small overlapping petals on the stem */
+  function drawBud(ctx,x,y,ang,size,cols,e,lwf){
+    if(e<=0) return; lwf=lwf||1;
+    ctx.save(); ctx.translate(x,y); ctx.rotate(ang); ctx.scale(e,e);
+    ctx.lineWidth=1*lwf; ctx.globalAlpha=0.9;
+    ctx.strokeStyle=cols[0]; ctx.fillStyle=hexA(cols[1],0.30);
+    petal(ctx, 0.30, size, size*0.55);
+    petal(ctx,-0.30, size, size*0.55);
+    ctx.restore();
+  }
+
+  function buildLine(w,h,xFrac,lean,v0,scale,curl,rnd){
+    curl=curl||1; rnd=rnd||J;
+    var x=w*xFrac, y=h-4, hd=-Math.PI/2-lean, v=v0;
+    var n1=Math.round(rnd(125,145)*scale), A1=rnd(1.75,2.05);
+    var n2=Math.round(rnd(100,120)*scale), A2=A1*rnd(1.10,1.30);
+    var n3=Math.round(rnd(65,85)*scale),   A3=rnd(1.35,1.60);
+    var ph=[
+      {n:n1, t:A1/n1*curl},
+      {n:n2, t:-A2/n2*curl},
+      {n:n3, t:A3/n3*curl},
+      {n:Math.round(rnd(150,175)*Math.max(scale,0.8)), t:rnd(0.055,0.065), tg:1.008, vd:0.988}
+    ];
+    var wob=rnd(0.007,0.012), wobF=rnd(0.03,0.05), wobP=rnd(0,6.28);
+    var pts=[{x:x,y:y,fr:0}], total=0, t=0;
+    ph.forEach(function(p){ total+=p.n; });
+    ph.forEach(function(p){
+      var turn=p.t;
+      for(var i=0;i<p.n;i++){
+        t++; hd+=turn+wob*Math.sin(t*wobF+wobP); turn*=(p.tg||1);
+        x+=Math.cos(hd)*v; y+=Math.sin(hd)*v; v*=(p.vd||1);
+        if(t%2===0||t===total) pts.push({x:x,y:y,fr:t/total});
+      }
+    });
+    return pts;
+  }
+  /* ── mobile hero: hand-PLACED branches. A branch = a smooth curve through given
+     waypoints (so it goes exactly where we want, e.g. around a word) + a fiddlehead
+     spiral at its tip. Deterministic (no randomness). ── */
+  function catmullRom(wp, per){
+    var out=[{x:wp[0].x,y:wp[0].y}];
+    for(var i=0;i<wp.length-1;i++){
+      var p0=wp[i-1]||wp[i], p1=wp[i], p2=wp[i+1], p3=wp[i+2]||wp[i+1];
+      for(var t=1;t<=per;t++){
+        var s=t/per, s2=s*s, s3=s2*s;
+        out.push({
+          x:0.5*((2*p1.x)+(-p0.x+p2.x)*s+(2*p0.x-5*p1.x+4*p2.x-p3.x)*s2+(-p0.x+3*p1.x-3*p2.x+p3.x)*s3),
+          y:0.5*((2*p1.y)+(-p0.y+p2.y)*s+(2*p0.y-5*p1.y+4*p2.y-p3.y)*s2+(-p0.y+3*p1.y-3*p2.y+p3.y)*s3)
+        });
+      }
+    }
+    return out;
+  }
+  function mkBranch(wp, sprDir){
+    var stem=catmullRom(wp, 22);
+    var last=stem[stem.length-1], prev=stem[stem.length-4]||stem[0];
+    var dir=Math.atan2(last.y-prev.y, last.x-prev.x);
+    var px=last.x, py=last.y, seg=Math.max(5, Math.hypot(last.x-prev.x,last.y-prev.y)/1.9);
+    for(var i=0;i<48;i++){ dir+=sprDir*0.25; seg*=0.955; px+=Math.cos(dir)*seg; py+=Math.sin(dir)*seg; stem.push({x:px,y:py}); }
+    var n=stem.length;
+    for(var k=0;k<n;k++){ stem[k].fr=k/(n-1); }
+    return stem;
+  }
+  function Field(el, fromBottom, host, lite){ this.el=el; this.cv=el.firstChild; this.fromBottom=fromBottom; this.host=host||null; this.lite=lite||false; this.g=0; this.lastG=-1; this.lastW=0; }
+  Field.prototype.seed=function(){
+    var cv=this.cv, dpr=Math.min(window.devicePixelRatio||1,2);
+    var w=cv.clientWidth, h=cv.clientHeight;
+    if(!w||!h) return;
+    cv.width=Math.round(w*dpr); cv.height=Math.round(h*dpr);
+    this.ctx=cv.getContext('2d'); this.ctx.setTransform(dpr,0,0,dpr,0,0);
+    this.w=w; this.h=h; this.light=isLight(); this.cols=this.light?LIGHT:DARK;
+    if(!this.lite && window.innerWidth<=600){
+      /* phone hero: 3 hand-placed swirl branches per corner (shorter), orchids
+         spread across them, lighter thorns (this.mob). Deterministic. */
+      this.mob=true;
+      var W=w, Hh=h, top=!this.fromBottom;
+      var shpM=function(){ return {open:0.92, wr:1.0, sep:0.9}; };
+      var lwm=Math.max(0.8, W/360), ob=W*0.038, st=[], sd=top?1:-1, A,B,C;
+      /* shrink a whole branch toward its corner origin so the cluster reads smaller
+         while staying anchored where it grows from */
+      var MS=0.9, sB=function(br,ox,oy){ for(var i=0;i<br.length;i++){ br[i].x=ox+(br[i].x-ox)*MS; br[i].y=oy+(br[i].y-oy)*MS; } return br; };
+      if(top){                                   /* grows from the TOP-RIGHT corner (below the nav) */
+        var cx=W*0.93, cy=Hh*0.185;
+        A=mkBranch([{x:cx,y:cy},{x:W*0.84,y:Hh*0.215},{x:W*0.885,y:Hh*0.24},{x:W*0.815,y:Hh*0.25}], -1);  /* curls above amelia, clear of the edge (S-curve) */
+        B=mkBranch([{x:cx,y:cy},{x:W*0.82,y:Hh*0.235},{x:W*0.70,y:Hh*0.20},{x:W*0.60,y:Hh*0.24}], 1);     /* above amelia (wavy) */
+        C=mkBranch([{x:cx,y:cy},{x:W*0.84,y:Hh*0.20},{x:W*0.79,y:Hh*0.255}], 1);                          /* 3rd, short, into the middle */
+      } else {                                   /* grows from the BOTTOM-LEFT corner */
+        var cx=W*0.06, cy=Hh*0.70;
+        A=mkBranch([{x:cx,y:cy},{x:W*0.10,y:Hh*0.62},{x:W*0.045,y:Hh*0.55},{x:W*0.085,y:Hh*0.485}], 1);   /* straight up the left margin (S-curve) */
+        B=mkBranch([{x:cx,y:cy},{x:W*0.115,y:Hh*0.635},{x:W*0.185,y:Hh*0.58},{x:W*0.115,y:Hh*0.535}], 1); /* MIDDLE swirl — sweeps up & to the left */
+        C=mkBranch([{x:cx,y:cy},{x:W*0.16,y:Hh*0.68},{x:W*0.24,y:Hh*0.695}], -1);                         /* 3rd, short, into the middle */
+      }
+      sB(A,cx,cy); sB(B,cx,cy); sB(C,cx,cy);
+      st.push({pts:A, lw:lwm, wf:0.35, off:0, bloom:0, shape:shpM(),
+        buds:[{k:8,size:ob*0.38,side:sd},{k:22,size:ob*0.3,side:-sd}],
+        midBloom:{k:34,size:ob*1.08,shape:shpM()},
+        extraBlooms:[{k:52,size:ob*0.6,shape:shpM()},{k:74,size:ob*0.86,shape:shpM()},{k:94,size:ob*0.48,shape:shpM()}]});
+      st.push({pts:B, lw:lwm*0.9, wf:0.35, off:0.05, bloom:0,
+        buds:[{k:26,size:ob*0.3,side:sd}], midBloom:{k:42,size:ob*0.92,shape:shpM()},
+        extraBlooms:[{k:62,size:ob*0.54,shape:shpM()},{k:82,size:ob*0.72,shape:shpM()}]});
+      st.push({pts:C, lw:lwm*0.85, wf:0.35, off:0.09, bloom:0, buds:[{k:14,size:ob*0.28,side:sd}],
+        midBloom:{k:30,size:ob*0.84,shape:shpM()}, extraBlooms:[{k:50,size:ob*0.5,shape:shpM()},{k:66,size:ob*0.66,shape:shpM()}]});
+      this.strands=st; this.lastG=-1; return;
+    }
+    var main=buildLine(w,h,J(0.40,0.48),J(0.82,0.98),J(2.1,2.3),1.0);
+    var sub =buildLine(w,h,J(0.22,0.32),J(0.45,0.65),J(1.6,1.8),J(0.52,0.62));
+    var tiny=buildLine(w,h,J(0.10,0.20),J(0.30,0.50),J(1.3,1.5),J(0.34,0.44));
+    var mid2=buildLine(w,h,J(0.30,0.38),J(0.60,0.80),J(1.8,2.0),J(0.68,0.78));
+    var tiny2=buildLine(w,h,J(0.50,0.58),J(0.35,0.55),J(1.2,1.4),J(0.28,0.36));
+    var bare1=buildLine(w,h,J(0.05,0.12),J(0.55,0.75),J(1.6,1.8),J(0.55,0.68));
+    var bare2=buildLine(w,h,J(0.60,0.70),J(0.40,0.60),J(1.2,1.4),J(0.30,0.40));
+    var bare3=buildLine(w,h,J(0.18,0.26),J(0.45,0.65),J(1.4,1.6),J(0.42,0.52));
+    if(!this.fromBottom){
+      var flip=function(p){ return {x:w-p.x, y:h-p.y, fr:p.fr}; };
+      main=main.map(flip); sub=sub.map(flip); tiny=tiny.map(flip); mid2=mid2.map(flip); tiny2=tiny2.map(flip); bare1=bare1.map(flip); bare2=bare2.map(flip); bare3=bare3.map(flip);
+    }
+    function budsFor(pts,list){ return list.map(function(b){ return {k:Math.floor(pts.length*b[0]), size:b[1], side:b[2]}; }); }
+    function shp(o1,o2){ return {open:J(o1,o2), wr:J(0.85,1.25), sep:J(0.75,1.15)}; }
+    this.strands=[
+      {pts:main, lw:J(2.2,2.7), wf:J(0.7,1.0), off:0,
+       bloom:J(54,68), shape:shp(0.95,1.20),
+       buds:budsFor(main,[[0.48,J(13,17),1],[0.72,J(11,14),-1]]),
+       midBloom:{k:Math.floor(main.length*J(0.50,0.62)), size:J(36,46), shape:shp(0.50,0.75)}},
+      {pts:mid2, lw:J(1.8,2.2), wf:J(0.8,1.1), off:0.06,
+       bloom:J(42,52), shape:shp(0.55,0.80), buds:budsFor(mid2,[[0.55,J(11,14),-1]]), midBloom:null},
+      {pts:sub,  lw:J(1.5,1.9), wf:J(0.9,1.3), off:0.12,
+       bloom:J(40,50), shape:shp(0.80,1.10), buds:budsFor(sub,[[0.58,J(10,13),1]]), midBloom:null},
+      {pts:tiny, lw:J(1.2,1.5), wf:J(1.0,1.4), off:0.22,
+       bloom:J(34,44), shape:shp(0.60,1.15), buds:[], midBloom:null},
+      {pts:tiny2, lw:J(1.0,1.3), wf:J(1.1,1.5), off:0.30,
+       bloom:0, buds:[], midBloom:null},
+      {pts:bare1, lw:J(1.4,1.8), wf:J(0.9,1.2), off:0.10,
+       bloom:0, buds:[], midBloom:null},
+      {pts:bare2, lw:J(1.0,1.3), wf:J(1.2,1.5), off:0.26,
+       bloom:0, buds:[], midBloom:null},
+      {pts:bare3, lw:J(1.2,1.6), wf:J(1.0,1.3), off:0.16,
+       bloom:0, buds:[], midBloom:null}
+    ];
+    if(w<200 && !this.lite){
+      /* phone hero: ONE continuous spiralling vine per side (a single unbroken
+         line → no gaps/cut-offs), fixed per side (deterministic), with the orchids
+         spread out along it. The left runs longer. */
+      var fromBP=this.fromBottom, ps=w/60, LNG=(fromBP?1.35:1.0);
+      var R=mkRnd(fromBP?73101:42317);
+      var shpR=function(o1,o2){ return {open:R(o1,o2), wr:R(0.85,1.25), sep:R(0.75,1.15)}; };
+      var m1=buildLine(w,h,R(0.44,0.52),R(0.30,0.52),R(1.95,2.2),R(1.30,1.50)*LNG,0.85,R);
+      var ex=buildLine(w,h,R(0.44,0.52),R(0.32,0.55),R(1.9,2.15),R(1.0,1.2)*LNG,1.05,R);      /* curving trailing swirl */
+      var ex2=buildLine(w,h,R(0.44,0.52),R(0.34,0.58),R(1.85,2.1),R(0.6,0.8)*LNG,1.30,R);     /* second swirl */
+      var br=buildLine(w,h,R(0.44,0.52),R(-0.12,0.10),R(1.85,2.1),R(1.55,1.80)*LNG,1.12,R);   /* 2nd branch — longer */
+      var br2=buildLine(w,h,R(0.44,0.52),R(0.30,0.52),R(1.6,1.85),R(0.82,1.02)*LNG,1.42,R);   /* 3rd branch — shorter */
+      if(!fromBP){ var flp=function(p){ return {x:w-p.x,y:h-p.y,fr:p.fr}; }; m1=m1.map(flp); ex=ex.map(flp); ex2=ex2.map(flp); br=br.map(flp); br2=br2.map(flp); }
+      var L1=m1.length, i;
+      /* chain each swirl onto the END of the previous → one continuous stroke, no gaps */
+      function chainOn(a,b){ var en=a[a.length-1], b0=b[0], dx=en.x-b0.x, dy=en.y-b0.y, r=[]; for(var j=0;j<b.length;j++){ r.push({x:b[j].x+dx, y:b[j].y+dy, fr:0}); } return r; }
+      ex=chainOn(m1,ex);
+      var full=m1.concat(ex);
+      ex2=chainOn(full,ex2);
+      full=full.concat(ex2);
+      var FL=full.length;
+      for(i=0;i<FL;i++){ full[i].fr=i/(FL-1); }
+      /* the branch shares the base point so it forks cleanly (no gap at the base) */
+      var f0=full[0];
+      function alignBase(arr){ var b0=arr[0], dx=f0.x-b0.x, dy=f0.y-b0.y, r=[]; for(var k=0;k<arr.length;k++){ r.push({x:arr[k].x+dx, y:arr[k].y+dy, fr:k/(arr.length-1)}); } return r; }
+      br=alignBase(br); br2=alignBase(br2);
+      /* keep the ORIGINAL cluster at its reference size; only shrink everything further
+         if the whole thing (line + branch) would otherwise clip the canvas */
+      var ax=f0.x, ay=f0.y, m1x=0,m1y=0, wx=0,wy=0;
+      for(i=0;i<L1;i++){ var a1=Math.abs(full[i].x-ax); if(a1>m1x)m1x=a1; var a2=Math.abs(full[i].y-ay); if(a2>m1y)m1y=a2; }
+      function accW(arr){ for(var j=0;j<arr.length;j++){ var d1=Math.abs(arr[j].x-ax); if(d1>wx)wx=d1; var d2=Math.abs(arr[j].y-ay); if(d2>wy)wy=d2; } }
+      accW(full); accW(br); accW(br2);
+      var scClus=Math.min(m1x>0?(w*0.44)/m1x:1, m1y>0?((fromBP?420:360)*0.72)/m1y:1);
+      var scSafe=Math.min(wx>0?(w*0.46)/wx:1, wy>0?(h*0.92)/wy:1);
+      var sc=Math.min(scClus, scSafe);
+      function scl(arr){ for(var k=0;k<arr.length;k++){ arr[k].x=ax+(arr[k].x-ax)*sc; arr[k].y=ay+(arr[k].y-ay)*sc; } }
+      scl(full); scl(br); scl(br2);
+      this.strands=[
+        {pts:full, lw:R(0.98,1.25)*ps, wf:R(0.7,1.0), off:0,
+         bloom:0, shape:shpR(0.90,1.15),
+         buds:budsFor(m1,[[0.46,R(6,8)*ps,-1],[0.80,R(6,8)*ps,1]]),
+         midBloom:{k:Math.floor(L1*0.28), size:R(12,15)*ps, shape:shpR(0.60,0.90)},
+         extraBlooms:[{k:Math.floor(L1*0.56), size:R(11,14)*ps, shape:shpR(0.85,1.15)}]},   /* orchids stay on the original part */
+        {pts:br, lw:R(0.9,1.12)*ps, wf:R(0.7,1.0), off:0.12, bloom:0, buds:[], midBloom:null},
+        {pts:br2, lw:R(0.82,1.02)*ps, wf:R(0.7,1.0), off:0.16, bloom:0, buds:[], midBloom:null}
+      ];
+    }
+    if(this.lite){
+      /* head vines: the SAME lush look as the hero vines — thick thorny stem, big
+         orchids, one fiddlehead curl — but laid horizontal and kept simple: a
+         SINGLE strand with gentle bends (curl=1), not a coiled tangle. */
+      var fromB=this.fromBottom, hsc=w/160;   /* scale flowers + stem to canvas size (small on phones) */
+      var hthin=(window.innerWidth<=600)?0.42:1;   /* thinner stems on phone only */
+      /* DETERMINISTIC: seeded per side so the heading vines are the SAME shape every
+         refresh (on phone AND computer). Only the desktop hero main vines stay random. */
+      var HR=mkRnd(fromB?9173:3391);
+      var shpH=function(o1,o2){ return {open:HR(o1,o2), wr:HR(0.85,1.25), sep:HR(0.75,1.15)}; };
+      var main=buildLine(w,h,HR(0.47,0.53),HR(0.80,1.00),HR(2.0,2.2),0.96,1.0,HR);
+      if(!fromB) main=main.map(function(q){ return {x:w-q.x,y:h-q.y,fr:q.fr}; });
+      var Lm=main.length;
+      this.strands=[
+        {pts:main, lw:HR(1.9,2.3)*hsc*hthin, wf:HR(0.55,0.80), off:0,
+         bloom:HR(30,37)*hsc, shape:shpH(0.95,1.20),
+         buds:budsFor(main,[[0.44,HR(10,13)*hsc,-1],[0.70,HR(9,12)*hsc,1]]),
+         midBloom:{k:Math.floor(Lm*0.27), size:HR(26,33)*hsc, shape:shpH(0.55,0.80)},
+         extraBlooms:[{k:Math.floor(Lm*0.55), size:HR(22,28)*hsc, shape:shpH(0.70,1.05)}]}
+      ];
+    }
+    if(this.lite){
+      /* head vines: independent fit inside the flanking canvas */
+      var mdx=w*0.20, mdyf=(this.side==='left'?0.80:0.64);
+      this.strands.forEach(function(s){
+        var mdy=h*mdyf;
+        var ax=s.pts[0].x, ay=s.pts[0].y, mx=0, my=0, i;
+        for(i=0;i<s.pts.length;i++){ var dx=Math.abs(s.pts[i].x-ax); if(dx>mx)mx=dx; var dy=Math.abs(s.pts[i].y-ay); if(dy>my)my=dy; }
+        var scx=mx>mdx?mdx/mx:1, scy=my>mdy?mdy/my:1;
+        for(i=0;i<s.pts.length;i++){ s.pts[i].x=ax+(s.pts[i].x-ax)*scx; s.pts[i].y=ay+(s.pts[i].y-ay)*scy; }
+      });
+    }
+    this.lastG=-1;
+  };
+  Field.prototype.render=function(g,wind){
+    var ctx=this.ctx; if(!ctx) return;
+    ctx.clearRect(0,0,this.w,this.h);
+    ctx.globalCompositeOperation='source-over';
+    ctx.lineCap='round'; ctx.lineJoin='round';
+    var cols=this.cols, lite=this.lite;
+    var owf=(lite && window.innerWidth<=600)?0.5:1;   /* thinner orchid outlines on phone heading vines */
+    for(var s=0;s<this.strands.length;s++){
+      var st=this.strands[s], pts=st.pts, len=pts.length;
+      var local=Math.max(0,Math.min(1,(g-st.off)/(1-st.off)));
+      local=1-Math.pow(1-local,1.6);
+      var n=Math.floor(local*(len-1));
+      if(n<1) continue;
+      var anchor=pts[0], bend=wind*st.wf*(lite?0.5:1);
+      function TP(k){
+        var p=pts[k];
+        var a=bend*Math.pow(k/len,1.5)*1.6;
+        if(lite) a=Math.max(-0.08,Math.min(0.08,a));
+        var dx=p.x-anchor.x, dy=p.y-anchor.y;
+        var ca=Math.cos(a), sa=Math.sin(a);
+        return {x:anchor.x+dx*ca-dy*sa, y:anchor.y+dx*sa+dy*ca};
+      }
+      ctx.strokeStyle=cols[0];
+      var px=null,py=null;
+      for(var k=0;k<=n;k++){
+        var P=TP(k);
+        if(px!==null){
+          ctx.globalAlpha=0.85;
+          ctx.lineWidth=st.lw*(0.45+0.9*Math.pow(Math.sin(Math.PI*Math.min(pts[k].fr*1.1,1)),1.4));
+          ctx.beginPath(); ctx.moveTo(px,py); ctx.lineTo(P.x,P.y); ctx.stroke();
+        }
+        px=P.x; py=P.y;
+      }
+      /* ── cybersigilism: dense barbed hook-thorns + stipple dots along the stem ── */
+      var mob=this.mob, cbf=Math.max(0.4,Math.min(1,this.w/420))*(mob?0.68:1);
+      var CSTEP=Math.max(4,Math.round(len/(mob?15:24)));
+      ctx.fillStyle=cols[0];
+      for(var ck=CSTEP; ck<n-1; ck+=CSTEP){
+        var cg=Math.min(1,(n-ck)/8); if(cg<=0) continue;
+        var idx=Math.round(ck/CSTEP);
+        var cside=(idx%2===0)?1:-1;
+        var CA=TP(ck), CB=TP(Math.max(0,ck-2));
+        var ctang=Math.atan2(CA.y-CB.y,CA.x-CB.x);
+        var clen=(9+10*Math.abs(Math.sin(ck*0.7)))*cg*(1-0.22*pts[ck].fr)*cbf;
+        if(clen<2) continue;
+        var cperp=ctang+cside*1.12;
+        var hx=CA.x+Math.cos(cperp-cside*0.6)*clen*0.55, hy=CA.y+Math.sin(cperp-cside*0.6)*clen*0.55;
+        var tx=CA.x+Math.cos(cperp)*clen, ty=CA.y+Math.sin(cperp)*clen;
+        var cbw=(st.lw*0.8+0.35)*cbf;
+        ctx.globalAlpha=0.86;
+        /* main curved hook-thorn */
+        ctx.beginPath();
+        ctx.moveTo(CA.x-Math.cos(ctang)*cbw, CA.y-Math.sin(ctang)*cbw);
+        ctx.quadraticCurveTo(hx,hy,tx,ty);
+        ctx.quadraticCurveTo(hx,hy,CA.x+Math.cos(ctang)*cbw, CA.y+Math.sin(ctang)*cbw);
+        ctx.closePath(); ctx.fill();
+        /* shorter straight counter-barb on the opposite side (barbed-wire feel).
+           On mobile it's kept sparser (every other thorn) so the effect stays light. */
+        if(!mob || idx%2===0){
+          var clen2=clen*(mob?0.42:0.5), cperp2=ctang-cside*1.15;
+          var tx2=CA.x+Math.cos(cperp2)*clen2, ty2=CA.y+Math.sin(cperp2)*clen2;
+          ctx.beginPath();
+          ctx.moveTo(CA.x-Math.cos(ctang)*cbw*0.7, CA.y-Math.sin(ctang)*cbw*0.7);
+          ctx.lineTo(tx2,ty2);
+          ctx.lineTo(CA.x+Math.cos(ctang)*cbw*0.7, CA.y+Math.sin(ctang)*cbw*0.7);
+          ctx.closePath(); ctx.fill();
+        }
+        if(!mob){
+          /* pinprick dots trailing off the thorn tip (desktop only) */
+          ctx.globalAlpha=0.55;
+          ctx.beginPath(); ctx.arc(tx+Math.cos(cperp)*4*cbf, ty+Math.sin(cperp)*4*cbf, 1.0*cbf, 0, 6.2832); ctx.fill();
+          if(idx%2===0){ ctx.beginPath(); ctx.arc(tx+Math.cos(cperp)*9*cbf, ty+Math.sin(cperp)*9*cbf, 0.8*cbf, 0, 6.2832); ctx.fill(); }
+        } else if(idx%2!==0){
+          /* single faint stipple dot on mobile, only where there's no counter-barb */
+          ctx.globalAlpha=0.4;
+          ctx.beginPath(); ctx.arc(tx+Math.cos(cperp)*3*cbf, ty+Math.sin(cperp)*3*cbf, 0.9*cbf, 0, 6.2832); ctx.fill();
+        }
+      }
+      /* buds pop once the growing tip passes them */
+      for(var b=0;b<st.buds.length;b++){
+        var bud=st.buds[b];
+        if(bud.k>=n||bud.k<3) continue;
+        var be=Math.min(1,(n-bud.k)/14); be=1-Math.pow(1-be,2);
+        var bp=TP(bud.k), bq=TP(bud.k-3);
+        var bang=Math.atan2(bp.y-bq.y,bp.x-bq.x)+Math.PI/2+bud.side*0.55;
+        drawBud(ctx,bp.x,bp.y,bang,bud.size,cols,be,owf);
+      }
+      /* a mid-stem orchid opens once the tip has passed it */
+      if(st.midBloom && st.midBloom.k<n && st.midBloom.k>5){
+        var me=Math.min(1,(n-st.midBloom.k)/16); me=1-Math.pow(1-me,2);
+        var mp=TP(st.midBloom.k), mq=TP(st.midBloom.k-4);
+        var mang=Math.atan2(mp.y-mq.y,mp.x-mq.x)+Math.PI/2;
+        drawOrchid(ctx,mp.x,mp.y,mang,st.midBloom.size,cols,me,st.midBloom.shape,owf);
+      }
+      /* extra orchids spread along the head vines */
+      if(st.extraBlooms){ for(var xb=0;xb<st.extraBlooms.length;xb++){ var XB=st.extraBlooms[xb];
+        if(XB.k<n && XB.k>5){ var xe=Math.min(1,(n-XB.k)/16); xe=1-Math.pow(1-xe,2);
+          var xp=TP(XB.k), xq=TP(XB.k-4); var xa=Math.atan2(xp.y-xq.y,xp.x-xq.x)+Math.PI/2;
+          drawOrchid(ctx,xp.x,xp.y,xa,XB.size,cols,xe,XB.shape,owf); } } }
+      /* the orchid bloom unfurls at the tip as the strand completes */
+      if(st.bloom && local>0.88){
+        var fe=(local-0.88)/0.12; fe=1-Math.pow(1-fe,3);
+        var tp=TP(len-1), tq=TP(len-6);
+        var fang=Math.atan2(tp.y-tq.y,tp.x-tq.x)+Math.PI/2;
+        drawOrchid(ctx,tp.x,tp.y,fang,st.bloom,cols,fe,st.shape,owf);
+      }
+    }
+    /* texture overlay, source-atop so the grain lands only on the strokes */
+    if(TEX.complete && TEX.naturalWidth){
+      ctx.globalCompositeOperation='source-atop';
+      ctx.globalAlpha=0.5;
+      ctx.drawImage(TEX,0,0,this.w,this.h);
+      ctx.globalCompositeOperation='source-over';
+      ctx.globalAlpha=1;
+    }
+  };
+  var fields=[new Field(LEl,true), new Field(REl,false)];
+  fields.forEach(function(f){ f.seed(); });
+  /* ── heading vines: horizontal orchid flourishes flanking each lower section's
+     <h2>, one on either side of the centred title text. Each is built as a
+     vertical vine then rotated 90° via CSS so it lies horizontal, growing
+     outward from the text. Hidden on narrow screens where there's no room. ── */
+  var gcss=document.createElement('style');
+  gcss.textContent=
+     '.vine-head{position:relative;display:inline-block;}'
+    +'.head-swirl{position:absolute;top:50%;width:240px;height:160px;pointer-events:none;opacity:0;z-index:0;transform:translateY(-50%);will-change:opacity;}'
+    +'.head-swirl canvas{position:absolute;top:50%;left:50%;width:160px;height:240px;display:block;}'
+    +'.head-swirl.hs-left{right:100%;margin-right:14px;}'
+    +'.head-swirl.hs-right{left:100%;margin-left:14px;}'
+    +'.head-swirl.hs-left canvas{transform:translate(-50%,-50%) rotate(-90deg);}'
+    +'.head-swirl.hs-right canvas{transform:translate(-50%,-50%) rotate(90deg);}'
+    +'@media(max-width:900px){.head-swirl{width:150px;height:104px;}.head-swirl canvas{width:104px;height:150px;}}'
+    +'@media(max-width:600px){.head-swirl{width:76px;height:52px;}.head-swirl canvas{width:52px;height:76px;}}';
+  document.head.appendChild(gcss);
+  var borderFields=[];
+  ['portfolio','about','contact'].forEach(function(id){
+    var sec=document.getElementById(id); if(!sec) return;
+    var h2=sec.querySelector('h2'); if(!h2) return;
+    var span=document.createElement('span'); span.className='vine-head';
+    while(h2.firstChild) span.appendChild(h2.firstChild);
+    h2.appendChild(span);
+    [['left',true],['right',true]].forEach(function(s){
+      var d=document.createElement('div'); d.className='head-swirl hs-'+s[0];
+      var cv=document.createElement('canvas'); d.appendChild(cv); span.appendChild(d);
+      var f=new Field(d, s[1], null, true); f.sec=sec; f.side=s[0]; f.fade=0; f.seed(); f.g=0;
+      borderFields.push(f);
+    });
+  });
+  /* same concrete grain as the title/nav, clipped to the drawn strokes */
+  var TEX=new Image(); TEX.src='textures/tex-concrete.jpg';
+  TEX.onload=function(){ fields.forEach(function(f){ f.lastG=-1; }); };
+  var wind=0, windV=0;
+  window.addEventListener('mousemove', function(e){ windV+=(e.movementX||0)*0.00002; }, {passive:true});
+  var loadT=0, lastTime=performance.now();
+  function loop(now){
+    var dt=Math.min(now-lastTime,80); lastTime=now;
+    loadT=Math.min(1, loadT+dt/2600);
+    windV+=(0-wind)*0.005; windV*=0.96; wind+=windV;
+    var sy=window.pageYOffset;
+    var heroTarget=Math.max(0,Math.min(1, loadT - sy/300));
+    var op=Math.max(0, 1-sy/750);
+    /* vines stay crisp (no scroll blur, no title-frost blur) — only fade out */
+    LEl.style.filter=''; REl.style.filter='';
+    LEl.style.opacity=op.toFixed(3); REl.style.opacity=op.toFixed(3);
+    for(var i=0;i<fields.length;i++){
+      var f=fields[i];
+      var hge=(heroTarget>f.g)?0.92:0.80;   /* grow slower; reverse-grow unchanged */
+      f.g+=(heroTarget-f.g)*(1-Math.pow(hge, dt/16.7));
+      if(Math.abs(f.g-f.lastG)>0.0008 || Math.abs(wind-f.lastW)>0.0006){
+        f.render(f.g, wind); f.lastG=f.g; f.lastW=wind;
+      }
+    }
+    /* gutter border swirls: grow + fade as each section scrolls into view */
+    for(var j=0;j<borderFields.length;j++){
+      var bf=borderFields[j]; if(!bf.ctx) continue;
+      var r=bf.sec.getBoundingClientRect(), vh=window.innerHeight;
+      var vis=(r.bottom>40 && r.top<vh-40);
+      /* The heading text types in on scroll (typewriter.js), and while it types the
+         .vine-head span is near-zero-width so both swirls sit collapsed at centre,
+         behind the text. If we let growth run during that, it finishes before the
+         swirls fan out — so the grow-in is never seen. Gate growth on the heading
+         being fully typed; then it grows (scroll-driven) with the swirls in place. */
+      var h2=bf.sec.querySelector('h2'), full=h2 && h2.getAttribute('data-full');
+      var typed=!full || ((h2.textContent||'').replace(/\s+/g,' ').trim().length >= full.length);
+      var prog=typed ? Math.max(0,Math.min(1,(vh*0.92 - r.top)/(vh*0.5))) : 0;
+      var bge=(prog>bf.g)?0.94:0.90;   /* grow slower; reverse-grow unchanged */
+      bf.g+=(prog-bf.g)*(1-Math.pow(bge, dt/16.7));
+      bf.fade+=((vis?1:0)-bf.fade)*0.28;
+      bf.el.style.opacity=bf.fade.toFixed(3);
+      if(Math.abs(bf.g-bf.lastG)>0.0008 || Math.abs(wind-bf.lastW)>0.0006){
+        bf.render(bf.g, wind); bf.lastG=bf.g; bf.lastW=wind;
+      }
+    }
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+  new MutationObserver(function(){
+    /* theme toggle: fresh arrangement AND replay the growth */
+    loadT=0;
+    fields.forEach(function(f){ f.seed(); f.g=0; });
+    borderFields.forEach(function(f){ f.seed(); f.g=0; });
+  }).observe(document.documentElement,{attributes:true,attributeFilter:['class']});
+  var rt; window.addEventListener('resize',function(){ clearTimeout(rt); rt=setTimeout(function(){ fields.forEach(function(f){ f.seed(); }); borderFields.forEach(function(f){ f.seed(); }); },300); });
+})();
+</script>
 </body>
 </html>

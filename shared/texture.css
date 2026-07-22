@@ -28,12 +28,14 @@ html:not(.light-mode) .announcement-banner::after { opacity: 0.3; }
 }
 
 /* tip popup: texture the WHOLE box (bg, text and the X) ------------------- */
-#tip-box::after {
+/* #mobile-note-box is the coding page's "Best on Desktop" tip — same recipe */
+#tip-box::after, #mobile-note-box::after {
   content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none;
   background: url('../textures/tex-concrete.jpg') center / 200px auto repeat;
   mix-blend-mode: overlay; opacity: 0.6; border-radius: inherit;
 }
-html:not(.light-mode) #tip-box::after { opacity: 0.4; }
+html:not(.light-mode) #tip-box::after,
+html:not(.light-mode) #mobile-note-box::after { opacity: 0.4; }
 
 /* headings + descriptions: overlay concrete on the glyphs, clipped to text - */
 /* drop the title's outline stroke so the letter is one solid shape */

@@ -27,7 +27,7 @@ function updateThemeUI() {
         toggle.title = isLight ? 'Switch to dark mode' : 'Switch to light mode';
     }
     document.querySelectorAll('.logo-img').forEach(function(img) {
-        img.src = isLight ? 'shared/AB logo.png' : 'shared/AB logo light.png';
+        img.src = isLight ? 'shared/AB logo.webp' : 'shared/AB logo light.webp';
     });
     if (typeof applyNameStyle === 'function') applyNameStyle();
 }
