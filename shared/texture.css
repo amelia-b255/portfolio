@@ -8,9 +8,9 @@
 /* nav bar + marquee ------------------------------------------------------- */
 #navbar::after, .announcement-banner::after {
   content: ''; position: absolute; inset: 0; z-index: 1002; pointer-events: none;
-  background: url('../textures/tex-glass.jpg') center / cover no-repeat,
-              url('../textures/tex-concrete.jpg') center / cover no-repeat,
-              url('../textures/tex-plaster.jpg') center / cover no-repeat;
+  background: url('../textures/tex-glass.webp') center / cover no-repeat,
+              url('../textures/tex-concrete.webp') center / cover no-repeat,
+              url('../textures/tex-plaster.webp') center / cover no-repeat;
   background-blend-mode: overlay;
   filter: contrast(1.3) brightness(1.05);
   mix-blend-mode: overlay; opacity: 0.3;
@@ -23,7 +23,7 @@ html:not(.light-mode) .announcement-banner::after { opacity: 0.3; }
 .view-btn.active::after {
   content: '' !important; display: block !important;
   position: absolute; inset: 0; pointer-events: none; z-index: 0;
-  background: url('../textures/tex-concrete.jpg') center / 130px auto repeat;
+  background: url('../textures/tex-concrete.webp') center / 130px auto repeat;
   mix-blend-mode: overlay; opacity: 0.8; border-radius: inherit;
 }
 
@@ -31,7 +31,7 @@ html:not(.light-mode) .announcement-banner::after { opacity: 0.3; }
 /* #mobile-note-box is the coding page's "Best on Desktop" tip — same recipe */
 #tip-box::after, #mobile-note-box::after {
   content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none;
-  background: url('../textures/tex-concrete.jpg') center / 200px auto repeat;
+  background: url('../textures/tex-concrete.webp') center / 200px auto repeat;
   mix-blend-mode: overlay; opacity: 0.6; border-radius: inherit;
 }
 html:not(.light-mode) #tip-box::after,
@@ -47,7 +47,7 @@ html:not(.light-mode) #mobile-note-box::after { opacity: 0.4; }
   position: absolute; left: 0; top: 0; width: 100%; height: 100%; z-index: 1;
   pointer-events: none;
   letter-spacing: inherit; text-transform: inherit; text-align: inherit;
-  background: url('../textures/tex-concrete.jpg') center / 700px auto;
+  background: url('../textures/tex-concrete.webp') center / 700px auto;
   -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent; color: transparent;
   mix-blend-mode: overlay; opacity: 1;

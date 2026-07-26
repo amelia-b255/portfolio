@@ -81,7 +81,7 @@
   }
   function budsFor(pts,list){ return list.map(function(b){ return {k:Math.floor(pts.length*b[0]), size:b[1], side:b[2]}; }); }
 
-  var TEX=new Image(); TEX.src='textures/tex-concrete.jpg';
+  var TEX=new Image(); TEX.src='textures/tex-concrete.webp';
 
   function Field(el, fromBottom){ this.el=el; this.cv=el.firstChild; this.fromBottom=fromBottom; this.lite=true; this.mob=false; this.g=0; this.lastG=-1; this.lastW=0; }
   Field.prototype.seed=function(){
