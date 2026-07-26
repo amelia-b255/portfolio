@@ -1298,7 +1298,11 @@
         // (e.g., 2026 when Drunk in Chinatown is front). Falls back to data-default.
         if (yearEl && !document.body.classList.contains('gallery-mode')) {
           var fc2 = cards[front];
-          yearEl.textContent = fc2.dataset.year || yearEl.dataset.default || yearEl.textContent;
+          var yr = fc2.dataset.year || yearEl.dataset.default || yearEl.textContent;
+          yearEl.textContent = yr;
+          // texture.css paints a textured ghost of this text via content:attr(data-text),
+          // so data-text must move with it or the old year stays overlaid underneath
+          if (yearEl.hasAttribute('data-text')) yearEl.setAttribute('data-text', yr);
         }
       }
 
