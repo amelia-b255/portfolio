@@ -775,6 +775,11 @@
         .contact-info-item .icon-light { display: none; }
         html.light-mode .contact-info-item .icon-dark { display: none; }
         html.light-mode .contact-info-item .icon-light { display: inline-block; }
+        /* LinkedIn mark: same footprint as the icon PNGs, colour-matched per theme */
+        .contact-info-item .li-icon { width: 40px; height: 40px; flex-shrink: 0; color: #b87c70; }
+        html.light-mode .contact-info-item .li-icon { color: #7a4848; }
+        .contact-info-item .contact-link { color: inherit; text-decoration: none; border-bottom: 1px solid currentColor; }
+        .contact-info-item .contact-link:hover { opacity: 0.75; }
         .contact-info-item p { font-family: 'Georgia Custom', Georgia, serif; }
         .contact-info-item .contact-label {
             font-family: 'Archivo Black', sans-serif;
@@ -2420,6 +2425,13 @@
                     <p style="margin: 0;"><span class="contact-label">Instagram:</span> @ameliabobbin_</p>
                 </div>
 
+                <!-- LinkedIn: inline SVG (no dark/light PNG pair exists for it), tinted
+                     via currentColor to match the other contact icons in both themes -->
+                <div class="contact-info-item">
+                    <svg class="li-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.76-1.95 4.02 0 4.76 2.5 4.76 5.76V21h-4v-5.5c0-1.31-.03-3-1.9-3-1.9 0-2.19 1.4-2.19 2.9V21h-4z"/></svg>
+                    <p style="margin: 0;"><span class="contact-label">LinkedIn:</span> <a href="https://www.linkedin.com/in/amelia-bobbin-b42551426/" target="_blank" rel="noopener" class="contact-link">Amelia Bobbin</a></p>
+                </div>
+
             </div>
 
             <form class="contact-form" action="https://formspree.io/f/manpvjez" method="POST">
@@ -2630,6 +2642,9 @@
                 var opacity = 1 - t;
                 heroNameCycler.style.filter = blur > 1.5 ? 'blur(' + blur + 'px)' : '';
                 heroNameCycler.style.opacity = opacity;
+                // turn off the field-blur backdrop-filter while scrolling — nested
+                // inside this element's own filter it leaks a grey outline (see CSS)
+                heroNameCycler.classList.toggle('fb-scrolling', scrollY > 1);
                 if (heroDots) heroDots.style.opacity = opacity;
                 if (heroBio) heroBio.style.opacity = opacity;
             }
@@ -3389,6 +3404,17 @@ html.light-mode nav { background: rgba(244,236,226,0.92) !important; }
        radial-gradient(44% 48% at 88% 80%, #000 0%, transparent 76%),
        radial-gradient(34% 38% at 50% 2%, #000 0%, transparent 76%),
        radial-gradient(ellipse 78% 72% at 50% 48%, transparent 50%, #000 90%);
+}
+/* While the title is being blurred/faded on scroll, drop the backdrop-filter.
+   A backdrop-filter nested inside an element that is itself filtered forces an
+   offscreen layer, and because this pseudo is inset ~17px BEYOND the title box
+   its edges leak as a grey outline/shadow that looks offset from the letters
+   (very visible on iOS). The frosted look still shows at rest. */
+#name-cycler.field-blur.fb-scrolling::after,
+#name-cycler.field-blur.fb-scrolling #portfolio-word-wrap::after {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    opacity: 0 !important;
 }
 </style>
 <style>
