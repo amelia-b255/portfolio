@@ -1,0 +1,1184 @@
+/* ══════════════════════════════════════════════════════════════
+   redesign sub-pages — shared styles
+   Tokens and core components mirror redesign.html exactly; the
+   gallery / feature / lightbox / demo pieces are sub-page only.
+   The original pages (extras.html, music.html, …) are untouched.
+   ══════════════════════════════════════════════════════════════ */
+@font-face { font-family: 'Birds of Paradise'; src: url('fonts/BirdsOfParadise.ttf') format('truetype'); }
+@font-face { font-family: 'Cavalhatriz'; src: url('fonts/Cavalhatriz.ttf') format('truetype'); }
+
+:root{
+  --cream:#e9e4d6;
+  --cream-2:#e0dbcb;
+  --ink:#221c15;
+  --red:#c2381c;
+  --red-deep:#8e2110;
+  --hair:rgba(34,28,21,0.35);
+  --paper-lift:#f2eddd;
+  --red-rgb:194,56,28; --red-deep-rgb:142,33,16; --ink-rgb:34,28,21;
+  --on-accent:#f2d5c4; --on-accent-hi:#ffcdb3;
+  /* small-text accent: identical to --red in light mode */
+  --accent:#c2381c; --accent-deep:#8e2110;
+  --img-filter:none;
+  --vine:#c2381c; --vine2:#a02c15; --vine3:#8e2110;
+  --trail:194,56,28;
+  --grain:multiply; --grain-op:0.10;
+}
+/* dark mode — same palette inverted onto a dark muted maroon ground */
+html.dark{
+  --cream:#1b1012;
+  --cream-2:#241719;
+  --ink:#d28279;
+  --red:#f0cfc2;
+  --red-deep:#d8ab9f;
+  --hair:rgba(236,229,214,0.24);
+  --paper-lift:#2c1b1d;
+  --red-rgb:240,207,194; --red-deep-rgb:216,171,159; --ink-rgb:210,130,121;
+  --on-accent:#2a1712; --on-accent-hi:#7d3b32;
+  --accent:#f7dcd7; --accent-deep:#eec3bc;
+  --img-filter:brightness(0.86) saturate(0.94);
+  --vine:#f0cfc2; --vine2:#e0bcae; --vine3:#c99e92;
+  --trail:240,207,194;
+  --grain:screen; --grain-op:0.07;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{background:var(--cream);color:var(--ink);}
+/* the sticky banner+nav is ~108px tall; anchors glide, not jump */
+html{scroll-padding-top:118px;scroll-behavior:smooth;}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+body{
+  font-family:'Space Mono',ui-monospace,monospace;
+  font-size:13px;
+  line-height:1.55;
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  overflow-x:hidden;
+  background:radial-gradient(120% 90% at 82% 8%, var(--paper-lift) 0%, var(--cream) 52%, var(--cream-2) 130%);
+}
+/* faint paper grain over everything */
+body::after{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:50;
+  background:url('textures/tex-concrete.webp') center / 420px auto;
+  mix-blend-mode:var(--grain);opacity:var(--grain-op);
+}
+
+/* floating stars */
+.star{
+  position:fixed;width:26px;height:26px;pointer-events:none;z-index:0;
+  clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+  background:color-mix(in srgb, var(--ink) 19%, transparent);
+  animation:starFloat 17s ease-in-out infinite;
+}
+.star.s1{top:16%;left:37%;animation-delay:0s;}
+.star.s2{top:9%;right:9%;width:34px;height:34px;animation-delay:1.4s;animation-name:starFloat2;animation-duration:21s;}
+.star.s3{top:44%;left:47%;width:18px;height:18px;animation-delay:2.2s;animation-name:starFloat3;animation-duration:15s;}
+.star.s4{top:64%;right:24%;animation-delay:3.1s;animation-duration:25s;}
+.star.s5{top:30%;left:8%;width:15px;height:15px;animation-delay:4s;animation-name:starFloat2;animation-duration:19s;}
+.star.s6{top:52%;right:40%;width:15px;height:15px;background:rgba(var(--ink-rgb),0.16);animation-delay:5s;animation-name:starFloat3;animation-duration:23s;}
+.star.s7{top:76%;left:44%;width:20px;height:20px;animation-delay:2.8s;animation-duration:18s;}
+.star.s8{top:84%;left:24%;width:16px;height:16px;background:rgba(var(--ink-rgb),0.16);animation-delay:0.8s;animation-name:starFloat2;animation-duration:16s;}
+.star.s9{top:22%;right:30%;width:14px;height:14px;animation-delay:5.6s;animation-name:starFloat3;animation-duration:20s;}
+/* three wander paths so the stars never move in lockstep, and each travels
+   far enough that the drift actually reads */
+@keyframes starFloat{
+  0%,100%{transform:translate(0,0) rotate(0deg);opacity:0.85;}
+  20%    {transform:translate(26px,-34px) rotate(12deg);opacity:1;}
+  40%    {transform:translate(-20px,-58px) rotate(-10deg);opacity:0.7;}
+  60%    {transform:translate(30px,-40px) rotate(16deg);opacity:1;}
+  80%    {transform:translate(-14px,-16px) rotate(-7deg);opacity:0.8;}
+}
+@keyframes starFloat2{
+  0%,100%{transform:translate(0,0) rotate(0deg);opacity:0.8;}
+  25%    {transform:translate(-34px,-22px) rotate(-14deg);opacity:1;}
+  50%    {transform:translate(-12px,-56px) rotate(9deg);opacity:0.65;}
+  75%    {transform:translate(28px,-30px) rotate(-5deg);opacity:0.95;}
+}
+@keyframes starFloat3{
+  0%,100%{transform:translate(0,0) rotate(0deg);opacity:0.9;}
+  30%    {transform:translate(20px,-48px) rotate(18deg);opacity:0.6;}
+  55%    {transform:translate(-30px,-26px) rotate(-12deg);opacity:1;}
+  80%    {transform:translate(12px,-52px) rotate(6deg);opacity:0.75;}
+}
+
+/* content sits above the fixed star layer, so stars never cross
+   an image or a line of type — they stay in the paper behind */
+.page-hero,main,.sec,.backrow,footer{position:relative;z-index:1;}
+
+/* ── sticky banner + nav ─────────────────────────────── */
+.topbar{
+  position:sticky;top:0;z-index:40;
+  /* the phone's safe area was letting the page show above the banner —
+     the bar carries the banner's own colour up through it */
+  background:var(--red);
+  padding-top:env(safe-area-inset-top,0px);
+}
+.topbar::before{
+  /* iOS renders the page under the status bar while the toolbar is collapsed,
+     and a sticky top:0 bar sits below that band — this paints it the banner's
+     colour so nothing scrolls through above the banner */
+  content:'';position:absolute;left:0;right:0;bottom:100%;
+  height:140px;background:var(--red);pointer-events:none;
+}
+
+.microbar{
+  position:relative;
+  background:linear-gradient(180deg, var(--red) 0%, var(--red-deep) 100%);
+  color:var(--on-accent);
+  border-bottom:1px solid rgba(80,16,6,0.55);
+  font-size:10px;letter-spacing:0.14em;text-transform:uppercase;
+  overflow:hidden;white-space:nowrap;
+  padding:7px 0;
+}
+.microbar .track{display:inline-block;animation:marq 26s linear infinite;}
+.microbar .track span{padding:0 34px;}
+.microbar .track .red{color:var(--on-accent-hi);}
+@keyframes marq{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+nav{
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  padding:16px 20px;
+  border-bottom:1px solid var(--hair);
+  position:relative;
+  background:color-mix(in srgb, var(--cream) 90%, transparent);
+  -webkit-backdrop-filter:blur(10px) saturate(1.05);
+  backdrop-filter:blur(10px) saturate(1.05);
+}
+nav::after,.microbar::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:url('textures/tex-concrete.webp') center / 300px auto repeat;
+  mix-blend-mode:overlay;opacity:0.35;
+}
+.brand{font-weight:700;font-size:13px;letter-spacing:0.02em;}
+.brand a{color:inherit;text-decoration:none;}
+.brand sup{color:var(--accent);font-size:9px;}
+.brand .ic-logo{
+  width:34px;height:34px;margin-right:10px;vertical-align:-11px;
+  background:var(--accent);
+  -webkit-mask:url('shared/AB logo.webp') center / contain no-repeat;
+  mask:url('shared/AB logo.webp') center / contain no-repeat;
+  display:inline-block;
+}
+nav ul{display:flex;gap:26px;list-style:none;}
+.menu-toggle{
+  display:none;
+  background:none;border:none;cursor:pointer;
+  font-family:'Space Mono',ui-monospace,monospace;
+  font-size:24px;line-height:1;
+  color:var(--accent);
+  padding:8px 10px;min-width:44px;min-height:44px;
+}
+.bulb{
+  background:none;border:none;padding:0;cursor:pointer;line-height:0;
+  margin-left:auto;margin-right:26px;
+  align-self:center;position:relative;top:3px;
+}
+.bulb .lb{height:44px;width:auto;display:none;transition:transform 0.25s ease;}
+html:not(.dark) .bulb .lb-light{display:block;}
+html.dark .bulb .lb-dark{display:block;}
+.bulb:hover .lb{transform:scale(1.12);}
+.bulb:active .lb{transform:scale(1.22);}
+nav a{
+  color:var(--ink);text-decoration:none;font-size:11px;letter-spacing:0.12em;text-transform:lowercase;
+  background:linear-gradient(90deg,var(--accent),var(--accent-deep)) no-repeat 0 100% / 0% 1px;
+  transition:background-size 0.35s ease,color 0.3s ease;
+  padding-bottom:2px;
+}
+nav a:hover{background-size:100% 1px;}
+nav a .up{color:var(--accent);font-style:normal;}
+nav a:hover{color:var(--accent);}
+nav a.here{color:var(--accent);background-size:100% 1px;}
+
+/* ── page hero ───────────────────────────────────────── */
+.page-hero{
+  padding:9vh 20px 6vh;
+  text-align:center;
+  border-bottom:1px solid var(--hair);
+  position:relative;
+}
+.kicker{
+  font-size:11px;letter-spacing:0.34em;text-transform:uppercase;
+  margin-bottom:3vh;min-height:1.2em;
+}
+.kicker b{color:var(--accent);font-weight:400;}
+.kicker .cursor{display:inline-block;width:0.55em;color:var(--accent);animation:blink 0.9s steps(1) infinite;}
+@keyframes blink{50%{opacity:0;}}
+.page-hero h1{
+  font-family:'Archivo Black',sans-serif;
+  font-weight:400;
+  font-size:clamp(38px,6.4vw,96px);
+  line-height:0.98;
+  letter-spacing:-0.045em;
+  text-transform:lowercase;
+  color:transparent;
+  background:linear-gradient(178deg, var(--accent) 30%, var(--accent-deep) 100%),
+             url('textures/tex-concrete.webp') center / 340px auto;
+  background-blend-mode:hard-light;
+  -webkit-background-clip:text;background-clip:text;
+  margin-bottom:2.4vh;
+}
+.page-hero h1 .dot{color:var(--ink);}
+@keyframes nameIn{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+.name-anim{animation:nameIn 0.9s cubic-bezier(0.22,1,0.36,1) both;}
+.page-hero .lede{
+  max-width:56ch;margin:0 auto;
+  font-size:13.5px;
+}
+.page-hero .award{
+  display:inline-block;margin-bottom:2.4vh;
+  border:1px solid var(--accent);color:var(--accent);
+  font-size:10px;letter-spacing:0.24em;text-transform:uppercase;
+  padding:6px 18px;
+}
+.page-hero::after{
+  content:'';display:block;
+  width:min(220px,46%);height:1px;
+  margin:3.6vh auto 0;background:var(--hair);
+}
+
+/* ── sections ────────────────────────────────────────── */
+.sec{
+  position:relative;
+  padding:9vh 20px 8vh;
+  border-bottom:1px solid var(--hair);
+}
+.sec:last-of-type{border-bottom:none;}
+.sec .secnum{
+  text-align:center;color:var(--accent);
+  font-size:10px;letter-spacing:0.3em;
+  margin-bottom:10px;
+}
+.sec h2{
+  font-family:'Archivo Black',sans-serif;
+  font-weight:400;
+  font-size:clamp(26px,3.4vw,44px);
+  letter-spacing:-0.03em;
+  text-transform:lowercase;
+  text-align:center;
+  color:transparent;
+  background:linear-gradient(178deg, var(--accent) 30%, var(--accent-deep) 100%),
+             url('textures/tex-concrete.webp') center / 340px auto;
+  background-blend-mode:hard-light;
+  -webkit-background-clip:text;background-clip:text;
+  min-height:1.2em;
+}
+.sec h2::after{
+  content:'';display:block;
+  width:min(220px,46%);height:1px;
+  margin:16px auto 0;background:var(--hair);
+}
+.sec .subnote{
+  text-align:center;font-size:11px;letter-spacing:0.14em;
+  max-width:64ch;margin:14px auto 0;
+  color:color-mix(in srgb, var(--ink) 78%, transparent);
+}
+.sec .prose{
+  max-width:66ch;margin:4vh auto 0;
+  font-size:12.5px;text-align:justify;
+}
+.sec .prose p{margin-bottom:16px;}
+.sec .prose b{color:var(--accent);font-weight:400;text-transform:uppercase;letter-spacing:0.2em;font-size:10.5px;}
+.rise{opacity:0;transform:translateY(26px);transition:opacity 0.8s ease,transform 0.8s cubic-bezier(0.22,1,0.36,1);}
+.rise.visible{opacity:1;transform:translateY(0);}
+
+/* ── gallery view — replicated from the original site exactly:
+      4 CSS columns (masonry, so short cards tuck under tall ones),
+      14px column gap, 14px card gap, 1100px max, 12px corners, and a
+      caption overlay that fades up from the bottom on hover.
+      Only the typeface differs. ─────────────────────────── */
+/* ── gallery view — the original's layouts, one per section ──
+      Default is its 4-column masonry (short cards tuck under tall ones and a
+      partial last row ends where the columns end — exactly as the original).
+      Sections that opted out of the masonry carry their own class below. */
+.gallery{
+  display:block;
+  columns:4;
+  column-gap:14px;
+  width:100%;max-width:1100px;
+  height:auto;
+  margin:5vh auto 0;
+}
+.gallery figure{
+  position:relative;
+  display:block;
+  break-inside:avoid;
+  column-span:none;
+  width:100%;max-width:100%;
+  margin:0 0 14px;
+  border-radius:12px;overflow:hidden;
+  box-shadow:4px 4px 16px rgba(var(--red-deep-rgb),0.13);
+  cursor:zoom-in;
+}
+/* no lift on hover — the card stays put and only the caption fades in */
+.gallery img{
+  width:100%;height:auto;display:block;
+  object-fit:contain;
+  border-radius:12px;
+  filter:saturate(0.97) var(--img-filter);
+}
+/* caption overlay — fades in on hover, text sitting at the bottom */
+.gallery figcaption{
+  position:absolute;inset:0;margin:0;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:flex-end;
+  text-align:center;gap:3px;z-index:4;
+  padding:16px 14px 18px;
+  background:linear-gradient(to top, rgba(38,16,20,0.94) 0%, rgba(38,16,20,0.6) 42%, rgba(38,16,20,0) 100%);
+  opacity:0;transition:opacity 0.3s ease;
+}
+.gallery figure:hover figcaption,
+.gallery figure:focus-within figcaption{opacity:1;}
+/* touch devices have no hover, so the card nearest the reading line reveals
+   its caption as you scroll — the original's behaviour */
+.gallery figure.scroll-active figcaption{
+  opacity:1;
+  transition:opacity 0.55s ease 0.16s;
+}
+.gallery figcaption .t{
+  display:block;
+  font-family:'Archivo Black',sans-serif;
+  font-weight:400;font-size:13px;
+  text-transform:uppercase;letter-spacing:-0.02em;
+  line-height:1.3;
+  color:#f4e6dd;
+}
+.gallery figcaption .d{
+  display:block;
+  font-size:11px;line-height:1.4;letter-spacing:0.01em;
+  color:#ecd6cd;
+}
+@media (max-width:1000px){ .gallery{columns:3;} }
+@media (max-width:700px){ .gallery{columns:2;} }
+
+/* icon collection and paired sets keep simple column counts */
+/* icon collection — the original's .icons-grid, not a card gallery:
+   fixed 130px tiles on a padded card, image contained at 90px, hover lift */
+.gallery.icons{
+  display:grid;columns:auto;
+  grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+  gap:20px;max-width:900px;margin:5vh auto 0;
+  justify-content:center;
+}
+.gallery.icons figure{
+  display:flex;align-items:center;justify-content:center;
+  height:130px;width:130px;max-width:130px;
+  padding:16px;margin:0;
+  background:color-mix(in srgb, var(--paper-lift) 70%, transparent);
+  border-radius:12px;overflow:hidden;
+  box-shadow:8px 8px 24px rgba(var(--red-deep-rgb),0.10);
+  transition:transform 0.4s ease,box-shadow 0.4s ease;
+}
+.gallery.icons figure:hover{
+  transform:translateY(-8px);
+  box-shadow:12px 12px 32px rgba(var(--red-deep-rgb),0.15);
+}
+.gallery.icons img{
+  max-width:90px;max-height:90px;width:auto;height:auto;
+  object-fit:contain;border-radius:0;
+}
+@media (max-width:700px){
+  .gallery.icons{grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:12px;}
+  .gallery.icons figure{height:100px;width:auto;min-width:100px;max-width:none;padding:10px;}
+}
+
+/* a piece whose year differs from its section's carries a small tag in
+   gallery view; in stack view the section heading's year swaps to it instead */
+.yr-top{display:none;}
+.gallery:not(.stack-mode) figure[data-year] .yr-top{
+  display:block;text-align:center;
+  background:var(--paper-lift);
+  color:var(--accent);
+  font-size:10px;letter-spacing:0.3em;
+  padding:7px 0 8px;
+}
+
+/* commissioned works + illustrations: the original centres these in a flex
+   row where every image is the same height and the card width follows the
+   artwork's aspect — so rows read as centred regardless of how many pieces. */
+.gallery.flow:not(.stack-mode){
+  display:flex;flex-wrap:wrap;columns:auto;
+  justify-content:center;align-items:flex-start;
+  gap:18px;max-width:1120px;
+}
+.gallery.flow:not(.stack-mode) figure{
+  flex:0 0 auto;width:auto;max-width:none;margin:0;
+}
+.gallery.flow:not(.stack-mode) .g-break{
+  flex:0 0 100%;width:100%;max-width:100%;height:0;margin:0;padding:0;
+  box-shadow:none;pointer-events:none;
+}
+.gallery.flow:not(.stack-mode) img{
+  /* bounded box rather than a fixed height, so tall pieces cap at 347px and
+     wide banners cap at 360px instead of stretching across the row */
+  max-height:347px;max-width:360px;
+  width:auto;height:auto;
+  object-fit:contain;
+}
+@media (max-width:1000px){ .gallery.flow:not(.stack-mode) img{max-height:280px;max-width:300px;} }
+@media (max-width:700px){
+  .gallery.flow:not(.stack-mode){gap:10px;}
+  .gallery.flow:not(.stack-mode) img{max-height:200px;max-width:220px;}
+}
+
+/* the original's flex sections: cards at fixed widths in centred rows */
+.gallery.card-flex:not(.stack-mode),
+.gallery.gallery-centered:not(.stack-mode),
+.gallery.centered-row:not(.stack-mode){
+  display:flex;flex-wrap:wrap;
+  justify-content:center;align-items:flex-start;
+  columns:auto;
+}
+.gallery.card-flex:not(.stack-mode){gap:14px;max-width:1060px;}
+.gallery.card-flex:not(.stack-mode) figure{flex:0 0 220px;width:220px;max-width:220px;margin:0;}
+.gallery.card-flex:not(.stack-mode) figure[data-orient="landscape"]{flex:0 0 360px;width:360px;max-width:360px;}
+.gallery.card-flex:not(.stack-mode) figure[data-orient="square"]{flex:0 0 248px;width:248px;max-width:248px;align-self:center;}
+
+/* a few-card section centres its cards instead of leaving a ragged column */
+.gallery.gallery-centered:not(.stack-mode){gap:18px;max-width:1060px;}
+.gallery.gallery-centered:not(.stack-mode) figure{flex:0 1 290px;width:290px;max-width:290px;margin:0;}
+
+/* musical posters: centred rows, with a break splitting characters from productions */
+.gallery.centered-row:not(.stack-mode){gap:18px;max-width:1000px;}
+.gallery.centered-row:not(.stack-mode) figure{flex:0 0 240px;width:240px;max-width:240px;height:auto;margin:0;}
+.gallery.centered-row:not(.stack-mode) .g-break{
+  flex:0 0 100%;width:100%;max-width:100%;height:0;margin:0;padding:0;
+  box-shadow:none;pointer-events:none;
+}
+@media (max-width:700px){
+  .gallery.centered-row:not(.stack-mode) .g-break{display:none;}
+  .gallery.gallery-centered:not(.stack-mode) figure{flex-basis:44%;width:44%;max-width:44%;}
+}
+
+/* ── three sections keep the original's bespoke gallery layouts ──
+      magazine: cover beside two stacked spreads, wide spread underneath
+      packaging: the dieline on its own row above four product shots
+      art showcase: two tall pieces beside a stacked pair of spreads
+      (gallery view only — stack view is untouched) */
+.gallery.mag-grid:not(.stack-mode){
+  display:grid;
+  grid-template-columns:440px 380px;
+  grid-auto-rows:auto;gap:18px;
+  justify-content:center;align-items:start;
+  max-width:none;
+}
+.gallery.mag-grid:not(.stack-mode) figure{width:auto;max-width:none;margin:0;}
+.gallery.mag-grid:not(.stack-mode) .g-cover{
+  grid-column:1;grid-row:1 / span 2;
+  width:440px;max-width:440px;align-self:start;
+}
+.gallery.mag-grid:not(.stack-mode) figure[data-orient="landscape"]:not(.g-wide){
+  grid-column:2;width:380px;max-width:380px;
+}
+.gallery.mag-grid:not(.stack-mode) .g-wide{
+  grid-column:1 / -1;
+  width:100%;max-width:760px;
+  margin:18px auto 0;justify-self:center;
+}
+
+.gallery.pkg-grid:not(.stack-mode){
+  display:flex;flex-wrap:wrap;
+  justify-content:center;align-items:flex-start;
+  gap:14px;max-width:1100px;
+}
+.gallery.pkg-grid:not(.stack-mode) figure{margin:0;width:248px;max-width:248px;flex:0 0 248px;}
+.gallery.pkg-grid:not(.stack-mode) .g-wide{
+  flex:0 0 560px;width:560px;max-width:560px;
+}
+.gallery.pkg-grid:not(.stack-mode) .g-break{
+  flex:0 0 100%;width:100%;max-width:100%;   /* beat the 248px cap on figures */
+  height:0;margin:0;padding:0;
+  box-shadow:none;pointer-events:none;
+}
+
+.gallery.pl-grid:not(.stack-mode){
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:16px;align-items:start;justify-content:center;
+  max-width:1000px;width:100%;
+}
+.gallery.pl-grid:not(.stack-mode) figure{
+  width:100%;max-width:100%;min-width:0;margin:0;
+}
+.gallery.pl-grid:not(.stack-mode) figure:not([data-orient="landscape"]){grid-row:span 2;}
+.gallery.pl-grid:not(.stack-mode) figure[data-orient="landscape"]{
+  aspect-ratio:1.53;height:auto;min-height:0;overflow:hidden;
+}
+.gallery.pl-grid:not(.stack-mode) figure[data-orient="landscape"] img{
+  width:100%;height:100%;object-fit:cover;min-height:0;
+}
+.gallery.pl-grid:not(.stack-mode) img{width:100%;height:auto;max-width:100%;}
+/* the break spacer only exists for the packaging flex row */
+.gallery:not(.pkg-grid):not(.centered-row):not(.flow) .g-break,
+.gallery.stack-mode .g-break{display:none;}
+@media (max-width:900px){
+  .gallery.mag-grid:not(.stack-mode){grid-template-columns:1fr;}
+  .gallery.mag-grid:not(.stack-mode) .g-cover,
+  .gallery.mag-grid:not(.stack-mode) figure[data-orient="landscape"]:not(.g-wide){
+    grid-column:1;grid-row:auto;width:100%;max-width:100%;
+  }
+  .gallery.pl-grid:not(.stack-mode){grid-template-columns:repeat(2,minmax(0,1fr));}
+  .gallery.pkg-grid:not(.stack-mode) .g-wide{flex:0 0 100%;width:100%;max-width:100%;}
+}
+
+/* the original's dismissible tip popup */
+#tip-overlay{
+  position:fixed;inset:0;z-index:9999;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(20,10,8,0.72);
+  opacity:0;pointer-events:none;
+  transition:opacity 0.5s ease;
+}
+#tip-overlay.tip-visible{opacity:1;pointer-events:auto;}
+#tip-box{
+  position:relative;
+  max-width:min(460px,86vw);
+  padding:34px 34px 30px;
+  background:var(--cream);
+  border:1px solid var(--hair);
+  box-shadow:14px 14px 40px rgba(0,0,0,0.35);
+  text-align:center;
+}
+#tip-close{
+  position:absolute;top:6px;right:10px;
+  background:none;border:none;cursor:pointer;
+  color:var(--accent);font-family:'Space Mono',monospace;
+  font-size:22px;line-height:1;padding:6px;
+}
+.tip-h{
+  font-family:'Archivo Black',sans-serif;font-weight:400;
+  font-size:20px;letter-spacing:-0.03em;text-transform:lowercase;
+  color:var(--accent);margin-bottom:8px;
+}
+.tip-b{
+  font-size:11.5px;letter-spacing:0.1em;line-height:1.6;
+  color:var(--ink);
+}
+.tip-divider{width:50%;height:1px;background:var(--hair);margin:18px auto;}
+
+/* video cards — same geometry as photo cards, but the player stays usable
+   so the caption sits under the video rather than as a hover overlay */
+.gallery.vidgal:not(.stack-mode){
+  display:flex;flex-wrap:wrap;columns:auto;
+  justify-content:center;align-items:flex-start;
+  gap:18px;max-width:1120px;
+}
+.gallery.vidgal:not(.stack-mode) figure{
+  flex:0 0 258px;width:258px;max-width:258px;margin:0;
+  position:relative;
+  /* every preview gets the same landscape frame — one clip is shot portrait
+     and was standing a head taller than the rest of the row */
+  aspect-ratio:16/9;
+  border-radius:12px;overflow:hidden;
+  box-shadow:4px 4px 16px rgba(var(--red-deep-rgb),0.13);
+  cursor:default;
+}
+.gallery.vidgal video{width:100%;height:auto;display:block;background:#000;}
+.gallery.vidgal:not(.stack-mode) video{height:100%;object-fit:cover;border-radius:12px;}
+/* the video cards carry the same hover-in caption as every other gallery card.
+   pointer-events:none keeps the player's own controls clickable underneath,
+   and the caption steps aside the moment the video starts. */
+.gallery.vidgal:not(.stack-mode) figcaption{
+  position:absolute;inset:0;margin:0;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:flex-end;
+  text-align:center;gap:3px;z-index:4;
+  padding:16px 14px 18px;
+  pointer-events:none;
+  background:linear-gradient(to top, rgba(38,16,20,0.94) 0%, rgba(38,16,20,0.6) 42%, rgba(38,16,20,0) 100%);
+  opacity:0;transition:opacity 0.3s ease;
+}
+.gallery.vidgal:not(.stack-mode) figure:hover figcaption,
+.gallery.vidgal:not(.stack-mode) figure:focus-within figcaption{opacity:1;}
+.gallery.vidgal:not(.stack-mode) figure.scroll-active figcaption{
+  opacity:1;transition:opacity 0.55s ease 0.16s;
+}
+.gallery.vidgal:not(.stack-mode) figure.playing figcaption{opacity:0;}
+.gallery.vidgal:not(.stack-mode) figcaption .t{
+  display:block;
+  font-family:'Archivo Black',sans-serif;
+  font-weight:400;font-size:13px;
+  text-transform:uppercase;letter-spacing:-0.02em;
+  line-height:1.3;
+  color:#f4e6dd;
+}
+.gallery.vidgal:not(.stack-mode) figcaption .d{
+  display:block;
+  font-size:11px;line-height:1.4;letter-spacing:0.01em;
+  color:#ecd6cd;
+}
+/* the deck is portrait for artwork, but these are landscape videos — give the
+   video deck a 16:9 box and square corners, as the original has */
+.gallery.vidgal.stack-mode{height:auto;aspect-ratio:16/9;}
+.gallery.vidgal.stack-mode figure{border-radius:0;overflow:visible;}
+.gallery.vidgal.stack-mode video{height:100%;object-fit:contain;border-radius:0;background:#000;}
+.stack-scene:has(.vidgal.stack-mode) + .stack-cap{margin-top:38px;}
+.gallery.vidgal.stack-mode figcaption{display:none;}
+/* duration shown beside a standalone video's label */
+.vidwrap .dur{
+  float:right;letter-spacing:0.16em;
+  color:color-mix(in srgb, var(--ink) 70%, transparent);
+}
+
+/* award / credit link inside a caption — a small button, like the link rows */
+.cap-award{
+  display:inline-flex;align-items:center;gap:7px;
+  margin-top:9px;
+  padding:5px 12px;
+  border:1px solid currentColor;
+  font-size:9.5px;letter-spacing:0.14em;text-transform:lowercase;
+  text-decoration:none;color:inherit;
+  transition:opacity 0.25s ease,transform 0.25s ease;
+}
+.cap-award:hover{opacity:0.75;transform:translateY(-2px);}
+.cap-award .ic{
+  width:12px;height:12px;flex:0 0 12px;
+  background:currentColor;
+  -webkit-mask:var(--m) center / contain no-repeat;mask:var(--m) center / contain no-repeat;
+}
+.gallery figcaption .cap-award{color:#f4e6dd;}
+.stack-cap .cap-award{color:var(--accent);}
+
+/* stills carry no real titles in the original, so no hover caption at all */
+.gallery.nocap figcaption{display:none;}
+.gallery.nocap figure{cursor:zoom-in;}
+
+/* variants: the icon collection packs tighter, paired sets run two-up */
+/* ── stack / gallery view toggle (from the original site) ── */
+.viewtoggle{
+  /* the deck's cards are scaled up and can spill past their 340x481 box, so
+     the controls must sit above them or clicks land on the artwork instead */
+  position:relative;z-index:60;
+  display:flex;align-items:center;gap:0;
+  border:1px solid var(--hair);
+  padding:4px;width:fit-content;margin:4vh auto 0;
+  background:color-mix(in srgb, var(--paper-lift) 60%, transparent);
+}
+.viewtoggle button{
+  display:flex;align-items:center;gap:7px;
+  padding:8px 20px;border:none;background:transparent;cursor:pointer;
+  font-family:'Space Mono',ui-monospace,monospace;
+  font-size:10px;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--ink);opacity:0.55;
+  transition:opacity 0.25s ease,background 0.25s ease,color 0.25s ease;
+}
+.viewtoggle button svg{display:block;}
+.viewtoggle button.active{
+  background:linear-gradient(100deg,var(--accent) 0%,var(--accent-deep) 100%);
+  color:var(--on-accent);opacity:1;
+}
+/* stack mode: a real deck — cards sit on top of each other, the ones
+   behind fanned out by rotation and scale, exactly as the original does */
+.gallery.stack-mode{
+  display:block;position:relative;
+  gap:0;
+  width:340px;height:481px;
+  max-width:86vw;
+  margin:5vh auto 0;
+}
+.gallery.stack-mode figure{
+  position:absolute;inset:0;
+  flex:none;width:auto;max-width:none;
+  display:block;
+  margin:0;padding:0;
+  border-radius:0;overflow:visible;
+  box-shadow:none;
+  transition:transform 0.6s cubic-bezier(0.4,0,0.2,1),filter 0.4s ease,opacity 0.4s ease;
+  will-change:transform;
+}
+.gallery.stack-mode figure:hover{transform:none;}
+.gallery.stack-mode img{
+  width:100%;height:100%;
+  object-fit:cover;
+  border-radius:0;
+  pointer-events:none;
+}
+.gallery.stack-mode figure[data-orient="landscape"] img,
+.gallery.stack-mode figure[data-orient="square"] img{object-fit:contain;}
+/* only the front card shows its caption, printed under the deck */
+.gallery.stack-mode figcaption{display:none;}
+.stack-cap{
+  position:relative;z-index:60;
+  text-align:center;padding:0 20px;
+  min-height:64px;margin-top:calc(481px * 0.06 + 26px);
+}
+.stack-cap .t{
+  display:block;color:var(--accent);
+  font-size:11px;letter-spacing:0.24em;text-transform:uppercase;
+  margin-bottom:6px;
+}
+.stack-cap .d{display:block;font-size:12px;letter-spacing:0.02em;max-width:52ch;margin:0 auto;}
+/* deck sits between its two arrows, like the original's stack-scene */
+.stack-scene{margin:5vh auto 0;}
+.stack-scene.is-stack{
+  display:flex;align-items:center;justify-content:center;gap:96px;
+}
+.stack-scene.is-stack .gallery{margin:0;flex:0 0 auto;}
+.stack-scene:not(.is-stack) .stack-nav{display:none;}
+.stack-nav{
+  position:relative;z-index:60;
+  background:none;border:1px solid var(--hair);border-radius:50%;
+  width:48px;height:48px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;color:var(--accent);
+  font-family:'Space Mono',monospace;font-size:20px;line-height:1;
+  padding:0;opacity:0.75;
+  transition:opacity 0.2s ease,border-color 0.2s ease,transform 0.15s ease;
+}
+.stack-nav:hover{opacity:1;border-color:var(--accent);transform:scale(1.08);}
+.stack-nav:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+/* phone: arrows tuck over the deck edges (after the base rule so it wins) */
+@media (max-width:820px){
+  .stack-scene.is-stack{gap:8px;position:relative;}
+  .stack-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:6;
+    width:36px;height:36px;font-size:16px;
+    background:color-mix(in srgb, var(--cream) 72%, transparent);}
+  .stack-nav:hover{transform:translateY(-50%) scale(1.08);}
+  .stack-nav.sp{left:2px;} .stack-nav.sn{right:2px;}
+}
+
+.stack-ui{
+  position:relative;z-index:60;
+  display:flex;align-items:center;justify-content:center;
+  margin-top:1.6vh;
+}
+.stack-ui .cnt{font-size:10px;letter-spacing:0.3em;color:var(--accent);min-width:9ch;text-align:center;}
+.galwrap.gallery-on .stack-ui{display:none;}
+
+/* ── single feature image ────────────────────────────── */
+.feature{
+  max-width:760px;margin:5vh auto 0;
+  cursor:zoom-in;
+}
+.feature img{box-shadow:10px 10px 34px rgba(var(--red-deep-rgb),0.18);}
+.feature img{width:100%;display:block;filter:saturate(0.97) var(--img-filter);}
+.feature figcaption{
+  padding:10px 4px 4px;
+  font-size:10.5px;letter-spacing:0.14em;text-transform:lowercase;
+  display:flex;justify-content:space-between;gap:10px;
+}
+.feature figcaption b{color:var(--accent);font-weight:400;letter-spacing:0.22em;text-transform:uppercase;font-size:10px;}
+.feature.wide{max-width:1080px;}
+.feature.flat img{box-shadow:none;}
+/* single pieces keep the original's own widths rather than one default */
+.feature.w340{max-width:340px;}
+.feature.w420{max-width:420px;}
+.feature.w560{max-width:560px;}
+.feature.crop481 img{height:481px;object-fit:cover;}
+.feature.ratio2740 img{aspect-ratio:27/40;height:auto;object-fit:cover;}
+
+/* ── video blocks ────────────────────────────────────── */
+.vidwrap{
+  max-width:860px;margin:5vh auto 0;
+}
+.vidwrap video{box-shadow:10px 10px 34px rgba(var(--red-deep-rgb),0.18);}
+.vidwrap video{width:100%;display:block;background:#000;}
+.vidwrap p{
+  padding:10px 4px 4px;
+  font-size:10.5px;letter-spacing:0.14em;text-transform:lowercase;
+}
+.vidwrap p b{color:var(--accent);font-weight:400;letter-spacing:0.22em;text-transform:uppercase;font-size:10px;display:block;margin-bottom:2px;}
+.vidgrid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;
+  max-width:1180px;margin:5vh auto 0;
+}
+.vidgrid .vidwrap{margin:0;max-width:none;}
+
+/* ── external link rows (kept from the original pages) ── */
+.linkrow{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:12px 18px;
+  max-width:900px;margin:4vh auto 0;
+}
+.linkrow a{
+  display:inline-flex;align-items:center;gap:9px;
+  border:1px solid var(--hair);
+  color:var(--ink);text-decoration:none;
+  font-size:10.5px;letter-spacing:0.16em;text-transform:lowercase;
+  padding:9px 18px;
+  transition:color 0.3s ease,border-color 0.3s ease,transform 0.3s ease;
+  background:color-mix(in srgb, var(--paper-lift) 60%, transparent);
+}
+.linkrow a:hover{color:var(--accent);border-color:var(--accent);transform:translateY(-3px);}
+.linkrow .ic{
+  display:inline-block;width:15px;height:15px;flex:0 0 15px;
+  background:var(--accent);
+  -webkit-mask:var(--m) center / contain no-repeat;mask:var(--m) center / contain no-repeat;
+}
+.ic-ig{--m:url('shared/instagram_symbol.webp');}
+.ic-web{--m:url('shared/website_symbol.webp');}
+.ic-fb{--m:url('shared/facebook_symbol.webp');}
+.linkrow .arw{color:var(--accent);}
+
+/* ── coding demos ────────────────────────────────────── */
+.demo{
+  max-width:1080px;margin:5vh auto 0;
+  border:1px solid var(--hair);
+  background:var(--paper-lift);
+  padding:10px;
+}
+.demo .demo-slot{position:relative;aspect-ratio:16/10;background:#0d0a08;}
+.demo iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+.demo .demo-cover{
+  position:absolute;inset:0;display:flex;flex-direction:column;gap:14px;
+  align-items:center;justify-content:center;
+  color:#ece5d6;cursor:pointer;border:0;
+  background:radial-gradient(90% 90% at 50% 40%, #241719 0%, #0d0a08 100%);
+  font-family:'Space Mono',ui-monospace,monospace;
+}
+.demo .demo-cover span{
+  border:1px solid #ece5d6;padding:11px 30px;
+  font-size:11px;letter-spacing:0.22em;text-transform:lowercase;
+  transition:background 0.3s ease,color 0.3s ease;
+}
+.demo .demo-cover:hover span{background:#ece5d6;color:#241719;}
+.demo .demo-cover small{font-size:9.5px;letter-spacing:0.18em;opacity:0.6;text-transform:uppercase;}
+.demo .demo-meta{
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 14px;
+  padding:12px 4px 4px;
+}
+.demo .demo-meta b{color:var(--accent);font-weight:400;letter-spacing:0.22em;text-transform:uppercase;font-size:10px;}
+.demo .demo-meta .hint{margin-left:auto;font-size:9.5px;letter-spacing:0.14em;opacity:0.65;text-transform:lowercase;}
+.tags{display:inline-flex;gap:8px;flex-wrap:wrap;}
+.tags i{
+  font-style:normal;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;
+  border:1px solid var(--hair);padding:2px 9px;color:var(--accent);
+}
+/* per-project actions: open standalone, or read the source */
+.demo-actions{
+  display:flex;flex-wrap:wrap;gap:10px;
+  justify-content:center;
+  margin-top:14px;
+}
+.demo-actions a,.demo-actions button{
+  font-family:'Space Mono',ui-monospace,monospace;
+  font-size:10.5px;letter-spacing:0.16em;text-transform:lowercase;
+  color:var(--ink);text-decoration:none;
+  border:1px solid var(--hair);
+  background:color-mix(in srgb, var(--paper-lift) 60%, transparent);
+  padding:9px 18px;cursor:pointer;
+  transition:color 0.3s ease,border-color 0.3s ease,transform 0.3s ease;
+}
+.demo-actions a:hover,.demo-actions button:hover{
+  color:var(--accent);border-color:var(--accent);transform:translateY(-3px);
+}
+.demo-actions button.on{color:var(--accent);border-color:var(--accent);}
+.demo-actions .arw{color:var(--accent);}
+.code-view{
+  display:none;
+  max-width:1080px;margin:2.4vh auto 0;
+  border:1px solid var(--hair);
+  background:color-mix(in srgb, var(--paper-lift) 60%, transparent);
+  max-height:460px;overflow:auto;
+}
+.code-view.open{display:block;}
+.code-view pre{margin:0;padding:18px 20px;}
+.code-view code{
+  font-family:'Space Mono',ui-monospace,monospace;
+  font-size:11px;line-height:1.65;
+  color:var(--ink);
+  white-space:pre;
+}
+
+details.stmt{
+  max-width:820px;margin:3.5vh auto 0;
+  border:1px solid var(--hair);
+  background:color-mix(in srgb, var(--paper-lift) 60%, transparent);
+}
+details.stmt summary{
+  cursor:pointer;list-style:none;
+  padding:13px 18px;
+  font-size:10.5px;letter-spacing:0.24em;text-transform:uppercase;color:var(--accent);
+  display:flex;justify-content:space-between;align-items:center;
+}
+details.stmt summary::-webkit-details-marker{display:none;}
+details.stmt summary::after{content:'+';font-size:14px;transition:transform 0.25s ease;}
+details.stmt[open] summary::after{transform:rotate(45deg);}
+details.stmt .stmt-body{padding:2px 20px 18px;font-size:12px;text-align:justify;}
+details.stmt .stmt-body p{margin-bottom:14px;}
+details.stmt .stmt-body small{display:block;font-size:10px;opacity:0.7;letter-spacing:0.06em;}
+
+/* ── "about this project" feature lists (coding) ─────── */
+.feats{max-width:660px;margin:2.6vh auto 0;list-style:none;}
+.feats li{
+  display:flex;gap:12px;align-items:baseline;
+  padding:8px 2px 7px;border-bottom:1px solid var(--hair);
+  font-size:11px;letter-spacing:0.06em;
+}
+.feats li::before{content:'★';color:var(--accent);font-size:11px;flex:0 0 auto;}
+
+/* ── achievements list (music) ───────────────────────── */
+.achv{max-width:680px;margin:4.5vh auto 0;list-style:none;}
+.achv li{
+  display:flex;gap:14px;align-items:baseline;
+  padding:10px 2px 8px;border-bottom:1px solid var(--hair);
+  font-size:11px;letter-spacing:0.1em;text-transform:lowercase;
+}
+.achv li::before{content:'★';color:var(--accent);font-size:12px;}
+.achv li span{color:var(--accent);margin-left:auto;white-space:nowrap;letter-spacing:0.18em;}
+
+/* ── CV pages ────────────────────────────────────────── */
+.cv-fig{
+  max-width:820px;margin:5vh auto 0;
+}
+.cv-fig img{box-shadow:10px 10px 34px rgba(var(--red-deep-rgb),0.18);}
+.cv-fig img{width:100%;display:block;filter:var(--img-filter);}
+
+/* ── cta + back row ──────────────────────────────────── */
+.cta{
+  display:inline-block;
+  border:1px solid var(--accent);
+  color:var(--accent);text-decoration:none;
+  font-size:12px;letter-spacing:0.18em;text-transform:lowercase;
+  padding:11px 32px;
+  transition:color 0.3s ease,background-position 0.45s ease;
+  background:linear-gradient(100deg,var(--accent) 0%,var(--accent-deep) 100%) no-repeat;
+  background-size:200% 100%;
+  background-position:-120% 0;
+  cursor:pointer;
+}
+.cta:hover{background-position:0 0;color:var(--on-accent);}
+.cta-star{font-size:1.6em;line-height:0;vertical-align:-0.12em;margin-left:2px;}
+.center{text-align:center;}
+.backrow{text-align:center;padding:7vh 20px 8vh;}
+
+footer{
+  padding:18px 20px;
+  font-size:10px;letter-spacing:0.2em;text-transform:uppercase;
+  display:flex;justify-content:space-between;gap:14px;
+  border-top:1px solid var(--hair);
+}
+footer .red{color:var(--accent);}
+footer a{color:inherit;text-decoration:none;}
+footer a:hover{color:var(--accent);}
+footer .cmark{font-size:2em;vertical-align:-0.38em;}
+
+/* ── deter casual image saving ──
+   Not real protection — anything on screen can be screenshotted, and the
+   file is still fetchable from the network tab. This only stops the easy
+   routes: right-click > save, drag-to-desktop, and long-press on mobile. */
+img{
+  -webkit-user-drag:none;user-drag:none;
+  -webkit-touch-callout:none;
+  -webkit-user-select:none;user-select:none;
+  pointer-events:none;            /* clicks land on the wrapper, not the img */
+}
+.gallery figure,figure.feature,.cv-fig,.bcards img{
+  -webkit-touch-callout:none;
+  -webkit-user-select:none;user-select:none;
+}
+/* the viewer image still needs to sit above its backdrop */
+.lightbox img{pointer-events:none;}
+
+/* ── lightbox (fullscreen viewer, kept from the original) ── */
+.lightbox{
+  position:fixed;inset:0;z-index:90;
+  display:none;align-items:center;justify-content:center;
+  background:rgba(10,5,4,0.94);
+  padding:34px;
+}
+.lightbox.open{display:flex;}
+.lightbox img{
+  max-width:min(1200px,92vw);max-height:84vh;display:block;
+  box-shadow:0 20px 70px rgba(0,0,0,0.6);
+}
+.lightbox .lb-cap{
+  position:absolute;left:0;right:0;bottom:22px;text-align:center;
+  color:#ece5d6;font-size:10.5px;letter-spacing:0.2em;text-transform:lowercase;
+}
+.lightbox button{
+  position:absolute;background:none;border:none;color:#ece5d6;cursor:pointer;
+  font-family:'Space Mono',monospace;font-size:26px;line-height:1;padding:14px;
+  opacity:0.7;transition:opacity 0.25s ease;
+}
+.lightbox button:hover{opacity:1;}
+.lightbox .lb-x{top:14px;right:16px;}
+.lightbox .lb-prev{left:8px;top:50%;transform:translateY(-50%);}
+.lightbox .lb-next{right:8px;top:50%;transform:translateY(-50%);}
+
+/* ── phone nav: the original's hamburger + full-screen drawer,
+      restyled to the redesign (paper ground, mono lowercase, hairlines) ── */
+@media (max-width:820px){
+  /* backdrop-filter would make nav the containing block for the fixed
+     drawer, collapsing the menu to the bar's height — solid paper instead */
+  nav{background:var(--cream);-webkit-backdrop-filter:none;backdrop-filter:none;}
+  /* the bar's controls float above the open drawer, so x stays reachable */
+  .brand,.bulb,.menu-toggle{position:relative;z-index:41;}
+  .menu-toggle{display:block;}
+  .bulb{margin-left:auto;margin-right:2px;}
+  .brand{font-size:12px;max-width:calc(100% - 130px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  nav ul{
+    position:fixed;inset:0;z-index:39;
+    background:var(--cream);
+    flex-direction:column;align-items:stretch;gap:0;
+    padding:130px 24px 40px;
+    overflow-y:auto;
+    transform:translateX(-102%);
+    transition:transform 0.35s cubic-bezier(0.22,1,0.36,1);
+  }
+  nav ul.open{transform:none;}
+  nav ul li{border-bottom:1px solid var(--hair);}
+  nav ul a{
+    display:flex;justify-content:space-between;align-items:baseline;
+    padding:17px 6px;
+    font-size:14px;letter-spacing:0.22em;
+    background:none;
+  }
+}
+
+
+
+/* ── phone ───────────────────────────────────────────── */
+@media (max-width:760px){
+  .page-hero{padding-top:6vh;padding-left:16px;padding-right:16px;}
+  .page-hero .lede{font-size:12.5px;}
+  .sec{padding-left:14px;padding-right:14px;}
+  .viewtoggle button{padding:7px 14px;font-size:9px;}
+  .stack-cap .d{font-size:11px;}
+  .gallery.flow:not(.stack-mode){gap:10px;}
+  .gallery.vidgal:not(.stack-mode) figure{flex:0 0 100%;width:100%;max-width:370px;}
+  .demo .demo-meta{gap:6px 10px;}
+  .demo .demo-meta .hint{margin-left:0;}
+  .demo-actions a,.demo-actions button{padding:8px 13px;font-size:10px;}
+  .code-view pre{padding:14px;}
+  .code-view code{font-size:10px;}
+  .achv li{flex-wrap:wrap;font-size:10.5px;}
+  .achv li span{margin-left:auto;}
+  .linkrow{gap:8px 10px;}
+  .linkrow a{padding:8px 13px;font-size:10px;}
+  #tip-box{padding:26px 22px 24px;}
+  .tip-h{font-size:17px;}
+  footer{flex-direction:column;gap:4px;text-align:center;}
+}
+
+/* ── phone only (iPad keeps the full treatment) ───────── */
+@media (max-width:600px){
+  /* the announcement bar is oversized on a narrow screen */
+  .microbar{font-size:6px;letter-spacing:0.07em;padding:2px 0;line-height:1.5;}
+  .microbar .track span{padding:0 11px;}
+  nav{padding:11px 14px;gap:8px;}
+  .bulb .lb{height:34px;}
+  .menu-toggle{font-size:21px;padding:8px 2px;min-width:32px;}
+  /* the bulb sits with the burger, not stranded mid-bar */
+  .bulb{margin-right:-4px;}
+}
+
+/* ── phone galleries, measured off the original at 390px (offsetWidth, so
+      the deck's leftover transforms don't skew the reading).
+      Two families, and they size differently — do not merge them:
+        · plain / centred rows  → uniform 174x245 tiles, image cover
+        · flow / card-flex / pl-grid / pkg-grid → 171 wide, natural height,
+          image contain (the original's keep-custom sections)
+      Landscape cards keep their own height in both. ── */
+@media (max-width:600px){
+  .gallery:not(.stack-mode):not(.vidgal):not(.icons){
+    display:flex;flex-wrap:wrap;
+    justify-content:center;align-items:flex-start;
+    columns:auto;column-gap:0;gap:8px;
+    grid-template-columns:none;
+    padding:0 6px;max-width:100%;
+  }
+  /* the basis has to account for the gutter exactly — at 350px of content a
+     170px pair plus a 12px gutter is 352 and wraps, which is what put every
+     card on a line of its own */
+  .gallery:not(.stack-mode):not(.vidgal):not(.icons) > figure{
+    flex:0 0 calc(50% - 4px);width:calc(50% - 4px);max-width:calc(50% - 4px);
+    height:auto;margin:0;
+    grid-column:auto;grid-row:auto;
+    aspect-ratio:auto;min-height:0;break-inside:auto;
+    border-radius:8px;overflow:hidden;
+  }
+  /* Posters page only: a landscape poster runs the full width on a row of its
+     own, in place — photo sections (tram, performance) keep the original's two
+     half-width landscapes a row. */
+  .posters-page .gallery:not(.mag-grid):not(.masonry):not(.stack-mode):not(.vidgal):not(.icons) > figure[data-orient="landscape"]{
+    flex:0 0 100%;width:100%;max-width:100%;
+  }
+  .gallery:not(.stack-mode):not(.vidgal):not(.icons) > figure img{
+    width:100%;height:auto;max-width:100%;max-height:none;object-fit:contain;
+  }
+
+  /* Only the posters page runs uniform cover tiles (.tile) — measured at
+     174x245 on the original. Every other page shows its pieces whole at their
+     own height, so they must NOT get the fixed tile. */
+  .gallery.tile:not(.stack-mode):not(.vidgal):not(.icons) > figure:not([data-orient="landscape"]){
+    aspect-ratio:0.71;
+  }
+  .gallery.tile:not(.stack-mode):not(.vidgal):not(.icons) > figure:not([data-orient="landscape"]) img{
+    height:100%;object-fit:cover;
+  }
+
+  /* everywhere else the original runs a 12px gutter — basis follows it */
+  .gallery:not(.tile):not(.stack-mode):not(.vidgal):not(.icons){gap:12px;}
+  .gallery:not(.tile):not(.stack-mode):not(.vidgal):not(.icons) > figure{
+    flex-basis:calc(50% - 6px);width:calc(50% - 6px);max-width:calc(50% - 6px);
+  }
+  .posters-page .gallery:not(.tile):not(.mag-grid):not(.masonry):not(.stack-mode):not(.vidgal):not(.icons) > figure[data-orient="landscape"]{
+    flex-basis:100%;width:100%;max-width:100%;
+  }
+
+  /* photography is a column masonry on the original, not wrapped rows */
+  .gallery.masonry:not(.stack-mode):not(.vidgal):not(.icons){
+    display:block;columns:2;gap:0;column-gap:12px;padding:0 6px;   /* gap:0 must come first — the shorthand resets column-gap */
+  }
+  .gallery.masonry:not(.stack-mode):not(.vidgal):not(.icons) > figure{
+    display:block;break-inside:avoid;
+    flex:none;width:100%;max-width:100%;margin:0 0 12px;
+  }
+  /* the campaign photos sit on a 12px-gutter page — columns pack them straight
+     down, so a short landscape no longer leaves a hole beside a tall one */
+  .gallery.masonry.flow:not(.stack-mode):not(.vidgal):not(.icons){column-gap:12px;}
+  .gallery.masonry.flow:not(.stack-mode):not(.vidgal):not(.icons) > figure{margin:0 0 12px;}
+
+  /* the original runs this section narrower, with a wider gutter */
+  .gallery.gallery-centered:not(.stack-mode):not(.vidgal):not(.icons){gap:18px;}
+  .gallery.gallery-centered:not(.stack-mode):not(.vidgal):not(.icons) > figure{
+    flex:0 0 calc(50% - 9px);width:calc(50% - 9px);max-width:calc(50% - 9px);
+  }
+
+  /* magazine: a column layout, so the drafts sit directly under the spread
+     rather than being pushed onto a row of their own */
+  .gallery.mag-grid:not(.stack-mode):not(.vidgal):not(.icons){
+    display:block;columns:2;gap:0;column-gap:12px;padding:0 6px;
+  }
+  .gallery.mag-grid:not(.stack-mode):not(.vidgal):not(.icons) > figure{
+    display:block;break-inside:avoid;
+    flex:none;width:100%;max-width:100%;margin:0 0 8px;
+  }
+  .gallery.mag-grid:not(.stack-mode):not(.vidgal):not(.icons) > figure.g-wide{
+    column-span:all;
+  }
+
+  /* the wide plates keep the full width they have on the original */
+  .gallery.pkg-grid:not(.stack-mode) > figure.g-wide{
+    flex:0 0 100%;width:100%;max-width:100%;
+  }
+  .gallery:not(.stack-mode) .g-break{display:none;}
+  /* the award link does not fit inside a half-width card's caption — it stays
+     on the stack caption, where there is room for it */
+  .gallery:not(.stack-mode) figcaption .cap-award{display:none;}
+  /* the kicker was wrapping and dropping its cursor onto a line of its own
+     under the title — hold it to one line and scale it to fit beside AUS */
+  .page-hero .kicker{
+    white-space:nowrap;
+    font-size:clamp(7px,2.55vw,11px);
+    letter-spacing:0.22em;
+  }
+  .page-hero .kicker .cursor{width:0.5em;margin-left:0.1em;}
+
+  /* the achievements list wrapped its text onto a line of its own, leaving the
+     star stranded above a gap — keep the row intact and let the text wrap */
+  .achv li{
+    flex-wrap:nowrap;gap:9px;
+    padding:9px 2px 8px;
+    font-size:10.5px;line-height:1.55;
+  }
+  .achv li span{margin-left:9px;}
+}
+
+/* the demos need a keyboard, a mouse and a real GPU — say so on a touch screen */
+.tip-touch{display:none;}
+@media (hover:none),(max-width:820px){
+  .tip-desk{display:none;}
+  .tip-touch{display:inline;}
+}
+
+/* trackpad iPads again — the media queries above cannot see them */
+html.touch .tip-desk{display:none;}
+html.touch .tip-touch{display:inline;}

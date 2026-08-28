@@ -92,7 +92,9 @@
     this.ctx=cv.getContext('2d'); this.ctx.setTransform(dpr,0,0,dpr,0,0);
     this.w=w; this.h=h; this.light=isLight(); this.cols=this.light?LIGHT:DARK;
     var fromB=this.fromBottom, hsc=w/160;
-    var hthin=(window.innerWidth<=600)?0.42:1;   /* thinner stems on phone */
+    /* optional page-level override (e.g. redesign.html) — defaults to 1 */
+    var THIN=window.HEADVINE_THIN||1;
+    var hthin=((window.innerWidth<=600)?0.42:1)*THIN;   /* thinner stems on phone */
     /* DETERMINISTIC: seeded per side so every heading vine is the SAME shape */
     var HR=mkRnd(fromB?9173:3391);
     var shpH=function(o1,o2){ return {open:HR(o1,o2), wr:HR(0.85,1.25), sep:HR(0.75,1.15)}; };
@@ -124,7 +126,7 @@
     ctx.globalCompositeOperation='source-over';
     ctx.lineCap='round'; ctx.lineJoin='round';
     var cols=this.cols, lite=this.lite;
-    var owf=(lite && window.innerWidth<=600)?0.5:1;
+    var owf=((lite && window.innerWidth<=600)?0.5:1)*(window.HEADVINE_THIN||1);
     for(var s=0;s<this.strands.length;s++){
       var st=this.strands[s], pts=st.pts, len=pts.length;
       var local=Math.max(0,Math.min(1,(g-st.off)/(1-st.off)));
@@ -152,7 +154,7 @@
         px=P.x; py=P.y;
       }
       /* cybersigilism thorns (heading vines run the desktop-weight path; small canvas keeps them fine) */
-      var mob=this.mob, cbf=Math.max(0.4,Math.min(1,this.w/420))*(mob?0.68:1);
+      var mob=this.mob, cbf=Math.max(0.4,Math.min(1,this.w/420))*(mob?0.68:1)*(window.HEADVINE_THIN||1);
       var CSTEP=Math.max(4,Math.round(len/(mob?15:24)));
       ctx.fillStyle=cols[0];
       for(var ck=CSTEP; ck<n-1; ck+=CSTEP){

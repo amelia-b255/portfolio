@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" class="light-mode"> <!-- class only feeds shared/cursor-trail.js its light palette -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>amelia bobbin — music cv</title>
+<meta name="theme-color" content="#a8331a">
+<!-- iOS paints the strip behind the status bar from theme-color; without it
+     Safari uses the page background and a cream band sits above the banner.
+     Kept in sync with the banner colour when the theme is toggled. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="redesign-shared.css?v=24">
+<script>
+/* Theme carries across page navigation, but a refresh resets to light.
+   Runs before first paint so there is no flash of the wrong mode. */
+(function(){try{
+  var nav=(performance.getEntriesByType('navigation')[0]||{}).type;
+  if(nav==='reload'){ sessionStorage.removeItem('rd-theme'); }
+  else if(sessionStorage.getItem('rd-theme')==='dark'){ document.documentElement.classList.add('dark'); }
+}catch(e){}})();
+
+/* Device tier. An iPad with a trackpad reports hover:hover and 1366px wide, so
+   neither width nor the hover query can identify it — maxTouchPoints can.
+   Sets html.touch (and html.tablet ≥601px) before first paint. */
+(function(){try{
+  var d=document.documentElement;
+  var t=(navigator.maxTouchPoints||0)>1
+     || (window.matchMedia&&matchMedia('(hover: none) and (pointer: coarse)').matches);
+  window.RD_TOUCH=t;
+  if(t){ d.classList.add('touch'); if(window.innerWidth>600) d.classList.add('tablet'); }
+}catch(e){}})();
+
+/* keep the status-bar strip the same colour as the banner */
+(function(){try{
+  function sync(){
+    var b=document.querySelector('.microbar'); if(!b) return;
+    var m=document.querySelector('meta[name="theme-color"]');
+    if(!m){ m=document.createElement('meta'); m.name='theme-color'; document.head.appendChild(m); }
+    /* the banner is a gradient, so backgroundColor reads transparent — take
+       the token the gradient is built from instead */
+    var c=getComputedStyle(document.documentElement).getPropertyValue('--red').trim()
+       || getComputedStyle(b).backgroundColor;
+    if(c && c!=='rgba(0, 0, 0, 0)') m.setAttribute('content',c);
+  }
+  window.RD_SYNC_BAR=sync;
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',sync);
+  else sync();
+}catch(e){}})();
+</script>
+</head>
+<body>
+
+<div class="star s1"></div><div class="star s2"></div><div class="star s3"></div>
+<div class="star s4"></div><div class="star s5"></div><div class="star s6"></div>
+<div class="star s7"></div><div class="star s8"></div><div class="star s9"></div>
+
+<header class="topbar">
+<div class="microbar">
+  <div class="track" id="marq"></div>
+</div>
+
+<nav>
+  <div class="brand"><a href="redesign.html"><span class="ic-logo"></span>amelia bobbin<sup>®</sup></a></div>
+  <button id="themeToggle" class="bulb" aria-label="Toggle dark mode" title="toggle dark mode">
+    <img src="lightbulb-light.webp" class="lb lb-light" alt="">
+    <img src="lightbulb-dark.webp" class="lb lb-dark" alt="">
+  </button>
+  <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false">&#9776;</button>
+  <ul><li><a href="redesign.html#work">work <span class="up">↗</span></a></li><li><a href="redesign.html#about">about <span class="up">↗</span></a></li><li><a href="redesign.html#contact">contact <span class="up">↗</span></a></li><li><a href="redesign-music.html" class="here">music <span class="up">↗</span></a></li><li><a href="redesign-design-cv.html">design cv <span class="up">↗</span></a></li></ul>
+</nav>
+</header>
+
+<header class="page-hero">
+  <p class="kicker"><span id="kick-text" data-kicker="09 — music cv / canberra, aus"></span><span class="cursor">▍</span></p>
+  <h1 id="ptitle" class="name-anim">Music CV<span class="dot">.</span></h1>
+  <p class="lede">My experiences, awards and performances in music.</p>
+</header>
+
+<main>
+<section class="sec"><figure class="cv-fig rise"><img loading="lazy" decoding="async" src="cv/musiccv.webp?v=3" alt="Amelia Bobbin Music CV"></figure><p class="center rise" style="margin-top:4.5vh"><a class="cta" href="cv/amelia&#x27;s-music-cv.pdf?v=2" download>Download PDF <span class="cta-star">★</span></a></p></section>
+</main>
+
+<div class="backrow">
+  <a class="cta" href="redesign.html">← back to portfolio</a>
+</div>
+
+<footer>
+  <span><span class="cmark">©</span> 2026 amelia bobbin</span>
+  <span class="red">canberra, aus</span>
+</footer>
+
+
+
+<div class="lightbox" id="lightbox" aria-modal="true" role="dialog">
+  <button class="lb-x" aria-label="Close">×</button>
+  <button class="lb-prev" aria-label="Previous">‹</button>
+  <button class="lb-next" aria-label="Next">›</button>
+  <img alt="">
+  <p class="lb-cap"></p>
+</div>
+
+<script src="redesign-shared.js?v=24"></script>
+<!-- the homepage's typing section titles, same script -->
+<script src="shared/typewriter.js?v=2"></script>
+<script>window.TRAIL_RGB=getComputedStyle(document.documentElement).getPropertyValue('--trail').trim()||'194,56,28';</script>
+<script src="shared/cursor-trail.js?v=5"></script>
+</body>
+</html>

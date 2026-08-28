@@ -128,7 +128,8 @@
         var isLight = document.documentElement.classList.contains('light-mode');
         // Dark mode: warm pink #e8a0b8 → 232,160,184
         // Light mode: rose #8b475d → 139,71,93
-        var rgb = isLight ? '139,71,93' : '232,160,184';
+        /* optional page-level tint (e.g. redesign.html); defaults unchanged */
+        var rgb = window.TRAIL_RGB || (isLight ? '139,71,93' : '232,160,184');
 
         for (var i = particles.length - 1; i >= 0; i--) {
             var p = particles[i];
