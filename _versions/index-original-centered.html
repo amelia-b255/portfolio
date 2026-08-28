@@ -383,11 +383,10 @@
             margin-bottom: 35px;
             line-height: 1.7;
             animation: fadeInUp 1s ease 0.2s backwards;
-            /* per draft: Helvetica, tracking -90 (Adobe units -> -0.09em) */
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-family: 'Georgia Custom', Georgia, serif;
             font-style: normal;
             font-weight: 400;
-            letter-spacing: -0.09em;
+            letter-spacing: 0;
         }
 
         @keyframes fadeInUp {
@@ -2022,17 +2021,13 @@
         #name-img-wrap {
             display: flex !important;
             justify-content: center !important;
-            /* FIXED band (was auto): every font centres inside the same box, so
-               the portfolio strip + dots below never move while cycling fonts.
-               22vh = the old default font's height, keeping portfolio where it was. */
-            height: 22vh !important;
-            align-items: center !important;
+            height: auto !important;
             overflow: visible !important;
         }
 
         /* MUCH bigger title — trimmed PNGs need no clipping */
         #name-img {
-            max-height: 22vh !important;
+            max-height: 46vh !important;
             max-width: 86vw !important;
             width: auto !important;
             height: auto !important;
@@ -2044,46 +2039,37 @@
         }
         html.light-mode #name-img { filter: drop-shadow(0 6px 18px rgba(255,255,255,0.55)); }
 
-        /* Per-style size tuning (all use trimmed, transparent PNGs now).
-           Heights are capped at the fixed 22vh wrap band so nothing below shifts. */
+        /* Per-style size tuning (all use trimmed, transparent PNGs now) */
+        .hero-container.newtitle-style #name-img-wrap { height: auto !important; overflow: visible !important; }
         .hero-container.newtitle-style #name-img { height: auto !important; max-height: 22vh !important; max-width: 64vw !important; object-position: center !important; }
-        .hero-container.image-style  #name-img { max-height: 22vh !important; max-width: 80vw !important; }
-        .hero-container.cursive-style #name-img { max-height: 22vh !important; max-width: 80vw !important; }
-        /* thin outline font: noticeably smaller, per the draft */
-        .hero-container.thinfont-style #name-img { height: auto !important; max-height: 9vh !important; max-width: 44vw !important; object-position: center !important; }
+        .hero-container.image-style  #name-img { max-height: 30vh !important; max-width: 80vw !important; }
+        .hero-container.cursive-style #name-img { max-height: 34vh !important; max-width: 80vw !important; }
 
         /* Portfolio word under the name */
         #portfolio-word-wrap {
             height: auto !important;
             overflow: visible !important;
             position: relative !important;
-            /* shrink-wrap the strip so the texture-mask ::before (inset:0, mask
-               contain) is exactly the image's size — width:auto let the wrap run
-               full-width and the mask rescaled, ghost-doubling the outer words */
-            width: fit-content !important;
+            width: auto !important;
             margin: 52px auto 0 !important;
             display: block !important;
         }
         .pword-img {
             position: static !important;
             transform: none !important;
-            /* triple-"portfolio" strip spans most of the hero, per the draft */
-            width: clamp(320px, 57vw, 880px) !important;
-            max-width: 88vw !important;
+            width: clamp(190px, 28vw, 320px) !important;
+            max-width: 72vw !important;
             height: auto !important;
             top: auto !important;
             left: auto !important;
             display: none !important;
             filter: drop-shadow(0 3px 12px rgba(0,0,0,0.45));
         }
-        /* block (not inline-block) so the wrap hugs the image exactly — the
-           texture-mask ::before spans the wrap, and any baseline gap shows up
-           as a doubled "ghost" copy of the word strip (visible on phones) */
-        html:not(.light-mode) .pword-dark { display: block !important; margin: 0 auto !important; }
-        html.light-mode .pword-light { display: block !important; margin: 0 auto !important; }
+        html:not(.light-mode) .pword-dark { display: inline-block !important; }
+        html.light-mode .pword-light { display: inline-block !important; }
         html.light-mode .pword-img { filter: drop-shadow(0 3px 10px rgba(255,255,255,0.55)); }
 
-        #name-dots { margin-top: 34px !important; }
+        #name-dots { margin-top: 18px !important; }
 
         /* Bio + CTA overlaid near the bottom */
         .hero-bio {
@@ -2109,26 +2095,22 @@
             .hero-image,
             .hero-container.image-style .hero-image,
             .hero-container.newtitle-style .hero-image,
-            .hero-container.thinfont-style .hero-image,
             .hero-container.cursive-style .hero-image { display: block !important; }
             /* Kill the old forced cycler height that blew the bold title up */
             .hero-container.image-style #name-cycler { height: auto !important; overflow: visible !important; }
             /* Restore proportional, capped sizing for every style */
-            /* phone: same fixed-band trick so portfolio + dots stay put while cycling */
-            #name-img-wrap { height: 16vh !important; align-items: center !important; }
             #name-img,
             .hero-container.image-style #name-img,
             .hero-container.bold-style #name-img,
             .hero-container.cursive-style #name-img {
                 width: auto !important; height: auto !important;
-                max-width: 90vw !important; max-height: 16vh !important;
+                max-width: 90vw !important; max-height: 32vh !important;
                 object-fit: contain !important; object-position: center !important;
                 margin: 0 auto !important; display: block !important;
             }
-            .hero-container.image-style  #name-img { max-height: 16vh !important; max-width: 80vw !important; }
+            .hero-container.image-style  #name-img { max-height: 24vh !important; max-width: 80vw !important; }
             .hero-container.newtitle-style #name-img { max-height: 16vh !important; max-width: 64vw !important; }
-            .hero-container.cursive-style #name-img { max-height: 16vh !important; }
-            .hero-container.thinfont-style #name-img { max-height: 6vh !important; max-width: 76vw !important; }
+            .hero-container.cursive-style #name-img { max-height: 26vh !important; }
             .hero-bio { bottom: 4% !important; }
             .hero-bio p { font-size: 13px !important; }
         }
@@ -2186,10 +2168,10 @@
         }
 </style>
     <script>(function(){try{var t=performance.getEntriesByType('navigation'),n=t.length?t[0].type:'navigate',s=document.referrer&&(new URL(document.referrer)).origin===location.origin;if(n==='reload'||(n==='navigate'&&!s)){sessionStorage.removeItem('theme');}else if(sessionStorage.getItem('theme')==='light'){document.documentElement.classList.add('light-mode');}}catch(e){}})();</script>
-    <link rel="preload" as="image" href="thinfont-trim.webp?v=16">
     <link rel="preload" as="image" href="newtitle2-trim.webp?v=16">
     <link rel="preload" as="image" href="newtitle1-trim.webp?v=16">
-    <link rel="preload" as="image" href="portfolio-triple-trim.webp?v=2">
+    <link rel="preload" as="image" href="portfolio word-trim.webp?v=4">
+    <link rel="preload" as="image" href="portoflio word dark-trim.webp?v=4">
 </head>
 <body>
 
@@ -2278,8 +2260,8 @@
                         <div id="img-letter-grid"></div>
                     </div>
                     <div id="portfolio-word-wrap">
-                        <img loading="lazy" decoding="async" src="portfolio-triple-trim.webp?v=2" class="pword-img pword-light" alt="portfolio">
-                        <img loading="lazy" decoding="async" src="portfolio-triple-trim.webp?v=2" class="pword-img pword-dark" alt="portfolio">
+                        <img loading="lazy" decoding="async" src="portfolio word-trim.webp?v=4" class="pword-img pword-light" alt="portfolio">
+                        <img loading="lazy" decoding="async" src="portoflio word dark-trim.webp?v=4" class="pword-img pword-dark" alt="portfolio">
                     </div>
                 </div>
                 <div id="name-dots" class="name-dots" aria-label="Name style"></div>
@@ -2763,8 +2745,6 @@
 var nameStyleIdx = 0;
 var NAME_V = '?v=16';
 var nameStyles = [
-    /* thin outline font — same rose artwork works on both themes, so dark/light share the file */
-    { type: 'img', group: 'thinfont', dark: 'thinfont-trim.webp'+NAME_V, light: 'thinfont-trim.webp'+NAME_V },
     { type: 'img', group: 'newtitle', dark: 'newtitle2-trim.webp'+NAME_V, light: 'newtitle1-trim.webp'+NAME_V },
     { type: 'img', group: 'bold',    dark: '1DARK-trim.webp'+NAME_V, light: '1LIGHT-trim.webp'+NAME_V },
     { type: 'img', group: 'bold',    dark: '2DARK-trim.webp'+NAME_V, light: '2LIGHT-trim.webp'+NAME_V },
@@ -2789,7 +2769,7 @@ function applyNameStyle() {
         img.src = isLight ? style.light : style.dark;
         img.style.display = 'block';
         if (container) {
-            container.classList.remove('image-style', 'cursive-style', 'card-style', 'newtitle-style', 'thinfont-style');
+            container.classList.remove('image-style', 'cursive-style', 'card-style', 'newtitle-style');
             if (style.group === 'bold') {
                 container.classList.add('image-style');
             } else if (style.group === 'cursive') {
@@ -2798,8 +2778,6 @@ function applyNameStyle() {
                 container.classList.add('card-style');
             } else if (style.group === 'newtitle') {
                 container.classList.add('newtitle-style');
-            } else if (style.group === 'thinfont') {
-                container.classList.add('thinfont-style');
             }
             // bold-1 hotspot disabled
         }
@@ -3181,7 +3159,9 @@ html.light-mode .letter-eraser { background: #cdb89c; }
     transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
     transform-origin: left center;
 }
-/* hover-grow on the title removed (was transform: scale(1.03) on #name-cycler:hover) */
+#name-cycler:hover #name-img-wrap {
+    transform: scale(1.03);
+}
 /* Bold/halftone: name fills full left column width */
 .hero-container.image-style .hero-content {
     overflow: visible;
@@ -3589,8 +3569,8 @@ html.light-mode .pword-img { filter: drop-shadow(0 3px 10px rgba(255,255,255,0.5
   content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 3;
   background: url('textures/tex-concrete.webp') center / 160px auto;
   mix-blend-mode: overlay; opacity: 0.85;
-  -webkit-mask: url('portfolio-triple-trim.webp?v=2') 50% 0% / contain no-repeat;
-  mask: url('portfolio-triple-trim.webp?v=2') 50% 0% / contain no-repeat;
+  -webkit-mask: url('portfolio word-trim.webp?v=4') 50% 0% / contain no-repeat;
+  mask: url('portfolio word-trim.webp?v=4') 50% 0% / contain no-repeat;
 }
 </style>
 <script>
@@ -4237,49 +4217,5 @@ html.light-mode .portfolio-overlay h3, html.light-mode .portfolio-overlay p, htm
   var rt; window.addEventListener('resize',function(){ clearTimeout(rt); rt=setTimeout(function(){ fields.forEach(function(f){ f.seed(); }); borderFields.forEach(function(f){ f.seed(); }); },300); });
 })();
 </script>
-<style>
-/* === LEFT-ALIGNED HERO (desktop) — per draft: title/portfolio/bio/button all
-   flush left, right vines kept, left vine hidden. Loaded last so it wins the
-   cascade over the older centered-overlay block. Phone keeps the centered
-   layout. Reversible: delete this block. === */
-@media (min-width: 821px) {
-  .hero-content {
-    top: 13vh !important;
-    left: 3.5vw !important;
-    transform: none !important;
-    width: auto !important;
-    max-width: 62vw !important;
-    padding: 0 !important;
-    text-align: left !important;
-    align-items: flex-start !important;
-  }
-  #name-cycler { align-items: flex-start !important; }
-  /* title band stays fixed-height (portfolio never moves between fonts) but
-     everything inside lines up left instead of centre */
-  #name-img-wrap { justify-content: flex-start !important; }
-  #name-img { margin: 0 !important; object-position: left center !important; }
-  /* single "portfolio" word tucked under the name */
-  #portfolio-word-wrap { margin: 12px 0 0 0 !important; }
-  .pword-img { width: clamp(96px, 8vw, 128px) !important; }
-  #name-dots { align-self: flex-start !important; margin-top: 26px !important; }
-  /* bio + button: left column under the name block. Top = band bottom (13vh +
-     22vh) plus the portfolio/dots rows, so it stays pinned across fonts too. */
-  .hero-bio {
-    left: 3.5vw !important;
-    right: auto !important;
-    top: calc(35vh + 118px) !important;
-    bottom: auto !important;
-    transform: none !important;
-    width: auto !important;
-    max-width: 540px !important;
-    padding: 0 !important;
-    text-align: left !important;
-  }
-  .hero-bio p { text-align: left !important; font-size: 13px !important; margin-bottom: 22px !important; }
-  .hero-bio .cta-button { font-size: 10px !important; padding: 9px 24px !important; }
-  /* draft has no left-side vine — the text column lives there now */
-  .hero-swirl.sw-left { display: none !important; }
-}
-</style>
 </body>
 </html>
