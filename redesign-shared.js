@@ -492,7 +492,7 @@
     /* the kicker types at 55ms a character; let it land, then breathe 1s */
     var k=document.getElementById('kick-text');
     var chars=k?(k.getAttribute('data-kicker')||'').length:0;
-    delay=chars*55+1000;
+    delay=chars*55+300;   /* land just as the typing finishes */
   }
   setTimeout(function(){
     o.classList.add('tip-visible');
@@ -769,3 +769,31 @@
   [400,1200,2500].forEach(function(ms){ setTimeout(all,ms); });   /* images arriving late */
 })();
 
+/* ── touch: CTA buttons play their sweep-fill, then follow through ──
+   Driven from touchend rather than click: iOS spends the first tap applying
+   the button's hover state and only clicks on the second, which is why the
+   buttons needed pressing twice. Handling the touch directly means one tap
+   always works — sweep first, then navigate (or submit). ── */
+(function(){
+  if(!window.RD_TOUCH && !window.matchMedia('(hover: none)').matches) return;
+  var sx=0, sy=0, busy=false;
+  document.addEventListener('touchstart',function(e){
+    if(!e.target.closest||!e.target.closest('.cta')) return;
+    var t=e.touches[0]; sx=t.clientX; sy=t.clientY;
+  },{passive:true,capture:true});
+  document.addEventListener('touchend',function(e){
+    var b=e.target.closest&&e.target.closest('.cta');
+    if(!b||busy) return;
+    var t=e.changedTouches[0];
+    if(Math.abs(t.clientX-sx)>10||Math.abs(t.clientY-sy)>10) return;  /* a drag, not a tap */
+    e.preventDefault();                    /* no synthesized hover-then-click */
+    busy=true;
+    b.classList.add('cta-run');
+    setTimeout(function(){
+      if(b.tagName==='A' && b.getAttribute('href')) window.location=b.getAttribute('href');
+      else if(b.form && b.form.requestSubmit) b.form.requestSubmit(b);
+      else b.click();
+      setTimeout(function(){ b.classList.remove('cta-run'); busy=false; },900);
+    },520);
+  },{passive:false,capture:true});
+})();

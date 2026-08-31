@@ -354,6 +354,7 @@ h1.f-mono{
   background-position:-120% 0;   /* parked fully outside the button */
 }
 .cta:hover{background-position:0 0;color:var(--on-accent);}
+.cta.cta-run{background-position:0 0;color:var(--on-accent);}
 .cta-star{font-size:1.6em;line-height:0;vertical-align:-0.12em;margin-left:2px;}
 
 /* index arrow-list, reference style */
@@ -1259,12 +1260,22 @@ window.growVine(document.getElementById('vine'), {alignLeft:true});
       })();
     }
     function stop(){ gen++; h3.textContent=tFull; pp.textContent=dFull; }
-    card.addEventListener('mouseenter',start);
-    card.addEventListener('mouseleave',stop);
-    /* touch has no hover — the scroll-reveal and the press-and-hold below fire
+    /* on touch, iOS synthesizes mouseenter/leave after a tap and those were
+       restarting or cutting the typing — only real pointers get them */
+    if(!window.RD_TOUCH){
+      card.addEventListener('mouseenter',start);
+      card.addEventListener('mouseleave',stop);
+    }
+    /* touch has no hover — the scroll-reveal and the press-and-hold fire
        these instead, so the overlay types there too */
     card.addEventListener('rd-reveal',start);
-    card.addEventListener('rd-unreveal',stop);
+    card.addEventListener('rd-unreveal',function(){
+      /* let the overlay finish fading before the text resets, so the swap
+         is never visible — and never clobber a reveal that restarted */
+      setTimeout(function(){
+        if(!card.classList.contains('scroll-active')) stop();
+      },650);
+    });
   });
 })();
 </script>
@@ -1345,7 +1356,7 @@ window.growVine(document.getElementById('vine'), {alignLeft:true});
       if(held){
         /* the click lands a moment after the release — swallow that one */
         suppressUntil=Date.now()+900;
-        setTimeout(function(){ unreveal(c); }, 2200);
+        setTimeout(function(){ unreveal(c); }, 4200);   /* typing needs ~1.5s */
       }
       held=false;
     },{passive:true});
@@ -1396,7 +1407,37 @@ window.growVine(document.getElementById('vine'), {alignLeft:true});
 </script>
 <!-- the original's typing section titles (head-vines removed — the sections
      now carry full cover-style orchid vines down each side instead) -->
-<script src="shared/typewriter.js?v=2"></script>
+<script>
+/* ── touch: CTA buttons play their sweep-fill, then follow through ──
+   Driven from touchend rather than click: iOS spends the first tap applying
+   the button's hover state and only clicks on the second, which is why the
+   buttons needed pressing twice. Handling the touch directly means one tap
+   always works — sweep first, then navigate (or submit). ── */
+(function(){
+  if(!window.RD_TOUCH && !window.matchMedia('(hover: none)').matches) return;
+  var sx=0, sy=0, busy=false;
+  document.addEventListener('touchstart',function(e){
+    if(!e.target.closest||!e.target.closest('.cta')) return;
+    var t=e.touches[0]; sx=t.clientX; sy=t.clientY;
+  },{passive:true,capture:true});
+  document.addEventListener('touchend',function(e){
+    var b=e.target.closest&&e.target.closest('.cta');
+    if(!b||busy) return;
+    var t=e.changedTouches[0];
+    if(Math.abs(t.clientX-sx)>10||Math.abs(t.clientY-sy)>10) return;  /* a drag, not a tap */
+    e.preventDefault();                    /* no synthesized hover-then-click */
+    busy=true;
+    b.classList.add('cta-run');
+    setTimeout(function(){
+      if(b.tagName==='A' && b.getAttribute('href')) window.location=b.getAttribute('href');
+      else if(b.form && b.form.requestSubmit) b.form.requestSubmit(b);
+      else b.click();
+      setTimeout(function(){ b.classList.remove('cta-run'); busy=false; },900);
+    },520);
+  },{passive:false,capture:true});
+})();
+</script>
+<script src="shared/typewriter-redesign.js?v=1"></script>
 <!-- the original's sparkly cursor trail, tinted to the page's red -->
 <script>window.TRAIL_RGB=getComputedStyle(document.documentElement).getPropertyValue('--trail').trim()||'194,56,28';</script>
 <script src="shared/cursor-trail.js?v=5"></script>

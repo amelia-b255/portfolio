@@ -460,17 +460,19 @@ nav a.here{color:var(--accent);background-size:100% 1px;}
   max-width:none;
 }
 .gallery.mag-grid:not(.stack-mode) figure{width:auto;max-width:none;margin:0;}
+/* Drunk in Chinatown (2026) leads, spanning the full row; the Augustine
+   cover sits directly under it with its two spreads alongside */
+.gallery.mag-grid:not(.stack-mode) .g-wide{
+  grid-row:1;grid-column:1 / -1;
+  width:100%;max-width:760px;
+  margin:0 auto 18px;justify-self:center;
+}
 .gallery.mag-grid:not(.stack-mode) .g-cover{
-  grid-column:1;grid-row:1 / span 2;
+  grid-column:1;grid-row:2 / span 2;
   width:440px;max-width:440px;align-self:start;
 }
 .gallery.mag-grid:not(.stack-mode) figure[data-orient="landscape"]:not(.g-wide){
   grid-column:2;width:380px;max-width:380px;
-}
-.gallery.mag-grid:not(.stack-mode) .g-wide{
-  grid-column:1 / -1;
-  width:100%;max-width:760px;
-  margin:18px auto 0;justify-self:center;
 }
 
 .gallery.pkg-grid:not(.stack-mode){
@@ -1247,3 +1249,6 @@ html.touch .tip-touch{display:inline;}
   0%,100%{box-shadow:0 0 0 0 rgba(var(--red-rgb),0.55);}
   50%{box-shadow:0 0 0 9px rgba(var(--red-rgb),0);}
 }
+
+/* phone: no hover exists, so a tap plays the sweep first, then follows */
+.cta.cta-run{background-position:0 0;color:var(--on-accent);}
