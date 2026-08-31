@@ -10,7 +10,7 @@
      Kept in sync with the banner colour when the theme is toggled. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="redesign-shared.css?v=24">
+<link rel="stylesheet" href="redesign-shared.css?v=33">
 <script>
 /* Theme carries across page navigation, but a refresh resets to light.
    Runs before first paint so there is no flash of the wrong mode. */
@@ -72,6 +72,8 @@
 </header>
 
 <header class="page-hero">
+  <canvas class="herovine hv-left" aria-hidden="true"></canvas>
+  <canvas class="herovine hv-right" aria-hidden="true"></canvas>
   <p class="kicker"><span id="kick-text" data-kicker="06 — short film / canberra, aus"></span><span class="cursor">▍</span></p>
   <h1 id="ptitle" class="name-anim">Blowing Out The Candles<span class="dot">.</span></h1>
   <p class="lede">Do you trust the voices in your head?</p>
@@ -86,7 +88,7 @@
 
 <section class="sec"><div class="secnum">( 04 )</div><h2>Watch The Full Film</h2><div class="vidwrap rise"><video controls preload="metadata" playsinline controlslist="nodownload" poster="shortfilm/film-poster.webp"><source src="shortfilm/film.mp4" type="video/mp4"></video><p><b>&quot;Blowing Out The Candles&quot;</b><span> — Full film</span><span class="dur">6:18</span></p></div></section>
 
-<section class="sec"><div class="secnum">( 05 )</div><h2>Production Stills</h2><div class="gallery nocap rise"><figure><img loading="lazy" decoding="async" src="shortfilm/1.webp" alt="Production Still 1"><figcaption><b class="t">Production Still 1</b></figcaption></figure><figure><img loading="lazy" decoding="async" src="shortfilm/2.webp" alt="Production Still 2"><figcaption><b class="t">Production Still 2</b></figcaption></figure><figure><img loading="lazy" decoding="async" src="shortfilm/3.webp" alt="Production Still 3"><figcaption><b class="t">Production Still 3</b></figcaption></figure><figure><img loading="lazy" decoding="async" src="shortfilm/4.webp" alt="Production Still 4"><figcaption><b class="t">Production Still 4</b></figcaption></figure><figure><img loading="lazy" decoding="async" src="shortfilm/5.webp" alt="Production Still 5"><figcaption><b class="t">Production Still 5</b></figcaption></figure><figure><img loading="lazy" decoding="async" src="shortfilm/6.webp" alt="Production Still 6"><figcaption><b class="t">Production Still 6</b></figcaption></figure><figure><img loading="lazy" decoding="async" src="shortfilm/7.webp" alt="Production Still 7"><figcaption><b class="t">Production Still 7</b></figcaption></figure><figure><img loading="lazy" decoding="async" src="shortfilm/8.webp" alt="Production Still 8"><figcaption><b class="t">Production Still 8</b></figcaption></figure><figure><img loading="lazy" decoding="async" src="shortfilm/9.webp" alt="Production Still 9"><figcaption><b class="t">Production Still 9</b></figcaption></figure><figure><img loading="lazy" decoding="async" src="shortfilm/10.webp" alt="Production Still 10"><figcaption><b class="t">Production Still 10</b></figcaption></figure><figure><img loading="lazy" decoding="async" src="shortfilm/11.webp" alt="Production Still 11"><figcaption><b class="t">Production Still 11</b></figcaption></figure><figure><img loading="lazy" decoding="async" src="shortfilm/12.webp" alt="Production Still 12"><figcaption><b class="t">Production Still 12</b></figcaption></figure></div></section>
+<section class="sec"><div class="secnum">( 05 )</div><h2>Production Stills</h2><div class="gallery nocap rise"><figure data-orient="landscape"><img loading="lazy" decoding="async" src="shortfilm/1.webp" alt="Production Still 1"><figcaption><b class="t">Production Still 1</b></figcaption></figure><figure data-orient="landscape"><img loading="lazy" decoding="async" src="shortfilm/2.webp" alt="Production Still 2"><figcaption><b class="t">Production Still 2</b></figcaption></figure><figure data-orient="landscape"><img loading="lazy" decoding="async" src="shortfilm/3.webp" alt="Production Still 3"><figcaption><b class="t">Production Still 3</b></figcaption></figure><figure data-orient="landscape"><img loading="lazy" decoding="async" src="shortfilm/4.webp" alt="Production Still 4"><figcaption><b class="t">Production Still 4</b></figcaption></figure><figure data-orient="landscape"><img loading="lazy" decoding="async" src="shortfilm/5.webp" alt="Production Still 5"><figcaption><b class="t">Production Still 5</b></figcaption></figure><figure data-orient="landscape"><img loading="lazy" decoding="async" src="shortfilm/6.webp" alt="Production Still 6"><figcaption><b class="t">Production Still 6</b></figcaption></figure><figure data-orient="landscape"><img loading="lazy" decoding="async" src="shortfilm/7.webp" alt="Production Still 7"><figcaption><b class="t">Production Still 7</b></figcaption></figure><figure data-orient="landscape"><img loading="lazy" decoding="async" src="shortfilm/8.webp" alt="Production Still 8"><figcaption><b class="t">Production Still 8</b></figcaption></figure><figure data-orient="landscape"><img loading="lazy" decoding="async" src="shortfilm/9.webp" alt="Production Still 9"><figcaption><b class="t">Production Still 9</b></figcaption></figure><figure data-orient="landscape"><img loading="lazy" decoding="async" src="shortfilm/10.webp" alt="Production Still 10"><figcaption><b class="t">Production Still 10</b></figcaption></figure><figure data-orient="landscape"><img loading="lazy" decoding="async" src="shortfilm/11.webp" alt="Production Still 11"><figcaption><b class="t">Production Still 11</b></figcaption></figure><figure data-orient="landscape"><img loading="lazy" decoding="async" src="shortfilm/12.webp" alt="Production Still 12"><figcaption><b class="t">Production Still 12</b></figcaption></figure></div></section>
 </main>
 
 <div class="backrow">
@@ -108,7 +110,9 @@
   <p class="lb-cap"></p>
 </div>
 
-<script src="redesign-shared.js?v=24"></script>
+<script src="redesign-shared.js?v=29"></script>
+<script src="shared/vine-engine.js?v=1"></script>
+<script>[].forEach.call(document.querySelectorAll('.page-hero .herovine'),function(cv){ window.growVine(cv); });</script>
 <!-- the homepage's typing section titles, same script -->
 <script src="shared/typewriter.js?v=2"></script>
 <script>window.TRAIL_RGB=getComputedStyle(document.documentElement).getPropertyValue('--trail').trim()||'194,56,28';</script>

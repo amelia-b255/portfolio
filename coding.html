@@ -10,7 +10,7 @@
      Kept in sync with the banner colour when the theme is toggled. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="redesign-shared.css?v=24">
+<link rel="stylesheet" href="redesign-shared.css?v=33">
 <script>
 /* Theme carries across page navigation, but a refresh resets to light.
    Runs before first paint so there is no flash of the wrong mode. */
@@ -72,6 +72,8 @@
 </header>
 
 <header class="page-hero">
+  <canvas class="herovine hv-left" aria-hidden="true"></canvas>
+  <canvas class="herovine hv-right" aria-hidden="true"></canvas>
   <p class="kicker"><span id="kick-text" data-kicker="07 — creative coding / canberra, aus"></span><span class="cursor">▍</span></p>
   <h1 id="ptitle" class="name-anim">Coding Projects<span class="dot">.</span></h1>
   <p class="lede">Interactive experiments exploring the intersection of art and technology through creative coding. Best on Desktop.</p>
@@ -106,7 +108,9 @@
   <p class="lb-cap"></p>
 </div>
 
-<script src="redesign-shared.js?v=24"></script>
+<script src="redesign-shared.js?v=29"></script>
+<script src="shared/vine-engine.js?v=1"></script>
+<script>[].forEach.call(document.querySelectorAll('.page-hero .herovine'),function(cv){ window.growVine(cv); });</script>
 <!-- the homepage's typing section titles, same script -->
 <script src="shared/typewriter.js?v=2"></script>
 <script>window.TRAIL_RGB=getComputedStyle(document.documentElement).getPropertyValue('--trail').trim()||'194,56,28';</script>

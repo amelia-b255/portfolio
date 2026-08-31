@@ -756,6 +756,7 @@ nav a.here{color:var(--accent);background-size:100% 1px;}
 }
 .feature figcaption b{color:var(--accent);font-weight:400;letter-spacing:0.22em;text-transform:uppercase;font-size:10px;}
 .feature.wide{max-width:1080px;}
+.feature.wide.flat{max-width:1340px;}   /* the tram wrap runs nearly full width */
 .feature.flat img{box-shadow:none;}
 /* single pieces keep the original's own widths rather than one default */
 .feature.w340{max-width:340px;}
@@ -1182,3 +1183,67 @@ img{
 /* trackpad iPads again — the media queries above cannot see them */
 html.touch .tip-desk{display:none;}
 html.touch .tip-touch{display:inline;}
+
+/* the homepage's growing orchid vines, flanking each page title */
+.page-hero .herovine{
+  position:absolute;bottom:0;
+  width:min(16%,210px);height:92%;
+  pointer-events:none;z-index:0;
+}
+.page-hero .hv-left{left:1%;}
+.page-hero .hv-right{right:1%;transform:scaleX(-1);}  /* mirrored so it leans in */
+.page-hero .kicker,.page-hero h1,.page-hero .lede,.page-hero .award{position:relative;z-index:1;}
+@media (min-width:601px) and (max-width:1024px){ .page-hero .herovine{width:min(12%,130px);} }
+@media (max-width:600px){ .page-hero .herovine{display:none;} }
+
+/* two landscapes stacked as one flex item, so the second sits directly under
+   the first (left edges aligned) instead of centring on its own row */
+.gallery.flow:not(.stack-mode) .vpair{display:flex;flex-direction:column;gap:18px;}
+.gallery.flow:not(.stack-mode) .vpair figure{margin:0;}
+.gallery.stack-mode .vpair{display:contents;}   /* the deck sees plain figures */
+@media (max-width:760px){ .gallery.flow:not(.stack-mode) .vpair{gap:10px;} }
+@media (max-width:600px){
+  .gallery:not(.stack-mode) .vpair figure{
+    width:100%;max-width:100%;margin:0 0 12px;
+    border-radius:8px;overflow:hidden;
+  }
+  .gallery:not(.stack-mode) .vpair figure img{width:100%;height:auto;object-fit:contain;}
+  .gallery:not(.stack-mode) .vpair{margin:0;}
+}
+
+
+
+/* the campaign photo wall: masonry at every width, so the mixed portrait and
+   landscape shots pack tight instead of leaving ragged centred rows */
+@media (min-width:601px){
+  .gallery.flow.masonry:not(.stack-mode){
+    display:block;columns:3;gap:0;column-gap:14px;
+    max-width:1120px;padding:0;
+  }
+  .gallery.flow.masonry:not(.stack-mode) > figure,
+  .gallery.flow.masonry:not(.stack-mode) > .vpair{
+    display:block;break-inside:avoid;
+    width:100%;max-width:100%;margin:0 0 14px;flex:none;
+  }
+  .gallery.flow.masonry:not(.stack-mode) .vpair figure{
+    width:100%;max-width:100%;margin:0 0 14px;
+  }
+  .gallery.flow.masonry:not(.stack-mode) img{
+    width:100%;height:auto;max-width:100%;max-height:none;
+  }
+}
+@media (min-width:601px) and (max-width:900px){
+  .gallery.flow.masonry:not(.stack-mode){columns:2;}
+}
+
+/* while the tip is up, the fullscreen button rises above the dim and pulses
+   so the user can see exactly what the tip is talking about */
+.demo-actions a.tip-target{
+  position:relative;z-index:10000;
+  background:var(--cream);
+  animation:tipPulse 1.2s ease-in-out infinite;
+}
+@keyframes tipPulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(var(--red-rgb),0.55);}
+  50%{box-shadow:0 0 0 9px rgba(var(--red-rgb),0);}
+}

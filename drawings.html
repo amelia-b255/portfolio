@@ -10,7 +10,7 @@
      Kept in sync with the banner colour when the theme is toggled. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="redesign-shared.css?v=24">
+<link rel="stylesheet" href="redesign-shared.css?v=33">
 <script>
 /* Theme carries across page navigation, but a refresh resets to light.
    Runs before first paint so there is no flash of the wrong mode. */
@@ -72,6 +72,8 @@
 </header>
 
 <header class="page-hero">
+  <canvas class="herovine hv-left" aria-hidden="true"></canvas>
+  <canvas class="herovine hv-right" aria-hidden="true"></canvas>
   <p class="kicker"><span id="kick-text" data-kicker="04 — illustrations / canberra, aus"></span><span class="cursor">▍</span></p>
   <h1 id="ptitle" class="name-anim">Illustrations<span class="dot">.</span></h1>
   <p class="lede">Digital illustration, character design, t-shirt artwork, and personal creative work.</p>
@@ -88,7 +90,7 @@
 
 <section class="sec"><div class="secnum">( 05 )</div><h2>Trace Designs</h2><p class="subnote rise">2026</p><div class="gallery flow rise"><figure><img loading="lazy" decoding="async" src="drawings/trace poster 1.webp" alt="Trace Design I"><figcaption><b class="t">Trace Design I</b><span class="d">Digital trace illustration</span></figcaption></figure><figure><img loading="lazy" decoding="async" src="drawings/trace poster 2.webp" alt="Trace Design II"><figcaption><b class="t">Trace Design II</b><span class="d">Digital trace illustration</span></figcaption></figure></div></section>
 
-<section class="sec"><div class="secnum">( 06 )</div><h2>Icon Collection</h2><div class="gallery icons rise"><figure><img loading="lazy" decoding="async" src="drawings/koi fish 1 icon tb.webp" alt="Koi Fish Icon"><figcaption><b class="t">Koi Fish Icon</b></figcaption></figure><figure><img loading="lazy" decoding="async" src="drawings/koi fish 2 icon tb.webp" alt="Koi Fish Icon 2"><figcaption><b class="t">Koi Fish Icon 2</b></figcaption></figure><figure><img loading="lazy" decoding="async" src="drawings/star girl icon tb.webp" alt="Star Girl Icon"><figcaption><b class="t">Star Girl Icon</b></figcaption></figure><figure><img loading="lazy" decoding="async" src="drawings/cake icon tb.webp" alt="Cake Icon"><figcaption><b class="t">Cake Icon</b></figcaption></figure><figure><img loading="lazy" decoding="async" src="drawings/strawberry icon tb.webp" alt="Strawberry Icon"><figcaption><b class="t">Strawberry Icon</b></figcaption></figure><figure><img loading="lazy" decoding="async" src="drawings/icecream icon tb.webp" alt="Ice Cream Icon"><figcaption><b class="t">Ice Cream Icon</b></figcaption></figure><figure><img loading="lazy" decoding="async" src="drawings/pink orchid icon tb.webp" alt="Pink Orchid Icon"><figcaption><b class="t">Pink Orchid Icon</b></figcaption></figure><figure><img loading="lazy" decoding="async" src="drawings/green orchid icon tb.webp" alt="Green Orchid Icon"><figcaption><b class="t">Green Orchid Icon</b></figcaption></figure><figure><img loading="lazy" decoding="async" src="drawings/orange orchid icon tb.webp" alt="Orange Orchid Icon"><figcaption><b class="t">Orange Orchid Icon</b></figcaption></figure><figure><img loading="lazy" decoding="async" src="drawings/olive icon tb.webp" alt="Olive Icon"><figcaption><b class="t">Olive Icon</b></figcaption></figure><figure><img loading="lazy" decoding="async" src="drawings/fish icon tb.webp" alt="Fish Icon"><figcaption><b class="t">Fish Icon</b></figcaption></figure><figure><img loading="lazy" decoding="async" src="drawings/coffee icon.webp?v=2" alt="Coffee Icon"><figcaption><b class="t">Coffee Icon</b></figcaption></figure></div></section>
+<section class="sec"><div class="secnum">( 06 )</div><h2>Icon Collection</h2><div class="gallery icons rise"><figure><img loading="lazy" decoding="async" src="drawings/koi fish 1 icon tb.webp" alt="Koi Fish Icon"><figcaption><b class="t">Koi Fish Icon</b></figcaption></figure><figure><img loading="lazy" decoding="async" src="drawings/koi fish 2 icon tb.webp" alt="Koi Fish Icon 2"><figcaption><b class="t">Koi Fish Icon 2</b></figcaption></figure><figure><img loading="lazy" decoding="async" src="drawings/star girl icon tb.webp" alt="Star Girl Icon"><figcaption><b class="t">Star Girl Icon</b></figcaption></figure><figure><img loading="lazy" decoding="async" src="drawings/cake icon tb.webp" alt="Cake Icon"><figcaption><b class="t">Cake Icon</b></figcaption></figure><figure><img loading="lazy" decoding="async" src="drawings/strawberry icon tb.webp" alt="Strawberry Icon"><figcaption><b class="t">Strawberry Icon</b></figcaption></figure><figure><img loading="lazy" decoding="async" src="drawings/icecream icon tb.webp" alt="Ice Cream Icon"><figcaption><b class="t">Ice Cream Icon</b></figcaption></figure><figure><img loading="lazy" decoding="async" src="drawings/pink orchid icon tb.webp" alt="Pink Orchid Icon"><figcaption><b class="t">Pink Orchid Icon</b></figcaption></figure><figure><img loading="lazy" decoding="async" src="drawings/green orchid icon tb.webp" alt="Green Orchid Icon"><figcaption><b class="t">Green Orchid Icon</b></figcaption></figure><figure><img loading="lazy" decoding="async" src="drawings/orange orchid icon tb.webp?v=2" alt="Orange Orchid Icon"><figcaption><b class="t">Orange Orchid Icon</b></figcaption></figure><figure><img loading="lazy" decoding="async" src="drawings/olive icon tb.webp?v=2" alt="Olive Icon"><figcaption><b class="t">Olive Icon</b></figcaption></figure><figure><img loading="lazy" decoding="async" src="drawings/fish icon tb.webp?v=2" alt="Fish Icon"><figcaption><b class="t">Fish Icon</b></figcaption></figure><figure><img loading="lazy" decoding="async" src="drawings/coffee icon.webp?v=3" alt="Coffee Icon"><figcaption><b class="t">Coffee Icon</b></figcaption></figure></div></section>
 </main>
 
 <div class="backrow">
@@ -110,7 +112,9 @@
   <p class="lb-cap"></p>
 </div>
 
-<script src="redesign-shared.js?v=24"></script>
+<script src="redesign-shared.js?v=29"></script>
+<script src="shared/vine-engine.js?v=1"></script>
+<script>[].forEach.call(document.querySelectorAll('.page-hero .herovine'),function(cv){ window.growVine(cv); });</script>
 <!-- the homepage's typing section titles, same script -->
 <script src="shared/typewriter.js?v=2"></script>
 <script>window.TRAIL_RGB=getComputedStyle(document.documentElement).getPropertyValue('--trail').trim()||'194,56,28';</script>

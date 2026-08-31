@@ -13,6 +13,7 @@
     html.classList.toggle('dark');
     try{ sessionStorage.setItem('rd-theme', html.classList.contains('dark')?'dark':'light'); }catch(e){}
     if(window.__retype) window.__retype.forEach(function(f){ f(); });
+    if(window.__vines) window.__vines.forEach(function(f){ f(); });
     if(window.RD_SYNC_BAR) window.RD_SYNC_BAR();   /* status-bar strip follows the banner */
     window.TRAIL_RGB=getComputedStyle(html).getPropertyValue('--trail').trim();
     var t=document.getElementById('ptitle');
@@ -454,7 +455,6 @@
   });
 })();
 
-
 /* ── deter casual image saving ──
    Blocks right-click, drag and long-press on artwork. This is a speed bump,
    not protection: a screenshot or the browser's network tab still gets the
@@ -475,18 +475,41 @@
   },{passive:true});
 })();
 
-
-/* ── the original's tip popup: shows once on load, dismissed with × ── */
+/* ── the original's tip popup: shows once on load, dismissed with × ──
+   On the coding page it waits for the hero typing to finish, scrolls down to
+   the first "open fullscreen" button and pulses it while the tip is up, then
+   returns to the top of the page when the tip is dismissed. ── */
 (function(){
   var o=document.getElementById('tip-overlay'); if(!o) return;
   var sw=o.querySelector('#tip-swipe-section');
   /* the swipe half only makes sense on touch-ish widths, as in the original */
   if(sw && !window.matchMedia('(max-width:1380px)').matches) sw.style.display='none';
-  setTimeout(function(){ o.classList.add('tip-visible'); }, 900);
+
+  /* the coding page's demos are the tip's whole subject — point at them */
+  var fsBtn=document.querySelector('.demo-actions a[target="_blank"]');
+  var delay=900;
+  if(fsBtn){
+    /* the kicker types at 55ms a character; let it land, then breathe 1s */
+    var k=document.getElementById('kick-text');
+    var chars=k?(k.getAttribute('data-kicker')||'').length:0;
+    delay=chars*55+1000;
+  }
+  setTimeout(function(){
+    o.classList.add('tip-visible');
+    if(fsBtn){
+      fsBtn.classList.add('tip-target');
+      var y=fsBtn.getBoundingClientRect().top+window.pageYOffset-window.innerHeight*0.72;
+      window.scrollTo({top:Math.max(0,y),behavior:'smooth'});
+    }
+  }, delay);
   function dismiss(e){
     if(e){ e.preventDefault(); e.stopPropagation(); }
     o.classList.remove('tip-visible');
     setTimeout(function(){ o.style.display='none'; }, 700);
+    if(fsBtn){
+      fsBtn.classList.remove('tip-target');
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
   }
   o.querySelector('#tip-close').addEventListener('click',dismiss);
   o.addEventListener('click',function(e){ if(e.target===o) dismiss(e); });
@@ -494,7 +517,6 @@
     if(e.key==='Escape'&&o.classList.contains('tip-visible')) dismiss();
   });
 })();
-
 
 /* ── phone menu: the original's hamburger behaviour — ☰ opens the drawer,
    turns into ×, closes on a link tap, an outside tap, or Escape ── */
@@ -519,7 +541,6 @@
     if(e.key==='Escape'&&ul.classList.contains('open')) set(false);
   });
 })();
-
 
 /* ── iPad: a tap plays the caption reveal and still opens the image; a
       press-and-hold plays it and swallows the click, so you can read a card
@@ -747,3 +768,4 @@
   else all();
   [400,1200,2500].forEach(function(ms){ setTimeout(all,ms); });   /* images arriving late */
 })();
+
