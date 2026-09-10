@@ -1,0 +1,13 @@
+# The printed business cards carry a QR code that still encodes the old
+# Netlify address, while the text on them reads ameliabobbin.com. This sends
+# anyone who scans it on to the real domain.
+#
+# The trailing ! forces the rule: without it the real page at that path wins
+# and the redirect never fires. :splat carries the rest of the path across, so
+# a deep link still lands in the right place.
+#
+# NOTE: do not rename or delete the Netlify site. The printed QR codes are
+# permanently tied to the name "ameliab-portfolio".
+
+https://ameliab-portfolio.netlify.app/*   https://ameliabobbin.com/:splat   301!
+http://ameliab-portfolio.netlify.app/*    https://ameliabobbin.com/:splat   301!
