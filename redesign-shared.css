@@ -1460,7 +1460,12 @@ html.touch .tip-touch{display:inline;}
 
   /* ── the segmented toggle, sized for a thumb ─────────── */
   .viewtoggle{border-radius:999px;overflow:hidden;}
-  .viewtoggle button{padding:9px 18px;font-size:9.5px;min-height:38px;}
+  /* the buttons sit a few px inside the outline, so squared corners left a
+     gap at the ends — round them too and the filled one reads as an inner pill */
+  .viewtoggle button{
+    padding:9px 18px;font-size:9.5px;min-height:38px;
+    border-radius:999px;
+  }
 }
 
 /* ═══ phone video: a TikTok-style player rather than a YouTube one ═══ */
