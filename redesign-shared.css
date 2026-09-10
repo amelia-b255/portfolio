@@ -1264,16 +1264,31 @@ html.touch .tip-touch{display:inline;}
 @media (max-width:600px){
 
   /* ── stack view → swipeable carousel ─────────────────── */
-  .stack-scene.is-stack.ph-scene{display:block;gap:0;margin:2vh auto 0;}
-  .ph-scene .stack-nav{display:none;}          /* you swipe, so no arrows */
+  .stack-scene.is-stack.ph-scene{display:block;gap:0;margin:2vh auto 0;position:relative;}
+  /* faint chevrons so the swipe is discoverable — they still work as buttons */
+  .ph-scene .stack-nav{
+    display:flex;position:absolute;top:50%;
+    transform:translateY(-50%);
+    width:34px;height:34px;z-index:8;
+    border:none;background:rgba(38,16,20,0.30);
+    -webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);
+    color:#f4e6dd;font-size:17px;line-height:1;opacity:0.5;
+  }
+  .ph-scene .stack-nav.sp{left:8px;}
+  .ph-scene .stack-nav.sn{right:8px;}
+  .ph-scene .stack-nav:active{opacity:0.85;}
 
   .gallery.stack-mode.ph-carousel{
     /* relative, not static: the scroll sync reads figure.offsetLeft, which is
        only measured against this box while it is a positioned ancestor */
     display:flex;position:relative;
-    width:auto;max-width:100%;height:auto;
-    margin:0;gap:0;padding:0;
+    /* the scroller itself has to clear the section's padding — a 100vw card
+       inside a 362px window is shown as a clipped 362px slice, inset from both
+       edges, which is exactly what "not touching the edges" looked like */
+    width:100vw;max-width:100vw;height:auto;
+    margin:0 calc(50% - 50vw);gap:0;padding:0;
     overflow-x:auto;overflow-y:hidden;
+    align-items:center;                 /* shorter pieces sit centred */
     scroll-snap-type:x mandatory;
     -webkit-overflow-scrolling:touch;
     scrollbar-width:none;overscroll-behavior-x:contain;
@@ -1290,27 +1305,41 @@ html.touch .tip-touch{display:inline;}
     /* 'normal' rather than 'always': some sections run to 30-odd pieces and
        a hard flick should be able to cover ground */
     scroll-snap-align:center;scroll-snap-stop:normal;
-    /* most of the artwork is a 0.71 portrait, so at full width it meets both
-       edges exactly; a landscape piece letterboxes against the page itself */
-    aspect-ratio:0.707;
+    /* no fixed card box: the height follows each picture, so every piece is
+       exactly one screen wide and meets both edges whatever its shape, with
+       nothing cropped. A very tall piece is capped by the img rule below. */
+    height:auto;
     display:flex;align-items:center;justify-content:center;
     background:none;border:none;border-radius:0;overflow:hidden;
     box-shadow:none;
     transition:none;will-change:auto;
   }
+  /* the looping copies are scenery — never a tap target */
+  .gallery.stack-mode.ph-carousel figure.ph-clone{pointer-events:none;}
   .gallery.stack-mode.ph-carousel figure img{
-    width:100%;height:100%;
+    width:100%;height:auto;
+    max-height:78vh;                    /* only an unusually tall piece hits this */
     object-fit:contain;                 /* artwork is never cropped */
     border-radius:0;
   }
 
   /* page dots, in place of the deck's "3 / 12" counter */
-  .ph-scene + .stack-cap{margin-top:14px;}
-  .stack-ui{flex-direction:column;gap:5px;}
-  /* a fixed seven-dot window; the strip slides underneath it */
+  /* the caption block reads like an Instagram post's: left aligned, sitting
+     in from the edge, with room above and below it */
+  .ph-scene + .stack-cap{
+    margin-top:16px;padding:0 16px;
+    text-align:left;min-height:0;
+  }
+  .ph-scene + .stack-cap .t{margin-bottom:5px;}
+  .ph-scene + .stack-cap .d{max-width:none;margin:0;}
+  .ph-scene + .stack-cap + .stack-ui{margin-top:14px;padding-bottom:4px;}
+  .stack-ui{flex-direction:column;gap:5px;align-items:center;}
+  /* a fixed seven-dot window; the strip slides underneath it.
+     The side padding matters: the active dot scales to 1.3 and the window
+     clips at its padding edge, so without it the end dots lose a sliver. */
   .ph-dots{
-    width:calc(7 * 6px + 6 * 7px);max-width:100%;
-    overflow:hidden;padding:3px 0;margin:0 auto;
+    width:calc(7 * 6px + 6 * 7px + 12px);max-width:100%;
+    overflow:hidden;padding:3px 6px;margin:0 auto;
   }
   .ph-dots .strip{
     display:flex;gap:7px;
@@ -1361,7 +1390,11 @@ html.touch .tip-touch{display:inline;}
     margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);
   }
   .gallery:not(.stack-mode):not(.vidgal):not(.icons):has(figure:only-of-type) > figure{
-    margin:0 !important;border-radius:0;box-shadow:none;
+    margin:0 !important;box-shadow:none;
+    border-radius:0 !important;       /* full bleed, so no rounded corners */
+  }
+  .gallery:not(.stack-mode):not(.vidgal):not(.icons):has(figure:only-of-type) > figure img{
+    border-radius:0 !important;
   }
 
   /* ── videos → vertical feed ──────────────────────────── */
@@ -1447,13 +1480,24 @@ html.touch .tip-touch{display:inline;}
   .ph-player{position:relative;}
   .ph-player video{background:#000;}
   .ph-player .ph-bar{
-    position:absolute;left:0;right:0;bottom:0;height:2.5px;
-    background:rgba(255,255,255,0.22);z-index:6;pointer-events:none;
+    position:absolute;left:0;right:0;bottom:0;height:4px;
+    background:color-mix(in srgb, var(--accent) 24%, transparent);
+    z-index:6;pointer-events:none;
   }
   .ph-player .ph-bar i{
-    display:block;height:100%;width:0;
-    background:var(--on-accent-hi);transition:width 0.12s linear;
+    display:block;position:relative;height:100%;width:0;
+    background:var(--accent);transition:width 0.12s linear;
   }
+  /* a knob riding the leading edge, like a scrubber */
+  .ph-player .ph-bar i::after{
+    content:'';position:absolute;right:-5px;top:50%;
+    width:10px;height:10px;border-radius:50%;
+    background:var(--accent);transform:translateY(-50%);
+  }
+  /* the single videos carry their caption above the bar — give the two some
+     air, and drop the section rule that was sitting just under it */
+  .vidwrap.ph-player{padding-bottom:22px;}
+  .sec:has(.vidwrap.ph-player){border-bottom:none;}
   .ph-player .ph-play{
     position:absolute;inset:0;z-index:5;
     display:flex;align-items:center;justify-content:center;

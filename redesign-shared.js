@@ -384,6 +384,9 @@
       if(!dots) return;
       var kids=[].slice.call(strip.children);
       if(n<=DOT_WIN){
+        /* fewer dots than the window holds: shrink the window to fit them, or
+           margin:auto centres an 84px box with the dots hugging its left edge */
+        dots.style.width='auto';
         strip.style.transform='';
         kids.forEach(function(d,i){
           d.className=(i===front?'on':'');
@@ -392,6 +395,7 @@
       }
       /* slide the strip so the current dot stays near the middle, shrinking
          the two at the edges — the way Instagram fades its overflow dots */
+      dots.style.width='';
       var half=Math.floor(DOT_WIN/2);
       var anchor=Math.min(Math.max(front,half), n-1-half);
       strip.style.transform='translateX('+(-(anchor-half)*DOT_STEP)+'px)';
@@ -404,6 +408,53 @@
         d.className=cls.join(' ');
       });
     }
+    /* ── looping ──
+       A copy of the last card sits before the first and a copy of the first
+       sits after the last. Settle on a copy and we jump to the real card it
+       stands for, with snapping switched off for that one frame so the browser
+       does not animate the correction. The seam is invisible because the copy
+       and its original are the same picture. */
+    var cloneHead=null, cloneTail=null;
+    function buildLoop(){
+      if(cloneHead||n<2) return;
+      cloneHead=figs[n-1].cloneNode(true);
+      cloneTail=figs[0].cloneNode(true);
+      [cloneHead,cloneTail].forEach(function(c){
+        c.classList.add('ph-clone');
+        c.setAttribute('aria-hidden','true');
+        c.removeAttribute('data-year');
+        [].slice.call(c.querySelectorAll('img')).forEach(function(im){ im.loading='eager'; });
+      });
+      gal.insertBefore(cloneHead, gal.firstChild);
+      gal.appendChild(cloneTail);
+    }
+    function dropLoop(){
+      [cloneHead,cloneTail].forEach(function(c){ if(c&&c.parentNode) c.parentNode.removeChild(c); });
+      cloneHead=cloneTail=null;
+    }
+    function jumpTo(i){
+      front=(i+n)%n;
+      var f=figs[front];
+      gal.style.scrollSnapType='none';
+      gal.scrollLeft=f.offsetLeft-(gal.clientWidth-f.offsetWidth)/2;
+      requestAnimationFrame(function(){ gal.style.scrollSnapType=''; });
+      paintCaption(); syncDots(); warm();
+    }
+    /* park on the real first card rather than the clone that precedes it */
+    function ensureStart(){
+      if(!cloneHead||!gal.classList.contains('ph-carousel')) return;
+      var f=figs[front]; if(!f||!f.offsetWidth) return;
+      var want=f.offsetLeft-(gal.clientWidth-f.offsetWidth)/2;
+      if(gal.scrollLeft<4 && want>4) jumpTo(front);
+    }
+    function onCloneAtMiddle(){
+      var mid=gal.scrollLeft+gal.clientWidth/2;
+      function isOn(c){ return c && Math.abs((c.offsetLeft+c.offsetWidth/2)-mid) < c.offsetWidth*0.5; }
+      if(isOn(cloneHead)) return n-1;      /* fell off the start → real last */
+      if(isOn(cloneTail)) return 0;        /* ran off the end  → real first */
+      return -1;
+    }
+
     /* which card is nearest the middle of the scroller */
     function nearestCard(){
       var mid=gal.scrollLeft+gal.clientWidth/2, best=0, bd=Infinity;
@@ -419,6 +470,8 @@
       if(!gal.classList.contains('ph-carousel')) return;
       clearTimeout(scrollTick);
       scrollTick=setTimeout(function(){
+        var wrap=onCloneAtMiddle();
+        if(wrap>=0){ jumpTo(wrap); return; }
         var i=nearestCard();
         if(i!==front){ front=i; paintCaption(); syncDots(); warm(); }
       },70);
@@ -485,7 +538,7 @@
       gal.classList.toggle('ph-carousel',phCar);
       gal.classList.toggle('ph-feed',phFeed);
       scene.classList.toggle('ph-scene',phCar||phFeed);
-      if(phCar){ buildDots(); }
+      if(phCar){ buildDots(); buildLoop(); } else { dropLoop(); }
       if(dots) dots.style.display=phCar?'':'none';
       cap.style.display=(stack&&!phFeed)?'':'none';
       ui.style.display=(stack&&!phFeed)?'':'none';
@@ -495,6 +548,15 @@
       if(stack){
         gal.style.columnCount=''; gal.style.maxWidth='';
         update();
+        /* the leading clone means card one is not at scrollLeft 0 any more.
+           Layout may not be settled yet, so nudge it a few times and stop as
+           soon as it has taken — the guard only fires from the un-scrolled
+           state, so it can never yank the page out from under a swipe. */
+        if(phCar){
+          ensureStart();
+          requestAnimationFrame(ensureStart);
+          [60,250,800].forEach(function(ms){ setTimeout(ensureStart,ms); });
+        }
       } else {
         figs.forEach(function(f){
           f.style.transform=''; f.style.zIndex=''; f.style.filter='';
