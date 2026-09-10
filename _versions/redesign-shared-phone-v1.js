@@ -256,11 +256,6 @@
     [120,320,600].forEach(function(ms){ setTimeout(settle,ms); });
   }
 
-  /* A phone gets a different stack view entirely: images become an Instagram
-     -style snap carousel, videos a TikTok-style vertical feed. Everything from
-     601px up keeps the fanned deck exactly as it was. */
-  function isPhone(){ return window.matchMedia('(max-width: 600px)').matches; }
-
   [].slice.call(document.querySelectorAll('.gallery')).forEach(function(gal){
     if(gal.classList.contains('icons')) return;           /* icon grid stays a grid */
     var figs=[].slice.call(gal.querySelectorAll('figure')).filter(function(f){
@@ -303,16 +298,6 @@
 
     function update(){
       var wide=!window.matchMedia('(max-width: 820px)').matches;
-      if(isPhone()){
-        /* the carousel and the feed lay themselves out in CSS — the deck's
-           inline transforms would fight the scroller, so clear them */
-        figs.forEach(function(f){
-          f.style.transform=''; f.style.zIndex=''; f.style.filter='';
-          f.style.opacity=''; f.style.pointerEvents='';
-        });
-        paintCaption(); syncDots();
-        return;
-      }
       figs.forEach(function(f,i){
         var pos=(i-front+n)%n;
         var rot=ROTS[Math.min(pos,ROTS.length-1)];
@@ -329,9 +314,6 @@
         f.style.opacity=pos<5?1:0;
         f.style.pointerEvents=pos===0?'auto':'none';
       });
-      paintCaption();
-    }
-    function paintCaption(){
       var fc=figs[front];
       var st=fc.querySelector('figcaption .t'), sd=fc.querySelector('figcaption .d');
       cap.querySelector('.t').textContent=st?st.textContent:'';
@@ -341,86 +323,7 @@
       /* the section's year follows the card you're on, falling back to its own */
       if(yearEl) yearEl.textContent=fc.getAttribute('data-year')||yearEl.getAttribute('data-default')||'';
     }
-
-    /* ── phone carousel: page dots, and the caption follows the scroll ── */
-    var dots=null, strip=null;
-    var DOT_STEP=13;          /* 6px dot + 7px gap */
-    var DOT_WIN=7;            /* how many are on screen at once */
-    function buildDots(){
-      if(dots) return;
-      dots=document.createElement('div');
-      dots.className='ph-dots';
-      strip=document.createElement('div');
-      strip.className='strip';
-      for(var i=0;i<n;i++){
-        var d=document.createElement('i');
-        d.setAttribute('data-i',i);
-        strip.appendChild(d);
-      }
-      dots.appendChild(strip);
-      dots.addEventListener('click',function(e){
-        var t=e.target.closest('i'); if(!t) return;
-        show(parseInt(t.getAttribute('data-i'),10));
-      });
-      /* a long gallery keeps its counter as well — seven dots cannot carry
-         "where am I" across thirty-odd pieces on their own */
-      ui.classList.toggle('many', n>DOT_WIN);
-      ui.insertBefore(dots, ui.firstChild);
-    }
-    function syncDots(){
-      if(!dots) return;
-      var kids=[].slice.call(strip.children);
-      if(n<=DOT_WIN){
-        strip.style.transform='';
-        kids.forEach(function(d,i){
-          d.className=(i===front?'on':'');
-        });
-        return;
-      }
-      /* slide the strip so the current dot stays near the middle, shrinking
-         the two at the edges — the way Instagram fades its overflow dots */
-      var half=Math.floor(DOT_WIN/2);
-      var anchor=Math.min(Math.max(front,half), n-1-half);
-      strip.style.transform='translateX('+(-(anchor-half)*DOT_STEP)+'px)';
-      kids.forEach(function(d,i){
-        var rel=i-(anchor-half);
-        var cls=[];
-        if(rel<0||rel>DOT_WIN-1) cls.push('hid');
-        else if(rel===0||rel===DOT_WIN-1) cls.push('sm');
-        if(i===front) cls.push('on');
-        d.className=cls.join(' ');
-      });
-    }
-    /* which card is nearest the middle of the scroller */
-    function nearestCard(){
-      var mid=gal.scrollLeft+gal.clientWidth/2, best=0, bd=Infinity;
-      figs.forEach(function(f,i){
-        var c=f.offsetLeft+f.offsetWidth/2;
-        var d=Math.abs(c-mid);
-        if(d<bd){ bd=d; best=i; }
-      });
-      return best;
-    }
-    var scrollTick=null;
-    gal.addEventListener('scroll',function(){
-      if(!gal.classList.contains('ph-carousel')) return;
-      clearTimeout(scrollTick);
-      scrollTick=setTimeout(function(){
-        var i=nearestCard();
-        if(i!==front){ front=i; paintCaption(); syncDots(); }
-      },70);
-    },{passive:true});
-
-    function show(i){
-      front=(i+n)%n;
-      if(gal.classList.contains('ph-carousel')){
-        var f=figs[front];
-        gal.scrollTo({left:f.offsetLeft-(gal.clientWidth-f.offsetWidth)/2,behavior:'smooth'});
-        paintCaption(); syncDots();
-        return;
-      }
-      update();
-    }
+    function show(i){ front=(i+n)%n; update(); }
 
     /* CSS columns balance greedily, so a short gallery can leave its last
        column empty — the container stays centred but the artwork sits off to
@@ -466,16 +369,8 @@
       var stack=(m==='stack');
       gal.classList.toggle('stack-mode',stack);
       scene.classList.toggle('is-stack',stack);
-      /* phone stack view: a carousel for artwork, a vertical feed for video */
-      var vid=gal.classList.contains('vidgal');
-      var phCar=stack&&isPhone()&&!vid, phFeed=stack&&isPhone()&&vid;
-      gal.classList.toggle('ph-carousel',phCar);
-      gal.classList.toggle('ph-feed',phFeed);
-      scene.classList.toggle('ph-scene',phCar||phFeed);
-      if(phCar){ buildDots(); }
-      if(dots) dots.style.display=phCar?'':'none';
-      cap.style.display=(stack&&!phFeed)?'':'none';
-      ui.style.display=(stack&&!phFeed)?'':'none';
+      cap.style.display=stack?'':'none';
+      ui.style.display=stack?'':'none';
       [].slice.call(tog.children).forEach(function(b){
         b.classList.toggle('active', b.getAttribute('data-v')===m);
       });
@@ -522,13 +417,7 @@
       if(Math.abs(acc)>60){ show(front+(acc>0?1:-1)); acc=0; cool=now+600; }
     },{passive:false});
 
-    var wasPhone=isPhone();
     window.addEventListener('resize',function(){
-      if(isPhone()!==wasPhone){                 /* crossed the phone boundary */
-        wasPhone=isPhone();
-        setMode(gal.classList.contains('stack-mode')?'stack':'gallery');
-        return;
-      }
       if(gal.classList.contains('stack-mode')) update(); else fitColumns();
     });
     /* images arrive after layout, so re-fit once they have real heights */
@@ -817,15 +706,7 @@
    no holes, and a card sits directly under the one it followed. Phone only. ── */
 (function(){
   var mq=window.matchMedia('(max-width: 600px)');
-  /* On a phone every gallery is a two-column Pinterest wall, so the packer
-     runs on all of them; above 600px it stays on the .masonry sections only. */
-  function packTargets(){
-    var sel=window.matchMedia('(max-width: 600px)').matches
-      ? '.gallery:not(.vidgal):not(.icons)'
-      : '.gallery.masonry';
-    return [].slice.call(document.querySelectorAll(sel));
-  }
-  var gals=packTargets();
+  var gals=[].slice.call(document.querySelectorAll('.gallery.masonry'));
   if(!gals.length) return;
   gals.forEach(function(g){ g.__orig=[].slice.call(g.children); });
 
@@ -835,9 +716,6 @@
   function pack(g){
     reset(g);
     if(!mq.matches) return;
-    /* a carousel or a video feed lays itself out — leave those alone */
-    if(g.classList.contains('stack-mode')||g.classList.contains('ph-carousel')
-       ||g.classList.contains('ph-feed')) return;
     var seq=g.__orig.slice();
     /* the campaign photos read portraits first, then the shorter landscapes */
     if(g.classList.contains('flow')){
@@ -876,11 +754,7 @@
        short the overflow spills into extra columns off the side of the page. */
     colB[0].style.breakBefore='column';
   }
-  function all(){
-    gals=packTargets();
-    gals.forEach(function(g){ if(!g.__orig) g.__orig=[].slice.call(g.children); });
-    gals.forEach(pack);
-  }
+  function all(){ gals.forEach(pack); }
   window.addEventListener('resize',function(){ clearTimeout(window.__mT); window.__mT=setTimeout(all,150); });
   window.addEventListener('load',all);
   /* re-pack as each image resolves */
@@ -922,70 +796,4 @@
       setTimeout(function(){ b.classList.remove('cta-run'); busy=false; },900);
     },520);
   },{passive:false,capture:true});
-})();
-
-/* ── phone video: hold a side for 2×, and pause what scrolls off ──
-   Holding either edge of a clip doubles its speed while your finger is down,
-   the way Instagram and TikTok do; a short tap is left alone so the player's
-   own controls still work. Only on a phone. ── */
-(function(){
-  function isPhone(){ return window.matchMedia('(max-width: 600px)').matches; }
-  var HOLD=280, timer=null, active=null, pill=null;
-
-  function showPill(fig){
-    if(!pill){
-      pill=document.createElement('div');
-      pill.className='ph-speed';
-      pill.textContent='2\u00d7';
-      document.body.appendChild(pill);
-    }
-    var r=fig.getBoundingClientRect();
-    pill.style.top=Math.round(r.top+14)+'px';
-    pill.classList.add('on');
-  }
-  function hidePill(){ if(pill) pill.classList.remove('on'); }
-
-  function release(){
-    clearTimeout(timer);
-    if(active){ try{ active.playbackRate=1; }catch(e){} active=null; hidePill(); }
-  }
-
-  document.addEventListener('touchstart',function(e){
-    if(!isPhone()||!e.target.closest) return;
-    var fig=e.target.closest('.vidgal figure');
-    if(!fig) return;
-    var v=fig.querySelector('video'); if(!v) return;
-    var r=fig.getBoundingClientRect();
-    var x=e.touches[0].clientX-r.left;
-    /* the middle third is the player's own business — edges only */
-    if(x>r.width*0.32 && x<r.width*0.68) return;
-    clearTimeout(timer);
-    timer=setTimeout(function(){
-      if(v.paused) return;                 /* nothing to speed up */
-      active=v; v.playbackRate=2; showPill(fig);
-    },HOLD);
-  },{passive:true,capture:true});
-
-  ['touchend','touchcancel','touchmove'].forEach(function(ev){
-    document.addEventListener(ev,release,{passive:true,capture:true});
-  });
-
-  /* a clip that scrolls out of the feed stops playing, as it would on TikTok */
-  if('IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(entries){
-      if(!isPhone()) return;
-      entries.forEach(function(en){
-        if(en.isIntersecting) return;
-        var v=en.target.querySelector('video');
-        if(v&&!v.paused) v.pause();
-      });
-    },{threshold:0.35});
-    function watch(){
-      [].slice.call(document.querySelectorAll('.vidgal figure')).forEach(function(f){
-        if(f.__vwatch) return; f.__vwatch=1; io.observe(f);
-      });
-    }
-    if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',watch);
-    else watch();
-  }
 })();
