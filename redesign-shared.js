@@ -310,7 +310,7 @@
           f.style.transform=''; f.style.zIndex=''; f.style.filter='';
           f.style.opacity=''; f.style.pointerEvents='';
         });
-        paintCaption(); syncDots();
+        paintCaption(); syncDots(); warm();
         return;
       }
       figs.forEach(function(f,i){
@@ -330,6 +330,19 @@
         f.style.pointerEvents=pos===0?'auto':'none';
       });
       paintCaption();
+    }
+    /* pull in the cards on either side before you reach them — with lazy
+       loading alone a swipe lands on a blank card while the file downloads */
+    function warm(){
+      for(var k=-2;k<=2;k++){
+        var f=figs[(front+k+n)%n];
+        if(!f) continue;
+        [].slice.call(f.querySelectorAll('img')).forEach(function(im){
+          if(im.__warm) return; im.__warm=1;
+          im.loading='eager';
+          if(im.decode) im.decode().catch(function(){});
+        });
+      }
     }
     function paintCaption(){
       var fc=figs[front];
@@ -407,7 +420,7 @@
       clearTimeout(scrollTick);
       scrollTick=setTimeout(function(){
         var i=nearestCard();
-        if(i!==front){ front=i; paintCaption(); syncDots(); }
+        if(i!==front){ front=i; paintCaption(); syncDots(); warm(); }
       },70);
     },{passive:true});
 
@@ -416,7 +429,7 @@
       if(gal.classList.contains('ph-carousel')){
         var f=figs[front];
         gal.scrollTo({left:f.offsetLeft-(gal.clientWidth-f.offsetWidth)/2,behavior:'smooth'});
-        paintCaption(); syncDots();
+        paintCaption(); syncDots(); warm();
         return;
       }
       update();
@@ -924,13 +937,14 @@
   },{passive:false,capture:true});
 })();
 
-/* ── phone video: hold a side for 2×, and pause what scrolls off ──
-   Holding either edge of a clip doubles its speed while your finger is down,
-   the way Instagram and TikTok do; a short tap is left alone so the player's
-   own controls still work. Only on a phone. ── */
+/* ── phone video: a TikTok-style player ──
+   The native control bar is a desktop artefact on a phone, so on a phone the
+   videos lose it: tap toggles play/pause, holding either edge runs at 2x while
+   your finger is down, a hairline bar shows progress, and a clip pauses itself
+   when it scrolls out of view. Above 600px the normal controls are untouched. ── */
 (function(){
   function isPhone(){ return window.matchMedia('(max-width: 600px)').matches; }
-  var HOLD=280, timer=null, active=null, pill=null;
+  var HOLD=280, timer=null, active=null, pill=null, held=false, startFig=null;
 
   function showPill(fig){
     if(!pill){
@@ -940,34 +954,81 @@
       document.body.appendChild(pill);
     }
     var r=fig.getBoundingClientRect();
-    pill.style.top=Math.round(r.top+14)+'px';
+    pill.style.top=Math.round(Math.max(14,r.top+14))+'px';
     pill.classList.add('on');
   }
   function hidePill(){ if(pill) pill.classList.remove('on'); }
 
-  function release(){
-    clearTimeout(timer);
-    if(active){ try{ active.playbackRate=1; }catch(e){} active=null; hidePill(); }
+  /* dress a video: drop the native chrome, add the glyph and the progress bar */
+  function dress(host){
+    if(host.__dressed) return;
+    var v=host.querySelector('video'); if(!v) return;
+    host.__dressed=1;
+    host.classList.add('ph-player','paused');
+    v.removeAttribute('controls');
+    var play=document.createElement('div');
+    play.className='ph-play'; play.innerHTML='<span></span>';
+    var bar=document.createElement('div');
+    bar.className='ph-bar'; bar.innerHTML='<i></i>';
+    host.appendChild(play); host.appendChild(bar);
+    var fill=bar.firstChild;
+    v.addEventListener('timeupdate',function(){
+      if(v.duration) fill.style.width=(v.currentTime/v.duration*100)+'%';
+    });
+    v.addEventListener('play',function(){ host.classList.remove('paused'); });
+    v.addEventListener('pause',function(){ host.classList.add('paused'); });
+    v.addEventListener('ended',function(){ host.classList.add('paused'); });
+  }
+  function undress(host){
+    if(!host.__dressed) return;
+    host.__dressed=0;
+    host.classList.remove('ph-player','paused');
+    var v=host.querySelector('video');
+    if(v) v.setAttribute('controls','');
+    [].slice.call(host.querySelectorAll('.ph-play,.ph-bar')).forEach(function(n){ n.remove(); });
+  }
+  function hosts(){
+    return [].slice.call(document.querySelectorAll('.vidgal figure, .vidwrap'));
+  }
+  function apply(){
+    hosts().forEach(isPhone()?dress:undress);
   }
 
   document.addEventListener('touchstart',function(e){
     if(!isPhone()||!e.target.closest) return;
-    var fig=e.target.closest('.vidgal figure');
-    if(!fig) return;
-    var v=fig.querySelector('video'); if(!v) return;
-    var r=fig.getBoundingClientRect();
+    var host=e.target.closest('.ph-player');
+    if(!host) return;
+    var v=host.querySelector('video'); if(!v) return;
+    startFig=host; held=false;
+    var r=host.getBoundingClientRect();
     var x=e.touches[0].clientX-r.left;
-    /* the middle third is the player's own business — edges only */
-    if(x>r.width*0.32 && x<r.width*0.68) return;
     clearTimeout(timer);
+    /* the middle third stays a plain tap target; the edges are the 2x zones */
+    if(x>r.width*0.32 && x<r.width*0.68) return;
     timer=setTimeout(function(){
       if(v.paused) return;                 /* nothing to speed up */
-      active=v; v.playbackRate=2; showPill(fig);
+      held=true; active=v; v.playbackRate=2; showPill(host);
     },HOLD);
   },{passive:true,capture:true});
 
-  ['touchend','touchcancel','touchmove'].forEach(function(ev){
-    document.addEventListener(ev,release,{passive:true,capture:true});
+  document.addEventListener('touchend',function(e){
+    clearTimeout(timer);
+    if(active){ try{ active.playbackRate=1; }catch(err){} active=null; hidePill(); }
+    if(!isPhone()||held||!startFig) { held=false; startFig=null; return; }
+    var host=e.target.closest&&e.target.closest('.ph-player');
+    if(host&&host===startFig){
+      var v=host.querySelector('video');
+      if(v){ if(v.paused) { var p=v.play(); if(p&&p.catch) p.catch(function(){}); } else v.pause(); }
+    }
+    startFig=null;
+  },{passive:true,capture:true});
+
+  ['touchcancel','touchmove'].forEach(function(ev){
+    document.addEventListener(ev,function(){
+      clearTimeout(timer);
+      if(active){ try{ active.playbackRate=1; }catch(err){} active=null; hidePill(); }
+      startFig=null;
+    },{passive:true,capture:true});
   });
 
   /* a clip that scrolls out of the feed stops playing, as it would on TikTok */
@@ -980,12 +1041,14 @@
         if(v&&!v.paused) v.pause();
       });
     },{threshold:0.35});
-    function watch(){
-      [].slice.call(document.querySelectorAll('.vidgal figure')).forEach(function(f){
-        if(f.__vwatch) return; f.__vwatch=1; io.observe(f);
-      });
-    }
+    var watch=function(){
+      hosts().forEach(function(f){ if(f.__vwatch) return; f.__vwatch=1; io.observe(f); });
+    };
     if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',watch);
     else watch();
   }
+
+  window.addEventListener('resize',function(){ clearTimeout(window.__vpT); window.__vpT=setTimeout(apply,180); });
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',apply);
+  else apply();
 })();
