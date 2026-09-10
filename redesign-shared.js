@@ -83,6 +83,13 @@
     try{ window.scrollTo(0,0); }catch(e){}
     if(window.RD_REPLAY) window.RD_REPLAY();
     if(window.__retype) window.__retype.forEach(function(f){ f(); });
+    if(window.__deckReset) window.__deckReset();
+    /* nothing should still be playing, or half played, from last time */
+    [].slice.call(document.querySelectorAll('video')).forEach(function(v){
+      try{ v.pause(); v.currentTime=0; }catch(e){}
+    });
+    [].slice.call(document.querySelectorAll('.ph-bar i')).forEach(function(f){ f.style.width='0'; });
+    [].slice.call(document.querySelectorAll('.ph-feed')).forEach(function(f){ f.scrollTop=0; });
   });
 })();
 
@@ -104,7 +111,7 @@
     var scope=fig.closest('.gallery')||fig;
     var figs=scope.classList&&scope.classList.contains('gallery')
       ? [].slice.call(scope.querySelectorAll('figure')).filter(function(f){
-          return !f.classList.contains('g-break');
+          return !f.classList.contains('g-break') && !f.classList.contains('ph-clone');
         })
       : [fig];
     group=figs.map(function(f){
@@ -462,11 +469,19 @@
     var wrapping=false;
     function wrapIfPastEnd(){
       if(!cloneHead||wrapping||n<2) return;
+      var W=figs[0].offsetWidth||gal.clientWidth;
       var first=figs[0].offsetLeft, last=figs[n-1].offsetLeft;
-      var strip=last-first+figs[0].offsetWidth;      /* the real cards' width */
+      var strip=last-first+W;                        /* the real cards' width */
       var sl=gal.scrollLeft;
-      if(sl>last+2){ wrapping=true; gal.scrollLeft=sl-strip; wrapping=false; }
-      else if(sl<first-2){ wrapping=true; gal.scrollLeft=sl+strip; wrapping=false; }
+      /* The thresholds sit a FULL card beyond the real range — on the copies
+         themselves. Anything closer overlaps: correcting a scroll just past
+         the last card lands it just before the first, which immediately trips
+         the other correction and throws it back. That ping-pong pinned the
+         scroll and is why it looked like the carousel stopped at the last
+         card. A copy is a whole snap position, so landing on one and
+         correcting from it is still seamless — it holds the same picture. */
+      if(sl>=last+W-2){ wrapping=true; gal.scrollLeft=sl-strip; wrapping=false; }
+      else if(sl<=first-W+2){ wrapping=true; gal.scrollLeft=sl+strip; wrapping=false; }
     }
 
     /* which card is nearest the middle of the scroller */
@@ -625,11 +640,21 @@
       if(!im.complete) im.addEventListener('load',fitColumns,{once:true});
     });
 
-    decks.push({scene:scene, gal:gal, step:function(d){ show(front+d); }});
+    decks.push({scene:scene, gal:gal, step:function(d){ show(front+d); },
+      reset:function(){
+        front=0;
+        setMode('stack');
+        if(gal.classList.contains('ph-carousel')) jumpTo(0); else update();
+      }});
     setMode('stack');   /* the original defaults to stack view */
   });
 
   /* ← / → / space drive whichever deck is nearest the middle of the screen */
+  /* back-navigation restores this page from the cache with everything exactly
+     where it was — send each deck back to its first card */
+  window.__deckReset=function(){
+    decks.forEach(function(k){ if(k.reset) try{ k.reset(); }catch(e){} });
+  };
   window.__deckStep=function(d){
     var best=null,bestDist=Infinity;
     decks.forEach(function(k){
@@ -681,6 +706,9 @@
    returns to the top of the page when the tip is dismissed. ── */
 (function(){
   var o=document.getElementById('tip-overlay'); if(!o) return;
+  /* some tips only describe phone behaviour — never show those anywhere else */
+  if(o.classList.contains('tip-phone-only')
+     && !window.matchMedia('(max-width: 600px)').matches) return;
   var sw=o.querySelector('#tip-swipe-section');
   /* the swipe half only makes sense on touch-ish widths, as in the original */
   if(sw && !window.matchMedia('(max-width:1380px)').matches) sw.style.display='none';
@@ -916,17 +944,25 @@
   }
   var gals=packTargets();
   if(!gals.length) return;
-  gals.forEach(function(g){ g.__orig=[].slice.call(g.children); });
+  /* same filter as in all() below — this capture runs first, so without it
+     the loop copies are baked in as original content and reappear in gallery */
+  gals.forEach(function(g){
+    g.__orig=[].slice.call(g.children).filter(function(c){
+      return !(c.classList && c.classList.contains('ph-clone'));
+    });
+  });
 
   function reset(g){
     g.__orig.forEach(function(n){ n.style.breakBefore=''; g.appendChild(n); });
   }
   function pack(g){
-    reset(g);
-    if(!mq.matches) return;
-    /* a carousel or a video feed lays itself out — leave those alone */
+    /* a carousel or a video feed lays itself out — leave those alone, and in
+       particular do not re-append their children, which would shuffle the
+       loop copies out of place */
     if(g.classList.contains('stack-mode')||g.classList.contains('ph-carousel')
        ||g.classList.contains('ph-feed')) return;
+    reset(g);
+    if(!mq.matches) return;
     var seq=g.__orig.slice();
     /* the campaign photos read portraits first, then the shorter landscapes */
     if(g.classList.contains('flow')){
@@ -967,7 +1003,14 @@
   }
   function all(){
     gals=packTargets();
-    gals.forEach(function(g){ if(!g.__orig) g.__orig=[].slice.call(g.children); });
+    gals.forEach(function(g){
+      /* the carousel's loop copies are not content — captured into __orig they
+         get re-appended on every pack, which is how gallery view ended up
+         showing each piece twice */
+      if(!g.__orig) g.__orig=[].slice.call(g.children).filter(function(c){
+        return !(c.classList && c.classList.contains('ph-clone'));
+      });
+    });
     gals.forEach(pack);
   }
   window.addEventListener('resize',function(){ clearTimeout(window.__mT); window.__mT=setTimeout(all,150); });

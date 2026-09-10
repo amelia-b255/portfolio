@@ -1274,6 +1274,8 @@ html.touch .tip-touch{display:inline;}
     -webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);
     color:#f4e6dd;font-size:17px;line-height:1;opacity:0.5;
   }
+  /* the video feed scrolls down, not sideways — no chevrons there */
+  .ph-scene:has(.ph-feed) .stack-nav{display:none;}
   .ph-scene .stack-nav.sp{left:8px;}
   .ph-scene .stack-nav.sn{right:8px;}
   .ph-scene .stack-nav:active{opacity:0.85;}
