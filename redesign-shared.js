@@ -435,9 +435,13 @@
     function jumpTo(i){
       front=(i+n)%n;
       var f=figs[front];
-      gal.style.scrollSnapType='none';
-      gal.scrollLeft=f.offsetLeft-(gal.clientWidth-f.offsetWidth)/2;
-      requestAnimationFrame(function(){ gal.style.scrollSnapType=''; });
+      /* an instant scrollTo lands exactly on a snap point, so snapping never
+         has to be switched off — the old version turned it off for a frame and
+         restored it on rAF, and any missed frame left the carousel free
+         scrolling with no snap at all */
+      try{ gal.scrollTo({left:f.offsetLeft-(gal.clientWidth-f.offsetWidth)/2,behavior:'instant'}); }
+      catch(e){ gal.scrollLeft=f.offsetLeft-(gal.clientWidth-f.offsetWidth)/2; }
+      gal.style.scrollSnapType='';        /* clear any stuck override */
       paintCaption(); syncDots(); warm();
     }
     /* park on the real first card rather than the clone that precedes it */

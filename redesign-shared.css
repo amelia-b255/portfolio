@@ -1326,13 +1326,23 @@ html.touch .tip-touch{display:inline;}
   /* page dots, in place of the deck's "3 / 12" counter */
   /* the caption block reads like an Instagram post's: left aligned, sitting
      in from the edge, with room above and below it */
+  /* title, description and dots share one panel under the picture, the way a
+     post's caption block sits under its image */
   .ph-scene + .stack-cap{
-    margin-top:16px;padding:0 16px;
+    margin:14px 12px 0;padding:14px 16px 10px;
     text-align:left;min-height:0;
+    background:var(--paper-lift);
+    border:1px solid var(--hair);border-bottom:none;
+    border-radius:12px 12px 0 0;
   }
   .ph-scene + .stack-cap .t{margin-bottom:5px;}
   .ph-scene + .stack-cap .d{max-width:none;margin:0;}
-  .ph-scene + .stack-cap + .stack-ui{margin-top:14px;padding-bottom:4px;}
+  .ph-scene + .stack-cap + .stack-ui{
+    margin:0 12px;padding:9px 16px 12px;
+    background:var(--paper-lift);
+    border:1px solid var(--hair);border-top:none;
+    border-radius:0 0 12px 12px;
+  }
   .stack-ui{flex-direction:column;gap:5px;align-items:center;}
   /* a fixed seven-dot window; the strip slides underneath it.
      The side padding matters: the active dot scales to 1.3 and the window
