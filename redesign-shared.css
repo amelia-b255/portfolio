@@ -1326,22 +1326,22 @@ html.touch .tip-touch{display:inline;}
   /* page dots, in place of the deck's "3 / 12" counter */
   /* the caption block reads like an Instagram post's: left aligned, sitting
      in from the edge, with room above and below it */
-  /* title, description and dots share one panel under the picture, the way a
-     post's caption block sits under its image */
+  /* title, description and dots share one plain band running straight off the
+     foot of the picture, edge to edge, a shade lighter than the page */
   .ph-scene + .stack-cap{
-    margin:14px 12px 0;padding:14px 16px 10px;
+    width:100vw;margin:0 calc(50% - 50vw);
+    padding:16px 16px 10px;
     text-align:left;min-height:0;
     background:var(--paper-lift);
-    border:1px solid var(--hair);border-bottom:none;
-    border-radius:12px 12px 0 0;
+    border:none;border-radius:0;
   }
   .ph-scene + .stack-cap .t{margin-bottom:5px;}
   .ph-scene + .stack-cap .d{max-width:none;margin:0;}
   .ph-scene + .stack-cap + .stack-ui{
-    margin:0 12px;padding:9px 16px 12px;
+    width:100vw;margin:0 calc(50% - 50vw);
+    padding:9px 16px 16px;
     background:var(--paper-lift);
-    border:1px solid var(--hair);border-top:none;
-    border-radius:0 0 12px 12px;
+    border:none;border-radius:0;
   }
   .stack-ui{flex-direction:column;gap:5px;align-items:center;}
   /* a fixed seven-dot window; the strip slides underneath it.
@@ -1495,9 +1495,13 @@ html.touch .tip-touch{display:inline;}
   .ph-player{position:relative;}
   .ph-player video{background:#000;}
   .ph-player .ph-bar{
-    position:absolute;left:0;right:0;bottom:0;height:4px;
+    position:absolute;left:0;right:0;bottom:0;
+    /* 4px of visible track with 16px of invisible padding above it, so the
+       bar is a thumb-sized target to drag without looking any thicker */
+    height:4px;padding-top:16px;box-sizing:content-box;
     background:color-mix(in srgb, var(--accent) 24%, transparent);
-    z-index:6;pointer-events:none;
+    background-clip:content-box;
+    z-index:6;pointer-events:auto;touch-action:none;
   }
   .ph-player .ph-bar i{
     display:block;position:relative;height:100%;width:0;
@@ -1519,15 +1523,13 @@ html.touch .tip-touch{display:inline;}
     pointer-events:none;opacity:0;transition:opacity 0.22s ease;
   }
   .ph-player.paused .ph-play{opacity:1;}
+  /* a bare triangle in the page's red — no disc, and nothing nudging it off
+     centre, so it sits dead centre of the frame */
   .ph-player .ph-play span{
-    width:62px;height:62px;border-radius:50%;
-    background:rgba(38,16,20,0.55);
-    -webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);
-    display:flex;align-items:center;justify-content:center;
-  }
-  .ph-player .ph-play span::after{
-    content:'';margin-left:4px;
-    border-style:solid;border-width:11px 0 11px 18px;
-    border-color:transparent transparent transparent #f4e6dd;
+    display:block;width:0;height:0;
+    border-style:solid;
+    border-width:19px 0 19px 32px;
+    border-color:transparent transparent transparent var(--accent);
+    filter:drop-shadow(0 2px 10px rgba(38,16,20,0.45));
   }
 }

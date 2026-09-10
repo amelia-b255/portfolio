@@ -451,12 +451,22 @@
       var want=f.offsetLeft-(gal.clientWidth-f.offsetWidth)/2;
       if(gal.scrollLeft<4 && want>4) jumpTo(front);
     }
-    function onCloneAtMiddle(){
-      var mid=gal.scrollLeft+gal.clientWidth/2;
-      function isOn(c){ return c && Math.abs((c.offsetLeft+c.offsetWidth/2)-mid) < c.offsetWidth*0.5; }
-      if(isOn(cloneHead)) return n-1;      /* fell off the start → real last */
-      if(isOn(cloneTail)) return 0;        /* ran off the end  → real first */
-      return -1;
+    /* True infinite scroll. The moment the scroll passes the last real card we
+       subtract one strip width, and the moment it passes the first we add one.
+       Because a copy of the last card sits before the first and a copy of the
+       first sits after the last, the pixels either side of the seam are
+       identical — so the correction is invisible even mid-swipe, and you can
+       keep going round in either direction forever. Waiting for the scroll to
+       settle before correcting, as this used to, is what made it read as a
+       rewind rather than a loop. */
+    var wrapping=false;
+    function wrapIfPastEnd(){
+      if(!cloneHead||wrapping||n<2) return;
+      var first=figs[0].offsetLeft, last=figs[n-1].offsetLeft;
+      var strip=last-first+figs[0].offsetWidth;      /* the real cards' width */
+      var sl=gal.scrollLeft;
+      if(sl>last+2){ wrapping=true; gal.scrollLeft=sl-strip; wrapping=false; }
+      else if(sl<first-2){ wrapping=true; gal.scrollLeft=sl+strip; wrapping=false; }
     }
 
     /* which card is nearest the middle of the scroller */
@@ -472,10 +482,10 @@
     var scrollTick=null;
     gal.addEventListener('scroll',function(){
       if(!gal.classList.contains('ph-carousel')) return;
+      wrapIfPastEnd();                    /* every frame, not on settle */
       clearTimeout(scrollTick);
       scrollTick=setTimeout(function(){
-        var wrap=onCloneAtMiddle();
-        if(wrap>=0){ jumpTo(wrap); return; }
+        wrapIfPastEnd();
         var i=nearestCard();
         if(i!==front){ front=i; paintCaption(); syncDots(); warm(); }
       },70);
@@ -1041,6 +1051,23 @@
     v.addEventListener('timeupdate',function(){
       if(v.duration) fill.style.width=(v.currentTime/v.duration*100)+'%';
     });
+    /* drag anywhere along the bar to scrub forward or back */
+    var dragging=false;
+    function seek(clientX){
+      var r=bar.getBoundingClientRect();
+      var p=Math.min(1,Math.max(0,(clientX-r.left)/r.width));
+      if(v.duration){ v.currentTime=p*v.duration; fill.style.width=(p*100)+'%'; }
+    }
+    bar.addEventListener('touchstart',function(e){
+      dragging=true; seek(e.touches[0].clientX);
+    },{passive:true});
+    bar.addEventListener('touchmove',function(e){
+      if(dragging) seek(e.touches[0].clientX);
+    },{passive:true});
+    ['touchend','touchcancel'].forEach(function(ev){
+      bar.addEventListener(ev,function(){ dragging=false; },{passive:true});
+    });
+    bar.addEventListener('click',function(e){ seek(e.clientX); e.stopPropagation(); });
     v.addEventListener('play',function(){ host.classList.remove('paused'); });
     v.addEventListener('pause',function(){ host.classList.add('paused'); });
     v.addEventListener('ended',function(){ host.classList.add('paused'); });
@@ -1062,6 +1089,7 @@
 
   document.addEventListener('touchstart',function(e){
     if(!isPhone()||!e.target.closest) return;
+    if(e.target.closest('.ph-bar')) return;   /* the scrubber owns its own drags */
     var host=e.target.closest('.ph-player');
     if(!host) return;
     var v=host.querySelector('video'); if(!v) return;
@@ -1078,6 +1106,7 @@
   },{passive:true,capture:true});
 
   document.addEventListener('touchend',function(e){
+    if(e.target.closest&&e.target.closest('.ph-bar')){ startFig=null; return; }
     clearTimeout(timer);
     if(active){ try{ active.playbackRate=1; }catch(err){} active=null; hidePill(); }
     if(!isPhone()||held||!startFig) { held=false; startFig=null; return; }
