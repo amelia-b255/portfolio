@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- website-drafts archive -->
+<meta name="robots" content="noindex">
+<script>
+(function(){try{
+  var P='draft-mar-2026:',S=Storage.prototype,g=S.getItem,t=S.setItem,r=S.removeItem,k=S.key;
+  S.getItem=function(x){return g.call(this,P+x);};
+  S.setItem=function(x,v){return t.call(this,P+x,v);};
+  S.removeItem=function(x){return r.call(this,P+x);};
+  S.clear=function(){for(var i=this.length-1;i>=0;i--){var kk=k.call(this,i);if(kk&&kk.indexOf(P)===0)r.call(this,kk);}};
+}catch(e){}})();
+</script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drawings - Amelia Bobbin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Cookie&display=swap" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica:ital@0;1&display=swap');
+    @import url('https://fonts.cdnfonts.com/css/made-sunflower');
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    html, body { overflow-x:hidden; max-width:100vw; width:100%; }
+
+    body{
+      font-family:'IM Fell DW Pica', serif;
+      background: linear-gradient(135deg,#f5c1cf 0%,#fceadb 20%,#e8d5ca 40%,#b4d4c3 60%,#f5e6e8 80%,#d4a5a5 100%);
+      color:#5a5a5a; font-weight:400;
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* Decorative Stars */
+    .doodle{ position:fixed; pointer-events:none; z-index:1; }
+    .star{
+      width:25px; height:25px; background:#d4a5a5; opacity:.4;
+      clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+      animation:gentleFloat 6s infinite ease-in-out;
+    }
+    .star1{top:15%;left:8%;animation-delay:0s;animation-duration:7s}
+    .star2{top:25%;right:12%;width:20px;height:20px;background:#a8c5b5;animation-delay:2s;animation-duration:8s}
+    .star3{bottom:20%;left:15%;animation-delay:4s;animation-duration:6s}
+    .star4{top:60%;right:8%;width:30px;height:30px;animation-delay:3s;animation-duration:9s}
+    .star5{top:45%;left:5%;width:18px;height:18px;background:#f5c1cf;animation-delay:1s}
+    .star6{bottom:35%;right:20%;animation-delay:5s;animation-duration:7s}
+    .star7{top:10%;right:25%;width:35px;height:35px;background:#8b475d;opacity:.3;animation-delay:2.5s}
+    .star8{bottom:40%;left:30%;width:22px;height:22px;background:#a8c5b5;animation-delay:4.5s;animation-duration:8s}
+    .star9{top:70%;left:25%;width:28px;height:28px;background:#f5c1cf;animation-delay:1.5s}
+    .star10{top:35%;right:35%;width:16px;height:16px;background:#d4a5a5;animation-delay:3.5s;animation-duration:9s}
+    .star11{bottom:10%;right:15%;width:20px;height:20px;background:#f5c1cf;animation-delay:2s;animation-duration:6s}
+    .star12{top:80%;left:10%;width:26px;height:26px;background:#e8d5ca;animation-delay:4s;animation-duration:8s}
+    .star13{top:20%;left:40%;width:19px;height:19px;background:#d4a5a5;animation-delay:3s;animation-duration:7s}
+    .star14{bottom:50%;left:8%;width:32px;height:32px;background:#a8c5b5;animation-delay:.8s;animation-duration:8.2s}
+    .star15{top:40%;right:5%;width:23px;height:23px;background:#f5c1cf;animation-delay:2.2s;animation-duration:7.8s}
+    .star16{top:12%;left:25%;width:21px;height:21px;background:#a8c5b5;animation-delay:1.8s;animation-duration:7.2s}
+    .star17{bottom:25%;right:30%;width:27px;height:27px;background:#f5c1cf;animation-delay:.3s;animation-duration:8.8s}
+    .star18{top:55%;right:18%;width:17px;height:17px;background:#e8d5ca;animation-delay:2.8s;animation-duration:6.8s}
+    .star19{bottom:15%;left:35%;width:29px;height:29px;background:#d4a5a5;animation-delay:3.2s;animation-duration:7.4s}
+    .star20{top:30%;left:12%;width:24px;height:24px;background:#a8c5b5;animation-delay:1.2s;animation-duration:8.6s}
+    .star21{bottom:40%;right:10%;width:20px;height:20px;background:#f5c1cf;animation-delay:4.2s;animation-duration:6.2s}
+    .star22{top:65%;left:22%;width:33px;height:33px;background:#a8c5b5;animation-delay:.7s;animation-duration:9.2s}
+    .star23{top:8%;right:22%;width:18px;height:18px;background:#e8d5ca;animation-delay:2.4s;animation-duration:7.6s}
+    .star24{bottom:30%;left:18%;width:25px;height:25px;background:#d4a5a5;animation-delay:3.8s;animation-duration:6.4s}
+    .star25{top:75%;right:25%;width:22px;height:22px;background:#f5c1cf;animation-delay:1.4s;animation-duration:8.4s}
+    .star26{top:42%;left:32%;width:19px;height:19px;background:#a8c5b5;animation-delay:2.6s;animation-duration:7.2s}
+    .star27{bottom:18%;right:8%;width:26px;height:26px;background:#e8d5ca;animation-delay:.9s;animation-duration:8.9s}
+    .star28{top:52%;right:28%;width:21px;height:21px;background:#d4a5a5;animation-delay:3.6s;animation-duration:6.6s}
+    .star29{bottom:45%;left:28%;width:30px;height:30px;background:#f5c1cf;animation-delay:1.6s;animation-duration:8.2s}
+    .star30{top:18%;right:16%;width:23px;height:23px;background:#a8c5b5;animation-delay:2.1s;animation-duration:7.9s}
+
+    @keyframes gentleFloat{
+      0%,100%{transform:translate(0,0);opacity:.3}
+      25%{transform:translate(10px,-15px);opacity:.5}
+      50%{transform:translate(-5px,-25px);opacity:.4}
+      75%{transform:translate(-15px,-10px);opacity:.6}
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .announcement-banner{position:fixed;top:0;left:0;width:100%;height:38px;background:linear-gradient(90deg,#f5c1cf 0%,#fceadb 25%,#b4d4c3 55%,#f5c1cf 100%);background-size:300% 100%;animation:bannerShift 8s linear infinite;z-index:1002;overflow:hidden;display:flex;align-items:center}
+    .banner-link{display:block;width:100%;overflow:hidden;text-decoration:none;cursor:pointer}
+    .banner-link:hover .banner-inner{animation-play-state:paused}
+    .banner-inner{display:flex;white-space:nowrap;animation:marqueeScroll 28s linear infinite;will-change:transform}
+    .banner-inner span{font-family:'Archivo Black',sans-serif;font-size:12px;color:#8b475d;text-transform:uppercase;letter-spacing:2px;flex-shrink:0;padding-right:10px}
+    @keyframes bannerShift{0%{background-position:0% 0%}100%{background-position:100% 0%}}
+    @keyframes marqueeScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+    /* Navigation */
+    nav{
+      position:fixed; top:38px; width:100%;
+      padding:25px 60px;
+      display:flex; justify-content:space-between; align-items:center;
+      z-index:1000; background:rgba(255,255,255,.85); backdrop-filter:blur(15px);
+      transition:all .4s ease;
+    }
+    nav.scrolled{ padding:20px 60px; box-shadow:0 2px 20px rgba(212,165,165,.1); }
+
+    .logo{ font-family:'Archivo Black',sans-serif; font-size:24px; color:#8b475d; letter-spacing:2px; font-weight:400; text-transform:uppercase; }
+    .logo a{ color:#8b475d; text-decoration:none; display:flex; align-items:center; gap:10px; }
+    .logo-img{ height:38px; width:auto; flex-shrink:0; }
+    .cv-button{ padding:10px 25px; background:#8b475d; color:white !important; text-decoration:none; border-radius:25px; font-family:Georgia,serif; font-size:16px; transition:all 0.3s ease; margin-left:20px; box-shadow:0 3px 10px rgba(139,71,93,.3); display:inline-block; }
+    .cv-button:hover{ background:#a0617a; transform:translateY(-3px); box-shadow:0 6px 20px rgba(139,71,93,.5); }
+    .cv-button::after{ display:none !important; }
+
+    .menu-toggle{
+      display:none; background:none; border:none; font-size:32px; color:#8b475d;
+      cursor:pointer; padding:10px; z-index:1001; min-width:44px; min-height:44px;
+    }
+
+    .nav-links{ display:flex; gap:35px; list-style:none; align-items:center; }
+    .nav-links a{
+      color:#8b475d; text-decoration:none; font-size:17px; letter-spacing:.5px; position:relative;
+      transition:all .3s ease; font-weight:500; font-family:Georgia,serif;
+    }
+    .nav-links a::after{
+      content:''; position:absolute; bottom:-5px; left:50%; transform:translateX(-50%);
+      width:0; height:2px; background:#8b475d; transition:width .3s ease;
+    }
+    .nav-links a:hover::after{ width:100%; }
+
+    .music-nav-link{
+      background:linear-gradient(135deg,#f5c1cf,#a8c5b5);
+      padding:10px 20px !important; border-radius:20px; font-weight:600 !important; transition:all .3s ease;
+    }
+    .music-nav-link::after{ display:none !important; }
+
+    /* Hero */
+    .hero{
+      min-height:50vh;
+      display:flex; align-items:center; justify-content:center;
+      text-align:center; padding:120px 40px 70px;
+    }
+    .hero-content h1{
+      font-family:'MADE Sunflower',sans-serif; font-weight:400;
+      font-size:58px; color:#8b475d; margin-bottom:16px; line-height:1.2;
+      animation: fadeInUp 1s ease;
+    }
+    .hero-content p{
+      font-size:17px; color:#a0617a; line-height:1.7; max-width:700px;
+      margin:0 auto; font-family:Georgia,serif; font-style:italic; font-weight:400;
+      letter-spacing:.3px; animation: fadeInUp 1s ease 0.3s backwards;
+    }
+
+    /* Sections */
+    section{ padding:60px 50px; position:relative; z-index:10; }
+
+    h2{
+      font-family:'Archivo Black',sans-serif; font-size:38px; text-align:center;
+      color:#8b475d; margin-bottom:40px; letter-spacing:2px; position:relative;
+      text-transform:uppercase; animation: fadeInUp 0.8s ease 0.1s backwards;
+    }
+    h2::after{
+      content:''; position:absolute; bottom:-12px; left:50%; transform:translateX(-50%);
+      width:80px; height:2px; background:#f5c1cf;
+    }
+    h3{
+      font-family:'MADE Sunflower',sans-serif; font-weight:400; font-size:26px;
+      color:#8b475d; margin-bottom:32px; text-align:center;
+      animation: fadeInUp 0.8s ease 0.15s backwards;
+    }
+
+    /* Grids */
+    .work-grid-2{ display:grid; grid-template-columns:repeat(2,1fr); gap:28px; max-width:900px; margin:0 auto 56px; }
+    .work-grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:28px; max-width:1000px; margin:0 auto 56px; }
+
+    .work-item{
+      background:white; border-radius:16px; overflow:hidden;
+      box-shadow:8px 8px 24px rgba(139,71,93,.1); transition:all .4s ease;
+    }
+    .work-item:hover{ transform:translateY(-8px); box-shadow:12px 12px 32px rgba(139,71,93,.15); }
+
+    .work-image{
+      width:100%; min-height:240px; overflow:hidden; position:relative; background:#f5e6e8;
+      display:flex; align-items:center; justify-content:center; padding:14px;
+      cursor:pointer; text-decoration:none;
+    }
+    a.work-image{ display:flex; }
+    .work-image img{ max-width:100%; max-height:100%; object-fit:contain; transition: transform .5s ease; }
+    .orchid-grid .work-image{ aspect-ratio:2514/3542; min-height:auto; }
+    .orchid-grid .work-image img{ width:100%; height:100%; object-fit:cover; object-position:left center; }
+    .work-item:hover .work-image img{ transform:scale(1.05); }
+
+    .work-caption{ padding:20px; text-align:center; }
+    .work-caption h4{ font-family:'MADE Sunflower',sans-serif; font-size:18px; color:#8b475d; margin-bottom:8px; font-weight:400;}
+    .work-caption p{ font-family:Georgia,serif; font-size:13px; color:#a0617a; font-style:italic; line-height:1.6; }
+
+    /* Award label */
+    .award-label{
+      display:inline-flex; align-items:center; justify-content:center; gap:6px;
+      margin-top:14px; padding:8px 22px; border-radius:999px;
+      background:linear-gradient(90deg,#f5c1cf,#a8c5b5); color:#8b475d;
+      font-family:'Archivo Black',sans-serif; font-size:10px; letter-spacing:1.6px;
+      text-transform:uppercase; text-decoration:none; box-shadow:0 5px 14px rgba(139,71,93,.25); border:none;
+    }
+    .award-label:hover{ transform:translateY(-2px); box-shadow:0 8px 20px rgba(139,71,93,.35); }
+    .award-icon{ font-size:14px; }
+    .award-text{ text-align:center; }
+
+    /* Illustration layout */
+    .illustration-grid{ display:grid; grid-template-columns:1fr 1fr; grid-template-rows:auto auto; gap:28px; max-width:900px; margin:0 auto 56px; }
+    .illustration-grid .work-item:nth-child(1){ grid-column:1; grid-row:1; }
+    .illustration-grid .work-item:nth-child(2){ grid-column:2; grid-row:1 / 3; }
+    .illustration-grid .work-item:nth-child(3){ grid-column:1; grid-row:2; }
+    .illustration-landscape .work-image{ min-height:220px !important; padding:8px !important; aspect-ratio:3/2; }
+    .illustration-landscape .work-image img{ transform:rotate(90deg) !important; width:130% !important; height:130% !important; max-width:130% !important; max-height:130% !important; object-fit:contain !important; }
+
+    /* NEW badge */
+    .new-badge {
+      position: absolute; top: 10px; left: 10px; background: #8b475d; color: white;
+      font-family: 'Archivo Black', sans-serif; font-size: 10px; letter-spacing: 2px;
+      text-transform: uppercase; padding: 5px 13px; border-radius: 999px; z-index: 10;
+      box-shadow: 0 2px 8px rgba(139,71,93,.4); pointer-events: none;
+      animation: badgePulse 2.4s ease-in-out infinite;
+    }
+    @keyframes badgePulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 2px 8px rgba(139,71,93,.4); }
+      50%       { transform: scale(1.08); box-shadow: 0 4px 16px rgba(139,71,93,.55); }
+    }
+
+    /* Icons */
+    .icons-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:20px; max-width:900px; margin:0 auto; }
+    .icon-item{
+      background:white; border-radius:12px; padding:16px; display:flex; align-items:center; justify-content:center;
+      height:130px; width:130px; box-shadow:8px 8px 24px rgba(139,71,93,.1); transition:all .4s ease;
+      text-decoration:none; cursor:pointer;
+    }
+    .icon-item:hover{ transform:translateY(-8px); box-shadow:12px 12px 32px rgba(139,71,93,.15); }
+    .icon-item img{ max-width:90px; max-height:90px; width:auto; height:auto; object-fit:contain; }
+
+    .full-width-item{ grid-column:1 / -1; max-width:650px; margin:0 auto; }
+
+    footer{ text-align:center; padding:40px 32px; background:rgba(255,255,255,.5); color:#8b475d; font-size:12px; letter-spacing:.5px; }
+    .back-button{ display:inline-block; padding:12px 28px; background:#8b475d; color:#fff; text-decoration:none; font-size:13px; letter-spacing:1px; transition:all .4s ease; font-family:'Archivo Black',sans-serif; text-transform:uppercase; border-radius:4px; box-shadow:0 2px 8px rgba(139,71,93,.3); margin-top:32px; }
+    .back-button:hover{ transform:translateY(-2px); box-shadow:0 6px 20px rgba(139,71,93,.4); background:#a0617a; }
+    .back-button-container{ text-align:center; margin-top:48px; }
+
+    /* Mobile */
+    @media (max-width: 968px){
+      .menu-toggle{ display:block; }
+      .hero{ padding:120px 20px 50px; min-height:auto; align-items:flex-start; }
+      .hero-content h1{ font-size:32px; }
+      h2{ font-size:29px; }
+      h3{ font-size:21px; }
+      nav{ padding:15px 20px !important; }
+      section{ padding:48px 24px; }
+
+      .nav-links{
+        position:fixed; top:65px; left:-100%; width:100%; height:calc(100vh - 65px);
+        background:rgba(255,255,255,.98); backdrop-filter:blur(15px);
+        flex-direction:column; padding:30px 20px; transition:left .3s ease;
+        box-shadow:0 4px 20px rgba(0,0,0,.1); overflow-y:auto; gap:0 !important; z-index:999; align-items:stretch;
+      }
+      .nav-links.active{ left:0; }
+      .nav-links li{ width:100%; margin:0; border-bottom:1px solid rgba(139,71,93,.1); }
+      .nav-links a{ display:block; padding:18px 10px !important; font-size:16px !important; text-align:center; white-space:normal; }
+      .music-nav-link{ margin:15px 0 !important; text-align:center; padding:15px 20px !important; }
+      .cv-button{ margin:15px 0 0 0 !important; width:100%; text-align:center; padding:15px 20px !important; }
+
+      .work-grid-2, .work-grid-3{ grid-template-columns:1fr; gap:20px; }
+      .work-image{ min-height:180px; padding:10px; }
+
+      .illustration-grid{ grid-template-columns:1fr; grid-template-rows:auto; }
+      .illustration-grid .work-item:nth-child(1),
+      .illustration-grid .work-item:nth-child(2),
+      .illustration-grid .work-item:nth-child(3){ grid-column:1; grid-row:auto; }
+      .illustration-landscape .work-image{ min-height:200px !important; }
+
+      .icons-grid{ grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:16px; }
+      .icon-item{ height:120px; width:auto; min-width:120px; padding:14px; }
+      .icon-item img{ max-width:80px; max-height:80px; width:auto; height:auto; }
+
+      .star{ width:15px !important; height:15px !important; opacity:.4; }
+    }
+
+    @media (max-width:480px){
+      .hero{ padding:100px 16px 40px !important; min-height:auto !important; }
+      .hero-content h1{ font-size:26px !important; }
+      h2{ font-size:19px !important; }
+      section{ padding:40px 16px !important; }
+      .work-image{ min-height:150px; padding:8px; }
+      .illustration-landscape .work-image{ min-height:180px !important; }
+      .icons-grid{ grid-template-columns:repeat(auto-fit,minmax(90px,1fr)); }
+      .icon-item{ height:100px; width:auto; min-width:90px; padding:10px; }
+      .icon-item img{ max-width:65px; max-height:65px; width:auto; height:auto; }
+      .star{ width:12px !important; height:12px !important; opacity:.35; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Decorative Stars -->
+  <div class="doodle star star1"></div>
+  <div class="doodle star star2"></div>
+  <div class="doodle star star3"></div>
+  <div class="doodle star star4"></div>
+  <div class="doodle star star5"></div>
+  <div class="doodle star star6"></div>
+  <div class="doodle star star7"></div>
+  <div class="doodle star star8"></div>
+  <div class="doodle star star9"></div>
+  <div class="doodle star star10"></div>
+  <div class="doodle star star11"></div>
+  <div class="doodle star star12"></div>
+  <div class="doodle star star13"></div>
+  <div class="doodle star star14"></div>
+  <div class="doodle star star15"></div>
+  <div class="doodle star star16"></div>
+  <div class="doodle star star17"></div>
+  <div class="doodle star star18"></div>
+  <div class="doodle star star19"></div>
+  <div class="doodle star star20"></div>
+  <div class="doodle star star21"></div>
+  <div class="doodle star star22"></div>
+  <div class="doodle star star23"></div>
+  <div class="doodle star star24"></div>
+  <div class="doodle star star25"></div>
+  <div class="doodle star star26"></div>
+  <div class="doodle star star27"></div>
+  <div class="doodle star star28"></div>
+  <div class="doodle star star29"></div>
+  <div class="doodle star star30"></div>
+
+  <!-- Announcement banner -->
+  <div class="announcement-banner">
+    <a href="extras.html" class="banner-link">
+      <div class="banner-inner">
+        <span>✦ NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span>✦ NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span>✦ NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span>✦ NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span>✦ NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span>✦ NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span>✦ NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span>✦ NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span>✦ NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span>✦ NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span>✦ NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span>✦ NEW artworks in Posters &amp; Print &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      </div>
+    </a>
+  </div>
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="logo"><a href="graphic-design.html"><img src="AB logo.webp" alt="AB" class="logo-img">AMELIA'S PORTFOLIO</a></div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="graphic-design.html#home">Home</a></li>
+      <li><a href="graphic-design.html#portfolio">Work</a></li>
+      <li><a href="graphic-design.html#about">About</a></li>
+      <li><a href="graphic-design.html#skills">Skills</a></li>
+      <li><a href="graphic-design.html#contact">Contact</a></li>
+      <li><a href="music.html" class="music-nav-link">Music</a></li>
+      <li><a href="design-cv.html" class="cv-button">View Design CV</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Drawings</h1>
+      <p>Digital illustration, character design, t-shirt artwork, and personal creative work.</p>
+      <div style="margin-top:25px; padding:15px 25px; background:rgba(139,71,93,0.1); border-radius:12px; border-left:3px solid #8b475d; animation:fadeInUp 1s ease 0.6s backwards; display:inline-block;">
+        <p style="font-size:14px; color:#8b475d; margin:0; font-style:normal;">💡 <strong>Tip:</strong> Tap or click any image for fullscreen view</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Illustration -->
+  <section>
+    <h2>Illustration</h2>
+    <p style="text-align:center; font-size:15px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:25px; letter-spacing:1px;">2025</p>
+    <div class="illustration-grid">
+      <div class="work-item illustration-landscape">
+        <a href="gettingready1.webp" data-rotate="90" class="work-image">
+          <img src="gettingready1.webp" alt="Getting Ready - Four Girls">
+        </a>
+        <div class="work-caption">
+          <h4>"Getting Ready"</h4>
+          <p>Digital illustration</p>
+          <a class="award-label"
+             href="https://www.instagram.com/p/DQ-c1TFiRtE/?hl=es"
+             target="_blank"
+             rel="noopener noreferrer">
+            <span class="award-icon">🏅</span>
+            <span class="award-text">FINALIST – M16 ARTSPACE DIGITAL DRAWING PRIZE</span>
+          </a>
+        </div>
+      </div>
+      <div class="work-item illustration-portrait">
+        <a href="seadragon.webp" target="_blank" class="work-image">
+          <img src="seadragon.webp" alt="Summer Sea Dragon">
+        </a>
+        <div class="work-caption">
+          <h4>"Summer Sea Dragon"</h4>
+          <p>Leafy sea dragon mermaid artwork</p>
+        </div>
+      </div>
+      <div class="work-item illustration-portrait">
+        <a href="aworldalone.webp" target="_blank" class="work-image">
+          <img src="aworldalone.webp" alt="Additional Illustration">
+        </a>
+        <div class="work-caption">
+          <h4>A World Alone</h4>
+          <p>Digital illustration</p>
+        </div>
+      </div>
+    </div>
+    <div class="work-grid-2">
+      <div class="work-item full-width-item">
+        <a href="girl in room.webp" target="_blank" class="work-image">
+          <span class="new-badge">NEW</span>
+          <img src="girl in room.webp" alt="Girl in Room">
+        </a>
+        <div class="work-caption">
+          <h4>lost in my bedroom&nbsp; &nbsp;</h4>
+          <p>Sky Ferreira inspired</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Orchid Illustrations -->
+  <section>
+    <h2>Orchid Illustrations</h2>
+    <p style="text-align:center; font-size:15px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:25px; letter-spacing:1px;">2026</p>
+    <div class="work-grid-3 orchid-grid">
+      <div class="work-item">
+        <a href="orangeorchid.webp" target="_blank" class="work-image">
+          <img src="orangeorchid.webp" alt="Orange and Pink Orchid Illustration">
+        </a>
+        <div class="work-caption">
+          <h4>Orange Orchid</h4>
+          <p>&nbsp;</p>
+        </div>
+      </div>
+      <div class="work-item">
+        <a href="pinkorchid.webp" target="_blank" class="work-image">
+          <img src="pinkorchid.webp" alt="Pink Orchid Illustration">
+        </a>
+        <div class="work-caption">
+          <h4>Pink Orchid</h4>
+          <p>&nbsp;</p>
+        </div>
+      </div>
+      <div class="work-item">
+        <a href="greenorchid.webp" target="_blank" class="work-image">
+          <img src="greenorchid.webp" alt="Green Speckled Orchid Illustration">
+        </a>
+        <div class="work-caption">
+          <h4>Green Orchid</h4>
+          <p>&nbsp;</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- T-Shirt Designs -->
+  <section>
+    <h2>T-Shirt Designs</h2>
+    <p style="text-align:center; font-size:15px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:25px; letter-spacing:1px;">2024</p>
+    <div class="work-grid-2">
+      <div class="work-item">
+        <a href="tshirtdesign.webp" target="_blank" class="work-image">
+          <img src="tshirtdesign.webp" alt="Good Witch Design">
+        </a>
+        <div class="work-caption">
+          <h4>"Good Witch" - Design</h4>
+          <p>Collection of pink icons asking "Are you a good witch, or a bad witch?"</p>
+        </div>
+      </div>
+      <div class="work-item">
+        <div class="work-image">
+          <img src="tshirtphoto.webp" alt="Good Witch T-Shirt">
+        </div>
+        <div class="work-caption">
+          <h4>"Good Witch" - Physical Product</h4>
+          <p>Design printed on white t-shirt</p>
+        </div>
+      </div>
+      <div class="work-item">
+        <a href="koifish.webp" target="_blank" class="work-image">
+          <img src="koifish.webp" alt="Koi Fish Design">
+        </a>
+        <div class="work-caption">
+          <h4>Koi Fish - Design</h4>
+          <p>Koi fish illustration</p>
+        </div>
+      </div>
+      <div class="work-item">
+        <div class="work-image">
+          <img src="fishshirt.webp" alt="Koi Fish T-Shirt">
+        </div>
+        <div class="work-caption">
+          <h4>Koi Fish - Physical Product</h4>
+          <p>Design printed on white t-shirt</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Digital Camera Series -->
+  <section>
+    <h2>Digital Camera Series</h2>
+    <p style="text-align:center; font-size:15px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:25px; letter-spacing:1px;">2025</p>
+    <h3>"Summer Through a Lens"</h3>
+    <div class="work-grid-2">
+      <div class="work-item">
+        <a href="Butterfly_Kiss.webp" target="_blank" class="work-image">
+          <img src="Butterfly_Kiss.webp" alt="Butterfly Kiss">
+        </a>
+        <div class="work-caption">
+          <h4>"Butterfly Kiss"</h4>
+          <p>Digital camera illustration with native Australian flowers</p>
+        </div>
+      </div>
+      <div class="work-item">
+        <a href="summerlens.webp" target="_blank" class="work-image">
+          <img src="summerlens.webp" alt="A Day Out">
+        </a>
+        <div class="work-caption">
+          <h4>"A Day Out"</h4>
+          <p>Camera capturing a summer moment</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trace Designs -->
+  <section>
+    <h2>Trace Designs</h2>
+    <p style="text-align:center; font-size:15px; color:#8b475d; font-style:italic; margin-top:-20px; margin-bottom:25px; letter-spacing:1px;">2026</p>
+    <div class="work-grid-2">
+      <div class="work-item">
+        <a href="trace poster 1.webp" target="_blank" class="work-image">
+          <span class="new-badge">NEW</span>
+          <img src="trace poster 1.webp" alt="Trace Design I">
+        </a>
+        <div class="work-caption">
+          <h4>Trace Design I</h4>
+          <p>&nbsp;</p>
+        </div>
+      </div>
+      <div class="work-item">
+        <a href="trace poster 2.webp" target="_blank" class="work-image">
+          <span class="new-badge">NEW</span>
+          <img src="trace poster 2.webp" alt="Trace Design II">
+        </a>
+        <div class="work-caption">
+          <h4>Trace Design II</h4>
+          <p>&nbsp;</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Icon Collection -->
+  <section>
+    <h2>Icon Collection</h2>
+    <div class="icons-grid">
+      <a href="koi fish 1 icon.webp" target="_blank" class="icon-item"><img src="koi fish 1 icon.webp" alt="Koi Fish Icon"></a>
+      <a href="koi fish 2 icon.webp" target="_blank" class="icon-item"><img src="koi fish 2 icon.webp" alt="Koi Fish Icon 2"></a>
+      <a href="star girl icon.webp" target="_blank" class="icon-item"><img src="star girl icon.webp" alt="Star Girl Icon"></a>
+      <a href="cake icon.webp" target="_blank" class="icon-item"><img src="cake icon.webp" alt="Cake Icon"></a>
+      <a href="strawberry icon.webp" target="_blank" class="icon-item"><img src="strawberry icon.webp" alt="Strawberry Icon"></a>
+      <a href="icecream icon.webp" target="_blank" class="icon-item"><img src="icecream icon.webp" alt="Ice Cream Icon"></a>
+      <a href="pink orchid icon.webp" target="_blank" class="icon-item"><img src="pink orchid icon.webp" alt="Pink Orchid Icon"></a>
+      <a href="green orchid icon.webp" target="_blank" class="icon-item"><img src="green orchid icon.webp" alt="Green Orchid Icon"></a>
+      <a href="orange orchid icon.webp" target="_blank" class="icon-item"><img src="orange orchid icon.webp" alt="Orange Orchid Icon"></a>
+      <a href="olive icon.webp" target="_blank" class="icon-item"><img src="olive icon.webp" alt="Olive Icon"></a>
+      <a href="fish icon.webp" target="_blank" class="icon-item"><img src="fish icon.webp" alt="Fish Icon"></a>
+      <a href="coffee icon.webp" target="_blank" class="icon-item"><img src="coffee icon.webp" alt="Coffee Icon"></a>
+    </div>
+
+    <div class="back-button-container">
+      <a href="graphic-design.html#portfolio" class="back-button">← Back to Portfolio</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Amelia Bobbin</p>
+  </footer>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) navbar.classList.add('scrolled');
+      else navbar.classList.remove('scrolled');
+    });
+
+    const navLinks = document.getElementById('navLinks');
+    const menuToggle = document.getElementById('menuToggle');
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      menuToggle.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+    });
+    document.addEventListener('click', (e) => {
+      const nav = document.getElementById('navbar');
+      if (!nav.contains(e.target) && navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        menuToggle.textContent = '☰';
+      }
+    });
+    document.querySelectorAll('.nav-links a').forEach(a=>{
+      a.addEventListener('click',()=>{
+        navLinks.classList.remove('active');
+        menuToggle.textContent='☰';
+      });
+    });
+
+    let ticking = false;
+    document.addEventListener('mousemove', (e) => {
+      if (window.innerWidth <= 820 || ticking) return;
+      window.requestAnimationFrame(() => {
+        document.querySelectorAll('.star').forEach((star, i) => {
+          const speed = (i + 1) * 0.015;
+          const x = (e.clientX * speed) / 50;
+          const y = (e.clientY * speed) / 50;
+          star.style.transform = `translate(${x}px, ${y}px)`;
+        });
+        ticking = false;
+      });
+      ticking = true;
+    });
+  </script>
+  <script src="lightbox.js"></script>
+<script>
+(function(){try{
+  if(location.hash.indexOf('thumb')>-1){
+    var st=document.createElement('style');
+    st.textContent='#spotlight-overlay,#splash-overlay,.splash-overlay,#splash,.splash{display:none!important}*,*::before,*::after{animation-duration:0s!important;animation-delay:0s!important;transition-duration:0s!important;transition-delay:0s!important}';
+    (document.head||document.documentElement).appendChild(st);
+    return;
+  }
+  if(window.top!==window.self) return;
+  function add(){
+    if(document.querySelector('[data-draft-pill]')) return;
+    var host=document.createElement('div');
+    host.setAttribute('data-draft-pill','');
+    host.style.cssText='position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:2147483647;';
+    var sh=host.attachShadow?host.attachShadow({mode:'open'}):host;
+    sh.innerHTML='<style>'
+      +'a{all:initial;display:inline-flex;align-items:center;gap:7px;box-sizing:border-box;cursor:pointer;'
+      +'font:700 11px/1 "Space Mono",ui-monospace,Menlo,monospace;letter-spacing:.08em;'
+      +'color:#f2eddd;background:#c2381c;padding:11px 15px;border-radius:999px;'
+      +'box-shadow:0 6px 22px rgba(38,16,20,.32);-webkit-tap-highlight-color:transparent;'
+      +'transition:background .2s ease,transform .2s ease}'
+      +'a:hover{background:#8e2110;transform:translateY(-1px)}'
+      +'i{font-style:normal;font-weight:400;opacity:.78}'
+      +'</style><a href="../../drafts.html">\u2190 all drafts <i>\u00b7 mar 2026</i></a>';
+    document.body.appendChild(host);
+  }
+  if(document.body) add(); else document.addEventListener('DOMContentLoaded',add);
+}catch(e){}})();
+</script>
+</body>
+</html>

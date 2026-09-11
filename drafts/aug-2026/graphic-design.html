@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- website-drafts archive -->
+<meta name="robots" content="noindex">
+<script>
+(function(){try{
+  var P='draft-aug-2026:',S=Storage.prototype,g=S.getItem,t=S.setItem,r=S.removeItem,k=S.key;
+  S.getItem=function(x){return g.call(this,P+x);};
+  S.setItem=function(x,v){return t.call(this,P+x,v);};
+  S.removeItem=function(x){return r.call(this,P+x);};
+  S.clear=function(){for(var i=this.length-1;i>=0;i--){var kk=k.call(this,i);if(kk&&kk.indexOf(P)===0)r.call(this,kk);}};
+}catch(e){}})();
+</script>
+
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="0; url=/">
+    <link rel="canonical" href="./">
+    <title>Amelia Bobbin — Portfolio</title>
+    <script>sessionStorage.setItem('qr_redirect','1');window.location.replace('./' + (window.location.hash || ''));</script>
+</head>
+<body>
+    <p>Redirecting to <a href="./">Amelia Bobbin's portfolio</a>...</p>
+<style>/* light-mode nav: cream instead of white (match palette) */
+html.light-mode nav { background: rgba(244,236,226,0.92) !important; }
+</style>
+<script>
+(function(){try{
+  if(location.hash.indexOf('thumb')>-1){
+    var st=document.createElement('style');
+    st.textContent='#spotlight-overlay,#splash-overlay,.splash-overlay,#splash,.splash{display:none!important}*,*::before,*::after{animation-duration:0s!important;animation-delay:0s!important;transition-duration:0s!important;transition-delay:0s!important}';
+    (document.head||document.documentElement).appendChild(st);
+    return;
+  }
+  if(window.top!==window.self) return;
+  function add(){
+    if(document.querySelector('[data-draft-pill]')) return;
+    var host=document.createElement('div');
+    host.setAttribute('data-draft-pill','');
+    host.style.cssText='position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:2147483647;';
+    var sh=host.attachShadow?host.attachShadow({mode:'open'}):host;
+    sh.innerHTML='<style>'
+      +'a{all:initial;display:inline-flex;align-items:center;gap:7px;box-sizing:border-box;cursor:pointer;'
+      +'font:700 11px/1 "Space Mono",ui-monospace,Menlo,monospace;letter-spacing:.08em;'
+      +'color:#f2eddd;background:#c2381c;padding:11px 15px;border-radius:999px;'
+      +'box-shadow:0 6px 22px rgba(38,16,20,.32);-webkit-tap-highlight-color:transparent;'
+      +'transition:background .2s ease,transform .2s ease}'
+      +'a:hover{background:#8e2110;transform:translateY(-1px)}'
+      +'i{font-style:normal;font-weight:400;opacity:.78}'
+      +'</style><a href="../../drafts.html">\u2190 all drafts <i>\u00b7 aug 2026</i></a>';
+    document.body.appendChild(host);
+  }
+  if(document.body) add(); else document.addEventListener('DOMContentLoaded',add);
+}catch(e){}})();
+</script>
+</body>
+</html>

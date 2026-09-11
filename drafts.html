@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" class="light-mode"> <!-- class only feeds shared/cursor-trail.js its light palette -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>amelia bobbin — website drafts</title>
+<meta name="theme-color" content="#a8331a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="redesign-shared.css?v=60">
+<script>
+/* Theme carries across page navigation, but a refresh resets to light.
+   Runs before first paint so there is no flash of the wrong mode. */
+(function(){try{
+  var nav=(performance.getEntriesByType('navigation')[0]||{}).type;
+  if(nav==='reload'){ sessionStorage.removeItem('rd-theme'); }
+  else if(sessionStorage.getItem('rd-theme')==='dark'){ document.documentElement.classList.add('dark'); }
+}catch(e){}})();
+
+/* Device tier. An iPad with a trackpad reports hover:hover and 1366px wide, so
+   neither width nor the hover query can identify it — maxTouchPoints can.
+   Sets html.touch (and html.tablet ≥601px) before first paint. */
+(function(){try{
+  var d=document.documentElement;
+  var t=(navigator.maxTouchPoints||0)>1
+     || (window.matchMedia&&matchMedia('(hover: none) and (pointer: coarse)').matches);
+  window.RD_TOUCH=t;
+  if(t){ d.classList.add('touch'); if(window.innerWidth>600) d.classList.add('tablet'); }
+}catch(e){}})();
+
+/* keep the status-bar strip the same colour as the banner */
+(function(){try{
+  function sync(){
+    var b=document.querySelector('.microbar'); if(!b) return;
+    var m=document.querySelector('meta[name="theme-color"]');
+    if(!m){ m=document.createElement('meta'); m.name='theme-color'; document.head.appendChild(m); }
+    var c=getComputedStyle(document.documentElement).getPropertyValue('--red').trim()
+       || getComputedStyle(b).backgroundColor;
+    if(c && c!=='rgba(0, 0, 0, 0)') m.setAttribute('content',c);
+  }
+  window.RD_SYNC_BAR=sync;
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',sync);
+  else sync();
+}catch(e){}})();
+</script>
+<style>
+/* one draft: screenshots beside its notes, alternating sides down the page */
+.draft{
+  display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);
+  gap:clamp(28px,5vw,72px);align-items:center;
+  max-width:1080px;margin:6vh auto 0;
+}
+.sec:nth-of-type(even) .draft .draft-shots{order:2;}
+.draft-shots{
+  position:relative;display:block;
+  padding:0 7% 9% 0;          /* room for the phone to hang off the corner */
+  text-decoration:none;
+}
+.draft-shots img{display:block;filter:var(--img-filter);}
+.draft-shots .shot-laptop{
+  width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top;
+  border:1px solid var(--hair);
+  box-shadow:10px 10px 34px rgba(var(--red-deep-rgb),0.18);
+  transition:transform 0.7s cubic-bezier(0.22,1,0.36,1);
+}
+.draft-shots .shot-phone{
+  position:absolute;right:0;bottom:0;
+  width:21%;height:auto;aspect-ratio:390/844;object-fit:cover;object-position:top;
+  border:1px solid var(--hair);border-radius:12px;
+  box-shadow:6px 8px 26px rgba(var(--red-deep-rgb),0.26);
+  transition:transform 0.7s cubic-bezier(0.22,1,0.36,1);
+}
+.draft-shots:hover .shot-laptop{transform:translateY(-4px);}
+.draft-shots:hover .shot-phone{transform:translateY(-9px);}
+.draft-info{text-align:left;font-size:12.5px;line-height:1.75;}
+.draft-info .when{
+  color:var(--accent);text-transform:uppercase;letter-spacing:0.24em;font-size:10.5px;
+  margin-bottom:14px;
+}
+.draft-info p{margin-bottom:14px;}
+.draft-info .note{
+  font-size:11px;letter-spacing:0.04em;
+  color:color-mix(in srgb, var(--ink) 74%, transparent);
+}
+.draft-info .cta{margin-top:10px;}
+@media (max-width:820px){
+  .draft{grid-template-columns:1fr;gap:34px;max-width:640px;}
+  .sec:nth-of-type(even) .draft .draft-shots{order:0;}
+}
+@media (max-width:600px){
+  .draft{margin-top:4vh;}
+  .draft-shots{padding:0 9% 12% 0;}
+  .draft-shots .shot-phone{width:26%;border-radius:10px;}
+  .draft-info{text-align:left;}
+}
+</style>
+</head>
+<body>
+
+<div class="star s1"></div><div class="star s2"></div><div class="star s3"></div>
+<div class="star s4"></div><div class="star s5"></div><div class="star s6"></div>
+<div class="star s7"></div><div class="star s8"></div><div class="star s9"></div>
+
+<header class="topbar">
+<div class="microbar">
+  <div class="track" id="marq"></div>
+</div>
+
+<nav>
+  <div class="brand"><a href="index.html"><span class="ic-logo"></span>amelia bobbin<sup>®</sup></a></div>
+  <button id="themeToggle" class="bulb" aria-label="Toggle dark mode" title="toggle dark mode">
+    <img src="lightbulb-light.webp" class="lb lb-light" alt="">
+    <img src="lightbulb-dark.webp" class="lb lb-dark" alt="">
+  </button>
+  <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false">&#9776;</button>
+  <ul><li><a href="index.html#work">work <span class="up">↗</span></a></li><li><a href="index.html#about">about <span class="up">↗</span></a></li><li><a href="index.html#contact">contact <span class="up">↗</span></a></li><li><a href="music.html">music <span class="up">↗</span></a></li><li><a href="design-cv.html">design cv <span class="up">↗</span></a></li></ul>
+</nav>
+</header>
+
+<header class="page-hero">
+  <canvas class="herovine hv-left" aria-hidden="true"></canvas>
+  <canvas class="herovine hv-right" aria-hidden="true"></canvas>
+  <p class="kicker"><span id="kick-text" data-kicker="07 — website drafts / canberra, aus"></span><span class="cursor">▍</span></p>
+  <h1 id="ptitle" class="name-anim">Website Drafts<span class="dot">.</span></h1>
+  <p class="lede">Every main version of this site, from the first one in October 2025 to today. Open any draft to browse the whole site exactly as it was.</p>
+</header>
+
+<main>
+<section class="sec"><div class="secnum">( 01 )</div><h2>The First Site</h2>
+<div class="draft rise">
+  <a class="draft-shots" href="drafts/oct-2025/index.html" aria-label="Open the October 2025 draft"><img class="shot-laptop" loading="lazy" decoding="async" src="drafts/thumbs/oct-2025.webp" alt="October 2025 homepage on a laptop"><img class="shot-phone" loading="lazy" decoding="async" src="drafts/thumbs/oct-2025-phone.webp" alt="October 2025 homepage on a phone"></a>
+  <div class="draft-info">
+    <p class="when">October 2025</p>
+    <p>The first version to go live. A soft pink gradient, serif headings, an illustrated hero and floating stars, with pages for graphic design, brand identity, the tram campaign, music, theatre, photography and the short film.</p>
+    <a class="cta" href="drafts/oct-2025/index.html">view this draft ↗</a>
+  </div>
+</div></section>
+
+<section class="sec"><div class="secnum">( 02 )</div><h2>Banner &amp; Orchids</h2>
+<div class="draft rise">
+  <a class="draft-shots" href="drafts/mar-2026/index.html" aria-label="Open the March 2026 draft"><img class="shot-laptop" loading="lazy" decoding="async" src="drafts/thumbs/mar-2026.webp" alt="March 2026 homepage on a laptop"><img class="shot-phone" loading="lazy" decoding="async" src="drafts/thumbs/mar-2026-phone.webp" alt="March 2026 homepage on a phone"></a>
+  <div class="draft-info">
+    <p class="when">March 2026</p>
+    <p>The pink site grows up: the AB logo in the nav, the scrolling “new artworks” banner, an orchid in the hero, a watermarked lightbox, and illustrations split out from posters &amp; print.</p>
+    <a class="cta" href="drafts/mar-2026/index.html">view this draft ↗</a>
+  </div>
+</div></section>
+
+<section class="sec"><div class="secnum">( 03 )</div><h2>Dark Mode</h2>
+<div class="draft rise">
+  <a class="draft-shots" href="drafts/apr-2026/index.html" aria-label="Open the April 2026 draft"><img class="shot-laptop" loading="lazy" decoding="async" src="drafts/thumbs/apr-2026.webp" alt="April 2026 homepage on a laptop"><img class="shot-phone" loading="lazy" decoding="async" src="drafts/thumbs/apr-2026-phone.webp" alt="April 2026 homepage on a phone"></a>
+  <div class="draft-info">
+    <p class="when">April 2026</p>
+    <p>The graphic design page becomes the homepage. Dark by default with a light/dark switch, the business cards, gallery view, and the $5 digital prints pop-up.</p>
+    <a class="cta" href="drafts/apr-2026/index.html">view this draft ↗</a>
+  </div>
+</div></section>
+
+<section class="sec"><div class="secnum">( 04 )</div><h2>Textured Red</h2>
+<div class="draft rise">
+  <a class="draft-shots" href="drafts/jun-2026/index.html" aria-label="Open the June 2026 draft"><img class="shot-laptop" loading="lazy" decoding="async" src="drafts/thumbs/jun-2026.webp" alt="June 2026 homepage on a laptop"><img class="shot-phone" loading="lazy" decoding="async" src="drafts/thumbs/jun-2026-phone.webp" alt="June 2026 homepage on a phone"></a>
+  <div class="draft-info">
+    <p class="when">June 2026</p>
+    <p>A warm, muted red palette with paper and concrete textures, a textured title, the lightbulb theme switch, commissioned works for Gang Gang Cafe and the Anti-Design section.</p>
+    <a class="cta" href="drafts/jun-2026/index.html">view this draft ↗</a>
+  </div>
+</div></section>
+
+<section class="sec"><div class="secnum">( 05 )</div><h2>The Original, Finished</h2>
+<div class="draft rise">
+  <a class="draft-shots" href="drafts/aug-2026/index.html" aria-label="Open the August 2026 draft of the original design"><img class="shot-laptop" loading="lazy" decoding="async" src="drafts/thumbs/aug-2026.webp" alt="August 2026 homepage on a laptop"><img class="shot-phone" loading="lazy" decoding="async" src="drafts/thumbs/aug-2026-phone.webp" alt="August 2026 homepage on a phone"></a>
+  <div class="draft-info">
+    <p class="when">August 2026</p>
+    <p>The last version of the original design: a left-aligned hero in the thin title font, orchid vines growing beside the headings, and the full poster collection before the cull.</p>
+    <a class="cta" href="drafts/aug-2026/index.html">view this draft ↗</a>
+  </div>
+</div></section>
+
+<section class="sec"><div class="secnum">( 06 )</div><h2>The Redesign</h2>
+<div class="draft rise">
+  <a class="draft-shots" href="drafts/aug-2026-redesign/index.html" aria-label="Open the August 2026 redesign draft"><img class="shot-laptop" loading="lazy" decoding="async" src="drafts/thumbs/aug-2026-redesign.webp" alt="Redesign launch homepage on a laptop"><img class="shot-phone" loading="lazy" decoding="async" src="drafts/thumbs/aug-2026-redesign-phone.webp" alt="Redesign launch homepage on a phone"></a>
+  <div class="draft-info">
+    <p class="when">Late August 2026</p>
+    <p>The redesign’s launch: cream paper, Archivo Black and Space Mono, the card grid, and the first phone layout, before the swipeable carousels and full-screen videos.</p>
+    <p class="note">On a laptop or iPad this looks the same as today. Open it on a phone to see the difference.</p>
+    <a class="cta" href="drafts/aug-2026-redesign/index.html">view this draft ↗</a>
+  </div>
+</div></section>
+
+<section class="sec"><div class="secnum">( 07 )</div><h2>Today</h2>
+<div class="draft rise">
+  <a class="draft-shots" href="index.html" aria-label="Go to the current site"><img class="shot-laptop" loading="lazy" decoding="async" src="drafts/thumbs/current.webp" alt="Current homepage on a laptop"><img class="shot-phone" loading="lazy" decoding="async" src="drafts/thumbs/current-phone.webp" alt="Current homepage on a phone"></a>
+  <div class="draft-info">
+    <p class="when">September 2026 — live now</p>
+    <p>The site as it is now, with the phone layout rebuilt around swipeable carousels, a Pinterest-style gallery and full-screen, TikTok-style videos.</p>
+    <a class="cta" href="index.html">back to the live site ↗</a>
+  </div>
+</div></section>
+</main>
+
+<div class="backrow">
+  <a class="cta" href="index.html">← back to portfolio</a>
+</div>
+
+<footer>
+  <span><span class="cmark">©</span> 2026 amelia bobbin</span>
+  <span class="red">canberra, aus</span>
+</footer>
+
+<div class="lightbox" id="lightbox" aria-modal="true" role="dialog">
+  <button class="lb-x" aria-label="Close">×</button>
+  <button class="lb-prev" aria-label="Previous">‹</button>
+  <button class="lb-next" aria-label="Next">›</button>
+  <img alt="">
+  <p class="lb-cap"></p>
+</div>
+
+<script src="redesign-shared.js?v=63"></script>
+<script src="shared/vine-engine.js?v=1"></script>
+<script>[].forEach.call(document.querySelectorAll('.page-hero .herovine'),function(cv){ window.growVine(cv); });</script>
+<!-- the homepage's typing section titles, same script -->
+<script src="shared/typewriter-redesign.js?v=1"></script>
+<script>window.TRAIL_RGB=getComputedStyle(document.documentElement).getPropertyValue('--trail').trim()||'194,56,28';</script>
+<script src="shared/cursor-trail.js?v=5"></script>
+</body>
+</html>
