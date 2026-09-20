@@ -530,9 +530,14 @@ section h2::after{
 /* selected works grid — the original cards with their image covers */
 .works{padding-top:15vh;}   /* projects pushed a little further down */
 .works-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
+  /* six tracks, each card spanning two, so a trailing pair can be centred —
+     three columns cannot centre two items */
+  display:grid;grid-template-columns:repeat(6,1fr);gap:16px;
   max-width:1180px;margin:6vh auto 0;
 }
+.works-grid .card{grid-column:span 2;}
+.works-grid .card[href="drafts.html"]{grid-column:2 / span 2;}
+.works-grid .card[href="fonts.html"]{grid-column:4 / span 2;}
 .card{
   position:relative;display:block;overflow:hidden;
   border:none;border-radius:6px;
@@ -545,7 +550,8 @@ section h2::after{
 }
 .card:hover img{transform:scale(1.045);filter:saturate(1.05) var(--img-filter);}
 /* website drafts is the odd one out, so it sits centred under the last row */
-.works-grid .card[href="drafts.html"]{grid-column:2;}
+/* drafts and fonts share the last row side by side, so neither is pinned
+   to the centre column any more */
 /* the illustrations cover sits a little small in its 4:3 crop — nudge it in,
    keeping the same hover step on top */
 .card.tight img{transform:scale(1.10);}
@@ -588,6 +594,7 @@ section h2::after{
   .works-grid .card{order:1;}
   .works-grid .card[href="coding.html"]{order:2;}
   .works-grid .card[href="drafts.html"]{order:3;}
+  .works-grid .card[href="fonts.html"]{order:4;}
   .card.scroll-active .cardov{opacity:1;transition:opacity 0.6s ease 0.18s;}
   .card.scroll-active .cardov h3,
   .card.scroll-active .cardov .yr,
@@ -693,14 +700,68 @@ section h2::after{
 
 /* business cards, like the original contact section */
 .bcards{
-  margin:7vh auto 0;max-width:820px;
-  display:flex;justify-content:center;align-items:stretch;gap:0;
+  /* the two cards lie overlapped and tilted, the way they sit in the mockup —
+     absolute children, so the box needs its own height: card width is 74% of
+     the box and the card is 1190x776, so a card is 0.48 of the box wide-ways;
+     offset the second one down by 0.40 and 0.92 covers both plus the tilt */
+  position:relative;
+  margin:8vh auto 1vh;
+  width:min(660px,86vw);
+  aspect-ratio:1 / 0.92;
 }
 .bcards img{
-  width:50%;max-width:410px;height:290px;object-fit:contain;
-  transition:transform 0.4s ease;
+  position:absolute;
+  width:74%;height:auto;
+  border-radius:7px;
+  box-shadow:0 16px 40px rgba(0,0,0,0.26);
+  cursor:zoom-in;
+  transition:transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s ease;
 }
-.bcards img:hover{transform:translateY(-5px) scale(1.02);}
+.bcards img:first-child{top:1%;left:0;transform:rotate(-5.5deg);z-index:1;}
+.bcards img:last-child{bottom:1%;right:0;transform:rotate(3.5deg);z-index:2;}
+/* the two tilt opposite ways so they read as a scattered pair, and the lift is
+   written per-card so each keeps its own tilt while it grows */
+.bcards img:first-child:hover{
+  transform:rotate(-5.5deg) translateY(-10px) scale(1.045);
+  box-shadow:0 26px 58px rgba(0,0,0,0.34);z-index:3;
+}
+.bcards img:last-child:hover{
+  transform:rotate(3.5deg) translateY(-10px) scale(1.045);
+  box-shadow:0 26px 58px rgba(0,0,0,0.34);z-index:3;
+}
+@media (max-width:600px){
+  /* on a phone the pair sat almost on top of each other — narrower cards in a
+     wider, taller box push them apart so each one reads whole. No fullscreen
+     here either, so no zoom cursor. */
+  .bcards{width:min(660px,92vw);aspect-ratio:1 / 0.86;}
+  .bcards img{width:70%;cursor:default;}
+}
+
+/* ── fullscreen viewer for the cards, matching the sub-pages' lightbox ── */
+.lightbox{
+  position:fixed;inset:0;z-index:90;
+  display:none;align-items:center;justify-content:center;
+  background:rgba(10,5,4,0.94);
+  padding:34px;
+}
+.lightbox.open{display:flex;}
+.lightbox img{
+  max-width:min(1200px,92vw);max-height:84vh;display:block;
+  box-shadow:0 20px 70px rgba(0,0,0,0.6);
+}
+.lightbox .lb-cap{
+  position:absolute;left:0;right:0;bottom:22px;text-align:center;
+  color:#ece5d6;font-size:10.5px;letter-spacing:0.2em;text-transform:lowercase;
+}
+.lightbox button{
+  position:absolute;background:none;border:none;color:#ece5d6;cursor:pointer;
+  font-family:'Space Mono',monospace;font-size:26px;line-height:1;padding:14px;
+  opacity:0.7;transition:opacity 0.25s ease;
+}
+.lightbox button:hover{opacity:1;}
+.lightbox .lb-x{top:14px;right:16px;}
+.lightbox .lb-prev{left:8px;top:50%;transform:translateY(-50%);}
+.lightbox .lb-next{right:8px;top:50%;transform:translateY(-50%);}
 
 footer{
   padding:18px 20px;
@@ -777,7 +838,9 @@ footer .cmark{font-size:2em;vertical-align:-0.38em;}   /* -0.38em drops its ink 
   #vine{width:200px;height:60%;}
   .ghost-num{font-size:64px;}
   .works-grid{grid-template-columns:1fr;}
-  .works-grid .card[href="drafts.html"]{grid-column:auto;}
+  .works-grid .card,
+  .works-grid .card[href="drafts.html"],
+  .works-grid .card[href="fonts.html"]{grid-column:auto;}
   .sec{padding-left:14px;padding-right:14px;}
   .about-cols{grid-template-columns:1fr;gap:20px;}
   .about-cols p{text-align:left;}
@@ -788,9 +851,10 @@ footer .cmark{font-size:2em;vertical-align:-0.38em;}   /* -0.38em drops its ink 
      Both PNGs carry ~11% transparent above and ~7% below, so a plain gap of 0
      still leaves a finger's width of nothing between them; the fixed container
      width makes that padding a known fraction we can pull back out. */
-  .bcards{flex-direction:column;align-items:center;gap:0;max-width:380px;}
-  .bcards img{width:100%;max-width:100%;height:auto;}
-  .bcards img+img{margin-top:-12.5%;}
+  /* the cards used to be a flex row that stacked here; they are an absolutely
+     positioned tilted pair now, so the old stacking rules only fought the new
+     layout (they forced full-width cards with a negative margin, which is what
+     buried one card under the other on a phone) */
   .awards a,.awards div{flex-wrap:wrap;gap:2px 12px;font-size:9.5px;}
   .contact-form{padding:0 4px;}
   footer{flex-direction:column;gap:4px;text-align:center;}
@@ -830,6 +894,7 @@ footer .cmark{font-size:2em;vertical-align:-0.38em;}   /* -0.38em drops its ink 
 html.touch .works-grid .card{order:1;}
 html.touch .works-grid .card[href="coding.html"]{order:2;}
 html.touch .works-grid .card[href="drafts.html"]{order:3;}
+html.touch .works-grid .card[href="fonts.html"]{order:4;}
 html.touch .card.scroll-active .cardov{opacity:1;transition:opacity 0.6s ease 0.18s;}
 html.touch .card.scroll-active .cardov h3,
 html.touch .card.scroll-active .cardov .yr,
@@ -913,7 +978,7 @@ html.touch .card.scroll-active .cardov p{transform:translateY(0);}
     <a class="card rise" href="coding.html"><img loading="lazy" decoding="async" src="shared/codingcover.webp" alt="Creative coding cover"><span class="cardov"><h3>creative coding</h3><span class="yr">2025</span><p>Interactive p5.js from my Creative Computing H course</p></span></a>
     <a class="card rise" style="transition-delay:0.06s" href="photography.html"><img loading="lazy" decoding="async" src="shared/photo.webp" alt="Photography cover"><span class="cardov"><h3>photography</h3><span class="yr">2023–2026</span><p>1st Place — CMAG Secondary School Art Prize 2023</p></span></a>
     <a class="card rise" style="transition-delay:0.12s" href="shortfilm.html"><img loading="lazy" decoding="async" src="shared/shortfilm.webp" alt="Short film cover"><span class="cardov"><h3>short film</h3><span class="yr">2025</span><p>Blowing Out The Candles — poster &amp; trailer</p></span></a>
-    <a class="card rise" href="drafts.html"><img loading="lazy" decoding="async" src="drafts/thumbs/cover.webp" alt="Website drafts cover"><span class="cardov"><h3>website drafts</h3><span class="yr">2025–2026</span><p>Every main version of this site, from the first draft to today</p></span></a>
+    <a class="card rise" href="drafts.html"><img loading="lazy" decoding="async" src="drafts/thumbs/cover.webp" alt="Website drafts cover"><span class="cardov"><h3>web development</h3><span class="yr">2025–2026</span><p>Every main version of this site, from the first draft to today</p></span></a><a class="card rise" href="fonts.html"><img loading="lazy" decoding="async" src="fonts/amelia-cover.webp?v=8" alt="Typography cover"><span class="cardov"><h3>typography</h3><span class="yr">2026</span><p>Typefaces I drew by hand — free to download</p></span></a>
   </div>
 </section>
 
@@ -972,8 +1037,8 @@ html.touch .card.scroll-active .cardov p{transform:translateY(0);}
     <button class="cta" type="submit">send message <span class="cta-star">★</span></button>
   </form>
   <div class="bcards rise">
-    <img loading="lazy" decoding="async" src="business-card-front.webp" alt="Business card front">
-    <img loading="lazy" decoding="async" src="business-card-back.webp" alt="Business card back">
+    <img loading="lazy" decoding="async" src="business-card-front.webp?v=2" data-full="business-card-front-full.webp?v=2" alt="business card — front">
+    <img loading="lazy" decoding="async" src="business-card-back.webp?v=2" data-full="business-card-back-full.webp?v=2" alt="business card — back">
   </div>
 </section>
 
@@ -1447,5 +1512,62 @@ window.growVine(document.getElementById('vine'), {alignLeft:true});
 <!-- the original's sparkly cursor trail, tinted to the page's red -->
 <script>window.TRAIL_RGB=getComputedStyle(document.documentElement).getPropertyValue('--trail').trim()||'194,56,28';</script>
 <script src="shared/cursor-trail.js?v=5"></script>
+<div class="lightbox" id="lightbox" aria-modal="true" role="dialog">
+  <button class="lb-x" aria-label="Close">&times;</button>
+  <button class="lb-prev" aria-label="Previous">&lsaquo;</button>
+  <button class="lb-next" aria-label="Next">&rsaquo;</button>
+  <img alt="">
+  <p class="lb-cap"></p>
+</div>
+<script>
+/* click either business card for fullscreen, and step between the two —
+   the same viewer the sub-pages use, kept self-contained like the rest of
+   this page */
+(function(){
+  var lb=document.getElementById('lightbox'); if(!lb) return;
+  var im=lb.querySelector('img'), cap=lb.querySelector('.lb-cap');
+  var cards=[].slice.call(document.querySelectorAll('.bcards img'));
+  if(!cards.length) return;
+  var idx=0;
+  function show(i){
+    idx=(i+cards.length)%cards.length;
+    var c=cards[idx];
+    /* the page shows a small card; the viewer gets the full-resolution file */
+    im.src=c.getAttribute('data-full')||c.currentSrc||c.src; im.alt=c.alt||'';
+    cap.textContent=c.alt||'';
+  }
+  function open(i){
+    show(i); lb.classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+  function close(){
+    lb.classList.remove('open'); document.body.style.overflow=''; im.src='';
+  }
+  /* the viewer is a pointer nicety — on a phone it just got in the way, so
+     tapping a card there does nothing */
+  function isPhone(){ return window.matchMedia('(max-width:600px)').matches; }
+  cards.forEach(function(c,i){
+    c.addEventListener('click',function(){ if(isPhone()) return; open(i); });
+  });
+  lb.querySelector('.lb-x').addEventListener('click',close);
+  lb.querySelector('.lb-prev').addEventListener('click',function(e){ e.stopPropagation(); show(idx-1); });
+  lb.querySelector('.lb-next').addEventListener('click',function(e){ e.stopPropagation(); show(idx+1); });
+  /* clicking the backdrop closes; clicking the picture itself does not */
+  lb.addEventListener('click',function(e){ if(e.target===lb) close(); });
+  document.addEventListener('keydown',function(e){
+    if(!lb.classList.contains('open')) return;
+    if(e.key==='Escape'){ close(); return; }
+    if(e.key==='ArrowLeft'){ e.preventDefault(); show(idx-1); }
+    else if(e.key==='ArrowRight'||e.code==='Space'){ e.preventDefault(); show(idx+1); }
+  });
+  var tx=0;
+  lb.addEventListener('touchstart',function(e){ tx=e.touches[0].clientX; },{passive:true});
+  lb.addEventListener('touchend',function(e){
+    var dx=e.changedTouches[0].clientX-tx;
+    if(Math.abs(dx)>44) show(idx+(dx<0?1:-1));
+  },{passive:true});
+})();
+</script>
+<script src="shared/about-site.js?v=7"></script>
 </body>
 </html>

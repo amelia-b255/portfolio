@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en" class="light-mode"> <!-- class only feeds shared/cursor-trail.js its light palette -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>amelia bobbin — typography</title>
+<meta name="theme-color" content="#a8331a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="redesign-shared.css?v=65">
+<script>
+/* Theme carries across page navigation, but a refresh resets to light.
+   Runs before first paint so there is no flash of the wrong mode. */
+(function(){try{
+  var nav=(performance.getEntriesByType('navigation')[0]||{}).type;
+  if(nav==='reload'){ sessionStorage.removeItem('rd-theme'); }
+  else if(sessionStorage.getItem('rd-theme')==='dark'){ document.documentElement.classList.add('dark'); }
+}catch(e){}})();
+
+/* Device tier. An iPad with a trackpad reports hover:hover and 1366px wide, so
+   neither width nor the hover query can identify it — maxTouchPoints can.
+   Sets html.touch (and html.tablet ≥601px) before first paint. */
+(function(){try{
+  var d=document.documentElement;
+  var t=(navigator.maxTouchPoints||0)>1
+     || (window.matchMedia&&matchMedia('(hover: none) and (pointer: coarse)').matches);
+  window.RD_TOUCH=t;
+  if(t){ d.classList.add('touch'); if(window.innerWidth>600) d.classList.add('tablet'); }
+}catch(e){}})();
+
+/* keep the status-bar strip the same colour as the banner */
+(function(){try{
+  function sync(){
+    var b=document.querySelector('.microbar'); if(!b) return;
+    var m=document.querySelector('meta[name="theme-color"]');
+    if(!m){ m=document.createElement('meta'); m.name='theme-color'; document.head.appendChild(m); }
+    var c=getComputedStyle(document.documentElement).getPropertyValue('--red').trim()
+       || getComputedStyle(b).backgroundColor;
+    if(c && c!=='rgba(0, 0, 0, 0)') m.setAttribute('content',c);
+  }
+  window.RD_SYNC_BAR=sync;
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',sync);
+  else sync();
+}catch(e){}})();
+</script>
+<style>
+/* the four faces, each previewing the same word so they can be compared.
+   They are loaded from fonts/amelia/ — kept apart from fonts/, which holds
+   licensed third-party faces that are NOT ours to hand out. */
+@font-face{font-family:'AB Blocky';src:url('fonts/amelia/Blocky.ttf') format('truetype');font-display:swap;}
+@font-face{font-family:'AB Bubble I';src:url('fonts/amelia/Bubble-I.ttf') format('truetype');font-display:swap;}
+@font-face{font-family:'AB Bubble II';src:url('fonts/amelia/Bubble-II.ttf') format('truetype');font-display:swap;}
+@font-face{font-family:'AB Fancy';src:url('fonts/amelia/Fancy.ttf') format('truetype');font-display:swap;}
+@font-face{font-family:'AB Strokes';src:url('fonts/amelia/Strokes.ttf') format('truetype');font-display:swap;}
+@font-face{font-family:'AB Rough';src:url('fonts/amelia/Rough.ttf') format('truetype');font-display:swap;}
+
+.fonts-grid{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:clamp(20px,3vw,38px);
+  max-width:980px;margin:6vh auto 0;
+}
+.font-card{
+  display:flex;flex-direction:column;
+  border:1px solid var(--hair);border-radius:6px;
+  background:var(--cream-2);
+  overflow:hidden;
+}
+.font-preview{
+  flex:1;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:18px;min-height:210px;padding:34px 24px 28px;
+  color:var(--ink);
+  /* the faces have generous overhangs — let them breathe rather than clip */
+  overflow:visible;text-align:center;
+  transition:color 0.4s ease, transform 0.55s cubic-bezier(0.22,1,0.36,1);
+}
+.font-card:hover .font-preview{color:var(--accent);transform:scale(1.04);}
+.font-sample{font-size:clamp(52px,6.4vw,92px);line-height:1.05;}
+/* the rest of the face, small enough to read as a specimen rather than a
+   second headline. These are Calligraphr faces: A–Z and a–z plus eight marks,
+   and NO numerals — so digits are deliberately left out, since a 0-9 run would
+   silently fall back to another font and misrepresent them. */
+.font-set{
+  font-size:clamp(11px,1.1vw,13.5px);
+  line-height:2;letter-spacing:0.05em;
+  opacity:0.6;
+  word-break:break-all;      /* the alphabet runs have to wrap inside the card */
+  max-width:100%;            /* 30ch was narrower than the card on the wide
+                                faces, which orphaned a "WXYZ" line */
+}
+.f-blocky{font-family:'AB Blocky',cursive;}
+.f-bubble1{font-family:'AB Bubble I',cursive;}
+.f-bubble2{font-family:'AB Bubble II',cursive;}
+.f-fancy{font-family:'AB Fancy',cursive;}
+.f-strokes{font-family:'AB Strokes',cursive;}
+.f-rough{font-family:'AB Rough',cursive;}
+.font-foot{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:13px 18px;border-top:1px solid var(--hair);
+}
+.font-foot h3{
+  font-family:'Space Mono',monospace;font-weight:400;
+  font-size:11px;letter-spacing:0.24em;text-transform:uppercase;
+  color:var(--accent);
+}
+.font-foot .cta{margin:0;font-size:10px;padding:8px 16px;}
+@media (max-width:700px){
+  .fonts-grid{grid-template-columns:1fr;max-width:460px;gap:22px;}
+  .font-preview{min-height:170px;padding:28px 18px 22px;gap:14px;}
+}
+</style>
+</head>
+<body>
+
+<div class="star s1"></div><div class="star s2"></div><div class="star s3"></div>
+<div class="star s4"></div><div class="star s5"></div><div class="star s6"></div>
+<div class="star s7"></div><div class="star s8"></div><div class="star s9"></div>
+
+<header class="topbar">
+<div class="microbar">
+  <div class="track" id="marq"></div>
+</div>
+
+<nav>
+  <div class="brand"><a href="index.html"><span class="ic-logo"></span>amelia bobbin<sup>®</sup></a></div>
+  <button id="themeToggle" class="bulb" aria-label="Toggle dark mode" title="toggle dark mode">
+    <img src="lightbulb-light.webp" class="lb lb-light" alt="">
+    <img src="lightbulb-dark.webp" class="lb lb-dark" alt="">
+  </button>
+  <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false">&#9776;</button>
+  <ul><li><a href="index.html#work">work <span class="up">↗</span></a></li><li><a href="index.html#about">about <span class="up">↗</span></a></li><li><a href="index.html#contact">contact <span class="up">↗</span></a></li><li><a href="music.html">music <span class="up">↗</span></a></li><li><a href="design-cv.html">design cv <span class="up">↗</span></a></li></ul>
+</nav>
+</header>
+
+<header class="page-hero">
+  <canvas class="herovine hv-left" aria-hidden="true"></canvas>
+  <canvas class="herovine hv-right" aria-hidden="true"></canvas>
+  <p class="kicker"><span id="kick-text" data-kicker="08 — typography / canberra, aus"></span><span class="cursor">▍</span></p>
+  <h1 id="ptitle" class="name-anim">Typography<span class="dot">.</span></h1>
+  <p class="lede">Typefaces I drew by hand. Free to download and use.</p>
+</header>
+
+<main>
+<section class="sec">
+<div class="fonts-grid">
+  <article class="font-card rise">
+    <div class="font-preview f-blocky">
+      <div class="font-sample" aria-label="The word Meow! set in Blocky">Meow!</div>
+      <div class="font-set" aria-hidden="true">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>! ? . , : ; &#39; &quot;</div>
+    </div>
+    <div class="font-foot">
+      <h3>Blocky</h3>
+      <a class="cta" href="fonts/amelia/Blocky.ttf" download="Blocky.ttf">download ↓</a>
+    </div>
+  </article>
+  <article class="font-card rise">
+    <div class="font-preview f-bubble1">
+      <div class="font-sample" aria-label="The word Meow! set in Bubble I">Meow!</div>
+      <div class="font-set" aria-hidden="true">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>! ? . , : ; &#39; &quot;</div>
+    </div>
+    <div class="font-foot">
+      <h3>Bubble I</h3>
+      <a class="cta" href="fonts/amelia/Bubble-I.ttf" download="Bubble-I.ttf">download ↓</a>
+    </div>
+  </article>
+  <article class="font-card rise">
+    <div class="font-preview f-bubble2">
+      <div class="font-sample" aria-label="The word Meow! set in Bubble II">Meow!</div>
+      <div class="font-set" aria-hidden="true">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>! ? . , : ; &#39; &quot;</div>
+    </div>
+    <div class="font-foot">
+      <h3>Bubble II</h3>
+      <a class="cta" href="fonts/amelia/Bubble-II.ttf" download="Bubble-II.ttf">download ↓</a>
+    </div>
+  </article>
+  <article class="font-card rise">
+    <div class="font-preview f-fancy">
+      <div class="font-sample" aria-label="The word Meow! set in Fancy">Meow!</div>
+      <div class="font-set" aria-hidden="true">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>! ? . , : ; &#39; &quot;</div>
+    </div>
+    <div class="font-foot">
+      <h3>Fancy</h3>
+      <a class="cta" href="fonts/amelia/Fancy.ttf" download="Fancy.ttf">download ↓</a>
+    </div>
+  </article>
+  <article class="font-card rise">
+    <div class="font-preview f-strokes">
+      <div class="font-sample" aria-label="The word Meow! set in Strokes">Meow!</div>
+      <div class="font-set" aria-hidden="true">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>! ? . , : ; &#39; &quot;</div>
+    </div>
+    <div class="font-foot">
+      <h3>Strokes</h3>
+      <a class="cta" href="fonts/amelia/Strokes.ttf" download="Strokes.ttf">download ↓</a>
+    </div>
+  </article>
+  <article class="font-card rise">
+    <div class="font-preview f-rough">
+      <div class="font-sample" aria-label="The word Meow! set in Rough">Meow!</div>
+      <div class="font-set" aria-hidden="true">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>! ? . , : ; &#39; &quot;</div>
+    </div>
+    <div class="font-foot">
+      <h3>Rough</h3>
+      <a class="cta" href="fonts/amelia/Rough.ttf" download="Rough.ttf">download ↓</a>
+    </div>
+  </article>
+</div>
+</section>
+</main>
+
+<div class="backrow">
+  <a class="cta" href="index.html">← back to portfolio</a>
+</div>
+
+<footer>
+  <span><span class="cmark">©</span> 2026 amelia bobbin</span>
+  <span class="red">canberra, aus</span>
+</footer>
+
+<div class="lightbox" id="lightbox" aria-modal="true" role="dialog">
+  <button class="lb-x" aria-label="Close">×</button>
+  <button class="lb-prev" aria-label="Previous">‹</button>
+  <button class="lb-next" aria-label="Next">›</button>
+  <img alt="">
+  <p class="lb-cap"></p>
+</div>
+
+<script src="redesign-shared.js?v=68"></script>
+<script src="shared/vine-engine.js?v=1"></script>
+<script>[].forEach.call(document.querySelectorAll('.page-hero .herovine'),function(cv){ window.growVine(cv); });</script>
+<!-- the homepage's typing section titles, same script -->
+<script src="shared/typewriter-redesign.js?v=1"></script>
+<script>window.TRAIL_RGB=getComputedStyle(document.documentElement).getPropertyValue('--trail').trim()||'194,56,28';</script>
+<script src="shared/cursor-trail.js?v=5"></script>
+<script src="shared/about-site.js?v=7"></script>
+</body>
+</html>

@@ -213,7 +213,11 @@ nav a.here{color:var(--accent);background-size:100% 1px;}
              url('textures/tex-concrete.webp') center / 340px auto;
   background-blend-mode:hard-light;
   -webkit-background-clip:text;background-clip:text;
-  margin-bottom:2.4vh;
+  /* background-clip:text paints only within the element's box, and a 0.98
+     line-height leaves descenders hanging outside it — "typography" lost the
+     tail of its g. The padding extends the painted box under the baseline. */
+  padding-bottom:0.16em;
+  margin-bottom:1.6vh;
 }
 .page-hero h1 .dot{color:var(--ink);}
 @keyframes nameIn{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
@@ -640,6 +644,9 @@ nav a.here{color:var(--accent);background-size:100% 1px;}
 
 /* stills carry no real titles in the original, so no hover caption at all */
 .gallery.nocap figcaption{display:none;}
+/* every gallery figure opens fullscreen, so they all get the zoom cursor —
+   this used to ride along with .nocap only */
+.gallery figure,
 .gallery.nocap figure{cursor:zoom-in;}
 
 /* variants: the icon collection packs tighter, paired sets run two-up */
@@ -1393,6 +1400,13 @@ html.touch .tip-touch{display:inline;}
   }
   /* a wide plate still earns both columns */
   .gallery:not(.stack-mode):not(.vidgal):not(.icons) > figure.g-wide{column-span:all;}
+  /* .g-break is a zero-height spacer that forces a line break in the DESKTOP
+     flex rows. The `> figure` rule above re-showed it with !important, so it
+     was taking a slot in the wall — an empty card that threw the column
+     balance out (packaging ended up with one card left and three right). */
+  .gallery:not(.stack-mode):not(.vidgal):not(.icons) > figure.g-break{
+    display:none !important;
+  }
   /* a section holding a single piece has no wall to build — one column, full
      bleed, rather than a lone card stranded in the left column */
   .gallery:not(.stack-mode):not(.vidgal):not(.icons):has(figure:only-of-type){
@@ -1525,13 +1539,58 @@ html.touch .tip-touch{display:inline;}
     pointer-events:none;opacity:0;transition:opacity 0.22s ease;
   }
   .ph-player.paused .ph-play{opacity:1;}
-  /* a bare triangle in the page's red — no disc, and nothing nudging it off
-     centre, so it sits dead centre of the frame */
+  /* a ring in the page's red with the triangle inside it. The overlay's box is
+     sized to the VIDEO in js (the wrap also holds the caption and scrubber, so
+     inset:0 sat the glyph below the middle of the picture). */
   .ph-player .ph-play span{
+    display:flex;align-items:center;justify-content:center;
+    width:74px;height:74px;border-radius:50%;
+    border:2px solid var(--accent);
+    background:rgba(22,10,8,0.30);
+    -webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);
+    box-shadow:0 2px 14px rgba(38,16,20,0.40);
+  }
+  .ph-player .ph-play i{
     display:block;width:0;height:0;
     border-style:solid;
-    border-width:19px 0 19px 32px;
+    border-width:14px 0 14px 23px;
     border-color:transparent transparent transparent var(--accent);
-    filter:drop-shadow(0 2px 10px rgba(38,16,20,0.45));
+    /* a border triangle's mass sits left of its own box, so it needs a nudge
+       right to look centred inside the ring */
+    margin-left:6px;
+  }
+}
+
+/* ═══ phone: packaging + magazine walls ═══
+   Both sections lead with a full-width plate, and Chrome's multi-column
+   balancer gives up after a `column-span:all` element — it put ONE card in the
+   left column and THREE in the right, leaving a ~490px hole down the left of
+   the packaging section (and ~250px in the magazine one). A two-column grid
+   places them row by row instead, which is deterministic, so this has to come
+   after the Pinterest-wall block above and override its display:block. */
+@media (max-width:600px){
+  .gallery.pkg-grid:not(.stack-mode):not(.vidgal):not(.icons),
+  .gallery.mag-grid:not(.stack-mode):not(.vidgal):not(.icons){
+    display:grid !important;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    column-gap:9px;row-gap:9px;
+    columns:auto;
+    align-items:start;
+  }
+  /* the wall gives every card a bottom margin; row-gap does that job here */
+  .gallery.pkg-grid:not(.stack-mode):not(.vidgal):not(.icons) > figure,
+  .gallery.mag-grid:not(.stack-mode):not(.vidgal):not(.icons) > figure{
+    margin:0 !important;
+  }
+  .gallery.pkg-grid:not(.stack-mode):not(.vidgal):not(.icons) > figure.g-wide,
+  .gallery.mag-grid:not(.stack-mode):not(.vidgal):not(.icons) > figure.g-wide{
+    grid-column:1 / -1;
+  }
+  /* the cover is about twice the height of the spreads beside it (the desktop
+     grid spans it over two rows for the same reason). In one row it inflated
+     that row, and the next spread was pushed below the cover with a gap above
+     it — spanning two rows tucks that spread up alongside the cover instead. */
+  .gallery.mag-grid:not(.stack-mode):not(.vidgal):not(.icons) > figure.g-cover{
+    grid-row:span 2;
   }
 }

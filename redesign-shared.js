@@ -422,6 +422,13 @@
        does not animate the correction. The seam is invisible because the copy
        and its original are the same picture. */
     var cloneHead=null, cloneTail=null;
+    /* positioned — the carousel has been parked on its starting card. Until it
+       has, the natural scrollLeft of 0 sits on the LEADING CLONE, and letting
+       the wrap correction run from there threw the strip to its far end (which
+       is why a gallery opened on its LAST piece instead of its first).
+       seamHold — a programmatic cross-seam glide is in flight, so the wrap
+       correction must keep its hands off until it lands. */
+    var positioned=false, seamHold=false, userTouched=false;
     function buildLoop(){
       if(cloneHead||n<2) return;
       cloneHead=figs[n-1].cloneNode(true);
@@ -449,14 +456,23 @@
       try{ gal.scrollTo({left:f.offsetLeft-(gal.clientWidth-f.offsetWidth)/2,behavior:'instant'}); }
       catch(e){ gal.scrollLeft=f.offsetLeft-(gal.clientWidth-f.offsetWidth)/2; }
       gal.style.scrollSnapType='';        /* clear any stuck override */
+      positioned=true;
       paintCaption(); syncDots(); warm();
     }
-    /* park on the real first card rather than the clone that precedes it */
+    /* Park on the real card rather than the clone that precedes it.
+       This used to fire only from a standing start (scrollLeft < 4) and so lost
+       a race: one scroll event while resting on the leading clone let the wrap
+       correction teleport the strip to its far end first, and from there the
+       guard could never fire again — the gallery simply stayed on its last
+       piece. Now it holds the start position however the scroll got moved,
+       until the reader actually touches it. */
     function ensureStart(){
       if(!cloneHead||!gal.classList.contains('ph-carousel')) return;
+      if(userTouched) return;
       var f=figs[front]; if(!f||!f.offsetWidth) return;
       var want=f.offsetLeft-(gal.clientWidth-f.offsetWidth)/2;
-      if(gal.scrollLeft<4 && want>4) jumpTo(front);
+      if(Math.abs(gal.scrollLeft-want)>2) jumpTo(front);
+      else positioned=true;
     }
     /* True infinite scroll. The moment the scroll passes the last real card we
        subtract one strip width, and the moment it passes the first we add one.
@@ -469,6 +485,10 @@
     var wrapping=false;
     function wrapIfPastEnd(){
       if(!cloneHead||wrapping||n<2) return;
+      /* never before the carousel has been parked, and never while a cross-seam
+         glide is running: in both cases the scroll is mid-flight, and correcting
+         it then is exactly what landed the reader on the wrong card */
+      if(!positioned||seamHold) return;
       var W=figs[0].offsetWidth||gal.clientWidth;
       var first=figs[0].offsetLeft, last=figs[n-1].offsetLeft;
       var strip=last-first+W;                        /* the real cards' width */
@@ -507,6 +527,10 @@
     },{passive:true});
 
     function show(i){
+      /* any deliberate move counts as engagement: the start-position guard must
+         stop interfering from here on, or a lazily-loaded picture firing
+         ensureStart() later drags the reader back to the first card */
+      userTouched=true;
       front=(i+n)%n;
       if(gal.classList.contains('ph-carousel')){
         var f=figs[front];
@@ -582,6 +606,7 @@
            soon as it has taken — the guard only fires from the un-scrolled
            state, so it can never yank the page out from under a swipe. */
         if(phCar){
+          positioned=false; userTouched=false;
           ensureStart();
           requestAnimationFrame(ensureStart);
           [60,250,800].forEach(function(ms){ setTimeout(ensureStart,ms); });
@@ -601,14 +626,53 @@
       if(b) setAllModes(b.getAttribute('data-v'), tog);   /* whole page, anchored here */
     });
     setters.push(setMode);
-    prev.addEventListener('click',function(){ show(front-1); });
-    next.addEventListener('click',function(){ show(front+1); });
+    /* ── stepping past either end ──
+       show() scrolls straight at the target card, so stepping forward off the
+       last one animated all the way back down the strip to the first — the
+       "rewind" instead of a loop. Glide onto the neighbouring COPY instead,
+       which is one card away in the direction asked for, then swap to the real
+       card once it lands. The copy holds the same picture, so the swap is
+       invisible and you can keep going round forever. */
+    function crossSeam(cl, realIdx){
+      if(!cl){ show(realIdx); return; }
+      userTouched=true;
+      seamHold=true;
+      var want=cl.offsetLeft-(gal.clientWidth-cl.offsetWidth)/2;
+      try{ gal.scrollTo({left:want,behavior:'smooth'}); }
+      catch(e){ gal.scrollLeft=want; }
+      front=realIdx; paintCaption(); syncDots(); warm();
+      var tries=0, lastPos=-1;
+      (function settle(){
+        setTimeout(function(){
+          /* landed once the scroll stops moving (or patience runs out) */
+          if(Math.abs(gal.scrollLeft-lastPos)<1 || ++tries>40){
+            seamHold=false; jumpTo(realIdx);
+          } else { lastPos=gal.scrollLeft; settle(); }
+        },50);
+      })();
+    }
+    function step(d){
+      if(!gal.classList.contains('ph-carousel')){ show(front+d); return; }
+      if(d>0 && front===n-1){ crossSeam(cloneTail,0); return; }
+      if(d<0 && front===0){ crossSeam(cloneHead,n-1); return; }
+      show(front+d);
+    }
+    prev.addEventListener('click',function(){ step(-1); });
+    next.addEventListener('click',function(){ step(1); });
 
-    /* touch swipe */
+    /* touch swipe.
+       On the phone carousel the gallery is already a native scroll-snap
+       scroller: a swipe moves it a card by itself and the wrap correction
+       already loops it. Stepping it AGAIN from touchend was a second move
+       fighting the momentum of the first — the "glitchy" swiping. Leave touch
+       to the browser there; this synthetic step is for the non-carousel deck. */
     var tx=0;
-    scene.addEventListener('touchstart',function(e){ tx=e.touches[0].clientX; },{passive:true});
+    scene.addEventListener('touchstart',function(e){
+      tx=e.touches[0].clientX; userTouched=true; positioned=true;
+    },{passive:true});
     scene.addEventListener('touchend',function(e){
       if(!gal.classList.contains('stack-mode')) return;
+      if(gal.classList.contains('ph-carousel')) return;
       var dx=e.changedTouches[0].clientX-tx;
       if(Math.abs(dx)>44) show(front+(dx<0?1:-1));
     },{passive:true});
@@ -637,10 +701,15 @@
     });
     /* images arrive after layout, so re-fit once they have real heights */
     [].slice.call(gal.querySelectorAll('img')).forEach(function(im){
-      if(!im.complete) im.addEventListener('load',fitColumns,{once:true});
+      if(!im.complete) im.addEventListener('load',function(){
+        fitColumns();
+        /* a card only has a width once its picture has arrived, so this is
+           often the first moment the start position can be measured at all */
+        ensureStart();
+      },{once:true});
     });
 
-    decks.push({scene:scene, gal:gal, step:function(d){ show(front+d); },
+    decks.push({scene:scene, gal:gal, step:function(d){ step(d); },
       reset:function(){
         front=0;
         setMode('stack');
@@ -1086,10 +1155,24 @@
     host.classList.add('ph-player','paused');
     v.removeAttribute('controls');
     var play=document.createElement('div');
-    play.className='ph-play'; play.innerHTML='<span></span>';
+    play.className='ph-play'; play.innerHTML='<span><i></i></span>';
     var bar=document.createElement('div');
     bar.className='ph-bar'; bar.innerHTML='<i></i>';
     host.appendChild(play); host.appendChild(bar);
+    /* Centre the glyph on the PICTURE. The host also carries the caption and
+       the scrubber, so an inset:0 overlay is centred on all three and the
+       button rode low on the frame. */
+    function fitPlay(){
+      if(!v.offsetHeight) return;
+      play.style.top=v.offsetTop+'px';
+      play.style.height=v.offsetHeight+'px';
+      play.style.bottom='auto';
+    }
+    fitPlay();
+    v.addEventListener('loadedmetadata',fitPlay);
+    v.addEventListener('loadeddata',fitPlay);
+    window.addEventListener('resize',fitPlay);
+    [120,400,1200].forEach(function(ms){ setTimeout(fitPlay,ms); });
     var fill=bar.firstChild;
     v.addEventListener('timeupdate',function(){
       if(v.duration) fill.style.width=(v.currentTime/v.duration*100)+'%';
