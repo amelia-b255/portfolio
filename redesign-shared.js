@@ -24,7 +24,7 @@
 /* ── marquee (same announcement as the homepage banner) ── */
 (function(){
   var el=document.getElementById('marq'); if(!el) return;
-  var seg='<span>new artworks — posters &amp; print</span><span class="red">graphic design</span>';
+  var seg='<span>new — download my fonts</span><span class="red">graphic design</span>';
   el.innerHTML=seg;
   var reps=1;
   while(el.getBoundingClientRect().width < window.innerWidth && reps<12){
@@ -1006,8 +1006,12 @@
   /* On a phone every gallery is a two-column Pinterest wall, so the packer
      runs on all of them; above 600px it stays on the .masonry sections only. */
   function packTargets(){
+    /* mag-grid and pkg-grid are real CSS grids on a phone now, not columns, so
+       the hand packer has nothing to fix there — and because it re-appends
+       every child to impose its own order, it was shuffling the magazine year
+       titles away from the pieces they belong to. */
     var sel=window.matchMedia('(max-width: 600px)').matches
-      ? '.gallery:not(.vidgal):not(.icons)'
+      ? '.gallery:not(.vidgal):not(.icons):not(.mag-grid):not(.pkg-grid)'
       : '.gallery.masonry';
     return [].slice.call(document.querySelectorAll(sel));
   }

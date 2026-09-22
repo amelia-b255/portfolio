@@ -20,6 +20,27 @@
      the ! sitting between them that margin pushed it away from the bulb and up
      against "work". Zero it and let the nav's own gap space all three evenly. */
   'nav #themeToggle{margin-right:0 !important;}'+
+  '@media (max-width:600px){#about-site-btn{width:17px;height:17px;font-size:10px;margin-left:0;}}'+
+  /* home button — phone only, where there is no visible nav list to get back from */
+  '#home-btn{'+
+    'background:none;border:none;cursor:pointer;flex:0 0 auto;'+
+    'display:none;align-items:center;justify-content:center;'+
+    'color:var(--accent);padding:0;margin-left:0;'+
+    'align-self:center;position:relative;top:3px;'+
+    /* The lightbulb artwork carries ~23% transparent padding on its right, so
+       the drawn bulb stops well short of its box and the house looked pushed
+       right. Nudge it back optically with a transform, which leaves the ! and
+       everything after it exactly where they are. */
+    'transform:translateX(-7px);'+
+    'transition:transform 0.25s ease;}'+
+  '#home-btn svg{width:17px;height:17px;display:block;fill:currentColor;}'+
+  '#home-btn:hover{transform:translateX(-7px) scale(1.14);}'+
+  '@media (max-width:600px){#home-btn{transform:translateX(-3px);}'+
+    '#home-btn:hover{transform:translateX(-3px) scale(1.14);}}'+
+  '@media (max-width:820px){#home-btn{display:inline-flex;}}'+
+  /* the phone nav sets the bulb to 34px — a touch bigger than that */
+  '@media (max-width:600px){nav .bulb .lb{height:39px;}}'+
+  '@media (max-width:600px){#home-btn svg{width:16px;height:16px;}#home-btn{top:2px;}}'+
   '#about-overlay{'+
     'position:fixed;inset:0;z-index:10000;'+
     'display:flex;align-items:center;justify-content:center;padding:24px;'+
@@ -150,6 +171,19 @@
   var bulb=document.getElementById('themeToggle');
   if(bulb&&bulb.parentNode) bulb.parentNode.insertBefore(btn, bulb.nextSibling);
   else { var nav=document.querySelector('nav'); if(nav) nav.appendChild(btn); else return; }
+
+  /* home, sitting with the bulb and the ! — only shown on the phone/tablet
+     nav, where the links are behind the hamburger */
+  if(!/(^|\/)index\.html$/.test(location.pathname) || true){
+    var home=document.createElement('a');
+    home.id='home-btn'; home.href='index.html';
+    home.setAttribute('aria-label','Home'); home.title='home';
+    home.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true">'+
+      '<path d="M12 3.1 4.4 11.4a1 1 0 0 0 .7 1.68h1.5V20.3a1 1 0 0 0 1 1h8.8a1 1 0 0 0 1-1'+
+      'v-7.22h1.5a1 1 0 0 0 .7-1.68z"/></svg>';
+    /* between the bulb and the !, rather than out past it */
+    if(btn.parentNode) btn.parentNode.insertBefore(home, btn);
+  }
 
   function open(){
     ov.classList.add('open');
