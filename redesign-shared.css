@@ -487,6 +487,8 @@ nav a.here{color:var(--accent);background-size:100% 1px;}
   font-size:11px;letter-spacing:0.3em;text-transform:uppercase;
 }
 .gallery.mag-grid:not(.stack-mode) .yr-head{display:block;}
+/* packaging lays out as a flex row, so its titles take a whole line */
+.gallery.pkg-grid:not(.stack-mode) .yr-head{display:block;flex:0 0 100%;width:100%;max-width:100%;}
 .gallery.stack-mode .yr-head{display:none !important;}
 /* the desktop grid pins its rows, so the two titles take rows of their own
    and everything below shifts down by one */
@@ -1603,7 +1605,8 @@ html.touch .tip-touch{display:inline;}
   }
   .gallery.pkg-grid:not(.stack-mode):not(.vidgal):not(.icons) > figure.g-wide,
   .gallery.mag-grid:not(.stack-mode):not(.vidgal):not(.icons) > figure.g-wide,
-  .gallery.mag-grid:not(.stack-mode):not(.vidgal):not(.icons) > .yr-head{
+  .gallery.mag-grid:not(.stack-mode):not(.vidgal):not(.icons) > .yr-head,
+  .gallery.pkg-grid:not(.stack-mode):not(.vidgal):not(.icons) > .yr-head{
     grid-column:1 / -1;
   }
   /* the desktop magazine grid pins explicit rows; on this two-column wall the
