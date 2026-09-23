@@ -1,0 +1,3563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drawing Game</title>
+  <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: sans-serif;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* ===== Background - Your exact design image ===== */
+.app {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-image: url('bg.webp?v=20');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  transition: background-image 0.4s ease;
+}
+
+/* ===== Animated star background overlay ===== */
+.star-bg {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.45;
+  -webkit-mask-image: url('star-mask.webp');
+  mask-image: url('star-mask.webp');
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+/* ===== Navigation arrows at top (color + style) ===== */
+.nav-arrow {
+  position: absolute;
+  top: 0.8%;
+  width: 1.8%;
+  height: 5%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  padding: 0;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+.nav-arrow img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.nav-arrow:hover {
+  transform: scale(1.12);
+  filter: brightness(1.1);
+}
+.nav-arrow:active {
+  transform: scale(0.95);
+}
+
+/* Color theme arrows (left pair) */
+.color-arrow-left  { left: 14.3%; }
+.color-arrow-right { left: 17.4%; }
+
+/* Style arrows (right pair) */
+.style-arrow-left  { left: 20.9%; }
+.style-arrow-right { left: 24.0%; }
+
+/* ===== Canvas - overlaid on the cream area ===== */
+#canvas {
+  position: absolute;
+  left: 13.32%;
+  top: 9.8%;
+  width: 70%;
+  height: 80.5%;
+  cursor: crosshair;
+  clip-path: inset(0 round 1.2vw);
+  background-color: #fbefe9;
+  z-index: 2;
+}
+
+#canvas.painting {
+  cursor: none;
+}
+
+/* ===== Swatch overlays - transparent, positioned on the image swatches ===== */
+.swatch {
+  position: absolute;
+  width: 3.45%;
+  height: 6.12%;
+  cursor: pointer;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  transition: box-shadow 0.2s ease;
+  z-index: 10;
+  /* Anchor from center so highlight is always centered on swatch */
+  transform: translate(-50%, -50%);
+}
+
+.swatch:hover {
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+}
+
+.swatch.active {
+  box-shadow: 0 0 0 2.5px #fff;
+}
+
+/* Pixelated swatch highlight — square corners to match pixel style */
+.style-pixel .swatch {
+  border-radius: 0;
+}
+.style-pixel .swatch:hover {
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+}
+.style-pixel .swatch.active {
+  box-shadow: 0 0 0 2.5px #fff;
+}
+
+/* ===== Tool buttons ===== */
+.tool-btn {
+  position: absolute;
+  width: 4.5%;
+  height: 9%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  z-index: 10;
+  opacity: 1;
+  overflow: hidden;
+  transform: scale(1);
+  transition: opacity 0.2s ease, transform 0.2s ease, filter 0.2s ease;
+}
+
+.tool-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: opacity 0.3s ease;
+}
+
+.tool-btn:hover {
+  transform: scale(1.15);
+  filter: brightness(1.15);
+}
+
+.tool-btn.active {
+  filter: brightness(1.1);
+}
+
+/* Tool grid positions - from sprite sheet analysis
+   Col 1 x-left: 86.3%, Col 2 x-left: 92.2%
+   Row tops: 13.2%, 23.4%, 36.2%, 46.9%, 56.0%
+   Music top: 78.2% */
+/* Column 1 (left) */
+.tool-pos-r1c1 { left: 86.3%; top: 13.2%; }
+.tool-pos-r2c1 { left: 86.3%; top: 23.4%; }
+.tool-pos-r3c1 { left: 86.3%; top: 36.2%; }
+.tool-pos-r4c1 { left: 86.3%; top: 46.9%; }
+.tool-pos-r5c1 { left: 86.3%; top: 56.0%; }
+
+/* Column 2 (right) */
+.tool-pos-r1c2 { left: 92.2%; top: 13.2%; }
+.tool-pos-r2c2 { left: 92.2%; top: 23.4%; }
+.tool-pos-r3c2 { left: 92.2%; top: 36.2%; }
+.tool-pos-r4c2 { left: 92.2%; top: 46.9%; }
+.tool-pos-r5c2 { left: 92.2%; top: 56.0%; }
+
+/* Music button in the bottom box */
+.tool-pos-music {
+  left: 86.26%;
+  top: 78.19%;
+  width: 11.32%;
+  height: 9.37%;
+}
+
+/* ===== Undo/Redo Buttons - positioned at bottom below canvas ===== */
+.undo-redo-btn {
+  position: absolute;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  z-index: 15;
+  width: 3.9%;
+  height: 5%;
+  overflow: hidden;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+.undo-redo-btn:hover {
+  transform: scale(1.15);
+  filter: brightness(1.15);
+}
+.undo-redo-btn:active {
+  transform: scale(0.95);
+}
+.undo-redo-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.undo-btn {
+  left: 13.6%;
+  top: 91.3%;
+}
+.redo-btn {
+  left: 18.9%;
+  top: 91.3%;
+}
+
+/* ===== Clear Canvas Button - bottom right ===== */
+.clear-btn {
+  position: absolute;
+  left: 80.2%;
+  top: 91.3%;
+  width: 4.5%;
+  height: 6%;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  z-index: 15;
+  overflow: hidden;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+.clear-btn:hover {
+  transform: scale(1.15);
+  filter: brightness(1.15);
+}
+.clear-btn:active {
+  transform: scale(0.95);
+}
+.clear-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* ===== Brush Size Slider - positioned under colour swatches ===== */
+.brush-slider {
+  position: absolute;
+  left: 2.09%;
+  top: 74.5%;
+  width: 10.17%;
+  height: 8%;
+  z-index: 15;
+  display: flex;
+  align-items: center;
+}
+
+.brush-slider-line {
+  position: absolute;
+  left: 0;
+  top: 55%;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 26%;
+  object-fit: fill;
+  pointer-events: none;
+}
+
+.brush-slider-handle {
+  position: absolute;
+  top: 53%;
+  /* JS sets transform dynamically per star variant via updateStarTransform() */
+  transform: translate(-50%, -33.1%);
+  width: 4.0vw; /* initial/fallback; JS overrides dynamically */
+  height: 4.0vw;
+  cursor: grab;
+  z-index: 16;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.brush-slider-handle.is-hovered {
+  filter: brightness(1.1);
+}
+
+.brush-slider-handle:active {
+  cursor: grabbing;
+}
+
+.brush-slider-handle img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+/* ===== Custom Tool Icon Cursor ===== */
+/* Normal arrow cursor while the sticker menu is open */
+body.sticker-menu-open,
+body.sticker-menu-open * {
+  cursor: default !important;
+}
+
+.brush-cursor {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  display: none;
+  /* transform set per-tool by JS */
+}
+
+.brush-cursor.visible {
+  display: block;
+}
+
+.brush-cursor img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  pointer-events: none;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.25));
+}
+
+/* ===== Pixel style: crisp rendering for pixel art ===== */
+.style-pixel img,
+.style-pixel .brush-slider-line {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+}
+
+/* ===== 3D style: all canvas content gets a raised 3D shadow ===== */
+#canvas.mode-3d {
+  filter: drop-shadow(4px 4px 5px rgba(0, 0, 0, 0.3));
+}
+
+/* 3D swatches: raised bevel effect */
+.style-3d .swatch {
+  box-shadow:
+    inset 2px 2px 4px rgba(255, 255, 255, 0.55),
+    inset -2px -2px 5px rgba(0, 0, 0, 0.18),
+    2px 3px 5px rgba(0, 0, 0, 0.22);
+  border-radius: 8px;
+}
+.style-3d .swatch:hover {
+  box-shadow:
+    inset 2px 2px 4px rgba(255, 255, 255, 0.55),
+    inset -2px -2px 5px rgba(0, 0, 0, 0.18),
+    2px 3px 5px rgba(0, 0, 0, 0.22),
+    0 0 0 2px rgba(255, 255, 255, 0.5);
+}
+.style-3d .swatch.active {
+  box-shadow:
+    inset 2px 2px 4px rgba(255, 255, 255, 0.55),
+    inset -2px -2px 5px rgba(0, 0, 0, 0.18),
+    2px 3px 5px rgba(0, 0, 0, 0.22),
+    0 0 0 2.5px #fff;
+}
+
+/* Canvas selection content (inside stickerLayer) */
+#canvasSelContent {
+  position: absolute;
+  display: none;
+  cursor: default;
+  box-sizing: border-box;
+}
+.select-active #canvasSelContent { cursor: grab; }
+#canvasSelContent:active { cursor: grabbing; }
+#canvasSelContent canvas {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+}
+
+/* ===== Sticker Layer ===== */
+#stickerLayer {
+  position: absolute;
+  left: 13.32%;
+  top: 9.8%;
+  width: 70%;
+  height: 80.5%;
+  z-index: 5;
+  overflow: hidden;
+  border-radius: 1.2vw;
+  pointer-events: none;
+}
+
+#stickerLayer.select-active {
+  pointer-events: all;
+  cursor: default;
+}
+
+.sticker {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: none;
+  cursor: default;
+}
+
+.sticker img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.select-active .sticker { pointer-events: all; cursor: grab; }
+
+.sticker.dragging {
+  cursor: grabbing;
+  opacity: 0.9;
+}
+
+/* ===== Select Frame ===== */
+#selectFrame {
+  position: absolute;
+  display: none;
+  z-index: 25;
+  pointer-events: none;
+  --sf-pink: #E0B0B8;
+}
+
+/* Pink border line — only this scales with the selection */
+#selectFrame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1.5px solid var(--sf-pink);
+  pointer-events: none;
+}
+
+/* Resize handles — 30px invisible hit area, placed at corners/edges by JS */
+.rh {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  pointer-events: all;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+/* Visible handle square — fixed size, never stretched */
+.rh::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 11px;
+  height: 11px;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  background: #fff;
+  border: 1.5px solid var(--sf-pink);
+  border-radius: 2px;
+}
+
+.rh-tl { cursor: nwse-resize; }
+.rh-tr { cursor: nesw-resize; }
+.rh-bl { cursor: nesw-resize; }
+.rh-br { cursor: nwse-resize; }
+.rh-t  { cursor: ns-resize; }
+.rh-b  { cursor: ns-resize; }
+.rh-l  { cursor: ew-resize; }
+.rh-r  { cursor: ew-resize; }
+
+/* ===== Sticker Picker Panel ===== */
+#stickerPanel {
+  position: absolute;
+  left: 13.32%;
+  bottom: 9.7%;
+  width: 70%;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+  background: rgba(255, 248, 244, 0.97);
+  z-index: 30;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 1.2vw 1.2vw 0 0;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+}
+
+#stickerPanel.open {
+  max-height: 150px;
+}
+
+.sticker-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+  padding: 15px 20px;
+  overflow-x: auto;
+  align-items: center;
+  height: 100%;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.15) transparent;
+}
+
+.sticker-thumb {
+  flex-shrink: 0;
+  max-height: 90px;
+  max-width: 90px;
+  object-fit: contain;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.sticker-thumb:hover {
+  transform: scale(1.12);
+}
+
+/* ===== Shape Picker Panel ===== */
+#shapePanel {
+  position: absolute;
+  left: 13.32%;
+  bottom: 9.7%;
+  width: 70%;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+  background: rgba(255, 248, 244, 0.97);
+  z-index: 30;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 1.2vw 1.2vw 0 0;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+}
+
+#shapePanel.open {
+  max-height: 150px;
+}
+
+/* ===== Fonts ===== */
+@font-face {
+  font-family: 'Handwriting';
+  src: url('Handwriting-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Bubble';
+  src: url('BubbleFont-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Blocky';
+  src: url('Blocky.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Bubble I';
+  src: url('BubbleI.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Rough';
+  src: url('Rough.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Strokes';
+  src: url('Strokes.ttf') format('truetype');
+}
+
+/* ===== Type (Font Picker) Panel ===== */
+#typePanel {
+  position: absolute;
+  left: 13.32%;
+  bottom: 9.7%;
+  width: 70%;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+  background: rgba(255, 248, 244, 0.97);
+  z-index: 30;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 1.2vw 1.2vw 0 0;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+}
+#typePanel.open {
+  max-height: 150px;
+}
+.font-thumb {
+  flex-shrink: 0;
+  width: 90px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 38px;
+  border-radius: 12px;
+  transition: transform 0.15s ease, background 0.15s ease;
+  background: rgba(0, 0, 0, 0.04);
+  user-select: none;
+}
+.font-thumb:hover { transform: scale(1.08); background: rgba(0, 0, 0, 0.08); }
+.font-thumb.selected { background: rgba(210, 150, 180, 0.3); outline: 2px solid rgba(210, 150, 180, 0.7); }
+
+/* ===== Text Input Box ===== */
+#textInputBox {
+  position: absolute;
+  display: none;
+  z-index: 40;
+  pointer-events: all;
+}
+#textInputBox .text-frame-bg {
+  position: absolute;
+  top: 0; left: 0;
+  pointer-events: none;
+  user-select: none;
+  border: 1.5px solid #E0B0B8;
+  box-sizing: border-box;
+}
+/* little squares on the text frame's corners and edges */
+.tfh {
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  box-sizing: border-box;
+  background: #fff;
+  border: 1.5px solid #E0B0B8;
+  border-radius: 2px;
+  transform: translate(-50%, -50%);
+}
+#textInputArea {
+  position: absolute;
+  background: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+  line-height: 1.35;
+  padding: 4px;
+  overflow: hidden;
+}
+.text-btn-row {
+  position: absolute;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+.text-action-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  opacity: 0.88;
+  transition: transform 0.15s, opacity 0.15s;
+}
+.text-action-btn:hover { transform: scale(1.1); opacity: 1; }
+.text-action-btn img { width: 52px; height: 52px; object-fit: contain; pointer-events: none; }
+
+  </style>
+</head>
+<body>
+  <div class="app">
+    <!-- Animated star background overlay -->
+    <video class="star-bg" autoplay loop muted playsinline>
+      <source src="star-bg.mp4" type="video/mp4">
+    </video>
+
+    <!-- Top arrows: Color theme (left pair) + Style (right pair) -->
+    <button class="nav-arrow color-arrow-left" id="colorArrowLeft" title="Previous color">
+      <img src="color-arrow-left.webp?v=34" data-default="color-arrow-left.webp" data-warm="color-arrow-left-warm.webp" data-theme3="color-arrow-left-theme3.webp" data-theme4="color-arrow-left-theme4.webp" data-theme5="color-arrow-left-theme5.webp" data-theme6="color-arrow-left-theme6.webp" data-style-pixel="color-arrow-left-pixel.webp" data-style-pixel-warm="color-arrow-left-pixel-warm.webp" data-style-pixel-theme3="color-arrow-left-pixel-theme3.webp" data-style-pixel-theme4="color-arrow-left-pixel-theme4.webp" data-style-pixel-theme5="color-arrow-left-pixel-theme5.webp" data-style-pixel-theme6="color-arrow-left-pixel-theme6.webp" data-style-3d="color-arrow-left-3d.webp" data-style-3d-warm="color-arrow-left-3d-warm.webp" data-style-3d-theme3="color-arrow-left-3d-theme3.webp" data-style-3d-theme4="color-arrow-left-3d-theme4.webp" data-style-3d-theme5="color-arrow-left-3d-theme5.webp" data-style-3d-theme6="color-arrow-left-3d-theme6.webp" alt="<" draggable="false">
+    </button>
+    <button class="nav-arrow color-arrow-right" id="colorArrowRight" title="Next color">
+      <img src="color-arrow-right.webp?v=34" data-default="color-arrow-right.webp" data-warm="color-arrow-right-warm.webp" data-theme3="color-arrow-right-theme3.webp" data-theme4="color-arrow-right-theme4.webp" data-theme5="color-arrow-right-theme5.webp" data-theme6="color-arrow-right-theme6.webp" data-style-pixel="color-arrow-right-pixel.webp" data-style-pixel-warm="color-arrow-right-pixel-warm.webp" data-style-pixel-theme3="color-arrow-right-pixel-theme3.webp" data-style-pixel-theme4="color-arrow-right-pixel-theme4.webp" data-style-pixel-theme5="color-arrow-right-pixel-theme5.webp" data-style-pixel-theme6="color-arrow-right-pixel-theme6.webp" data-style-3d="color-arrow-right-3d.webp" data-style-3d-warm="color-arrow-right-3d-warm.webp" data-style-3d-theme3="color-arrow-right-3d-theme3.webp" data-style-3d-theme4="color-arrow-right-3d-theme4.webp" data-style-3d-theme5="color-arrow-right-3d-theme5.webp" data-style-3d-theme6="color-arrow-right-3d-theme6.webp" alt=">" draggable="false">
+    </button>
+    <button class="nav-arrow style-arrow-left" id="styleArrowLeft" title="Previous style">
+      <img src="style-arrow-left.webp?v=34" data-default="style-arrow-left.webp" data-warm="style-arrow-left-warm.webp" data-theme3="style-arrow-left-theme3.webp" data-theme4="style-arrow-left-theme4.webp" data-theme5="style-arrow-left-theme5.webp" data-theme6="style-arrow-left-theme6.webp" data-style-pixel="style-arrow-left-pixel.webp" data-style-pixel-warm="style-arrow-left-pixel-warm.webp" data-style-pixel-theme3="style-arrow-left-pixel-theme3.webp" data-style-pixel-theme4="style-arrow-left-pixel-theme4.webp" data-style-pixel-theme5="style-arrow-left-pixel-theme5.webp" data-style-pixel-theme6="style-arrow-left-pixel-theme6.webp" data-style-3d="style-arrow-left-3d.webp" data-style-3d-warm="style-arrow-left-3d-warm.webp" data-style-3d-theme3="style-arrow-left-3d-theme3.webp" data-style-3d-theme4="style-arrow-left-3d-theme4.webp" data-style-3d-theme5="style-arrow-left-3d-theme5.webp" data-style-3d-theme6="style-arrow-left-3d-theme6.webp" alt="<" draggable="false">
+    </button>
+    <button class="nav-arrow style-arrow-right" id="styleArrowRight" title="Next style">
+      <img src="style-arrow-right.webp?v=34" data-default="style-arrow-right.webp" data-warm="style-arrow-right-warm.webp" data-theme3="style-arrow-right-theme3.webp" data-theme4="style-arrow-right-theme4.webp" data-theme5="style-arrow-right-theme5.webp" data-theme6="style-arrow-right-theme6.webp" data-style-pixel="style-arrow-right-pixel.webp" data-style-pixel-warm="style-arrow-right-pixel-warm.webp" data-style-pixel-theme3="style-arrow-right-pixel-theme3.webp" data-style-pixel-theme4="style-arrow-right-pixel-theme4.webp" data-style-pixel-theme5="style-arrow-right-pixel-theme5.webp" data-style-pixel-theme6="style-arrow-right-pixel-theme6.webp" data-style-3d="style-arrow-right-3d.webp" data-style-3d-warm="style-arrow-right-3d-warm.webp" data-style-3d-theme3="style-arrow-right-3d-theme3.webp" data-style-3d-theme4="style-arrow-right-3d-theme4.webp" data-style-3d-theme5="style-arrow-right-3d-theme5.webp" data-style-3d-theme6="style-arrow-right-3d-theme6.webp" alt=">" draggable="false">
+    </button>
+
+    <!-- Drawing canvas -->
+    <canvas id="canvas"></canvas>
+
+    <!-- Swatch overlays -->
+    <div class="swatch" data-color="#C8CDE7" data-warm-color="#274652" data-theme3-color="#011119" data-theme4-color="#F9BC2A" data-theme5-color="#FBF7CC" data-theme6-color="#0350B2" style="left:4.86%;top:36.48%"></div>
+    <div class="swatch" data-color="#D6DFFD" data-warm-color="#297271" data-theme3-color="#006073" data-theme4-color="#FFC8B0" data-theme5-color="#FCE2CF" data-theme6-color="#046EC6" style="left:9.39%;top:36.48%"></div>
+    <div class="swatch" data-color="#EAEBF5" data-warm-color="#2B9C8D" data-theme3-color="#0A9295" data-theme4-color="#F18C69" data-theme5-color="#FFCED1" data-theme6-color="#1282A6" style="left:4.91%;top:43.98%"></div>
+    <div class="swatch" data-color="#E8E2E7" data-warm-color="#89B07C" data-theme3-color="#94D2BC" data-theme4-color="#ED6B4C" data-theme5-color="#F0BEE6" data-theme6-color="#16A0A0" style="left:9.44%;top:43.98%"></div>
+    <div class="swatch" data-color="#BCDFE4" data-warm-color="#B9BA75" data-theme3-color="#E8D7A5" data-theme4-color="#F56E8C" data-theme5-color="#CDB9EE" data-theme6-color="#6FB19E" style="left:4.89%;top:51.42%"></div>
+    <div class="swatch" data-color="#E0EAE7" data-warm-color="#E7C369" data-theme3-color="#ED9A00" data-theme4-color="#F1B9C7" data-theme5-color="#A2C2F1" data-theme6-color="#B2418C" style="left:9.43%;top:51.42%"></div>
+    <div class="swatch" data-color="#F9D2DF" data-warm-color="#EDB365" data-theme3-color="#C96702" data-theme4-color="#7FD7BD" data-theme5-color="#8EDAF3" data-theme6-color="#D7498B" style="left:4.95%;top:58.92%"></div>
+    <div class="swatch" data-color="#FDE0E3" data-warm-color="#F2A061" data-theme3-color="#BA3E04" data-theme4-color="#A0FBDE" data-theme5-color="#8CEAF4" data-theme6-color="#E9515E" style="left:9.47%;top:58.92%"></div>
+    <div class="swatch" data-color="#FFF1E4" data-warm-color="#ED8758" data-theme3-color="#AD2112" data-theme4-color="#3B524A" data-theme5-color="#96F4DF" data-theme6-color="#FC7434" style="left:4.91%;top:66.45%"></div>
+    <div class="swatch" data-color="#EFEDEA" data-warm-color="#E66E51" data-theme3-color="#9B2226" data-theme4-color="#509871" data-theme5-color="#B7FABE" data-theme6-color="#FFA606" style="left:9.44%;top:66.45%"></div>
+
+    <!-- Tool buttons -->
+    <button class="tool-btn tool-pos-r1c1" data-tool="mail" title="Mail">
+      <img src="mail-icon.webp?v=34" data-default="mail-icon.webp" data-warm="mail-icon-warm.webp" data-theme3="mail-icon-theme3.webp" data-theme4="mail-icon-theme4.webp" data-theme5="mail-icon-theme5.webp" data-theme6="mail-icon-theme6.webp" data-style-pixel="mail-icon-pixel.webp" data-style-pixel-warm="mail-icon-pixel-warm.webp" data-style-pixel-theme3="mail-icon-pixel-theme3.webp" data-style-pixel-theme4="mail-icon-pixel-theme4.webp" data-style-pixel-theme5="mail-icon-pixel-theme5.webp" data-style-pixel-theme6="mail-icon-pixel-theme6.webp" data-style-3d="mail-icon-3d.webp" data-style-3d-warm="mail-icon-3d-warm.webp" data-style-3d-theme3="mail-icon-3d-theme3.webp" data-style-3d-theme4="mail-icon-3d-theme4.webp" data-style-3d-theme5="mail-icon-3d-theme5.webp" data-style-3d-theme6="mail-icon-3d-theme6.webp" alt="Mail" draggable="false">
+    </button>
+    <button class="tool-btn tool-pos-r1c2 active" data-tool="brush" title="Paintbrush">
+      <img src="paintbrush-icon.webp?v=34" data-default="paintbrush-icon.webp" data-warm="paintbrush-icon-warm.webp" data-theme3="paintbrush-icon-theme3.webp" data-theme4="paintbrush-icon-theme4.webp" data-theme5="paintbrush-icon-theme5.webp" data-theme6="paintbrush-icon-theme6.webp" data-style-pixel="paintbrush-icon-pixel.webp" data-style-pixel-warm="paintbrush-icon-pixel-warm.webp" data-style-pixel-theme3="paintbrush-icon-pixel-theme3.webp" data-style-pixel-theme4="paintbrush-icon-pixel-theme4.webp" data-style-pixel-theme5="paintbrush-icon-pixel-theme5.webp" data-style-pixel-theme6="paintbrush-icon-pixel-theme6.webp" data-style-3d="paintbrush-icon-3d.webp" data-style-3d-warm="paintbrush-icon-3d-warm.webp" data-style-3d-theme3="paintbrush-icon-3d-theme3.webp" data-style-3d-theme4="paintbrush-icon-3d-theme4.webp" data-style-3d-theme5="paintbrush-icon-3d-theme5.webp" data-style-3d-theme6="paintbrush-icon-3d-theme6.webp" alt="Paintbrush" draggable="false">
+    </button>
+    <button class="tool-btn tool-pos-r2c1" data-tool="eraser" title="Eraser">
+      <img src="eraser-icon.webp?v=34" data-default="eraser-icon.webp" data-warm="eraser-icon-warm.webp" data-theme3="eraser-icon-theme3.webp" data-theme4="eraser-icon-theme4.webp" data-theme5="eraser-icon-theme5.webp" data-theme6="eraser-icon-theme6.webp" data-style-pixel="eraser-icon-pixel.webp" data-style-pixel-warm="eraser-icon-pixel-warm.webp" data-style-pixel-theme3="eraser-icon-pixel-theme3.webp" data-style-pixel-theme4="eraser-icon-pixel-theme4.webp" data-style-pixel-theme5="eraser-icon-pixel-theme5.webp" data-style-pixel-theme6="eraser-icon-pixel-theme6.webp" data-style-3d="eraser-icon-3d.webp" data-style-3d-warm="eraser-icon-3d-warm.webp" data-style-3d-theme3="eraser-icon-3d-theme3.webp" data-style-3d-theme4="eraser-icon-3d-theme4.webp" data-style-3d-theme5="eraser-icon-3d-theme5.webp" data-style-3d-theme6="eraser-icon-3d-theme6.webp" alt="Eraser" draggable="false">
+    </button>
+    <button class="tool-btn tool-pos-r2c2" data-tool="special-pen" title="Special Pen">
+      <img src="special-pen-icon.webp?v=34" data-default="special-pen-icon.webp" data-warm="special-pen-icon-warm.webp" data-theme3="special-pen-icon-theme3.webp" data-theme4="special-pen-icon-theme4.webp" data-theme5="special-pen-icon-theme5.webp" data-theme6="special-pen-icon-theme6.webp" data-style-pixel="special-pen-icon-pixel.webp" data-style-pixel-warm="special-pen-icon-pixel-warm.webp" data-style-pixel-theme3="special-pen-icon-pixel-theme3.webp" data-style-pixel-theme4="special-pen-icon-pixel-theme4.webp" data-style-pixel-theme5="special-pen-icon-pixel-theme5.webp" data-style-pixel-theme6="special-pen-icon-pixel-theme6.webp" data-style-3d="special-pen-icon-3d.webp" data-style-3d-warm="special-pen-icon-3d-warm.webp" data-style-3d-theme3="special-pen-icon-3d-theme3.webp" data-style-3d-theme4="special-pen-icon-3d-theme4.webp" data-style-3d-theme5="special-pen-icon-3d-theme5.webp" data-style-3d-theme6="special-pen-icon-3d-theme6.webp" alt="Special Pen" draggable="false">
+    </button>
+    <button class="tool-btn tool-pos-r3c1" data-tool="eyedropper" title="Eyedropper">
+      <img src="eyedropper-icon.webp?v=34" data-default="eyedropper-icon.webp" data-warm="eyedropper-icon-warm.webp" data-theme3="eyedropper-icon-theme3.webp" data-theme4="eyedropper-icon-theme4.webp" data-theme5="eyedropper-icon-theme5.webp" data-theme6="eyedropper-icon-theme6.webp" data-style-pixel="eyedropper-icon-pixel.webp" data-style-pixel-warm="eyedropper-icon-pixel-warm.webp" data-style-pixel-theme3="eyedropper-icon-pixel-theme3.webp" data-style-pixel-theme4="eyedropper-icon-pixel-theme4.webp" data-style-pixel-theme5="eyedropper-icon-pixel-theme5.webp" data-style-pixel-theme6="eyedropper-icon-pixel-theme6.webp" data-style-3d="eyedropper-icon-3d.webp" data-style-3d-warm="eyedropper-icon-3d-warm.webp" data-style-3d-theme3="eyedropper-icon-3d-theme3.webp" data-style-3d-theme4="eyedropper-icon-3d-theme4.webp" data-style-3d-theme5="eyedropper-icon-3d-theme5.webp" data-style-3d-theme6="eyedropper-icon-3d-theme6.webp" alt="Eyedropper" draggable="false">
+    </button>
+    <button class="tool-btn tool-pos-r4c1" data-tool="type" title="Type">
+      <img src="type-icon.webp?v=34" data-default="type-icon.webp" data-warm="type-icon-warm.webp" data-theme3="type-icon-theme3.webp" data-theme4="type-icon-theme4.webp" data-theme5="type-icon-theme5.webp" data-theme6="type-icon-theme6.webp" data-style-pixel="type-icon-pixel.webp" data-style-pixel-warm="type-icon-pixel-warm.webp" data-style-pixel-theme3="type-icon-pixel-theme3.webp" data-style-pixel-theme4="type-icon-pixel-theme4.webp" data-style-pixel-theme5="type-icon-pixel-theme5.webp" data-style-pixel-theme6="type-icon-pixel-theme6.webp" data-style-3d="type-icon-3d.webp" data-style-3d-warm="type-icon-3d-warm.webp" data-style-3d-theme3="type-icon-3d-theme3.webp" data-style-3d-theme4="type-icon-3d-theme4.webp" data-style-3d-theme5="type-icon-3d-theme5.webp" data-style-3d-theme6="type-icon-3d-theme6.webp" alt="Type" draggable="false">
+    </button>
+    <button class="tool-btn tool-pos-r3c2" data-tool="fill" title="Colouring In">
+      <img src="colouring-in-icon.webp?v=34" data-default="colouring-in-icon.webp" data-warm="colouring-in-icon-warm.webp" data-theme3="colouring-in-icon-theme3.webp" data-theme4="colouring-in-icon-theme4.webp" data-theme5="colouring-in-icon-theme5.webp" data-theme6="colouring-in-icon-theme6.webp" data-style-pixel="colouring-in-icon-pixel.webp" data-style-pixel-warm="colouring-in-icon-pixel-warm.webp" data-style-pixel-theme3="colouring-in-icon-pixel-theme3.webp" data-style-pixel-theme4="colouring-in-icon-pixel-theme4.webp" data-style-pixel-theme5="colouring-in-icon-pixel-theme5.webp" data-style-pixel-theme6="colouring-in-icon-pixel-theme6.webp" data-style-3d="colouring-in-icon-3d.webp" data-style-3d-warm="colouring-in-icon-3d-warm.webp" data-style-3d-theme3="colouring-in-icon-3d-theme3.webp" data-style-3d-theme4="colouring-in-icon-3d-theme4.webp" data-style-3d-theme5="colouring-in-icon-3d-theme5.webp" data-style-3d-theme6="colouring-in-icon-3d-theme6.webp" alt="Colouring In" draggable="false">
+    </button>
+    <button class="tool-btn tool-pos-r5c1" data-tool="select" title="Select">
+      <img src="select-icon.webp?v=34" data-default="select-icon.webp" data-warm="select-icon-warm.webp" data-theme3="select-icon-theme3.webp" data-theme4="select-icon-theme4.webp" data-theme5="select-icon-theme5.webp" data-theme6="select-icon-theme6.webp" data-style-pixel="select-icon-pixel.webp" data-style-pixel-warm="select-icon-pixel-warm.webp" data-style-pixel-theme3="select-icon-pixel-theme3.webp" data-style-pixel-theme4="select-icon-pixel-theme4.webp" data-style-pixel-theme5="select-icon-pixel-theme5.webp" data-style-pixel-theme6="select-icon-pixel-theme6.webp" data-style-3d="select-icon-3d.webp" data-style-3d-warm="select-icon-3d-warm.webp" data-style-3d-theme3="select-icon-3d-theme3.webp" data-style-3d-theme4="select-icon-3d-theme4.webp" data-style-3d-theme5="select-icon-3d-theme5.webp" data-style-3d-theme6="select-icon-3d-theme6.webp" alt="Select" draggable="false">
+    </button>
+    <button class="tool-btn tool-pos-r4c2" data-tool="bucket" title="Paint Fill">
+      <img src="bucket-icon.webp?v=47" data-default="bucket-icon.webp" data-warm="bucket-icon-warm.webp" data-theme3="bucket-icon-theme3.webp" data-theme4="bucket-icon-theme4.webp" data-theme5="bucket-icon-theme5.webp" data-theme6="bucket-icon-theme6.webp" data-style-pixel="bucket-icon-pixel.webp" data-style-pixel-warm="bucket-icon-pixel-warm.webp" data-style-pixel-theme3="bucket-icon-pixel-theme3.webp" data-style-pixel-theme4="bucket-icon-pixel-theme4.webp" data-style-pixel-theme5="bucket-icon-pixel-theme5.webp" data-style-pixel-theme6="bucket-icon-pixel-theme6.webp" data-style-3d="bucket-icon-3d.webp" data-style-3d-warm="bucket-icon-3d-warm.webp" data-style-3d-theme3="bucket-icon-3d-theme3.webp" data-style-3d-theme4="bucket-icon-3d-theme4.webp" data-style-3d-theme5="bucket-icon-3d-theme5.webp" data-style-3d-theme6="bucket-icon-3d-theme6.webp" alt="Paint Fill" draggable="false">
+    </button>
+
+    <!-- Undo/Redo buttons -->
+    <button class="undo-redo-btn undo-btn" id="undoBtn" title="Undo">
+      <img src="undo-arrow.webp?v=34" data-default="undo-arrow.webp" data-warm="undo-arrow-warm.webp" data-theme3="undo-arrow-theme3.webp" data-theme4="undo-arrow-theme4.webp" data-theme5="undo-arrow-theme5.webp" data-theme6="undo-arrow-theme6.webp" data-style-pixel="undo-arrow-pixel.webp" data-style-pixel-warm="undo-arrow-pixel-warm.webp" data-style-pixel-theme3="undo-arrow-pixel-theme3.webp" data-style-pixel-theme4="undo-arrow-pixel-theme4.webp" data-style-pixel-theme5="undo-arrow-pixel-theme5.webp" data-style-pixel-theme6="undo-arrow-pixel-theme6.webp" data-style-3d="undo-arrow-3d.webp" data-style-3d-warm="undo-arrow-3d-warm.webp" data-style-3d-theme3="undo-arrow-3d-theme3.webp" data-style-3d-theme4="undo-arrow-3d-theme4.webp" data-style-3d-theme5="undo-arrow-3d-theme5.webp" data-style-3d-theme6="undo-arrow-3d-theme6.webp" alt="Undo" draggable="false">
+    </button>
+    <button class="undo-redo-btn redo-btn" id="redoBtn" title="Redo">
+      <img src="redo-arrow.webp?v=34" data-default="redo-arrow.webp" data-warm="redo-arrow-warm.webp" data-theme3="redo-arrow-theme3.webp" data-theme4="redo-arrow-theme4.webp" data-theme5="redo-arrow-theme5.webp" data-theme6="redo-arrow-theme6.webp" data-style-pixel="redo-arrow-pixel.webp" data-style-pixel-warm="redo-arrow-pixel-warm.webp" data-style-pixel-theme3="redo-arrow-pixel-theme3.webp" data-style-pixel-theme4="redo-arrow-pixel-theme4.webp" data-style-pixel-theme5="redo-arrow-pixel-theme5.webp" data-style-pixel-theme6="redo-arrow-pixel-theme6.webp" data-style-3d="redo-arrow-3d.webp" data-style-3d-warm="redo-arrow-3d-warm.webp" data-style-3d-theme3="redo-arrow-3d-theme3.webp" data-style-3d-theme4="redo-arrow-3d-theme4.webp" data-style-3d-theme5="redo-arrow-3d-theme5.webp" data-style-3d-theme6="redo-arrow-3d-theme6.webp" alt="Redo" draggable="false">
+    </button>
+
+    <!-- Clear canvas button -->
+    <button class="clear-btn" id="clearBtn" title="Clear canvas">
+      <img src="clear-icon.webp?v=34" data-default="clear-icon.webp" data-warm="clear-icon-warm.webp" data-theme3="clear-icon-theme3.webp" data-theme4="clear-icon-theme4.webp" data-theme5="clear-icon-theme5.webp" data-theme6="clear-icon-theme6.webp" data-style-pixel="clear-icon-pixel.webp" data-style-pixel-warm="clear-icon-pixel-warm.webp" data-style-pixel-theme3="clear-icon-pixel-theme3.webp" data-style-pixel-theme4="clear-icon-pixel-theme4.webp" data-style-pixel-theme5="clear-icon-pixel-theme5.webp" data-style-pixel-theme6="clear-icon-pixel-theme6.webp" data-style-3d="clear-icon-3d.webp" data-style-3d-warm="clear-icon-3d-warm.webp" data-style-3d-theme3="clear-icon-3d-theme3.webp" data-style-3d-theme4="clear-icon-3d-theme4.webp" data-style-3d-theme5="clear-icon-3d-theme5.webp" data-style-3d-theme6="clear-icon-3d-theme6.webp" alt="Clear" draggable="false">
+    </button>
+
+    <!-- Brush size slider -->
+    <div class="brush-slider" id="brushSlider">
+      <img class="brush-slider-line" src="brush-line.webp?v=34" data-default="brush-line.webp" data-warm="brush-line-warm.webp" data-theme3="brush-line-theme3.webp" data-theme4="brush-line-theme4.webp" data-theme5="brush-line-theme5.webp" data-theme6="brush-line-theme6.webp" data-style-pixel="brush-line-pixel.webp" data-style-pixel-warm="brush-line-pixel-warm.webp" data-style-pixel-theme3="brush-line-pixel-theme3.webp" data-style-pixel-theme4="brush-line-pixel-theme4.webp" data-style-pixel-theme5="brush-line-pixel-theme5.webp" data-style-pixel-theme6="brush-line-pixel-theme6.webp" data-style-3d="brush-line-3d.webp" data-style-3d-warm="brush-line-3d-warm.webp" data-style-3d-theme3="brush-line-3d-theme3.webp" data-style-3d-theme4="brush-line-3d-theme4.webp" data-style-3d-theme5="brush-line-3d-theme5.webp" data-style-3d-theme6="brush-line-3d-theme6.webp" alt="" draggable="false">
+      <div class="brush-slider-handle" id="brushHandle">
+        <img src="brush-star.webp?v=34" data-default="brush-star.webp" data-warm="brush-star-warm.webp" data-theme3="brush-star-theme3.webp" data-theme4="brush-star-theme4.webp" data-theme5="brush-star-theme5.webp" data-theme6="brush-star-theme6.webp" data-style-pixel="brush-star-pixel.webp" data-style-pixel-warm="brush-star-pixel-warm.webp" data-style-pixel-theme3="brush-star-pixel-theme3.webp" data-style-pixel-theme4="brush-star-pixel-theme4.webp" data-style-pixel-theme5="brush-star-pixel-theme5.webp" data-style-pixel-theme6="brush-star-pixel-theme6.webp" data-style-3d="brush-star-3d.webp" data-style-3d-warm="brush-star-3d-warm.webp" data-style-3d-theme3="brush-star-3d-theme3.webp" data-style-3d-theme4="brush-star-3d-theme4.webp" data-style-3d-theme5="brush-star-3d-theme5.webp" data-style-3d-theme6="brush-star-3d-theme6.webp" alt="Brush size" draggable="false">
+      </div>
+    </div>
+
+    <!-- Sticker layer: positioned over canvas, stickers live here -->
+    <div id="stickerLayer"></div>
+
+    <!-- Select frame: surrounds selected sticker, sized/positioned by JS -->
+    <div id="selectFrame">
+      <div class="rh rh-tl" data-dir="tl"></div>
+      <div class="rh rh-tr" data-dir="tr"></div>
+      <div class="rh rh-bl" data-dir="bl"></div>
+      <div class="rh rh-br" data-dir="br"></div>
+      <div class="rh rh-t"  data-dir="t"></div>
+      <div class="rh rh-b"  data-dir="b"></div>
+      <div class="rh rh-l"  data-dir="l"></div>
+      <div class="rh rh-r"  data-dir="r"></div>
+    </div>
+
+    <!-- Sticker picker panel: slides up from canvas bottom when fill tool is clicked -->
+    <div id="stickerPanel">
+      <div class="sticker-grid" id="stickerGrid"></div>
+    </div>
+
+    <!-- Shape picker panel: slides up from canvas bottom when shape tool is clicked -->
+    <div id="shapePanel">
+      <div class="sticker-grid" id="shapeGrid"></div>
+    </div>
+
+    <!-- Type (font picker) panel: slides up when type tool is clicked -->
+    <div id="typePanel">
+      <div class="sticker-grid" id="fontGrid"></div>
+    </div>
+
+    <!-- Text input overlay: appears on canvas click when type tool is active -->
+    <div id="textInputBox">
+      <div class="text-frame-bg"></div>
+      <textarea id="textInputArea" placeholder="Type here..."></textarea>
+      <div class="text-btn-row">
+        <button class="text-action-btn" id="textCancelBtn"><img src="sticker-cancel.webp" alt="Cancel" draggable="false"></button>
+        <button class="text-action-btn" id="textOkBtn"><img src="sticker-ok.webp" alt="OK" draggable="false"></button>
+      </div>
+    </div>
+
+  </div>
+  <script>
+// ===== Theme System =====
+const themes = ['default', 'warm', 'theme3', 'theme4', 'theme5', 'theme6'];
+let currentThemeIndex = 0;
+
+// ===== Style System =====
+const styles = ['normal', 'pixel', '3d'];
+let currentStyleIndex = 0;
+
+// Background images per style per theme
+// Pixel/3D use BARE backgrounds (no icons) — all icons are separate overlay files.
+const styleBgs = {
+  normal: {
+    default: 'bg.webp', warm: 'bg-warm.webp', theme3: 'bg-theme3.webp',
+    theme4: 'bg-theme4.webp', theme5: 'bg-theme5.webp', theme6: 'bg-theme6.webp',
+  },
+  pixel: {
+    default: 'bg-pixel.webp', warm: 'bg-pixel-warm.webp', theme3: 'bg-pixel-theme3.webp',
+    theme4: 'bg-pixel-theme4.webp', theme5: 'bg-pixel-theme5.webp', theme6: 'bg-pixel-theme6.webp',
+  },
+  '3d': {
+    default: 'bg-3d.webp', warm: 'bg-3d-warm.webp', theme3: 'bg-3d-theme3.webp',
+    theme4: 'bg-3d-theme4.webp', theme5: 'bg-3d-theme5.webp', theme6: 'bg-3d-theme6.webp',
+  },
+};
+
+const themeConfig = {
+  default: {
+    iconKey: 'default',
+    colorKey: 'color',
+  },
+  warm: {
+    iconKey: 'warm',
+    colorKey: 'warmColor',
+  },
+  theme3: {
+    iconKey: 'theme3',
+    colorKey: 'theme3Color',
+  },
+  theme4: {
+    iconKey: 'theme4',
+    colorKey: 'theme4Color',
+  },
+  theme5: {
+    iconKey: 'theme5',
+    colorKey: 'theme5Color',
+  },
+  theme6: {
+    iconKey: 'theme6',
+    colorKey: 'theme6Color',
+  },
+};
+
+// Build color pairs from swatch elements for remapping
+function getColorPairs() {
+  const pairs = [];
+  document.querySelectorAll('.swatch').forEach((swatch) => {
+    const pair = {};
+    // Dynamically read all theme color keys from the config
+    for (const themeName in themeConfig) {
+      const colorKey = themeConfig[themeName].colorKey;
+      const hex = swatch.dataset[colorKey];
+      if (hex) pair[themeName] = hexToRgb(hex);
+    }
+    pairs.push(pair);
+  });
+  return pairs;
+}
+
+function hexToRgb(hex) {
+  const n = parseInt(hex.slice(1), 16);
+  return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+}
+
+function colorDistance(r1, g1, b1, r2, g2, b2) {
+  const dr = r1 - r2, dg = g1 - g2, db = b1 - b2;
+  return dr * dr + dg * dg + db * db;
+}
+
+// Apply color remapping to a raw pixel array (Uint8ClampedArray) in-place.
+// Returns true if any pixel was changed.
+function remapPixels(data, mappings, threshold) {
+  let changed = false;
+  for (let i = 0; i < data.length; i += 4) {
+    if (data[i + 3] === 0) continue;
+    const r = data[i], g = data[i + 1], b = data[i + 2];
+    let bestDist = Infinity, bestIdx = -1;
+    for (let j = 0; j < mappings.length; j++) {
+      const [fr, fg, fb] = mappings[j].from;
+      const dist = colorDistance(r, g, b, fr, fg, fb);
+      if (dist < bestDist) { bestDist = dist; bestIdx = j; }
+    }
+    if (bestIdx >= 0 && bestDist < threshold) {
+      const [fr, fg, fb] = mappings[bestIdx].from;
+      const [tr, tg, tb] = mappings[bestIdx].to;
+      if (bestDist === 0) {
+        data[i] = tr; data[i + 1] = tg; data[i + 2] = tb;
+      } else {
+        const t = 1 - Math.sqrt(bestDist) / Math.sqrt(threshold);
+        data[i]     = Math.round(r + (tr - fr) * t);
+        data[i + 1] = Math.round(g + (tg - fg) * t);
+        data[i + 2] = Math.round(b + (tb - fb) * t);
+      }
+      changed = true;
+    }
+  }
+  return changed;
+}
+
+// Remap colors on rawCanvas + each individual stroke canvas, then re-render display
+function remapCanvasColors(oldTheme, newTheme) {
+  const pairs = getColorPairs();
+  if (pairs.length === 0) return;
+
+  const threshold = 80 * 80;
+  const mappings = pairs.map((p) => ({ from: p[oldTheme], to: p[newTheme] }));
+
+  if (strokeList.length === 0) {
+    // No stroke stack — remap rawCanvas directly (legacy/fallback state)
+    const imgData = rawCtx.getImageData(0, 0, rawCanvas.width, rawCanvas.height);
+    remapPixels(imgData.data, mappings, threshold);
+    rawCtx.putImageData(imgData, 0, 0);
+  } else {
+    // Remap each stroke canvas, then rebuild rawCanvas from them.
+    // Baked stickers (isSticker) keep their original colours.
+    for (const stroke of strokeList) {
+      if (stroke.isSticker) continue;
+      const sCtx = stroke.canvas.getContext('2d');
+      const sData = sCtx.getImageData(0, 0, stroke.canvas.width, stroke.canvas.height);
+      if (remapPixels(sData.data, mappings, threshold)) sCtx.putImageData(sData, 0, 0);
+    }
+    buildRawCanvas();
+  }
+
+  // Remap fill colors on any shaped stickers the user has colored
+  stickerList.forEach((sticker) => {
+    const isText = !!sticker.text;
+    if (!isText && (!sticker.isShape || !sticker.fillColor)) return;
+    const [cr, cg, cb] = hexToRgb(isText ? sticker.text.color : sticker.fillColor);
+    let bestDist = Infinity, bestM = null;
+    for (const m of mappings) {
+      if (!m.from || !m.to) continue;
+      const d = colorDistance(cr, cg, cb, m.from[0], m.from[1], m.from[2]);
+      if (d < bestDist) { bestDist = d; bestM = m; }
+    }
+    if (bestM && bestDist < threshold) {
+      const [tr, tg, tb] = bestM.to;
+      const newHex = '#' + [tr, tg, tb].map((v) => v.toString(16).padStart(2, '0')).join('');
+      if (isText) {
+        sticker.text.color = newHex;
+        refreshTextSticker(sticker, true);
+      } else {
+        fillShape(sticker, newHex);
+      }
+    }
+  });
+
+  // Retint static (magic wand) strokes so their noise follows the theme
+  const remapHex = (hex) => {
+    const [cr, cg, cb] = hexToRgb(hex);
+    let bestDist = Infinity, bestM = null;
+    for (const m of mappings) {
+      if (!m.from || !m.to) continue;
+      const d = colorDistance(cr, cg, cb, m.from[0], m.from[1], m.from[2]);
+      if (d < bestDist) { bestDist = d; bestM = m; }
+    }
+    if (!bestM || bestDist >= threshold) return null;
+    return '#' + bestM.to.map((v) => v.toString(16).padStart(2, '0')).join('');
+  };
+  for (const stroke of strokeList) {
+    if (!stroke.isStatic || !stroke.color) continue;
+    const nh = remapHex(stroke.color);
+    if (nh) stroke.color = nh;
+  }
+  // ...including one currently lifted by the select tool
+  if (canvasSel && canvasSel.staticInfo && canvasSel.staticInfo.color) {
+    const nh = remapHex(canvasSel.staticInfo.color);
+    if (nh) canvasSel.staticInfo.color = nh;
+  }
+
+  renderStyledCanvas();
+}
+
+function switchTheme(direction) {
+  const oldThemeName = themes[currentThemeIndex];
+  currentThemeIndex = (currentThemeIndex + direction + themes.length) % themes.length;
+  const newThemeName = themes[currentThemeIndex];
+
+  // Remap canvas drawing colors before changing theme state
+  if (oldThemeName !== newThemeName) {
+    remapCanvasColors(oldThemeName, newThemeName);
+  }
+
+  applyTheme();
+}
+
+function switchStyle(direction) {
+  currentStyleIndex = (currentStyleIndex + direction + styles.length) % styles.length;
+  // Re-render the display canvas from rawCanvas with the new style
+  renderStyledCanvas();
+  applyTheme();
+}
+
+function applyTheme() {
+  const themeName = themes[currentThemeIndex];
+  const styleName = styles[currentStyleIndex];
+  const config = themeConfig[themeName];
+  const v = Date.now(); // cache bust
+
+  // Swap background based on current style + theme
+  const bgFile = styleBgs[styleName][themeName];
+  document.querySelector('.app').style.backgroundImage = `url('${bgFile}?v=${v}')`;
+
+  // Determine icon source: try theme+style specific, then generic style, then theme-colored
+  // data-style-pixel-warm -> dataset.stylePixelWarm
+  // data-style-3d-warm -> dataset['style-3dWarm']
+  const styleThemeKey = styleName === 'pixel' && themeName !== 'default'
+    ? 'stylePixel' + themeName.charAt(0).toUpperCase() + themeName.slice(1)
+    : styleName === '3d' && themeName !== 'default'
+    ? 'style-3d' + themeName.charAt(0).toUpperCase() + themeName.slice(1)
+    : null;
+  const styleDataKey = styleName === 'pixel' ? 'stylePixel' : styleName === '3d' ? 'style-3d' : null;
+
+  document.querySelectorAll('.tool-btn img, .nav-arrow img, .brush-slider-line, .brush-slider-handle img, .undo-redo-btn img, .clear-btn img').forEach((img) => {
+    let src;
+    if (styleThemeKey) {
+      // Try theme-specific style icon first (e.g., warm pixel icons)
+      src = img.dataset[styleThemeKey];
+    }
+    if (!src && styleDataKey) {
+      // Fall back to generic style icon (default theme pixel/3d)
+      src = img.dataset[styleDataKey];
+    }
+    if (!src) {
+      // Fall back to theme-colored icon for normal style
+      src = img.dataset[config.iconKey];
+    }
+    if (src) img.src = src + '?v=' + v;
+  });
+
+  // Add/remove pixel class on app for potential CSS tweaks
+  document.querySelector('.app').classList.toggle('style-pixel', styleName === 'pixel');
+  document.querySelector('.app').classList.toggle('style-3d', styleName === '3d');
+
+  // Update star transform to visually centre the new star image on the slider line
+  updateStarTransform();
+
+  // Toggle 3D canvas filter — CSS drop-shadow makes ALL strokes look raised
+  canvas.classList.toggle('mode-3d', styleName === '3d');
+
+  // Update swatch data-color to match the theme
+  const swatches = document.querySelectorAll('.swatch');
+  swatches.forEach((swatch) => {
+    const newColor = swatch.dataset[config.colorKey];
+    if (newColor) {
+      swatch.dataset.activeColor = newColor;
+      swatch.style.backgroundColor = newColor;
+    }
+  });
+
+  // If a swatch is currently active, update currentColor to the new theme's color
+  const activeSwatch = document.querySelector('.swatch.active');
+  if (activeSwatch) {
+    currentColor = activeSwatch.dataset.activeColor || activeSwatch.dataset.color;
+  }
+}
+
+// ===== Pixel Drawing Mode =====
+const PIXEL_GRID = 4; // Each "art pixel" is 4×4 screen pixels
+
+function isPixelMode() {
+  return styles[currentStyleIndex] === 'pixel';
+}
+
+// Snap a coordinate to the pixel grid
+function snapToGrid(v) {
+  return Math.round(v / PIXEL_GRID) * PIXEL_GRID;
+}
+
+// Draw a pixelated line between two points using Bresenham's algorithm
+function drawPixelLine(x0, y0, x1, y1, size, color) {
+  // Snap everything to the pixel grid
+  x0 = snapToGrid(x0);
+  y0 = snapToGrid(y0);
+  x1 = snapToGrid(x1);
+  y1 = snapToGrid(y1);
+
+  // Snap brush size to grid (minimum 1 grid cell)
+  const gridSize = Math.max(PIXEL_GRID, snapToGrid(size));
+  const halfSize = gridSize / 2;
+
+  ctx.fillStyle = color;
+
+  // Bresenham's line algorithm in grid space
+  let gx0 = x0 / PIXEL_GRID, gy0 = y0 / PIXEL_GRID;
+  let gx1 = x1 / PIXEL_GRID, gy1 = y1 / PIXEL_GRID;
+
+  let dx = Math.abs(gx1 - gx0);
+  let dy = -Math.abs(gy1 - gy0);
+  let sx = gx0 < gx1 ? 1 : -1;
+  let sy = gy0 < gy1 ? 1 : -1;
+  let err = dx + dy;
+
+  while (true) {
+    // Draw a square block of pixels at this grid position
+    const px = gx0 * PIXEL_GRID;
+    const py = gy0 * PIXEL_GRID;
+    ctx.fillRect(px - halfSize, py - halfSize, gridSize, gridSize);
+
+    if (gx0 === gx1 && gy0 === gy1) break;
+    const e2 = 2 * err;
+    if (e2 >= dy) { err += dy; gx0 += sx; }
+    if (e2 <= dx) { err += dx; gy0 += sy; }
+  }
+}
+
+// ===== 3D Drawing Mode =====
+const SHADOW_OFFSET_X = 4;
+const SHADOW_OFFSET_Y = 4;
+const SHADOW_BLUR = 6;
+const HIGHLIGHT_OFFSET = -1.5; // highlight shifts up-left
+
+function is3dMode() {
+  return styles[currentStyleIndex] === '3d';
+}
+
+// Darken a hex color for the drop shadow
+function getShadowColor(hex) {
+  const n = parseInt(hex.slice(1), 16);
+  let r = (n >> 16) & 255;
+  let g = (n >> 8) & 255;
+  let b = n & 255;
+  const factor = 0.55; // 45% darker for more depth
+  r = Math.round(r * factor);
+  g = Math.round(g * factor);
+  b = Math.round(b * factor);
+  return `rgba(${r},${g},${b},0.7)`;
+}
+
+// Lighten a hex color for the top highlight
+function getHighlightColor(hex) {
+  const n = parseInt(hex.slice(1), 16);
+  let r = (n >> 16) & 255;
+  let g = (n >> 8) & 255;
+  let b = n & 255;
+  // Blend toward white by 40%
+  r = Math.round(r + (255 - r) * 0.4);
+  g = Math.round(g + (255 - g) * 0.4);
+  b = Math.round(b + (255 - b) * 0.4);
+  return `rgba(${r},${g},${b},0.6)`;
+}
+
+// ===== State =====
+let currentColor = null;
+let currentTool = 'brush';
+let isDrawing = false;
+let lastPoint = null;
+let brushSize = 8;
+const minBrushSize = 2;
+const maxBrushSize = 40;
+const eraserSize = 20;
+
+// ===== Per-stroke tracking (for individual selection) =====
+let strokeList = []; // { id, canvas } — one offscreen canvas per brush stroke
+let currentStrokeCanvas = null;
+let currentStrokeCtx = null;
+let strokeIdCounter = 0;
+
+// ===== Stroke Snapshot (for undo/redo — preserves individual selectability) =====
+function snapshotStrokeList() {
+  return strokeList.map((s) => {
+    let c = s.canvas;
+    if (s.isStatic) {
+      // Store static strokes as a flat-colour mask: noise barely compresses,
+      // and the pixels get repainted with fresh noise on restore anyway
+      const t = document.createElement('canvas');
+      t.width = c.width; t.height = c.height;
+      const tctx = t.getContext('2d');
+      tctx.drawImage(c, 0, 0);
+      tctx.globalCompositeOperation = 'source-in';
+      tctx.fillStyle = s.color || '#888888';
+      tctx.fillRect(0, 0, t.width, t.height);
+      c = t;
+    }
+    return { id: s.id, dataURL: c.toDataURL('image/png'), isStatic: s.isStatic || false, color: s.color || null, bbox: s.staticBBox || null, isSticker: s.isSticker || false };
+  });
+}
+
+function restoreStrokeList(snapshot, onDone) {
+  if (!snapshot || snapshot.length === 0) { onDone(); return; }
+  const result = new Array(snapshot.length).fill(null);
+  let pending = snapshot.length;
+  snapshot.forEach(({ id, dataURL, isStatic, color, bbox, isSticker }, idx) => {
+    const img = new Image();
+    img.onload = () => {
+      const sc = document.createElement('canvas');
+      sc.width  = rawCanvas.width;
+      sc.height = rawCanvas.height;
+      sc.getContext('2d').drawImage(img, 0, 0);
+      result[idx] = { id, canvas: sc, isStatic: isStatic || false, color: color || null, staticBBox: bbox || undefined, isSticker: isSticker || false };
+      if (--pending === 0) {
+        strokeList.length = 0;
+        for (const s of result) strokeList.push(s);
+        repaintStaticStrokes(); // replace flat masks with noise before first paint
+        onDone();
+      }
+    };
+    img.src = dataURL;
+  });
+}
+
+// ===== Sticker Snapshot (for undo/redo) =====
+function snapshotStickerList() {
+  return stickerList.map((s) => ({
+    src: s.src, cx: s.cx, cy: s.cy, w: s.w, h: s.h,
+    isShape: s.isShape || false,
+    fillColor: s.fillColor || null,
+    text: s.text ? { ...s.text } : null,
+  }));
+}
+
+function restoreStickerList(snapshot) {
+  stickerList.forEach((s) => s.el.remove());
+  stickerList.length = 0;
+  deselectSticker();
+  for (const snap of snapshot) {
+    const sticker = addSticker(snap.src, snap.cx, snap.cy, snap.w, snap.h, snap.isShape);
+    if (snap.fillColor) sticker.fillColor = snap.fillColor;
+    if (snap.text) sticker.text = { ...snap.text };
+  }
+}
+
+// ===== Undo/Redo History =====
+// Each entry stores { data: dataURL, theme: themeIndex, stickers: snapshot }
+const undoStack = [];
+const redoStack = [];
+const MAX_HISTORY = 50;
+
+// ===== Brush Size Slider =====
+const brushSlider = document.getElementById('brushSlider');
+const brushHandle = document.getElementById('brushHandle');
+let isDraggingSlider = false;
+
+// Star should only travel within the visible line, leaving a bit of pink visible at each end
+const LINE_START = 0.12;
+const LINE_END = 0.88;
+
+// Set initial handle position (map brushSize to slider %)
+function updateSliderPosition() {
+  const pct = (brushSize - minBrushSize) / (maxBrushSize - minBrushSize);
+  const linePct = LINE_START + pct * (LINE_END - LINE_START);
+  brushHandle.style.left = (linePct * 100) + '%';
+  updateHandleSize(pct);
+}
+
+// Scale the star handle size based on brush size (2.5vw → 5.5vw)
+function updateHandleSize(pct) {
+  const minVw = 2.5, maxVw = 5.5;
+  const size = minVw + pct * (maxVw - minVw);
+  brushHandle.style.width = size + 'vw';
+  brushHandle.style.height = size + 'vw';
+}
+
+// Visual centre (% of image height) for each star PNG — measured from pixel analysis
+const STAR_VISUAL_CENTER = {
+  'brush-star.webp':              33.1,
+  'brush-star-warm.webp':         37.3,
+  'brush-star-theme3.webp':       36.0,
+  'brush-star-theme4.webp':       51.5,
+  'brush-star-theme5.webp':       41.0,
+  'brush-star-theme6.webp':       54.8,
+  'brush-star-pixel.webp':        35.7,
+  'brush-star-pixel-warm.webp':   40.5,
+  'brush-star-pixel-theme3.webp': 38.1,
+  'brush-star-pixel-theme4.webp': 54.8,
+  'brush-star-pixel-theme5.webp': 42.9,
+  'brush-star-pixel-theme6.webp': 57.1,
+  'brush-star-3d.webp':           45.0,
+  'brush-star-3d-warm.webp':      33.3,
+  'brush-star-3d-theme3.webp':    45.0,
+  'brush-star-3d-theme4.webp':    41.7,
+  'brush-star-3d-theme5.webp':    35.4,
+  'brush-star-3d-theme6.webp':    45.0,
+};
+
+function updateStarTransform() {
+  const img = brushHandle.querySelector('img');
+  const filename = img.src.split('/').pop().replace(/\?.*$/, '');
+  const vc = STAR_VISUAL_CENTER[filename] ?? 33.1;
+  const ty = `-${vc.toFixed(1)}%`;
+  brushHandle.style.setProperty('--star-ty', ty);
+  // Apply directly so it overrides the CSS rule
+  const base = `translate(-50%, ${ty})`;
+  brushHandle.style.transform = base;
+  // Store for hover/active to reference
+  brushHandle.dataset.baseTy = ty;
+}
+
+function handleSliderDrag(e) {
+  if (!isDraggingSlider) return;
+  e.preventDefault();
+  const rect = brushSlider.getBoundingClientRect();
+  const clientX = e.clientX ?? e.touches?.[0]?.clientX;
+  let rawPct = (clientX - rect.left) / rect.width;
+  // Clamp to line bounds
+  rawPct = Math.max(LINE_START, Math.min(LINE_END, rawPct));
+  // Map from line range to 0-1
+  const pct = (rawPct - LINE_START) / (LINE_END - LINE_START);
+  brushSize = Math.round(minBrushSize + pct * (maxBrushSize - minBrushSize));
+  brushHandle.style.left = (rawPct * 100) + '%';
+  updateHandleSize(pct);
+}
+
+brushHandle.addEventListener('mousedown', (e) => {
+  isDraggingSlider = true;
+  e.preventDefault();
+});
+// Hover/active scale — JS-driven so scale composes with per-variant translateY
+brushHandle.addEventListener('mouseenter', () => {
+  brushHandle.classList.add('is-hovered');
+  const ty = brushHandle.dataset.baseTy || '-33.1%';
+  brushHandle.style.transform = `translate(-50%, ${ty}) scale(1.08)`;
+});
+brushHandle.addEventListener('mouseleave', () => {
+  brushHandle.classList.remove('is-hovered');
+  const ty = brushHandle.dataset.baseTy || '-33.1%';
+  brushHandle.style.transform = `translate(-50%, ${ty})`;
+});
+brushSlider.addEventListener('click', (e) => {
+  const rect = brushSlider.getBoundingClientRect();
+  let rawPct = (e.clientX - rect.left) / rect.width;
+  rawPct = Math.max(LINE_START, Math.min(LINE_END, rawPct));
+  const pct = (rawPct - LINE_START) / (LINE_END - LINE_START);
+  brushSize = Math.round(minBrushSize + pct * (maxBrushSize - minBrushSize));
+  updateSliderPosition(); // also calls updateHandleSize
+});
+document.addEventListener('mousemove', (e) => {
+  if (isDraggingSlider) handleSliderDrag(e);
+});
+document.addEventListener('mouseup', () => {
+  isDraggingSlider = false;
+});
+
+// Touch support for slider
+brushHandle.addEventListener('touchstart', (e) => {
+  isDraggingSlider = true;
+  e.preventDefault();
+}, { passive: false });
+document.addEventListener('touchmove', (e) => {
+  if (isDraggingSlider) handleSliderDrag(e);
+}, { passive: false });
+document.addEventListener('touchend', () => {
+  isDraggingSlider = false;
+});
+
+updateSliderPosition();
+updateStarTransform();
+
+// ===== Canvas Setup =====
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+
+// Offscreen rawCanvas: always stores smooth strokes (source of truth for style switching)
+const rawCanvas = document.createElement('canvas');
+const rawCtx = rawCanvas.getContext('2d');
+
+// Custom brush cursor element (shows tool icon)
+const brushCursor = document.createElement('div');
+brushCursor.className = 'brush-cursor';
+const brushCursorImg = document.createElement('img');
+brushCursorImg.alt = '';
+brushCursorImg.draggable = false;
+brushCursor.appendChild(brushCursorImg);
+document.body.appendChild(brushCursor);
+
+function initCanvas() {
+  const rect = canvas.getBoundingClientRect();
+  const dpr = window.devicePixelRatio || 1;
+
+  // Save current drawing before resize — per stroke, so flags like isStatic
+  // survive and static ink keeps animating after a window resize
+  const oldW = rawCanvas.width, oldH = rawCanvas.height;
+  const oldStrokes = strokeList.slice();
+  let savedData = null;
+  if (oldW > 0 && oldH > 0 && oldStrokes.length === 0) {
+    try {
+      savedData = rawCanvas.toDataURL();
+    } catch (e) {
+      // Canvas might be empty
+    }
+  }
+
+  // Resize both canvases
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  ctx.scale(dpr, dpr);
+
+  rawCanvas.width = rect.width * dpr;
+  rawCanvas.height = rect.height * dpr;
+  rawCtx.scale(dpr, dpr);
+
+  // Restore drawing, then render display
+  if (oldStrokes.length > 0 && oldW > 0 && oldH > 0) {
+    const rx = rawCanvas.width / oldW, ry = rawCanvas.height / oldH;
+    strokeList = oldStrokes.map((os) => {
+      const sc2 = document.createElement('canvas');
+      sc2.width = rawCanvas.width;
+      sc2.height = rawCanvas.height;
+      sc2.getContext('2d').drawImage(os.canvas, 0, 0, sc2.width, sc2.height);
+      const ns = { ...os, canvas: sc2 };
+      if (os.staticBBox) {
+        const bx = Math.max(0, Math.floor(os.staticBBox.x * rx) - 2);
+        const by = Math.max(0, Math.floor(os.staticBBox.y * ry) - 2);
+        ns.staticBBox = {
+          x: bx, y: by,
+          w: Math.min(rawCanvas.width,  Math.ceil((os.staticBBox.x + os.staticBBox.w) * rx) + 2) - bx,
+          h: Math.min(rawCanvas.height, Math.ceil((os.staticBBox.y + os.staticBBox.h) * ry) + 2) - by,
+        };
+      }
+      return ns;
+    });
+    buildRawCanvas();
+    setBrushProps();
+  } else if (savedData) {
+    const img = new Image();
+    img.onload = () => {
+      rawCtx.drawImage(img, 0, 0, rect.width, rect.height);
+      strokeList = [makeStrokeFromRaw()];
+      renderStyledCanvas();
+      setBrushProps();
+    };
+    img.src = savedData;
+  }
+
+  setBrushProps();
+}
+
+// ===== Render display canvas from rawCanvas with current style =====
+function renderStyledCanvas() {
+  const rect = canvas.getBoundingClientRect();
+  ctx.clearRect(0, 0, rect.width, rect.height);
+
+  if (isPixelMode()) {
+    // Pixelate: downsample rawCanvas, then upsample with nearest-neighbor
+    // Use PIXEL_GRID * dpr so each "art pixel" = PIXEL_GRID CSS pixels (matching drawPixelLine)
+    const dpr = window.devicePixelRatio || 1;
+    const scale = PIXEL_GRID * dpr;
+    const tempCanvas = document.createElement('canvas');
+    tempCanvas.width = Math.ceil(rawCanvas.width / scale);
+    tempCanvas.height = Math.ceil(rawCanvas.height / scale);
+    const tempCtx = tempCanvas.getContext('2d');
+
+    // Downsample with smooth sampling (averages colors)
+    tempCtx.drawImage(rawCanvas, 0, 0, tempCanvas.width, tempCanvas.height);
+
+    // Upsample with nearest-neighbor (blocky) — draw to full CSS size
+    ctx.imageSmoothingEnabled = false;
+    ctx.drawImage(tempCanvas, 0, 0, rect.width, rect.height);
+    ctx.imageSmoothingEnabled = true;
+  } else {
+    // Normal and 3D: direct copy from rawCanvas (CSS drop-shadow handles 3D)
+    ctx.drawImage(rawCanvas, 0, 0, rect.width, rect.height);
+  }
+}
+
+function getToolSize() {
+  // Both brush and eraser use the slider size
+  return brushSize;
+}
+
+function setBrushProps() {
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  ctx.lineWidth = getToolSize();
+  rawCtx.lineCap = 'round';
+  rawCtx.lineJoin = 'round';
+  rawCtx.lineWidth = getToolSize();
+}
+
+// ===== Coordinate Helpers =====
+function getCanvasPos(e) {
+  const rect = canvas.getBoundingClientRect();
+  const clientX = e.clientX ?? e.touches?.[0]?.clientX;
+  const clientY = e.clientY ?? e.touches?.[0]?.clientY;
+  return {
+    x: clientX - rect.left,
+    y: clientY - rect.top,
+  };
+}
+
+// ===== Raw Canvas Drawing Helper =====
+// Always draws smooth on rawCanvas regardless of current style
+function drawSmoothOnRaw(fromPt, toPt, color, size, isEraser) {
+  rawCtx.globalCompositeOperation = isEraser ? 'destination-out' : 'source-over';
+  rawCtx.lineCap = 'round';
+  rawCtx.lineJoin = 'round';
+  const drawColor = isEraser ? 'rgba(0,0,0,1)' : color;
+  if (toPt) {
+    rawCtx.beginPath();
+    rawCtx.strokeStyle = drawColor;
+    rawCtx.lineWidth = size;
+    rawCtx.moveTo(fromPt.x, fromPt.y);
+    rawCtx.lineTo(toPt.x, toPt.y);
+    rawCtx.stroke();
+  } else {
+    rawCtx.beginPath();
+    rawCtx.fillStyle = drawColor;
+    rawCtx.arc(fromPt.x, fromPt.y, size / 2, 0, Math.PI * 2);
+    rawCtx.fill();
+  }
+
+  // Mirror to per-stroke canvas (erasers record their area as an opaque mask)
+  if (currentStrokeCtx) {
+    const dpr = window.devicePixelRatio || 1;
+    currentStrokeCtx.save();
+    currentStrokeCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    currentStrokeCtx.globalCompositeOperation = 'source-over';
+    currentStrokeCtx.lineCap = 'round';
+    currentStrokeCtx.lineJoin = 'round';
+    if (toPt) {
+      currentStrokeCtx.beginPath();
+      currentStrokeCtx.strokeStyle = isEraser ? '#000' : color;
+      currentStrokeCtx.lineWidth = size;
+      currentStrokeCtx.moveTo(fromPt.x, fromPt.y);
+      currentStrokeCtx.lineTo(toPt.x, toPt.y);
+      currentStrokeCtx.stroke();
+    } else {
+      currentStrokeCtx.beginPath();
+      currentStrokeCtx.fillStyle = isEraser ? '#000' : color;
+      currentStrokeCtx.arc(fromPt.x, fromPt.y, size / 2, 0, Math.PI * 2);
+      currentStrokeCtx.fill();
+    }
+    currentStrokeCtx.restore();
+
+    // Track the stroke's bounds (device px) so static repaints never need a
+    // full-canvas pixel scan
+    const rad = size / 2 + 2;
+    const pts = toPt ? [fromPt, toPt] : [fromPt];
+    for (const p of pts) {
+      const x0 = (p.x - rad) * dpr, x1 = (p.x + rad) * dpr;
+      const y0 = (p.y - rad) * dpr, y1 = (p.y + rad) * dpr;
+      if (!currentStrokeBBox) currentStrokeBBox = { x0, y0, x1, y1 };
+      else {
+        if (x0 < currentStrokeBBox.x0) currentStrokeBBox.x0 = x0;
+        if (y0 < currentStrokeBBox.y0) currentStrokeBBox.y0 = y0;
+        if (x1 > currentStrokeBBox.x1) currentStrokeBBox.x1 = x1;
+        if (y1 > currentStrokeBBox.y1) currentStrokeBBox.y1 = y1;
+      }
+    }
+  }
+}
+
+// ===== Drawing =====
+function makeCanvasEntry() {
+  const strokes = snapshotStrokeList();
+  return {
+    // The flat rawCanvas PNG is only read by restoreCanvasEntry's fallback,
+    // which runs when there are no per-stroke snapshots. Skipping it otherwise
+    // keeps undo entries small (static noise barely compresses as PNG).
+    data: strokes.length === 0 ? rawCanvas.toDataURL() : null,
+    theme: currentThemeIndex,
+    stickers: snapshotStickerList(),
+    strokes,
+  };
+}
+
+function saveCanvasState() {
+  // Save theme + stickers + individual strokes for full undo/redo
+  if (rawCanvas.width > 0 && rawCanvas.height > 0) {
+    undoStack.push(makeCanvasEntry());
+    if (undoStack.length > MAX_HISTORY) undoStack.shift();
+    redoStack.length = 0;
+  }
+}
+
+function currentStateSnapshot() {
+  return makeCanvasEntry();
+}
+
+function undo() {
+  if (undoStack.length === 0) return;
+  redoStack.push(currentStateSnapshot());
+  const entry = undoStack.pop();
+  restoreCanvasEntry(entry);
+}
+
+function redo() {
+  if (redoStack.length === 0) return;
+  undoStack.push(currentStateSnapshot());
+  const entry = redoStack.pop();
+  restoreCanvasEntry(entry);
+}
+
+function restoreCanvasEntry(entry) {
+  // Restore stickers synchronously first
+  if (entry.stickers) restoreStickerList(entry.stickers);
+
+  if (entry.strokes && entry.strokes.length > 0) {
+    // Restore individual strokes — rebuild rawCanvas from them for pixel-perfect accuracy
+    restoreStrokeList(entry.strokes, () => {
+      buildRawCanvas();
+      if (entry.theme !== currentThemeIndex) {
+        remapCanvasColors(themes[entry.theme], themes[currentThemeIndex]);
+      } else {
+        renderStyledCanvas();
+      }
+    });
+  } else {
+    // Fallback: flat canvas restore (e.g. after eraser, or legacy entries)
+    const img = new Image();
+    img.onload = () => {
+      const rect = canvas.getBoundingClientRect();
+      rawCtx.clearRect(0, 0, rect.width, rect.height);
+      rawCtx.drawImage(img, 0, 0, rect.width, rect.height);
+      strokeList = rawCanvas.width > 0 ? [makeStrokeFromRaw()] : [];
+      if (entry.theme !== currentThemeIndex) {
+        remapCanvasColors(themes[entry.theme], themes[currentThemeIndex]);
+      } else {
+        renderStyledCanvas();
+      }
+    };
+    img.src = entry.data;
+  }
+}
+
+function clearCanvas() {
+  saveCanvasState();
+  // Clear stickers
+  stickerList.forEach((s) => s.el.remove());
+  stickerList.length = 0;
+  deselectSticker();
+  // Clear drawing canvas
+  strokeList = [];
+  const rect = canvas.getBoundingClientRect();
+  rawCtx.clearRect(0, 0, rect.width, rect.height);
+  ctx.clearRect(0, 0, rect.width, rect.height);
+}
+
+// Stamp every sticker/text into the painting as bitmap strokes (keeping
+// their z-order), so strokes drawn afterwards land ON TOP of them.
+// Undo restores them as live stickers (history snapshots run before baking).
+function bakeStickers() {
+  if (stickerList.length === 0) return;
+  const dpr = window.devicePixelRatio || 1;
+  for (const st of stickerList) {
+    const img = st.el.querySelector('img');
+    if (img && img.naturalWidth) {
+      const sc = document.createElement('canvas');
+      sc.width = rawCanvas.width;
+      sc.height = rawCanvas.height;
+      const sctx = sc.getContext('2d');
+      sctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      sctx.drawImage(img, st.cx - st.w / 2, st.cy - st.h / 2, st.w, st.h);
+      strokeList.push({ id: ++strokeIdCounter, canvas: sc, isSticker: true });
+    }
+    st.el.remove();
+  }
+  stickerList.length = 0;
+  deselectSticker();
+  buildRawCanvas();
+}
+
+// ===== TV-Static Brush (special pen / magic wand) =====
+// Strokes drawn with the special pen are flagged isStatic and refilled with
+// fresh random noise ~12x per second, so the ink shimmers like TV static.
+const STATIC_FPS = 12;
+const STATIC_TILE_SIZE = 96; // device px, tiled across the stroke
+const staticTiles = new Map(); // colour -> tile canvas (noise refreshed per use)
+let liveStaticPattern = null;  // display-canvas pattern used mid-stroke
+let currentStrokeBBox = null;  // device-px bounds of the stroke being drawn
+let liveScatterCanvas = null;  // scatter-edged copy of the live wand stroke
+
+// A tile of noise: the chosen swatch colour at random brightnesses, with
+// white sparkle flecks for the TV feel. Specks are STATIC_GRAIN px blocks.
+const STATIC_GRAIN = 2; // device px per noise speck
+function makeStaticTile(color) {
+  let tile = staticTiles.get(color);
+  if (!tile) {
+    tile = document.createElement('canvas');
+    tile.width = tile.height = STATIC_TILE_SIZE;
+    staticTiles.set(color, tile);
+  }
+  const tctx = tile.getContext('2d');
+  const img = tctx.createImageData(STATIC_TILE_SIZE, STATIC_TILE_SIZE);
+  const d = img.data;
+  const [cr, cg, cb] = hexToRgb(color || '#888888');
+  const S = STATIC_TILE_SIZE;
+  for (let y = 0; y < S; y += STATIC_GRAIN) {
+    for (let x = 0; x < S; x += STATIC_GRAIN) {
+      let r, g, b;
+      if (Math.random() < 0.18) {
+        // bright sparkle fleck
+        const v = 170 + ((Math.random() * 86) | 0);
+        r = g = b = v;
+      } else {
+        // the swatch colour at a random brightness
+        const f = 0.35 + Math.random() * 1.05;
+        r = Math.min(255, cr * f) | 0;
+        g = Math.min(255, cg * f) | 0;
+        b = Math.min(255, cb * f) | 0;
+      }
+      for (let dy = 0; dy < STATIC_GRAIN; dy++) {
+        for (let dx = 0; dx < STATIC_GRAIN; dx++) {
+          const i = ((y + dy) * S + (x + dx)) * 4;
+          d[i] = r; d[i + 1] = g; d[i + 2] = b; d[i + 3] = 255;
+        }
+      }
+    }
+  }
+  tctx.putImageData(img, 0, 0);
+  return tile;
+}
+
+// Blur a region's rim, re-crisp the core, then dither the semi-transparent
+// rim into grain-sized specks. src and dst are full-canvas-size; dst's region
+// becomes the scatter-edged version of src's. Returns the processed region.
+function scatterMask(src, dst, x, y, w, h, featherPx) {
+  const pad = Math.ceil(featherPx * 2) + 2;
+  const bx = Math.max(0, x - pad), by = Math.max(0, y - pad);
+  const bw = Math.min(dst.width, x + w + pad) - bx;
+  const bh = Math.min(dst.height, y + h + pad) - by;
+  if (bw <= 0 || bh <= 0) return null;
+  const dctx = dst.getContext('2d');
+  dctx.save();
+  dctx.setTransform(1, 0, 0, 1, 0, 0);
+  dctx.clearRect(bx, by, bw, bh);
+  dctx.filter = `blur(${featherPx}px)`;
+  dctx.drawImage(src, bx, by, bw, bh, bx, by, bw, bh);
+  dctx.filter = 'none';
+  dctx.drawImage(src, bx, by, bw, bh, bx, by, bw, bh); // crisp core on top
+  const imgD = dctx.getImageData(bx, by, bw, bh);
+  const dd = imgD.data;
+  const G = STATIC_GRAIN;
+  for (let yy = 0; yy < bh; yy += G) {
+    for (let xx = 0; xx < bw; xx += G) {
+      const a = dd[(yy * bw + xx) * 4 + 3];
+      if (a === 0 || a >= 250) continue;
+      const keep = Math.random() * 255 < a ? 255 : 0;
+      for (let dy = 0; dy < G && yy + dy < bh; dy++) {
+        for (let dx = 0; dx < G && xx + dx < bw; dx++) {
+          dd[((yy + dy) * bw + (xx + dx)) * 4 + 3] = keep;
+        }
+      }
+    }
+  }
+  dctx.putImageData(imgD, bx, by);
+  dctx.restore();
+  return { x: bx, y: by, w: bw, h: bh };
+}
+
+// Cached bounding box so each tick only fills the stroke's area
+function staticStrokeBBox(stroke) {
+  if (!stroke.canvas.width || !stroke.canvas.height) return null; // canvas not laid out
+  if (stroke.staticBBox === undefined) stroke.staticBBox = strokeBBox(stroke.canvas);
+  return stroke.staticBBox; // null = stroke fully erased
+}
+
+// Refill every static stroke's pixels with fresh noise (alpha mask kept).
+// Returns the device-px boxes that were repainted.
+function repaintStaticStrokes() {
+  const boxes = [];
+  for (const stroke of strokeList) {
+    if (!stroke.isStatic) continue;
+    const bbox = staticStrokeBBox(stroke);
+    if (!bbox) continue;
+    const sctx = stroke.canvas.getContext('2d');
+    sctx.save();
+    sctx.setTransform(1, 0, 0, 1, 0, 0);
+    sctx.globalCompositeOperation = 'source-in';
+    sctx.fillStyle = sctx.createPattern(makeStaticTile(stroke.color), 'repeat');
+    sctx.fillRect(bbox.x, bbox.y, bbox.w, bbox.h);
+    sctx.restore();
+    boxes.push(bbox);
+  }
+  return boxes;
+}
+
+// Recomposite one device-px region of rawCanvas from strokeList, then refresh
+// just that region of the display canvas. Ticking region-by-region avoids a
+// full-canvas recomposite and preserves 3D highlights outside static areas.
+function compositeStaticRegion(b, liveInk) {
+  const pad = 2;
+  const bx = Math.max(0, b.x - pad), by = Math.max(0, b.y - pad);
+  const bw = Math.min(rawCanvas.width, b.x + b.w + pad) - bx;
+  const bh = Math.min(rawCanvas.height, b.y + b.h + pad) - by;
+  if (bw <= 0 || bh <= 0) return;
+  rawCtx.save();
+  rawCtx.setTransform(1, 0, 0, 1, 0, 0);
+  rawCtx.clearRect(bx, by, bw, bh);
+  for (const st of strokeList) rawCtx.drawImage(st.canvas, bx, by, bw, bh, bx, by, bw, bh);
+  if (liveInk) rawCtx.drawImage(liveInk, bx, by, bw, bh, bx, by, bw, bh);
+  rawCtx.restore();
+  if (isPixelMode()) return; // pixel style needs the full styled pass instead
+  ctx.save();
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.clearRect(bx, by, bw, bh);
+  ctx.drawImage(rawCanvas, bx, by, bw, bh, bx, by, bw, bh);
+  ctx.restore();
+}
+
+let staticPrevTick = 0;
+function staticTick(ts) {
+  requestAnimationFrame(staticTick);
+  if (ts - staticPrevTick < 1000 / STATIC_FPS) return;
+  staticPrevTick = ts;
+
+  // Animate a lifted static selection (select tool) even while dragging it
+  if (typeof canvasSel !== 'undefined' && canvasSel?.staticInfo && canvasSelInner.width > 0) {
+    const ictx = canvasSelInner.getContext('2d');
+    ictx.save();
+    ictx.globalCompositeOperation = 'source-in';
+    ictx.fillStyle = ictx.createPattern(makeStaticTile(canvasSel.staticInfo.color), 'repeat');
+    ictx.fillRect(0, 0, canvasSelInner.width, canvasSelInner.height);
+    ictx.restore();
+  }
+
+  // Keep animating while drawing: the in-progress stroke's mirror canvas is
+  // layered back on top of each recomposited region. Erasing is the exception
+  // (its mirror is a mask, not ink), so static pauses briefly during an erase.
+  if (isDrawing && currentTool === 'eraser') return;
+  const boxes = repaintStaticStrokes();
+  let liveInk = isDrawing && currentStrokeCanvas ? currentStrokeCanvas : null;
+  if (isDrawing && currentTool === 'special-pen' && currentStrokeCanvas && currentStrokeBBox) {
+    // Scatter-edge + noise-fill a copy of the live wand stroke, so it looks
+    // like finished static from the moment drawing starts (mirror stays crisp)
+    if (!liveScatterCanvas || liveScatterCanvas.width !== rawCanvas.width || liveScatterCanvas.height !== rawCanvas.height) {
+      liveScatterCanvas = document.createElement('canvas');
+      liveScatterCanvas.width = rawCanvas.width;
+      liveScatterCanvas.height = rawCanvas.height;
+    }
+    const fp = Math.max(1.5, brushSize * 0.08) * (window.devicePixelRatio || 1);
+    const reg = scatterMask(currentStrokeCanvas, liveScatterCanvas,
+      Math.floor(currentStrokeBBox.x0), Math.floor(currentStrokeBBox.y0),
+      Math.ceil(currentStrokeBBox.x1 - currentStrokeBBox.x0),
+      Math.ceil(currentStrokeBBox.y1 - currentStrokeBBox.y0), fp);
+    if (reg) {
+      const lctx = liveScatterCanvas.getContext('2d');
+      lctx.save();
+      lctx.setTransform(1, 0, 0, 1, 0, 0);
+      lctx.globalCompositeOperation = 'source-in';
+      lctx.fillStyle = lctx.createPattern(makeStaticTile(currentColor), 'repeat');
+      lctx.fillRect(reg.x, reg.y, reg.w, reg.h);
+      lctx.restore();
+      liveInk = liveScatterCanvas;
+      boxes.push(reg);
+    }
+  }
+  if (boxes.length === 0) return;
+  for (const b of boxes) compositeStaticRegion(b, liveInk);
+  if (isPixelMode()) renderStyledCanvas(); // pixelation is a whole-canvas pass
+}
+requestAnimationFrame(staticTick);
+
+function startDrawing(e) {
+  if (currentTool === 'eyedropper') {
+    pickColor(e);
+    return;
+  }
+
+  if (currentTool === 'bucket') {
+    if (currentColor) floodFill(getCanvasPos(e));
+    return;
+  }
+
+  // Only brush, eraser, and special-pen can draw
+  if (currentTool !== 'brush' && currentTool !== 'eraser' && currentTool !== 'special-pen') return;
+  if ((currentTool === 'brush' || currentTool === 'special-pen') && !currentColor) return;
+
+  // Save state before drawing for undo
+  saveCanvasState();
+
+  // Drawing goes over stickers/text: stamp them into the painting first,
+  // so the new stroke lands on top (the eraser leaves stickers alone)
+  if (currentTool !== 'eraser') bakeStickers();
+
+  isDrawing = true;
+  lastPoint = getCanvasPos(e);
+
+  const isEraser = currentTool === 'eraser';
+  // Create a fresh offscreen canvas for this individual stroke.
+  // Erasers get one too: it records the erased area so every stroke in
+  // strokeList can be eroded in place instead of flattened together.
+  const sc = document.createElement('canvas');
+  sc.width = rawCanvas.width;
+  sc.height = rawCanvas.height;
+  currentStrokeCtx = sc.getContext('2d');
+  currentStrokeCanvas = sc;
+  currentStrokeBBox = null;
+  if (liveScatterCanvas) {
+    const lsc = liveScatterCanvas.getContext('2d');
+    lsc.save();
+    lsc.setTransform(1, 0, 0, 1, 0, 0);
+    lsc.clearRect(0, 0, liveScatterCanvas.width, liveScatterCanvas.height);
+    lsc.restore();
+  }
+  liveStaticPattern = null;
+  if (currentTool === 'special-pen') {
+    liveStaticPattern = ctx.createPattern(makeStaticTile(currentColor), 'repeat');
+    // ctx draws in CSS px; scale the pattern down so the grain size matches
+    // the committed device-px noise
+    const dpr0 = window.devicePixelRatio || 1;
+    if (liveStaticPattern.setTransform && dpr0 !== 1) {
+      liveStaticPattern.setTransform(new DOMMatrix().scale(1 / dpr0));
+    }
+  }
+  if (isEraser) {
+    ctx.globalCompositeOperation = 'destination-out';
+    ctx.lineWidth = getToolSize();
+  } else {
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.lineWidth = brushSize;
+  }
+
+  // Draw a dot for click without drag
+  const size = getToolSize();
+  const drawColor = isEraser ? 'rgba(0,0,0,1)' : (liveStaticPattern || currentColor);
+
+  // Always mirror smooth dot to rawCanvas
+  drawSmoothOnRaw(lastPoint, null, currentColor, size, isEraser);
+
+  // Draw styled dot on display canvas
+  if (isPixelMode()) {
+    // Pixel mode: draw a snapped square on display
+    const gridSize = Math.max(PIXEL_GRID, snapToGrid(size));
+    const sx = snapToGrid(lastPoint.x);
+    const sy = snapToGrid(lastPoint.y);
+    ctx.fillStyle = drawColor;
+    ctx.fillRect(sx - gridSize / 2, sy - gridSize / 2, gridSize, gridSize);
+    lastPoint = { x: sx, y: sy };
+  } else if (is3dMode() && !isEraser && !liveStaticPattern) {
+    // 3D mode: main dot + highlight (CSS drop-shadow handles shadow)
+    ctx.beginPath();
+    ctx.fillStyle = drawColor;
+    ctx.arc(lastPoint.x, lastPoint.y, size / 2, 0, Math.PI * 2);
+    ctx.fill();
+    // Highlight on top-left for a puffy/rounded 3D look
+    ctx.beginPath();
+    ctx.fillStyle = getHighlightColor(currentColor);
+    ctx.arc(lastPoint.x + HIGHLIGHT_OFFSET, lastPoint.y + HIGHLIGHT_OFFSET, size / 3.5, 0, Math.PI * 2);
+    ctx.fill();
+  } else {
+    // Normal mode (or eraser): draw a round dot
+    ctx.beginPath();
+    ctx.fillStyle = drawColor;
+    ctx.arc(lastPoint.x, lastPoint.y, size / 2, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  canvas.classList.add('painting');
+}
+
+function draw(e) {
+  // Update brush cursor position
+  const clientX = e.clientX ?? e.touches?.[0]?.clientX;
+  const clientY = e.clientY ?? e.touches?.[0]?.clientY;
+  updateBrushCursor(clientX, clientY);
+
+  if (!isDrawing) return;
+  const point = getCanvasPos(e);
+  const isEraser = currentTool === 'eraser';
+  const drawColor = isEraser ? 'rgba(0,0,0,1)' : (liveStaticPattern || currentColor);
+
+  // Always mirror smooth stroke to rawCanvas
+  drawSmoothOnRaw(lastPoint, point, currentColor, getToolSize(), isEraser);
+
+  // Draw styled stroke on display canvas
+  if (isPixelMode()) {
+    drawPixelLine(lastPoint.x, lastPoint.y, point.x, point.y, getToolSize(), drawColor);
+    lastPoint = { x: snapToGrid(point.x), y: snapToGrid(point.y) };
+  } else if (is3dMode() && !isEraser && !liveStaticPattern) {
+    // 3D mode: main stroke + highlight (CSS drop-shadow handles shadow)
+    const sz = getToolSize();
+    ctx.beginPath();
+    ctx.strokeStyle = drawColor;
+    ctx.lineWidth = sz;
+    ctx.moveTo(lastPoint.x, lastPoint.y);
+    ctx.lineTo(point.x, point.y);
+    ctx.stroke();
+    // Highlight stroke — thinner, lighter, offset up-left
+    ctx.beginPath();
+    ctx.strokeStyle = getHighlightColor(currentColor);
+    ctx.lineWidth = sz * 0.35;
+    ctx.moveTo(lastPoint.x + HIGHLIGHT_OFFSET, lastPoint.y + HIGHLIGHT_OFFSET);
+    ctx.lineTo(point.x + HIGHLIGHT_OFFSET, point.y + HIGHLIGHT_OFFSET);
+    ctx.stroke();
+    lastPoint = point;
+  } else {
+    ctx.beginPath();
+    ctx.strokeStyle = drawColor;
+    ctx.lineWidth = getToolSize();
+    ctx.moveTo(lastPoint.x, lastPoint.y);
+    ctx.lineTo(point.x, point.y);
+    ctx.stroke();
+    lastPoint = point;
+  }
+}
+
+function stopDrawing() {
+  if (isDrawing) {
+    const wasErasing = currentTool === 'eraser';
+    ctx.globalCompositeOperation = 'source-over';
+    rawCtx.globalCompositeOperation = 'source-over';
+
+    if (wasErasing && currentStrokeCanvas) {
+      // Erode each stroke by the erased area — keeps strokes separate so
+      // static strokes stay animated after erasing
+      for (const stroke of strokeList) {
+        const sctx = stroke.canvas.getContext('2d');
+        sctx.save();
+        sctx.setTransform(1, 0, 0, 1, 0, 0);
+        sctx.globalCompositeOperation = 'destination-out';
+        sctx.drawImage(currentStrokeCanvas, 0, 0);
+        sctx.restore();
+        // staticBBox stays valid: erasing only shrinks the ink, and the
+        // repaint fill just needs a superset of it
+      }
+      currentStrokeCanvas = null;
+      currentStrokeCtx = null;
+      // Drop strokes that are now fully erased (downsampled alpha check)
+      const probe = document.createElement('canvas');
+      probe.width = probe.height = 64;
+      const probeCtx = probe.getContext('2d', { willReadFrequently: true });
+      strokeList = strokeList.filter((stroke) => {
+        probeCtx.clearRect(0, 0, 64, 64);
+        probeCtx.drawImage(stroke.canvas, 0, 0, 64, 64);
+        const pd = probeCtx.getImageData(0, 0, 64, 64).data;
+        for (let i = 3; i < pd.length; i += 4) { if (pd[i] > 0) return true; }
+        return false;
+      });
+      buildRawCanvas(); // keep rawCanvas == composite(strokeList)
+    } else if (currentStrokeCanvas) {
+      const isStatic = currentTool === 'special-pen';
+      let strokeCanvas = currentStrokeCanvas;
+      let featherPx = 0;
+      if (isStatic) {
+        // Scatter-edge the mask — the same treatment staticTick shows live
+        featherPx = Math.max(1.5, brushSize * 0.08) * (window.devicePixelRatio || 1);
+        const soft = document.createElement('canvas');
+        soft.width = currentStrokeCanvas.width;
+        soft.height = currentStrokeCanvas.height;
+        if (currentStrokeBBox) {
+          scatterMask(currentStrokeCanvas, soft,
+            Math.floor(currentStrokeBBox.x0), Math.floor(currentStrokeBBox.y0),
+            Math.ceil(currentStrokeBBox.x1 - currentStrokeBBox.x0),
+            Math.ceil(currentStrokeBBox.y1 - currentStrokeBBox.y0), featherPx);
+        } else {
+          soft.getContext('2d').drawImage(currentStrokeCanvas, 0, 0);
+        }
+        strokeCanvas = soft;
+      }
+      const stroke = {
+        id: ++strokeIdCounter,
+        canvas: strokeCanvas,
+        isStatic,
+        color: isStatic ? currentColor : null,
+      };
+      if (currentStrokeBBox) {
+        const grow = Math.ceil(featherPx * 2) + 4; // blur + scatter spread ink past the path
+        const bx = Math.max(0, Math.floor(currentStrokeBBox.x0) - grow);
+        const by = Math.max(0, Math.floor(currentStrokeBBox.y0) - grow);
+        const bw = Math.min(rawCanvas.width, Math.ceil(currentStrokeBBox.x1) + grow) - bx;
+        const bh = Math.min(rawCanvas.height, Math.ceil(currentStrokeBBox.y1) + grow) - by;
+        if (bw > 0 && bh > 0) stroke.staticBBox = { x: bx, y: by, w: bw, h: bh };
+      }
+      strokeList.push(stroke);
+      currentStrokeCanvas = null;
+      currentStrokeCtx = null;
+      if (isStatic) { repaintStaticStrokes(); buildRawCanvas(); }
+    }
+    liveStaticPattern = null;
+  }
+  isDrawing = false;
+  lastPoint = null;
+  canvas.classList.remove('painting');
+}
+
+// ===== Eyedropper =====
+// Colour of the topmost sticker (text or image) under a canvas point, or null
+function pickStickerColor(pos) {
+  for (let i = stickerList.length - 1; i >= 0; i--) {
+    const s = stickerList[i];
+    const lx = pos.x - (s.cx - s.w / 2);
+    const ly = pos.y - (s.cy - s.h / 2);
+    if (lx < 0 || ly < 0 || lx >= s.w || ly >= s.h) continue;
+    const img = s.el.querySelector('img');
+    if (!img?.naturalWidth) continue;
+    const c = document.createElement('canvas');
+    c.width = c.height = 1;
+    const cx = c.getContext('2d');
+    cx.drawImage(img, (lx / s.w) * img.naturalWidth, (ly / s.h) * img.naturalHeight, 1, 1, 0, 0, 1, 1);
+    const p = cx.getImageData(0, 0, 1, 1).data;
+    if (p[3] < 40) continue; // transparent here — look underneath
+    if (s.text) return s.text.color.toUpperCase();
+    return '#' + ((1 << 24) + (p[0] << 16) + (p[1] << 8) + p[2]).toString(16).slice(1).toUpperCase();
+  }
+  return null;
+}
+
+function pickColor(e) {
+  const pos = getCanvasPos(e);
+  const dpr = window.devicePixelRatio || 1;
+  // Read from rawCanvas to get the true smooth color
+  const pixel = rawCtx.getImageData(pos.x * dpr, pos.y * dpr, 1, 1).data;
+  const stickerHex = pickStickerColor(pos);
+
+  // On static (magic wand) ink, pick the stroke's swatch colour, not a
+  // random noise speck
+  let staticHex = null;
+  const sdx = Math.round(pos.x * dpr), sdy = Math.round(pos.y * dpr);
+  if (sdx >= 0 && sdx < rawCanvas.width && sdy >= 0 && sdy < rawCanvas.height) {
+    for (let i = strokeList.length - 1; i >= 0; i--) {
+      const st = strokeList[i];
+      if (st.canvas.getContext('2d').getImageData(sdx, sdy, 1, 1).data[3] <= 20) continue;
+      if (st.isStatic && st.color) staticHex = st.color.toUpperCase();
+      break;
+    }
+  }
+
+  // Only pick if there's actually a painted pixel (alpha > 0) or a sticker
+  if (stickerHex || pixel[3] > 0) {
+    const hex = stickerHex || staticHex || '#' +
+      ((1 << 24) + (pixel[0] << 16) + (pixel[1] << 8) + pixel[2])
+        .toString(16).slice(1).toUpperCase();
+    currentColor = hex;
+
+    // Highlight matching swatch if there is one
+    const swatches = document.querySelectorAll('.swatch');
+    swatches.forEach((s) => s.classList.remove('active'));
+    const matchingSwatch = document.querySelector(`.swatch[data-active-color="${hex}"]`);
+    if (matchingSwatch) matchingSwatch.classList.add('active');
+
+    // Switch back to brush tool after picking (unless on bucket)
+    if (currentTool !== 'bucket') setActiveTool('brush');
+  }
+}
+
+// ===== Flood Fill (Bucket Tool) =====
+
+function floodFill(pos) {
+  if (!currentColor) return;
+  const dpr = window.devicePixelRatio || 1;
+  let sx = Math.round(pos.x * dpr);
+  let sy = Math.round(pos.y * dpr);
+  const w = rawCanvas.width;
+  const h = rawCanvas.height;
+  if (sx < 0 || sx >= w || sy < 0 || sy >= h) return;
+
+  // Clicking static (magic wand) ink retints its noise instead of trying to
+  // pixel-fill random speckles
+  for (let i = strokeList.length - 1; i >= 0; i--) {
+    const st = strokeList[i];
+    if (st.canvas.getContext('2d').getImageData(sx, sy, 1, 1).data[3] <= 20) continue;
+    if (st.isStatic) {
+      if (st.color === currentColor) return;
+      saveCanvasState();
+      st.color = currentColor;
+      for (const b of repaintStaticStrokes()) compositeStaticRegion(b);
+      if (isPixelMode()) renderStyledCanvas();
+      return;
+    }
+    break; // topmost ink is a normal stroke — regular fill below
+  }
+
+  const imageData = rawCtx.getImageData(0, 0, w, h);
+  const data = imageData.data;
+  const fill = hexToRgb(currentColor);
+  if (!fill) return;
+
+  const clickAlpha = data[(sy * w + sx) * 4 + 3];
+
+  if (clickAlpha < 20) {
+    // Transparent/near-transparent pixel — try interior fill of a closed drawn shape.
+    // If the click landed on a faint anti-aliased edge pixel (alpha 1-19), nudge to
+    // the nearest strictly-transparent (alpha=0) neighbour so the BFS starts inside.
+    let bx = sx, by = sy;
+    let canTryInterior = true;
+
+    if (clickAlpha > 0) {
+      let found = false;
+      outer: for (let r = 1; r <= 6; r++) {
+        for (let dy = -r; dy <= r; dy++) {
+          for (let dx = -r; dx <= r; dx++) {
+            if (Math.abs(dx) !== r && Math.abs(dy) !== r) continue;
+            const nx = sx + dx, ny = sy + dy;
+            if (nx < 0 || nx >= w || ny < 0 || ny >= h) continue;
+            if (data[(ny * w + nx) * 4 + 3] === 0) { bx = nx; by = ny; found = true; break outer; }
+          }
+        }
+      }
+      if (!found) canTryInterior = false; // no alpha=0 nearby — fall through to stroke fill
+    }
+
+    if (canTryInterior) {
+      const visited = new Uint8Array(w * h);
+      const startIdx = by * w + bx;
+      visited[startIdx] = 1;
+      const stack = [startIdx];
+      const pixels = [];
+      let reachesBoundary = false;
+
+      const boundaryIdxs = []; // wall pixels adjacent to the fill region
+      while (stack.length > 0) {
+        if (reachesBoundary) break;
+        const idx = stack.pop();
+        const px = idx % w, py = (idx - px) / w;
+        pixels.push(idx);
+        const nxArr = [px - 1, px + 1, px,     px    ];
+        const nyArr = [py,     py,     py - 1, py + 1];
+        for (let k = 0; k < 4; k++) {
+          const nx = nxArr[k], ny = nyArr[k];
+          if (nx < 0 || nx >= w || ny < 0 || ny >= h) { reachesBoundary = true; break; }
+          const ni = ny * w + nx;
+          if (visited[ni]) continue;
+          visited[ni] = 1;
+          if (data[ni * 4 + 3] < 64) {
+            stack.push(ni); // include semi-transparent anti-aliased edge pixels to close the gap
+          } else {
+            boundaryIdxs.push(ni); // wall pixel — belongs to the enclosing stroke
+          }
+        }
+      }
+
+      if (!reachesBoundary) {
+        saveCanvasState();
+        for (const idx of pixels) {
+          const di = idx * 4;
+          data[di] = fill[0]; data[di + 1] = fill[1]; data[di + 2] = fill[2]; data[di + 3] = 255;
+        }
+        rawCtx.putImageData(imageData, 0, 0);
+
+        // Find which existing stroke owns the boundary pixels — merge fill into it
+        // so the outline and fill move together when selected.
+        let ownerStroke = null;
+        const sampleBoundary = boundaryIdxs.slice(0, Math.min(30, boundaryIdxs.length));
+        for (let si = strokeList.length - 1; si >= 0 && !ownerStroke; si--) {
+          const sCtx = strokeList[si].canvas.getContext('2d');
+          for (const bi of sampleBoundary) {
+            const bx = bi % w, by = (bi - bx) / w;
+            if (sCtx.getImageData(bx, by, 1, 1).data[3] > 0) { ownerStroke = strokeList[si]; break; }
+          }
+        }
+
+        // Merge fill pixels into every stroke canvas that borders the fill region,
+        // so the outline and fill always move together when selected.
+        // Read each stroke canvas once; check boundary ownership and write fill in the same pass.
+        const sampleB = boundaryIdxs.slice(0, Math.min(100, boundaryIdxs.length));
+        let anyOwner = false;
+        for (const stroke of strokeList) {
+          if (stroke.isStatic) continue; // never bake flat fill into animated static
+          const sCtx = stroke.canvas.getContext('2d');
+          const sImgData = sCtx.getImageData(0, 0, w, h);
+          const sd = sImgData.data;
+          // Does this stroke own any boundary pixel?
+          const owns = sampleB.some((bi) => sd[bi * 4 + 3] > 0);
+          if (owns) {
+            for (const idx of pixels) {
+              const di = idx * 4;
+              sd[di] = fill[0]; sd[di+1] = fill[1]; sd[di+2] = fill[2]; sd[di+3] = 255;
+            }
+            sCtx.putImageData(sImgData, 0, 0);
+            anyOwner = true;
+          }
+        }
+        // Fallback: if detection failed (e.g. very thin strokes), merge into the
+        // newest non-static stroke — never into animated static
+        const fallbackTarget = strokeList.filter((st2) => !st2.isStatic).pop() || null;
+        if (!anyOwner && fallbackTarget) {
+          const stroke = fallbackTarget;
+          const sCtx = stroke.canvas.getContext('2d');
+          const sImgData = sCtx.getImageData(0, 0, w, h);
+          for (const idx of pixels) {
+            const di = idx * 4;
+            sImgData.data[di] = fill[0]; sImgData.data[di+1] = fill[1];
+            sImgData.data[di+2] = fill[2]; sImgData.data[di+3] = 255;
+          }
+          sCtx.putImageData(sImgData, 0, 0);
+        } else if (!anyOwner) {
+          // No non-static strokes — create a new independent entry
+          const sc = document.createElement('canvas');
+          sc.width = w; sc.height = h;
+          const scCtx = sc.getContext('2d');
+          const fd = scCtx.createImageData(w, h);
+          for (const idx of pixels) {
+            const di = idx * 4;
+            fd.data[di] = fill[0]; fd.data[di+1] = fill[1]; fd.data[di+2] = fill[2]; fd.data[di+3] = 255;
+          }
+          scCtx.putImageData(fd, 0, 0);
+          strokeList.push({ id: ++strokeIdCounter, canvas: sc });
+        }
+        renderStyledCanvas();
+        return;
+      }
+      // Interior BFS reached boundary — fall through to stroke fill
+    }
+  }
+
+  // ── Stroke fill ──────────────────────────────────────────────────────────────
+  // Snap to nearest fully-opaque pixel if on a semi-transparent edge.
+  if (data[(sy * w + sx) * 4 + 3] < 128) {
+    const searchR = Math.round(40 * dpr);
+    let found = false;
+    outer: for (let r = 1; r <= searchR; r++) {
+      for (let dy = -r; dy <= r; dy++) {
+        for (let dx = -r; dx <= r; dx++) {
+          if (Math.abs(dx) !== r && Math.abs(dy) !== r) continue;
+          const nx = sx + dx, ny = sy + dy;
+          if (nx < 0 || nx >= w || ny < 0 || ny >= h) continue;
+          if (data[(ny * w + nx) * 4 + 3] > 128) { sx = nx; sy = ny; found = true; break outer; }
+        }
+      }
+    }
+    if (!found) return;
+  }
+
+  const base = (sy * w + sx) * 4;
+  const tR = data[base], tG = data[base + 1], tB = data[base + 2], tA = data[base + 3];
+  if (tA < 20) return;
+
+  saveCanvasState();
+  if (tR === fill[0] && tG === fill[1] && tB === fill[2] && tA === 255) return;
+
+  const TOLERANCE = 40;
+  function matches(i) {
+    return data[i + 3] > 0 &&
+           Math.abs(data[i]     - tR) <= TOLERANCE &&
+           Math.abs(data[i + 1] - tG) <= TOLERANCE &&
+           Math.abs(data[i + 2] - tB) <= TOLERANCE;
+  }
+
+  const visited2 = new Uint8Array(w * h);
+  const stack2 = [sx + sy * w];
+  visited2[sy * w + sx] = 1;
+
+  while (stack2.length > 0) {
+    const idx = stack2.pop();
+    const px = idx % w;
+    const py = (idx - px) / w;
+    const di = idx * 4;
+    data[di] = fill[0]; data[di + 1] = fill[1]; data[di + 2] = fill[2];
+
+    const neighbors = [px - 1 + py * w, px + 1 + py * w, px + (py - 1) * w, px + (py + 1) * w];
+    for (const ni of neighbors) {
+      const nx = ni % w, ny = (ni - nx) / w;
+      if (nx < 0 || nx >= w || ny < 0 || ny >= h) continue;
+      if (visited2[ni]) continue;
+      visited2[ni] = 1;
+      if (matches(ni * 4)) stack2.push(ni);
+    }
+  }
+
+  rawCtx.putImageData(imageData, 0, 0);
+  // Update each stroke canvas' pixel colors to match rawCanvas (preserve individuality)
+  const newRaw = rawCtx.getImageData(0, 0, w, h);
+  for (const stroke of strokeList) {
+    const sCtx = stroke.canvas.getContext('2d');
+    const sData = sCtx.getImageData(0, 0, stroke.canvas.width, stroke.canvas.height);
+    let changed = false;
+    for (let i = 0; i < sData.data.length; i += 4) {
+      if (sData.data[i + 3] > 0) {
+        if (sData.data[i] !== newRaw.data[i] || sData.data[i+1] !== newRaw.data[i+1] || sData.data[i+2] !== newRaw.data[i+2]) {
+          sData.data[i] = newRaw.data[i]; sData.data[i+1] = newRaw.data[i+1]; sData.data[i+2] = newRaw.data[i+2];
+          changed = true;
+        }
+      }
+    }
+    if (changed) sCtx.putImageData(sData, 0, 0);
+  }
+  renderStyledCanvas();
+}
+
+// ===== Shape Fill (Bucket on placed shape) =====
+function fillShape(sticker, colorOverride) {
+  const color = colorOverride || currentColor;
+  if (!color) return;
+  const img = sticker.el.querySelector('img');
+  if (!img.complete || !img.naturalWidth) return;
+
+  const tc = document.createElement('canvas');
+  tc.width  = Math.round(sticker.w);
+  tc.height = Math.round(sticker.h);
+  const tctx = tc.getContext('2d');
+
+  // Draw the shape image to get its alpha mask
+  tctx.drawImage(img, 0, 0, tc.width, tc.height);
+
+  // Replace all color with the fill color, keeping alpha mask
+  tctx.globalCompositeOperation = 'source-atop';
+  tctx.fillStyle = color;
+  tctx.fillRect(0, 0, tc.width, tc.height);
+
+  img.src = tc.toDataURL('image/png');
+  sticker.src = img.src; // keep src in sync
+  sticker.fillColor = color; // track for theme remapping
+}
+
+// ===== Tool Icon Cursor =====
+// Per-tool: [transform to align tip with mouse, cursor size px]
+const TOOL_CURSOR_CONFIG = {
+  'brush':       { transform: 'translate(-30%, -90%)', size: 46 },
+  'eraser':      { transform: 'translate(-50%, -60%)', size: 44 },
+  'special-pen': { transform: 'translate(-20%, -90%)', size: 46 },
+  'eyedropper':  { transform: 'translate(-15%, -90%)', size: 44 },
+  'bucket':      { transform: 'translate(-10%, -85%)', size: 46 },
+};
+
+// Plain arrow cursor while the sticker menu is open
+function isStickerMenuOpen() {
+  return !!(document.getElementById('stickerPanel')?.classList.contains('open') ||
+            document.getElementById('shapePanel')?.classList.contains('open'));
+}
+
+function updateBrushCursor(x, y) {
+  if (isStickerMenuOpen()) { brushCursor.classList.remove('visible'); return; }
+  const cfg = TOOL_CURSOR_CONFIG[currentTool];
+  if (!cfg) { brushCursor.classList.remove('visible'); return; }
+
+  // Need a color for drawing tools (except eraser/bucket)
+  if (!['eraser', 'bucket', 'select', 'eyedropper'].includes(currentTool) && !currentColor) {
+    brushCursor.classList.remove('visible');
+    return;
+  }
+
+  // Get the icon src from the active tool button
+  const btn = document.querySelector(`[data-tool="${currentTool}"]`);
+  const iconSrc = btn?.querySelector('img')?.src;
+  if (!iconSrc) { brushCursor.classList.remove('visible'); return; }
+
+  brushCursorImg.src = iconSrc;
+  brushCursor.style.width  = cfg.size + 'px';
+  brushCursor.style.height = cfg.size + 'px';
+  brushCursor.style.left   = x + 'px';
+  brushCursor.style.top    = y + 'px';
+  brushCursor.style.transform     = cfg.transform;
+  brushCursor.style.backgroundColor = 'transparent';
+  brushCursor.style.borderRadius    = '0';
+  brushCursor.style.boxShadow       = 'none';
+
+  brushCursor.classList.add('visible');
+}
+
+// Show/hide icon cursor on canvas enter/leave
+function onCanvasEnter() {
+  if (isStickerMenuOpen()) return;
+  if (TOOL_CURSOR_CONFIG[currentTool]) brushCursor.classList.add('visible');
+}
+function onCanvasLeave() {
+  brushCursor.classList.remove('visible');
+}
+canvas.addEventListener('mouseenter', onCanvasEnter);
+canvas.addEventListener('mouseleave', onCanvasLeave);
+// Also cover stickerLayer (sits above canvas for bucket/select)
+const stickerLayerEl = document.getElementById('stickerLayer');
+stickerLayerEl.addEventListener('mouseenter', onCanvasEnter);
+stickerLayerEl.addEventListener('mouseleave', onCanvasLeave);
+
+// ===== Canvas Event Listeners =====
+canvas.addEventListener('mousedown', startDrawing);
+
+// Listen on document so drawing continues even if cursor leaves canvas edge
+document.addEventListener('mousemove', (e) => {
+  if (isDraggingSlider) return; // slider takes priority
+  // Update brush cursor if over canvas
+  const rect = canvas.getBoundingClientRect();
+  const overCanvas = e.clientX >= rect.left && e.clientX <= rect.right &&
+                     e.clientY >= rect.top && e.clientY <= rect.bottom;
+  if (overCanvas) {
+    updateBrushCursor(e.clientX, e.clientY);
+  }
+  if (isDrawing) {
+    // Clamp to canvas bounds so strokes reach the edge
+    const pos = getCanvasPos(e);
+    const canvasRect = canvas.getBoundingClientRect();
+    pos.x = Math.max(0, Math.min(canvasRect.width, pos.x));
+    pos.y = Math.max(0, Math.min(canvasRect.height, pos.y));
+
+    const isEraser = currentTool === 'eraser';
+    const drawColor = isEraser ? 'rgba(0,0,0,1)' : (liveStaticPattern || currentColor);
+
+    // Always mirror smooth stroke to rawCanvas
+    drawSmoothOnRaw(lastPoint, pos, currentColor, getToolSize(), isEraser);
+
+    // Draw styled stroke on display canvas
+    if (isPixelMode()) {
+      drawPixelLine(lastPoint.x, lastPoint.y, pos.x, pos.y, getToolSize(), drawColor);
+      lastPoint = { x: snapToGrid(pos.x), y: snapToGrid(pos.y) };
+    } else if (is3dMode() && !isEraser && !liveStaticPattern) {
+      const sz = getToolSize();
+      ctx.beginPath();
+      ctx.strokeStyle = drawColor;
+      ctx.lineWidth = sz;
+      ctx.moveTo(lastPoint.x, lastPoint.y);
+      ctx.lineTo(pos.x, pos.y);
+      ctx.stroke();
+      // Highlight stroke
+      ctx.beginPath();
+      ctx.strokeStyle = getHighlightColor(currentColor);
+      ctx.lineWidth = sz * 0.35;
+      ctx.moveTo(lastPoint.x + HIGHLIGHT_OFFSET, lastPoint.y + HIGHLIGHT_OFFSET);
+      ctx.lineTo(pos.x + HIGHLIGHT_OFFSET, pos.y + HIGHLIGHT_OFFSET);
+      ctx.stroke();
+      lastPoint = pos;
+    } else {
+      ctx.beginPath();
+      ctx.strokeStyle = drawColor;
+      ctx.lineWidth = getToolSize();
+      ctx.moveTo(lastPoint.x, lastPoint.y);
+      ctx.lineTo(pos.x, pos.y);
+      ctx.stroke();
+      lastPoint = pos;
+    }
+  }
+});
+document.addEventListener('mouseup', stopDrawing);
+
+// Touch support
+canvas.addEventListener('touchstart', (e) => {
+  e.preventDefault();
+  startDrawing(e);
+}, { passive: false });
+canvas.addEventListener('touchmove', (e) => {
+  e.preventDefault();
+  draw(e);
+}, { passive: false });
+canvas.addEventListener('touchend', stopDrawing);
+canvas.addEventListener('touchcancel', stopDrawing); // a cancelled touch must not leave isDrawing stuck
+
+// ===== Color Swatches =====
+const swatches = document.querySelectorAll('.swatch');
+
+swatches.forEach((swatch) => {
+  swatch.addEventListener('click', () => {
+    // Use the active color for the current theme
+    currentColor = swatch.dataset.activeColor || swatch.dataset.color;
+
+    // Update active swatch visual
+    swatches.forEach((s) => s.classList.remove('active'));
+    swatch.classList.add('active');
+
+    // Stay on the current tool if it uses colour (bucket, magic wand);
+    // otherwise switch to the brush
+    if (currentTool !== 'bucket' && currentTool !== 'special-pen') {
+      setActiveTool('brush');
+      canvas.style.cursor = 'none';
+    }
+  });
+});
+
+// ===== Tool Switching =====
+function setActiveTool(toolName) {
+  currentTool = toolName;
+
+  // Close all picker panels when switching to any tool
+  document.getElementById('stickerPanel')?.classList.remove('open');
+  document.getElementById('shapePanel')?.classList.remove('open');
+  document.getElementById('typePanel')?.classList.remove('open');
+  if (toolName !== 'type') {
+    if (textInputActive && typeof commitText === 'function' && textInputArea?.value.trim()) {
+      commitText();
+    } else if (typeof hideTextBox === 'function') {
+      hideTextBox();
+    }
+  }
+
+  // Enable sticker layer pointer events in select + bucket modes
+  document.getElementById('stickerLayer')?.classList.toggle('select-active', toolName === 'select' || toolName === 'bucket');
+
+  // Deselect any sticker + commit canvas selection when leaving select tool
+  if (toolName !== 'select') {
+    if (typeof deselectSticker === 'function') deselectSticker();
+    if (typeof commitCanvasSel === 'function') commitCanvasSel();
+  }
+
+  // Update button visuals
+  document.querySelectorAll('.tool-btn').forEach((btn) => {
+    btn.classList.toggle('active', btn.dataset.tool === toolName);
+  });
+
+  // Update cursor based on tool
+  const drawingTools = ['brush', 'special-pen'];
+  // Use icon cursor for all tools that have a config; hide native cursor
+  if (TOOL_CURSOR_CONFIG[toolName]) {
+    canvas.style.cursor = 'none';
+    document.getElementById('stickerLayer').style.cursor = 'none';
+  } else {
+    canvas.style.cursor = 'crosshair';
+    document.getElementById('stickerLayer').style.cursor = '';
+    brushCursor.classList.remove('visible');
+  }
+}
+
+document.querySelectorAll('.tool-btn').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const tool = btn.dataset.tool;
+    if (tool === 'mail' || tool === 'shape') {
+      // Toggle sticker picker panel; close other panels; don't change drawing tool
+      document.getElementById('shapePanel')?.classList.remove('open');
+      document.getElementById('typePanel')?.classList.remove('open');
+      const panel = document.getElementById('stickerPanel');
+      if (panel) {
+        panel.classList.toggle('open');
+        btn.classList.toggle('active', panel.classList.contains('open'));
+      }
+    } else if (tool === 'fill') {
+      // Toggle shape picker panel; close other panels; don't change drawing tool
+      document.getElementById('stickerPanel')?.classList.remove('open');
+      document.getElementById('typePanel')?.classList.remove('open');
+      const panel = document.getElementById('shapePanel');
+      if (panel) {
+        panel.classList.toggle('open');
+        btn.classList.toggle('active', panel.classList.contains('open'));
+      }
+    } else if (tool === 'type') {
+      // Toggle font picker panel; close other panels; activate type tool
+      document.getElementById('stickerPanel')?.classList.remove('open');
+      document.getElementById('shapePanel')?.classList.remove('open');
+      setActiveTool('type');
+      const panel = document.getElementById('typePanel');
+      if (panel) {
+        panel.classList.toggle('open');
+        btn.classList.toggle('active', panel.classList.contains('open') || currentTool === 'type');
+      }
+    } else {
+      setActiveTool(tool);
+    }
+  });
+});
+
+// ===== Color Theme Toggle =====
+document.getElementById('colorArrowRight').addEventListener('click', () => switchTheme(1));
+document.getElementById('colorArrowLeft').addEventListener('click', () => switchTheme(-1));
+
+// ===== Style Toggle =====
+document.getElementById('styleArrowRight').addEventListener('click', () => switchStyle(1));
+document.getElementById('styleArrowLeft').addEventListener('click', () => switchStyle(-1));
+
+// ===== Undo/Redo Buttons =====
+document.getElementById('undoBtn').addEventListener('click', undo);
+document.getElementById('redoBtn').addEventListener('click', redo);
+
+// ===== Clear Button =====
+document.getElementById('clearBtn').addEventListener('click', clearCanvas);
+
+// Keyboard shortcuts for undo/redo
+document.addEventListener('keydown', (e) => {
+  if ((e.metaKey || e.ctrlKey) && e.key === 'z') {
+    e.preventDefault();
+    if (e.shiftKey) {
+      redo();
+    } else {
+      undo();
+    }
+  }
+  if ((e.metaKey || e.ctrlKey) && e.key === 'y') {
+    e.preventDefault();
+    redo();
+  }
+  // Delete/Backspace removes whatever is selected — sticker, shape, text,
+  // or a lifted piece of the drawing (not while typing in a text box)
+  if ((e.key === 'Delete' || e.key === 'Backspace') && (selectedSticker || canvasSel)) {
+    const t = e.target;
+    if (t && (t.tagName === 'TEXTAREA' || t.tagName === 'INPUT' || t.isContentEditable)) return;
+    e.preventDefault();
+    if (selectedSticker) deleteSelectedSticker();
+    else discardCanvasSel();
+  }
+});
+
+function deleteSelectedSticker() {
+  const s = selectedSticker;
+  if (!s) return;
+  saveCanvasState();
+  deselectSticker();
+  s.el.remove();
+  const i = stickerList.indexOf(s);
+  if (i !== -1) stickerList.splice(i, 1);
+}
+
+// ===== Sticker System =====
+const STICKERS_LIST = [
+  'orchid-pink', 'orchid-red', 'orchid-purple', 'cake', 'ice-cream',
+  'strawberry', 'teacup', 'olives', 'girl', 'koi-silver', 'koi-pair',
+  'fish-orange', 'cat', 'envelope', 'star-pink', 'star-silver',
+  'star-blue', 'art-red', 'art-white',
+];
+
+// select-frame.webp measurement constants (from pixel analysis of 4500×4500 PNG):
+// Non-transparent bounds: x=1019..3480, y=1312..3187
+// So left/right padding = 22.6%, top/bottom padding = 29.2%
+const SF_PAD_X  = 0.226; // fraction of PNG width that is left or right padding
+const SF_PAD_Y  = 0.292; // fraction of PNG height that is top or bottom padding
+const SF_W_FRAC = 1 - 2 * SF_PAD_X; // 0.548 — frame inner width / PNG width
+const SF_H_FRAC = 1 - 2 * SF_PAD_Y; // 0.416 — frame inner height / PNG height
+const SF_INSET  = 10; // px of breathing room between sticker edge and frame rectangle
+
+let stickerList = [];
+let selectedSticker = null;
+let stickerIdCounter = 0;
+let stickerDragState = null;
+const MIN_STICKER_PX = 30;
+
+const stickerLayer = document.getElementById('stickerLayer');
+const selectFrame  = document.getElementById('selectFrame');
+const stickerPanel = document.getElementById('stickerPanel');
+const stickerGrid  = document.getElementById('stickerGrid');
+
+// Switch to the normal arrow cursor whenever the sticker or shape menu is open
+const pickerCursorObserver = new MutationObserver(() => {
+  const open = isStickerMenuOpen();
+  document.body.classList.toggle('sticker-menu-open', open);
+  if (open) brushCursor.classList.remove('visible');
+});
+pickerCursorObserver.observe(stickerPanel, { attributes: true, attributeFilter: ['class'] });
+pickerCursorObserver.observe(document.getElementById('shapePanel'), { attributes: true, attributeFilter: ['class'] });
+
+// ===== Canvas Selection State =====
+let canvasSel = null; // { x, y, w, h } in stickerLayer CSS px
+let canvasSelDragState = null;
+
+// Content element lives inside stickerLayer (inherits pointer-events from parent)
+const canvasSelContent = document.createElement('div');
+canvasSelContent.id = 'canvasSelContent';
+const canvasSelInner = document.createElement('canvas');
+canvasSelInner.id = 'canvasSelInner';
+canvasSelContent.appendChild(canvasSelInner);
+stickerLayer.appendChild(canvasSelContent);
+
+// Drag canvasSelContent to move
+canvasSelContent.addEventListener('mousedown', (e) => {
+  if (currentTool !== 'select' || !canvasSel) return;
+  e.stopPropagation();
+  deselectSticker();
+  canvasSelDragState = {
+    type: 'move',
+    startMouseX: e.clientX, startMouseY: e.clientY,
+    startX: canvasSel.x, startY: canvasSel.y,
+  };
+});
+
+function updateCanvasSelEl() {
+  if (!canvasSel) { canvasSelContent.style.display = 'none'; return; }
+  canvasSelContent.style.display = 'block';
+  canvasSelContent.style.left    = canvasSel.x + 'px';
+  canvasSelContent.style.top     = canvasSel.y + 'px';
+  canvasSelContent.style.width   = canvasSel.w + 'px';
+  canvasSelContent.style.height  = canvasSel.h + 'px';
+  canvasSelInner.style.width     = canvasSel.w + 'px';
+  canvasSelInner.style.height    = canvasSel.h + 'px';
+}
+
+function positionSelFrame() {
+  if (!canvasSel) { selectFrame.style.display = 'none'; return; }
+  const appEl    = document.querySelector('.app');
+  const appRect  = appEl.getBoundingClientRect();
+  const layerRect = stickerLayer.getBoundingClientRect();
+  const ox = layerRect.left - appRect.left;
+  const oy = layerRect.top  - appRect.top;
+
+  const cx   = ox + canvasSel.x + canvasSel.w / 2;
+  const cy   = oy + canvasSel.y + canvasSel.h / 2;
+  const P    = SF_INSET;
+  const elW  = canvasSel.w + 2 * P;
+  const elH  = canvasSel.h + 2 * P;
+  const elLeft = cx - canvasSel.w / 2 - P;
+  const elTop  = cy - canvasSel.h / 2 - P;
+
+  selectFrame.style.display = 'block';
+  selectFrame.style.left    = elLeft + 'px';
+  selectFrame.style.top     = elTop  + 'px';
+  selectFrame.style.width   = elW    + 'px';
+  selectFrame.style.height  = elH    + 'px';
+
+  const handles = {
+    tl: [0,     0],
+    tr: [elW,   0],
+    bl: [0,     elH],
+    br: [elW,   elH],
+    t:  [elW/2, 0],
+    b:  [elW/2, elH],
+    l:  [0,     elH/2],
+    r:  [elW,   elH/2],
+  };
+  selectFrame.querySelectorAll('.rh').forEach((h) => {
+    const [hx, hy] = handles[h.dataset.dir];
+    h.style.left = hx + 'px';
+    h.style.top  = hy + 'px';
+  });
+}
+
+function captureCanvasSel(x, y, w, h) {
+  const dpr = window.devicePixelRatio || 1;
+  saveCanvasState();
+
+  canvasSelInner.width  = Math.round(w * dpr);
+  canvasSelInner.height = Math.round(h * dpr);
+  const tc = canvasSelInner.getContext('2d');
+  tc.clearRect(0, 0, canvasSelInner.width, canvasSelInner.height);
+  // Copy from rawCanvas (pixel coords)
+  tc.drawImage(rawCanvas, Math.round(x * dpr), Math.round(y * dpr),
+    Math.round(w * dpr), Math.round(h * dpr), 0, 0, canvasSelInner.width, canvasSelInner.height);
+
+  // Erase area from rawCanvas
+  rawCtx.save();
+  rawCtx.globalCompositeOperation = 'destination-out';
+  rawCtx.fillStyle = 'rgba(0,0,0,1)';
+  rawCtx.fillRect(x, y, w, h);
+  rawCtx.restore();
+  renderStyledCanvas();
+
+  canvasSel = { x, y, w, h };
+  stickerLayer.appendChild(canvasSelContent); // bring to DOM front (above all stickers)
+  updateCanvasSelEl();
+  positionSelFrame();
+}
+
+function commitCanvasSel() {
+  if (!canvasSel) return;
+  const dpr = window.devicePixelRatio || 1;
+
+  // Create a new stroke canvas at the selection's current position (push to end = front)
+  const newSC = document.createElement('canvas');
+  newSC.width = rawCanvas.width;
+  newSC.height = rawCanvas.height;
+  newSC.getContext('2d').drawImage(
+    canvasSelInner, 0, 0, canvasSelInner.width, canvasSelInner.height,
+    Math.round(canvasSel.x * dpr), Math.round(canvasSel.y * dpr),
+    Math.round(canvasSel.w * dpr), Math.round(canvasSel.h * dpr)
+  );
+  const selX = Math.max(0, Math.round(canvasSel.x * dpr) - 2);
+  const selY = Math.max(0, Math.round(canvasSel.y * dpr) - 2);
+  const selW = Math.min(rawCanvas.width,  Math.round((canvasSel.x + canvasSel.w) * dpr) + 2) - selX;
+  const selH = Math.min(rawCanvas.height, Math.round((canvasSel.y + canvasSel.h) * dpr) + 2) - selY;
+  strokeList.push({
+    id: ++strokeIdCounter,
+    canvas: newSC,
+    isStatic: !!canvasSel.staticInfo,
+    color: canvasSel.staticInfo ? canvasSel.staticInfo.color : null,
+    staticBBox: selW > 0 && selH > 0 ? { x: selX, y: selY, w: selW, h: selH } : undefined,
+    isSticker: !!canvasSel.fromSticker,
+  });
+  buildRawCanvas();
+
+  canvasSel = null;
+  canvasSelDragState = null;
+  canvasSelContent.style.display = 'none';
+  selectFrame.style.display = 'none';
+}
+
+// Throw away a lifted canvas selection without committing it back.
+// The lift already saved pre-lift state, so one undo brings the piece back.
+function discardCanvasSel() {
+  if (!canvasSel) return;
+  canvasSel = null;
+  canvasSelDragState = null;
+  canvasSelContent.style.display = 'none';
+  selectFrame.style.display = 'none';
+  buildRawCanvas();
+}
+
+function positionSelectFrame() {
+  if (!selectedSticker) { selectFrame.style.display = 'none'; return; }
+  const s   = selectedSticker;
+  const P   = SF_INSET;
+  const elW = s.w + 2 * P;
+  const elH = s.h + 2 * P;
+
+  const appEl    = document.querySelector('.app');
+  const appRect  = appEl.getBoundingClientRect();
+  const layerRect = stickerLayer.getBoundingClientRect();
+  const appCX = (layerRect.left - appRect.left) + s.cx;
+  const appCY = (layerRect.top  - appRect.top)  + s.cy;
+
+  const elLeft = appCX - s.w / 2 - P;
+  const elTop  = appCY - s.h / 2 - P;
+
+  selectFrame.style.display = 'block';
+  selectFrame.style.left    = elLeft + 'px';
+  selectFrame.style.top     = elTop  + 'px';
+  selectFrame.style.width   = elW    + 'px';
+  selectFrame.style.height  = elH    + 'px';
+
+  const handles = {
+    tl: [0,     0],
+    tr: [elW,   0],
+    bl: [0,     elH],
+    br: [elW,   elH],
+    t:  [elW/2, 0],
+    b:  [elW/2, elH],
+    l:  [0,     elH/2],
+    r:  [elW,   elH/2],
+  };
+  selectFrame.querySelectorAll('.rh').forEach((h) => {
+    const [hx, hy] = handles[h.dataset.dir];
+    h.style.left = hx + 'px';
+    h.style.top  = hy + 'px';
+  });
+}
+
+function selectStickerEl(sticker) {
+  if (canvasSel) commitCanvasSel();
+  if (selectedSticker) selectedSticker.el.classList.remove('selected');
+  selectedSticker = sticker || null;
+  if (selectedSticker) {
+    selectedSticker.el.classList.add('selected');
+    stickerLayer.appendChild(selectedSticker.el); // bring to front
+  }
+  positionSelectFrame();
+}
+
+function deselectSticker() {
+  if (selectedSticker) selectedSticker.el.classList.remove('selected');
+  selectedSticker = null;
+  // Don't hide frame if a canvas selection is active
+  if (!canvasSel) selectFrame.style.display = 'none';
+}
+
+function addSticker(src, cx, cy, w, h, isShape = false) {
+  const id = ++stickerIdCounter;
+  const el = document.createElement('div');
+  el.className = 'sticker';
+  el.style.left   = cx + 'px';
+  el.style.top    = cy + 'px';
+  el.style.width  = w  + 'px';
+  el.style.height = h  + 'px';
+
+  const img = document.createElement('img');
+  img.src = src;
+  img.alt = '';
+  img.draggable = false;
+  if (isShape) img.style.objectFit = 'fill';
+  el.appendChild(img);
+  stickerLayer.appendChild(el);
+
+  const sticker = { id, src, cx, cy, w, h, el, isShape };
+  stickerList.push(sticker);
+
+  el.addEventListener('mousedown', (e) => {
+    if (currentTool === 'select') {
+      e.stopPropagation();
+      e.preventDefault();
+      saveCanvasState();
+      selectStickerEl(sticker);
+      stickerDragState = {
+        type: 'move',
+        startMouseX: e.clientX,
+        startMouseY: e.clientY,
+        startCX: sticker.cx,
+        startCY: sticker.cy,
+      };
+      el.classList.add('dragging');
+    } else if (currentTool === 'bucket' && sticker.isShape) {
+      e.stopPropagation();
+      e.preventDefault();
+      saveCanvasState();
+      fillShape(sticker);
+    } else if (currentTool === 'bucket' && sticker.text) {
+      e.stopPropagation();
+      e.preventDefault();
+      if (!currentColor || currentColor === sticker.text.color) return;
+      saveCanvasState();
+      sticker.text.color = currentColor;
+      refreshTextSticker(sticker, true);
+    }
+  });
+
+  return sticker;
+}
+
+// Resize handle mousedown
+selectFrame.querySelectorAll('.rh').forEach((h) => {
+  h.addEventListener('mousedown', (e) => {
+    if (!selectedSticker && !canvasSel) return;
+    e.stopPropagation();
+    e.preventDefault();
+
+    const dir = h.dataset.dir;
+    const appEl    = document.querySelector('.app');
+    const appRect   = appEl.getBoundingClientRect();
+    const layerRect = stickerLayer.getBoundingClientRect();
+    const ox = layerRect.left - appRect.left;
+    const oy = layerRect.top  - appRect.top;
+
+    if (selectedSticker) {
+      saveCanvasState();
+      const s = selectedSticker;
+      const appCX = ox + s.cx;
+      const appCY = oy + s.cy;
+      const P = SF_INSET;
+      let anchorX, anchorY;
+      if (dir === 't') {
+        anchorX = appCX;  anchorY = appCY + s.h / 2 + P;
+      } else if (dir === 'b') {
+        anchorX = appCX;  anchorY = appCY - s.h / 2 - P;
+      } else if (dir === 'l') {
+        anchorX = appCX + s.w / 2 + P;  anchorY = appCY;
+      } else if (dir === 'r') {
+        anchorX = appCX - s.w / 2 - P;  anchorY = appCY;
+      } else {
+        anchorX = appCX + ((dir === 'tl' || dir === 'bl') ? (s.w / 2 + P) : -(s.w / 2 + P));
+        anchorY = appCY + ((dir === 'tl' || dir === 'tr') ? (s.h / 2 + P) : -(s.h / 2 + P));
+      }
+      stickerDragState = { type: 'resize', dir, anchorX, anchorY, origAspect: s.w / s.h, isShape: s.isShape, fixedCX: appCX, fixedCY: appCY };
+    } else if (canvasSel) {
+      // Canvas selection resize — anchor = opposite corner/edge in app coords
+      let anchorX, anchorY;
+      if (dir === 't')       { anchorX = ox + canvasSel.x; anchorY = oy + canvasSel.y + canvasSel.h; }
+      else if (dir === 'b')  { anchorX = ox + canvasSel.x; anchorY = oy + canvasSel.y; }
+      else if (dir === 'l')  { anchorX = ox + canvasSel.x + canvasSel.w; anchorY = oy + canvasSel.y; }
+      else if (dir === 'r')  { anchorX = ox + canvasSel.x; anchorY = oy + canvasSel.y; }
+      else {
+        anchorX = ox + canvasSel.x + ((dir === 'tl' || dir === 'bl') ? canvasSel.w : 0);
+        anchorY = oy + canvasSel.y + ((dir === 'tl' || dir === 'tr') ? canvasSel.h : 0);
+      }
+      canvasSelDragState = { type: 'resize', dir, anchorX, anchorY };
+    }
+  });
+});
+
+// Sticker + canvas selection move / resize mousemove
+document.addEventListener('mousemove', (e) => {
+  // Canvas selection drag (rubberband / move / resize)
+  if (canvasSelDragState) {
+    const layerRect = stickerLayer.getBoundingClientRect();
+    const appEl  = document.querySelector('.app');
+    const appRect = appEl.getBoundingClientRect();
+    const ox = layerRect.left - appRect.left;
+    const oy = layerRect.top  - appRect.top;
+
+    if (canvasSelDragState.type === 'move' && canvasSel) {
+      const dx = e.clientX - canvasSelDragState.startMouseX;
+      const dy = e.clientY - canvasSelDragState.startMouseY;
+      canvasSel.x = Math.max(0, Math.min(layerRect.width  - canvasSel.w, canvasSelDragState.startX + dx));
+      canvasSel.y = Math.max(0, Math.min(layerRect.height - canvasSel.h, canvasSelDragState.startY + dy));
+      updateCanvasSelEl();
+      positionSelFrame();
+
+    } else if (canvasSelDragState.type === 'resize' && canvasSel) {
+      const { anchorX, anchorY, dir: rdir } = canvasSelDragState;
+      const mouseX = e.clientX - appRect.left;
+      const mouseY = e.clientY - appRect.top;
+      if (rdir === 't' || rdir === 'b') {
+        canvasSel.y = Math.max(0, Math.min(mouseY, anchorY) - oy);
+        canvasSel.h = Math.max(10, Math.abs(mouseY - anchorY));
+      } else if (rdir === 'l' || rdir === 'r') {
+        canvasSel.x = Math.max(0, Math.min(mouseX, anchorX) - ox);
+        canvasSel.w = Math.max(10, Math.abs(mouseX - anchorX));
+      } else {
+        canvasSel.x = Math.max(0, Math.min(mouseX, anchorX) - ox);
+        canvasSel.y = Math.max(0, Math.min(mouseY, anchorY) - oy);
+        canvasSel.w = Math.max(10, Math.abs(mouseX - anchorX));
+        canvasSel.h = Math.max(10, Math.abs(mouseY - anchorY));
+      }
+      updateCanvasSelEl();
+      positionSelFrame();
+    }
+  }
+
+  if (!stickerDragState || !selectedSticker) return;
+  const s = selectedSticker;
+
+  if (stickerDragState.type === 'move') {
+    const dx = e.clientX - stickerDragState.startMouseX;
+    const dy = e.clientY - stickerDragState.startMouseY;
+    const layerRect = stickerLayer.getBoundingClientRect();
+    s.cx = Math.max(s.w / 2, Math.min(layerRect.width  - s.w / 2, stickerDragState.startCX + dx));
+    s.cy = Math.max(s.h / 2, Math.min(layerRect.height - s.h / 2, stickerDragState.startCY + dy));
+    s.el.style.left = s.cx + 'px';
+    s.el.style.top  = s.cy + 'px';
+    positionSelectFrame();
+
+  } else if (stickerDragState.type === 'resize') {
+    const { anchorX, anchorY, origAspect, dir, isShape: resizingShape, fixedCX, fixedCY } = stickerDragState;
+    const appEl    = document.querySelector('.app');
+    const appRect   = appEl.getBoundingClientRect();
+    const layerRect = stickerLayer.getBoundingClientRect();
+    const P = SF_INSET;
+
+    const mouseX = e.clientX - appRect.left;
+    const mouseY = e.clientY - appRect.top;
+
+    let newW, newH, newCXapp, newCYapp;
+    const isEdge = dir === 't' || dir === 'b' || dir === 'l' || dir === 'r';
+
+    if (isEdge) {
+      if (dir === 't' || dir === 'b') {
+        const rawH = Math.abs(mouseY - anchorY);
+        const frameH = Math.max(MIN_STICKER_PX + 2 * P, rawH);
+        newH = frameH - 2 * P;
+        newW = resizingShape ? s.w : newH * origAspect;
+        const signY = (dir === 't') ? -1 : 1;
+        newCYapp = anchorY + signY * frameH / 2;
+        newCXapp = fixedCX;
+      } else {
+        const rawW = Math.abs(mouseX - anchorX);
+        const frameW = Math.max(MIN_STICKER_PX + 2 * P, rawW);
+        newW = frameW - 2 * P;
+        newH = resizingShape ? s.h : newW / origAspect;
+        const signX = (dir === 'l') ? -1 : 1;
+        newCXapp = anchorX + signX * frameW / 2;
+        newCYapp = fixedCY;
+      }
+    } else {
+      // Corner handles — anchor includes P so rawW/H span the full frame
+      const rawW = Math.abs(mouseX - anchorX);
+      const rawH = Math.abs(mouseY - anchorY);
+      const signX = (dir === 'tl' || dir === 'bl') ? -1 : 1;
+      const signY = (dir === 'tl' || dir === 'tr') ? -1 : 1;
+      if (resizingShape) {
+        const frameW = Math.max(MIN_STICKER_PX + 2 * P, rawW);
+        const frameH = Math.max(MIN_STICKER_PX + 2 * P, rawH);
+        newW = frameW - 2 * P;
+        newH = frameH - 2 * P;
+        newCXapp = anchorX + signX * frameW / 2;
+        newCYapp = anchorY + signY * frameH / 2;
+      } else {
+        // Stickers: maintain aspect ratio
+        const innerW = Math.max(0, rawW - 2 * P);
+        const innerH = Math.max(0, rawH - 2 * P);
+        if (innerW > innerH * origAspect) {
+          newW = Math.max(MIN_STICKER_PX, innerW);
+          newH = newW / origAspect;
+        } else {
+          newH = Math.max(MIN_STICKER_PX, innerH);
+          newW = newH * origAspect;
+        }
+        const frameW = newW + 2 * P;
+        const frameH = newH + 2 * P;
+        newCXapp = anchorX + signX * frameW / 2;
+        newCYapp = anchorY + signY * frameH / 2;
+      }
+    }
+
+    s.w  = newW;
+    s.h  = newH;
+    s.cx = newCXapp - (layerRect.left - appRect.left);
+    s.cy = newCYapp - (layerRect.top  - appRect.top);
+    s.el.style.width  = newW + 'px';
+    s.el.style.height = newH + 'px';
+    s.el.style.left   = s.cx + 'px';
+    s.el.style.top    = s.cy + 'px';
+    positionSelectFrame();
+  }
+});
+
+document.addEventListener('mouseup', (e) => {
+  if (stickerDragState) {
+    if (stickerDragState.type === 'resize' && selectedSticker?.text) refreshTextSticker(selectedSticker);
+    if (selectedSticker) selectedSticker.el.classList.remove('dragging');
+    stickerDragState = null;
+  }
+  if (canvasSelDragState) {
+    canvasSelDragState = null;
+  }
+});
+
+// Click on empty layer area → select stroke or bucket fill
+stickerLayer.addEventListener('mousedown', (e) => {
+  if (e.target !== stickerLayer) return;
+
+  if (currentTool === 'bucket') {
+    if (currentColor) floodFill(getCanvasPos(e));
+    return;
+  }
+
+  if (currentTool !== 'select') return;
+  deselectSticker();
+
+  const layerRect = stickerLayer.getBoundingClientRect();
+  const clickX = e.clientX - layerRect.left;
+  const clickY = e.clientY - layerRect.top;
+  const dpr = window.devicePixelRatio || 1;
+  const canvasX = Math.round(clickX * dpr);
+  const canvasY = Math.round(clickY * dpr);
+
+  if (canvasX < 0 || canvasX >= rawCanvas.width || canvasY < 0 || canvasY >= rawCanvas.height) {
+    if (canvasSel) commitCanvasSel();
+    return;
+  }
+
+  // Find the topmost stroke under the click (newest = last in list)
+  let foundIdx = -1;
+  for (let i = strokeList.length - 1; i >= 0; i--) {
+    const px = strokeList[i].canvas.getContext('2d').getImageData(canvasX, canvasY, 1, 1).data;
+    if (px[3] > 20) { foundIdx = i; break; }
+  }
+
+  if (foundIdx >= 0) {
+    if (canvasSel) commitCanvasSel();
+    saveCanvasState(); // snapshot BEFORE lifting, so undo restores the piece
+    const stroke = strokeList.splice(foundIdx, 1)[0]; // remove from list
+    buildRawCanvas(); // rebuild display without this stroke
+    const bbox = strokeBBox(stroke.canvas);
+    if (bbox) {
+      canvasSelInner.width  = bbox.w;
+      canvasSelInner.height = bbox.h;
+      const tc = canvasSelInner.getContext('2d');
+      tc.clearRect(0, 0, bbox.w, bbox.h);
+      tc.drawImage(stroke.canvas, bbox.x, bbox.y, bbox.w, bbox.h, 0, 0, bbox.w, bbox.h);
+      canvasSel = { x: bbox.x / dpr, y: bbox.y / dpr, w: bbox.w / dpr, h: bbox.h / dpr };
+      canvasSel.staticInfo = stroke.isStatic ? { color: stroke.color } : null;
+      canvasSel.fromSticker = !!stroke.isSticker;
+      stickerLayer.appendChild(canvasSelContent); // bring to DOM front (above all stickers)
+      updateCanvasSelEl();
+      positionSelFrame();
+    } else {
+      strokeList.splice(foundIdx, 0, stroke); // empty stroke — put it back
+    }
+  } else {
+    if (canvasSel) commitCanvasSel();
+  }
+});
+
+// Flood-fill bounding box of connected painted region
+function connectedBBox(data, width, height, startX, startY) {
+  const visited = new Uint8Array(width * height);
+  const stack = [startY * width + startX];
+  let minX = startX, minY = startY, maxX = startX, maxY = startY;
+  while (stack.length > 0) {
+    const i = stack.pop();
+    if (visited[i]) continue;
+    visited[i] = 1;
+    const x = i % width;
+    const y = (i / width) | 0;
+    if (data[i * 4 + 3] <= 20) continue;
+    if (x < minX) minX = x; if (x > maxX) maxX = x;
+    if (y < minY) minY = y; if (y > maxY) maxY = y;
+    if (x > 0)         stack.push(i - 1);
+    if (x < width - 1) stack.push(i + 1);
+    if (y > 0)         stack.push(i - width);
+    if (y < height - 1) stack.push(i + width);
+  }
+  const pad = 4;
+  return {
+    x: Math.max(0, minX - pad),
+    y: Math.max(0, minY - pad),
+    w: Math.min(width,  maxX + pad) - Math.max(0, minX - pad),
+    h: Math.min(height, maxY + pad) - Math.max(0, minY - pad),
+  };
+}
+
+// ===== Stroke canvas helpers =====
+
+// Snapshot rawCanvas into a single stroke entry
+function makeStrokeFromRaw() {
+  const sc = document.createElement('canvas');
+  sc.width = rawCanvas.width;
+  sc.height = rawCanvas.height;
+  sc.getContext('2d').drawImage(rawCanvas, 0, 0);
+  return { id: ++strokeIdCounter, canvas: sc };
+}
+
+// Rebuild rawCanvas from all stroke canvases (pixel-perfect composite)
+function buildRawCanvas() {
+  rawCtx.save();
+  rawCtx.setTransform(1, 0, 0, 1, 0, 0);
+  rawCtx.clearRect(0, 0, rawCanvas.width, rawCanvas.height);
+  for (const stroke of strokeList) {
+    rawCtx.drawImage(stroke.canvas, 0, 0);
+  }
+  rawCtx.restore();
+  renderStyledCanvas();
+}
+
+// Compute bounding box of non-transparent pixels in a stroke canvas (device pixels)
+function strokeBBox(strokeCanvas) {
+  const w = strokeCanvas.width, h = strokeCanvas.height;
+  const data = strokeCanvas.getContext('2d').getImageData(0, 0, w, h).data;
+  let minX = w, minY = h, maxX = -1, maxY = -1;
+  for (let y = 0; y < h; y++) {
+    for (let x = 0; x < w; x++) {
+      if (data[(y * w + x) * 4 + 3] > 20) {
+        if (x < minX) minX = x;
+        if (x > maxX) maxX = x;
+        if (y < minY) minY = y;
+        if (y > maxY) maxY = y;
+      }
+    }
+  }
+  if (maxX < 0) return null;
+  const pad = 4;
+  return {
+    x: Math.max(0, minX - pad),
+    y: Math.max(0, minY - pad),
+    w: Math.min(w, maxX + pad + 1) - Math.max(0, minX - pad),
+    h: Math.min(h, maxY + pad + 1) - Math.max(0, minY - pad),
+  };
+}
+
+// Populate sticker picker grid
+STICKERS_LIST.forEach((name) => {
+  const thumb = document.createElement('img');
+  thumb.className = 'sticker-thumb';
+  thumb.src = `stickers/${name}.webp?v=2`;
+  thumb.alt = name.replace(/-/g, ' ');
+  thumb.draggable = false;
+  thumb.addEventListener('click', () => {
+    const layerRect = stickerLayer.getBoundingClientRect();
+    const cx = layerRect.width  / 2;
+    const cy = layerRect.height / 2;
+    // Size to at most 150px on the longest side
+    const nw = thumb.naturalWidth  || 120;
+    const nh = thumb.naturalHeight || 120;
+    const scale = Math.min(150 / nw, 150 / nh);
+    saveCanvasState();
+    const sticker = addSticker(`stickers/${name}.webp?v=2`, cx, cy, nw * scale, nh * scale);
+    stickerPanel.classList.remove('open');
+    setActiveTool('select');
+    selectStickerEl(sticker);
+  });
+  stickerGrid.appendChild(thumb);
+});
+
+// ===== Shape System =====
+const SHAPES_LIST = [
+  'circle', 'hexagon', 'square', 'triangle',
+  'star-4pt', 'hexagon-round', 'square-round', 'triangle-right',
+  'sparkle-big', 'star-5pt', 'heart', 'sparkle-4pt',
+  'arrow-undo', 'arrow-redo', 'arrow-left', 'arrow-double',
+  'pin', 'camera', 'pen-nib', 'speech-bubble',
+];
+
+const shapePanel = document.getElementById('shapePanel');
+const shapeGrid  = document.getElementById('shapeGrid');
+
+SHAPES_LIST.forEach((name) => {
+  const thumb = document.createElement('img');
+  thumb.className = 'sticker-thumb';
+  thumb.src = `shapes/${name}.webp?v=2`;
+  thumb.alt = name.replace(/-/g, ' ');
+  thumb.draggable = false;
+  thumb.addEventListener('click', () => {
+    const layerRect = stickerLayer.getBoundingClientRect();
+    const cx = layerRect.width  / 2;
+    const cy = layerRect.height / 2;
+    const nw = thumb.naturalWidth  || 120;
+    const nh = thumb.naturalHeight || 120;
+    const scale = Math.min(150 / nw, 150 / nh);
+    saveCanvasState();
+    const sticker = addSticker(`shapes/${name}.webp?v=2`, cx, cy, nw * scale, nh * scale, true);
+    shapePanel.classList.remove('open');
+    setActiveTool('select');
+    selectStickerEl(sticker);
+  });
+  shapeGrid.appendChild(thumb);
+});
+
+// ===== Text Tool =====
+const FONTS = [
+  { name: 'Handwriting', family: 'Handwriting' },
+  { name: 'Bubble',      family: 'Bubble' },
+  { name: 'Blocky',      family: 'Blocky' },
+  { name: 'Bubble I',    family: 'Bubble I' },
+  { name: 'Rough',       family: 'Rough' },
+  { name: 'Strokes',     family: 'Strokes' },
+];
+let currentTextFont = FONTS[0].family;
+let textInputActive = false;
+let textClickPos = null;
+
+// Text input frame — drawn in code (like the select frame), no PNG padding
+const TEXT_INNER_W = 200; // visible frame width
+const TEXT_INNER_H = 105; // visible frame height
+const TEXT_BTN_GAP = 10;  // gap between the frame and the tick/cross row
+const TEXT_FONT_SIZE = 24; // px in the textarea
+
+// Populate font picker panel
+const fontGrid = document.getElementById('fontGrid');
+FONTS.forEach((font, idx) => {
+  const thumb = document.createElement('div');
+  thumb.className = 'font-thumb' + (idx === 0 ? ' selected' : '');
+  thumb.textContent = 'Aa';
+  thumb.style.fontFamily = `'${font.family}', cursive`;
+  thumb.dataset.family = font.family;
+  thumb.addEventListener('click', () => {
+    currentTextFont = font.family;
+    fontGrid.querySelectorAll('.font-thumb').forEach((t) => t.classList.remove('selected'));
+    thumb.classList.add('selected');
+    document.getElementById('typePanel').classList.remove('open');
+    document.querySelector('[data-tool="type"]').classList.add('active');
+    if (textInputActive) textInputArea.style.fontFamily = `'${currentTextFont}', cursive`;
+  });
+  fontGrid.appendChild(thumb);
+});
+
+const textInputBox  = document.getElementById('textInputBox');
+// Decorate the code-drawn text frame with the little squares
+{
+  const tf = textInputBox.querySelector('.text-frame-bg');
+  [['0%','0%'],['50%','0%'],['100%','0%'],['0%','50%'],['100%','50%'],['0%','100%'],['50%','100%'],['100%','100%']]
+    .forEach(([hx, hy]) => {
+      const sq = document.createElement('span');
+      sq.className = 'tfh';
+      sq.style.left = hx;
+      sq.style.top  = hy;
+      tf.appendChild(sq);
+    });
+}
+const textInputArea = document.getElementById('textInputArea');
+
+function showTextBox(clientX, clientY) {
+  const appEl    = document.querySelector('.app');
+  const appRect  = appEl.getBoundingClientRect();
+  const canvasRect = canvas.getBoundingClientRect();
+
+  const boxW = TEXT_INNER_W;
+  const boxH = TEXT_INNER_H + TEXT_BTN_GAP + 52; // frame + gap + button row
+
+  let left = (clientX - appRect.left) - boxW / 2;
+  let top  = (clientY - appRect.top)  - boxH / 2;
+
+  // Clamp so the box stays within the canvas drawing area
+  const cleft   = canvasRect.left   - appRect.left;
+  const ctop    = canvasRect.top    - appRect.top;
+  const cright  = cleft + canvasRect.width;
+  const cbottom = ctop  + canvasRect.height;
+  left = Math.max(cleft, Math.min(cright  - boxW, left));
+  top  = Math.max(ctop,  Math.min(cbottom - boxH, top));
+
+  textInputBox.style.left   = left + 'px';
+  textInputBox.style.top    = top  + 'px';
+  textInputBox.style.width  = boxW + 'px';
+  textInputBox.style.height = 'auto';
+
+  // Size the code-drawn frame to the visible box exactly
+  const frameEl = textInputBox.querySelector('.text-frame-bg');
+  frameEl.style.width  = TEXT_INNER_W + 'px';
+  frameEl.style.height = TEXT_INNER_H + 'px';
+
+  // Position textarea in the frame's inner area
+  textInputArea.style.left       = '8px';
+  textInputArea.style.top        = '6px';
+  textInputArea.style.width      = (TEXT_INNER_W - 16) + 'px';
+  textInputArea.style.height     = (TEXT_INNER_H - 12) + 'px';
+  textInputArea.style.fontFamily = `'${currentTextFont}', cursive`;
+  textInputArea.style.fontSize   = TEXT_FONT_SIZE + 'px';
+  textInputArea.style.color      = currentColor || '#555555';
+  textInputArea.value = '';
+
+  // Position button row just below the frame
+  const btnRow = textInputBox.querySelector('.text-btn-row');
+  btnRow.style.top   = (TEXT_INNER_H + TEXT_BTN_GAP) + 'px';
+  btnRow.style.left  = '0';
+  btnRow.style.width = boxW + 'px';
+
+  textInputBox.style.display = 'block';
+  textInputActive = true;
+
+  // Remember canvas-relative click position (CSS px) for text rendering
+  textClickPos = { x: clientX - canvasRect.left, y: clientY - canvasRect.top };
+
+  setTimeout(() => textInputArea.focus(), 30);
+}
+
+function hideTextBox() {
+  textInputBox.style.display = 'none';
+  textInputActive = false;
+  textClickPos = null;
+  textInputArea.value = '';
+}
+
+// Render text to a tightly-cropped PNG. `scale` = image pixels per CSS pixel at base size.
+// Returns { url, w, h } where w/h are the CSS size at 1× (i.e. before any user resizing).
+function renderTextImage(t, scale) {
+  const fontSize = t.base * scale;
+  const lines  = t.text.split('\n');
+  const lineH  = fontSize * 1.35;
+  const PAD    = 8 * scale;
+  const tmpCtx = document.createElement('canvas').getContext('2d');
+  tmpCtx.font  = `${fontSize}px '${t.font}', cursive`;
+  const maxW   = Math.max(...lines.map((l) => tmpCtx.measureText(l).width), 1);
+
+  const sc   = document.createElement('canvas');
+  sc.width   = Math.ceil(maxW + 2 * PAD);
+  sc.height  = Math.ceil(lines.length * lineH + 2 * PAD);
+  const sCtx = sc.getContext('2d');
+  sCtx.font         = `${fontSize}px '${t.font}', cursive`;
+  sCtx.fillStyle    = t.color;
+  sCtx.textBaseline = 'top';
+  lines.forEach((line, i) => sCtx.fillText(line, PAD, PAD + i * lineH));
+
+  const bbox = strokeBBox(sc);
+  if (!bbox) return null;
+  const cropped = document.createElement('canvas');
+  cropped.width  = bbox.w;
+  cropped.height = bbox.h;
+  cropped.getContext('2d').drawImage(sc, bbox.x, bbox.y, bbox.w, bbox.h, 0, 0, bbox.w, bbox.h);
+  return { url: cropped.toDataURL('image/png'), w: bbox.w / scale, h: bbox.h / scale };
+}
+
+// Re-render a text sticker at a resolution that matches its current on-screen size,
+// so it stays sharp however large it's made. Also used to recolour it.
+const MAX_TEXT_PX = 6000;
+function refreshTextSticker(sticker, force = false) {
+  const t = sticker.text;
+  if (!t) return;
+  const dpr = window.devicePixelRatio || 1;
+  let scale = Math.max(4, Math.ceil((sticker.w / t.baseW) * dpr * 1.5));
+  scale = Math.min(scale, Math.max(1, Math.floor(MAX_TEXT_PX / t.baseW)));
+  if (!force && scale <= t.scale) return; // already sharp enough
+  const r = renderTextImage(t, scale);
+  if (!r) return;
+  t.scale = scale;
+  const img = sticker.el.querySelector('img');
+  img.src = r.url;
+  sticker.src = r.url;
+}
+
+function commitText() {
+  const rawText = textInputArea.value;
+  if (!rawText.trim()) { hideTextBox(); return; }
+
+  // Capture values before hideTextBox clears them
+  const textColor  = currentColor || '#555555';
+  const fontFamily = currentTextFont;
+  const clickPos   = textClickPos;
+  const bSize      = brushSize;
+  hideTextBox(); // clear immediately — prevents re-entry when setActiveTool is called below
+
+  const base = Math.max(16, bSize * 3); // CSS font size at 1× scale
+  const r = renderTextImage({ text: rawText, font: fontFamily, color: textColor, base }, 4);
+  if (!r) return;
+  const rect = canvas.getBoundingClientRect();
+  const sCX = clickPos ? clickPos.x : rect.width  / 2;
+  const sCY = clickPos ? clickPos.y : rect.height / 2;
+
+  saveCanvasState();
+  const sticker = addSticker(r.url, sCX, sCY, r.w, r.h, false);
+  sticker.text = { text: rawText, font: fontFamily, color: textColor, base, baseW: r.w, scale: 4 };
+  setActiveTool('select');
+  selectStickerEl(sticker);
+}
+
+document.getElementById('textOkBtn').addEventListener('click', commitText);
+document.getElementById('textCancelBtn').addEventListener('click', hideTextBox);
+
+textInputArea.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); commitText(); }
+  if (e.key === 'Escape') { hideTextBox(); }
+});
+
+// Show text box on canvas click while type tool is active
+canvas.addEventListener('mousedown', (e) => {
+  if (currentTool !== 'type') return;
+  if (textInputActive) { commitText(); return; }
+  showTextBox(e.clientX, e.clientY);
+}, true); // capture phase so it runs before startDrawing
+
+// ===== Init =====
+applyTheme(); // Set initial theme (initializes activeColor on swatches)
+initCanvas();
+
+// Auto-select the first swatch so the brush is ready to paint immediately
+document.querySelectorAll('.swatch')[0].click();
+
+// Handle resize - preserve drawing
+let resizeTimeout;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(initCanvas, 100);
+});
+
+  </script>
+</body>
+</html>
