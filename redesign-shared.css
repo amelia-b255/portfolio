@@ -776,12 +776,25 @@ nav a.here{color:var(--accent);background-size:100% 1px;}
 }
 .feature img{box-shadow:10px 10px 34px rgba(var(--red-deep-rgb),0.18);}
 .feature img{width:100%;display:block;filter:saturate(0.97) var(--img-filter);}
+/* a single piece is captioned exactly like a deck card (.stack-cap): the title
+   centred in accent caps with its description on the line below. This used to
+   be a space-between flex row, which pushed the title to the left edge and its
+   description to the right, so the two formats never matched. */
 .feature figcaption{
-  padding:10px 4px 4px;
-  font-size:10.5px;letter-spacing:0.14em;text-transform:lowercase;
-  display:flex;justify-content:space-between;gap:10px;
+  padding:12px 4px 4px;
+  display:block;text-align:center;
 }
-.feature figcaption b{color:var(--accent);font-weight:400;letter-spacing:0.22em;text-transform:uppercase;font-size:10px;}
+.feature figcaption b{
+  display:block;
+  color:var(--accent);font-weight:400;
+  font-size:11px;letter-spacing:0.24em;text-transform:uppercase;
+  margin-bottom:6px;
+}
+.feature figcaption span{
+  display:block;
+  font-size:12px;letter-spacing:0.02em;text-transform:none;
+  max-width:52ch;margin:0 auto;
+}
 .feature.wide{max-width:1080px;}
 .feature.wide.flat{max-width:1340px;}   /* the tram wrap runs nearly full width */
 .feature.flat img{box-shadow:none;}

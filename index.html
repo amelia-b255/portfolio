@@ -536,8 +536,8 @@ section h2::after{
   max-width:1180px;margin:6vh auto 0;
 }
 .works-grid .card{grid-column:span 2;}
-.works-grid .card[href="drafts.html"]{grid-column:2 / span 2;}
-.works-grid .card[href="fonts.html"]{grid-column:4 / span 2;}
+.works-grid .card.c-drafts{grid-column:2 / span 2;}
+.works-grid .card.c-fonts{grid-column:4 / span 2;}
 .card{
   position:relative;display:block;overflow:hidden;
   border:none;border-radius:6px;
@@ -592,9 +592,9 @@ section h2::after{
 @media (hover:none),(max-width:820px){
   /* stacked one to a column, creative coding reads better at the end */
   .works-grid .card{order:1;}
-  .works-grid .card[href="coding.html"]{order:2;}
-  .works-grid .card[href="drafts.html"]{order:3;}
-  .works-grid .card[href="fonts.html"]{order:4;}
+  .works-grid .card.c-coding{order:2;}
+  .works-grid .card.c-drafts{order:3;}
+  .works-grid .card.c-fonts{order:4;}
   .card.scroll-active .cardov{opacity:1;transition:opacity 0.6s ease 0.18s;}
   .card.scroll-active .cardov h3,
   .card.scroll-active .cardov .yr,
@@ -839,8 +839,8 @@ footer .cmark{font-size:2em;vertical-align:-0.38em;}   /* -0.38em drops its ink 
   .ghost-num{font-size:64px;}
   .works-grid{grid-template-columns:1fr;}
   .works-grid .card,
-  .works-grid .card[href="drafts.html"],
-  .works-grid .card[href="fonts.html"]{grid-column:auto;}
+  .works-grid .card.c-drafts,
+  .works-grid .card.c-fonts{grid-column:auto;}
   .sec{padding-left:14px;padding-right:14px;}
   .about-cols{grid-template-columns:1fr;gap:20px;}
   .about-cols p{text-align:left;}
@@ -892,9 +892,9 @@ footer .cmark{font-size:2em;vertical-align:-0.38em;}   /* -0.38em drops its ink 
   html.touch #vine{left:max(58%,470px);right:4%;width:auto;}
 }
 html.touch .works-grid .card{order:1;}
-html.touch .works-grid .card[href="coding.html"]{order:2;}
-html.touch .works-grid .card[href="drafts.html"]{order:3;}
-html.touch .works-grid .card[href="fonts.html"]{order:4;}
+html.touch .works-grid .card.c-coding{order:2;}
+html.touch .works-grid .card.c-drafts{order:3;}
+html.touch .works-grid .card.c-fonts{order:4;}
 html.touch .card.scroll-active .cardov{opacity:1;transition:opacity 0.6s ease 0.18s;}
 html.touch .card.scroll-active .cardov h3,
 html.touch .card.scroll-active .cardov .yr,
@@ -975,10 +975,10 @@ html.touch .card.scroll-active .cardov p{transform:translateY(0);}
     <a class="card rise" href="extras.html"><img loading="lazy" decoding="async" src="extras/japanese-cover.webp" alt="Posters and print cover"><span class="cardov"><h3>posters &amp; print</h3><span class="yr">2024–2026</span><p>Poster series, magazine layouts, packaging &amp; other print design work</p></span></a>
     <a class="card rise" style="transition-delay:0.06s" href="commissioned-works.html"><img loading="lazy" decoding="async" src="tram/sojourn-poster.webp" alt="Commissioned works cover"><span class="cardov"><h3>commissioned works</h3><span class="yr">2025–2026</span><p>Light Rail Safety Campaign (1st Place CMET 2025) &amp; more</p></span></a>
     <a class="card rise tight" style="transition-delay:0.12s" href="drawings.html"><img loading="lazy" decoding="async" src="shared/gettingready1.webp?v=4" alt="Illustrations cover"><span class="cardov"><h3>illustrations</h3><span class="yr">2024–2026</span><p>Digital illustration, character design, t-shirt artwork &amp; personal creative work</p></span></a>
-    <a class="card rise" href="coding.html"><img loading="lazy" decoding="async" src="shared/codingcover.webp" alt="Creative coding cover"><span class="cardov"><h3>creative coding</h3><span class="yr">2025</span><p>Interactive p5.js from my Creative Computing H course</p></span></a>
+    <a class="card rise c-coding" href="coding.html"><img loading="lazy" decoding="async" src="shared/codingcover.webp" alt="Creative coding cover"><span class="cardov"><h3>creative coding</h3><span class="yr">2025</span><p>Interactive p5.js from my Creative Computing H course</p></span></a>
     <a class="card rise" style="transition-delay:0.06s" href="photography.html"><img loading="lazy" decoding="async" src="shared/photo.webp" alt="Photography cover"><span class="cardov"><h3>photography</h3><span class="yr">2023–2026</span><p>1st Place — CMAG Secondary School Art Prize 2023</p></span></a>
     <a class="card rise" style="transition-delay:0.12s" href="shortfilm.html"><img loading="lazy" decoding="async" src="shared/shortfilm.webp" alt="Short film cover"><span class="cardov"><h3>short film</h3><span class="yr">2025</span><p>Blowing Out The Candles — poster &amp; trailer</p></span></a>
-    <a class="card rise" href="drafts.html"><img loading="lazy" decoding="async" src="drafts/thumbs/cover.webp" alt="Website drafts cover"><span class="cardov"><h3>web development</h3><span class="yr">2025–2026</span><p>Every main version of this site, from the first draft to today</p></span></a><a class="card rise" href="fonts.html"><img loading="lazy" decoding="async" src="fonts/amelia-cover.webp?v=8" alt="Typography cover"><span class="cardov"><h3>typography</h3><span class="yr">2026</span><p>Typefaces I drew by hand — free to download</p></span></a>
+    <a class="card rise c-drafts" href="drafts.html"><img loading="lazy" decoding="async" src="drafts/thumbs/cover.webp" alt="Website drafts cover"><span class="cardov"><h3>web development</h3><span class="yr">2025–2026</span><p>Every main version of this site, from the first draft to today</p></span></a><a class="card rise c-fonts" href="fonts.html"><img loading="lazy" decoding="async" src="fonts/amelia-cover.webp?v=8" alt="Typography cover"><span class="cardov"><h3>typography</h3><span class="yr">2026</span><p>Typefaces I drew by hand — free to download</p></span></a>
   </div>
 </section>
 
