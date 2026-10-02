@@ -7,7 +7,7 @@
 <meta name="theme-color" content="#a8331a">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="redesign-shared.css?v=73">
+<link rel="stylesheet" href="redesign-shared.css?v=74">
 <script>
 /* Theme carries across page navigation, but a refresh resets to light.
    Runs before first paint so there is no flash of the wrong mode. */
@@ -53,10 +53,12 @@
 @font-face{font-family:'AB Fancy';src:url('fonts/amelia/Fancy.ttf') format('truetype');font-display:swap;}
 @font-face{font-family:'AB Strokes';src:url('fonts/amelia/Strokes.ttf') format('truetype');font-display:swap;}
 @font-face{font-family:'AB Rough';src:url('fonts/amelia/Rough.ttf') format('truetype');font-display:swap;}
+@font-face{font-family:'AB Drawn';src:url('fonts/amelia/Drawn.ttf') format('truetype');font-display:swap;}
 
 .fonts-grid{
+  --fgap:clamp(20px,3vw,38px);
   display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:clamp(20px,3vw,38px);
+  gap:var(--fgap);
   max-width:980px;margin:6vh auto 0;
 }
 .font-card{
@@ -81,8 +83,8 @@
    and NO numerals — so digits are deliberately left out, since a 0-9 run would
    silently fall back to another font and misrepresent them. */
 .font-set{
-  font-size:clamp(11px,1.1vw,13.5px);
-  line-height:2;letter-spacing:0.05em;
+  font-size:clamp(14px,1.55vw,19px);
+  line-height:1.95;letter-spacing:0.05em;
   opacity:0.6;
   word-break:break-all;      /* the alphabet runs have to wrap inside the card */
   max-width:100%;            /* 30ch was narrower than the card on the wide
@@ -94,6 +96,7 @@
 .f-fancy{font-family:'AB Fancy',cursive;}
 .f-strokes{font-family:'AB Strokes',cursive;}
 .f-rough{font-family:'AB Rough',cursive;}
+.f-drawn{font-family:'AB Drawn',cursive;}
 .font-foot{
   display:flex;align-items:center;justify-content:space-between;gap:14px;
   padding:13px 18px;border-top:1px solid var(--hair);
@@ -104,6 +107,15 @@
   color:var(--accent);
 }
 .font-foot .cta{margin:0;font-size:10px;padding:8px 16px;}
+/* with an odd number of faces the last one would sit alone in the left column —
+   let it span the row and hold a single column's width so it centres instead */
+@media (min-width:701px){
+  .font-card:last-child:nth-child(odd){
+    grid-column:1 / -1;
+    width:calc(50% - var(--fgap) / 2);
+    margin-inline:auto;
+  }
+}
 @media (max-width:700px){
   .fonts-grid{grid-template-columns:1fr;max-width:460px;gap:22px;}
   .font-preview{min-height:170px;padding:28px 18px 22px;gap:14px;}
@@ -128,7 +140,7 @@
     <img src="lightbulb-dark.webp" class="lb lb-dark" alt="">
   </button>
   <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false">&#9776;</button>
-  <ul><li><a href="index.html#work">work <span class="up">↗</span></a></li><li><a href="index.html#about">about <span class="up">↗</span></a></li><li><a href="index.html#contact">contact <span class="up">↗</span></a></li><li><a href="music.html">music <span class="up">↗</span></a></li><li><a href="design-cv.html">design cv <span class="up">↗</span></a></li></ul>
+  <ul><li><a href="index.html#work">work <span class="up">↗</span></a></li><li><a href="index.html#about">about <span class="up">↗</span></a></li><li><a href="index.html#contact">contact <span class="up">↗</span></a></li><li><a href="shop.html">shop <span class="up">↗</span></a></li><li><a href="music.html">music <span class="up">↗</span></a></li><li><a href="design-cv.html">design cv <span class="up">↗</span></a></li></ul>
 </nav>
 </header>
 
@@ -203,6 +215,16 @@
       <a class="cta" href="fonts/amelia/Rough.ttf" download="Rough.ttf">download ↓</a>
     </div>
   </article>
+  <article class="font-card rise">
+    <div class="font-preview f-drawn">
+      <div class="font-sample" aria-label="The word Meow! set in Drawn">Meow!</div>
+      <div class="font-set" aria-hidden="true">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>! ? . , : ; &#39; &quot;</div>
+    </div>
+    <div class="font-foot">
+      <h3>Drawn</h3>
+      <a class="cta" href="fonts/amelia/Drawn.ttf" download="Drawn.ttf">download &#8595;</a>
+    </div>
+  </article>
 </div>
 </section>
 </main>
@@ -224,7 +246,7 @@
   <p class="lb-cap"></p>
 </div>
 
-<script src="redesign-shared.js?v=76"></script>
+<script src="redesign-shared.js?v=77"></script>
 <script src="shared/vine-engine.js?v=1"></script>
 <script>[].forEach.call(document.querySelectorAll('.page-hero .herovine'),function(cv){ window.growVine(cv); });</script>
 <!-- the homepage's typing section titles, same script -->

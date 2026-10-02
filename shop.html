@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en" class="light-mode"> <!-- class only feeds shared/cursor-trail.js its light palette -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>amelia bobbin — shop</title>
+<meta name="theme-color" content="#a8331a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="redesign-shared.css?v=74">
+<script>
+/* Theme carries across page navigation, but a refresh resets to light.
+   Runs before first paint so there is no flash of the wrong mode. */
+(function(){try{
+  var nav=(performance.getEntriesByType('navigation')[0]||{}).type;
+  if(nav==='reload'){ sessionStorage.removeItem('rd-theme'); }
+  else if(sessionStorage.getItem('rd-theme')==='dark'){ document.documentElement.classList.add('dark'); }
+}catch(e){}})();
+
+/* Device tier. An iPad with a trackpad reports hover:hover and 1366px wide, so
+   neither width nor the hover query can identify it — maxTouchPoints can.
+   Sets html.touch (and html.tablet ≥601px) before first paint. */
+(function(){try{
+  var d=document.documentElement;
+  var t=(navigator.maxTouchPoints||0)>1
+     || (window.matchMedia&&matchMedia('(hover: none) and (pointer: coarse)').matches);
+  window.RD_TOUCH=t;
+  if(t){ d.classList.add('touch'); if(window.innerWidth>600) d.classList.add('tablet'); }
+}catch(e){}})();
+
+/* keep the status-bar strip the same colour as the banner */
+(function(){try{
+  function sync(){
+    var b=document.querySelector('.microbar'); if(!b) return;
+    var m=document.querySelector('meta[name="theme-color"]');
+    if(!m){ m=document.createElement('meta'); m.name='theme-color'; document.head.appendChild(m); }
+    var c=getComputedStyle(document.documentElement).getPropertyValue('--red').trim()
+       || getComputedStyle(b).backgroundColor;
+    if(c && c!=='rgba(0, 0, 0, 0)') m.setAttribute('content',c);
+  }
+  window.RD_SYNC_BAR=sync;
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',sync);
+  else sync();
+}catch(e){}})();
+</script>
+<style>
+/* Each product is a card: the poster on a cream mount, then a foot carrying the
+   title, the price and the button that hands checkout over to Payhip. */
+.shop-grid{
+  --sgap:clamp(20px,3vw,38px);
+  /* flex rather than grid so a part-full last row centres itself —
+     a fixed grid would leave one or two cards hanging on the left */
+  display:flex;flex-wrap:wrap;justify-content:center;align-items:stretch;
+  gap:var(--sgap);
+  max-width:1180px;margin:6vh auto 0;
+}
+.shop-card{
+  flex:0 0 auto;
+  width:calc((100% - 2 * var(--sgap)) / 3);
+  display:flex;flex-direction:column;
+  border:1px solid var(--hair);border-radius:6px;
+  background:var(--cream-2);
+  overflow:hidden;
+}
+.shop-shot{
+  display:block;position:relative;
+  padding:30px 30px 26px;
+  background:var(--cream-2);
+  overflow:hidden;
+}
+/* every mount keeps the same portrait ratio, so a landscape poster sits
+   centred inside its card rather than leaving the row uneven. The border
+   hugs the artwork itself, not the mount, so nothing looks letterboxed. */
+.shop-mount{
+  display:flex;align-items:center;justify-content:center;
+  aspect-ratio:2121 / 3000;
+}
+.shop-mount img{
+  display:block;
+  max-width:100%;max-height:100%;width:auto;height:auto;
+  border:1px solid var(--hair);
+  filter:var(--img-filter);
+  transition:transform 0.55s cubic-bezier(0.22,1,0.36,1);
+}
+.shop-card:hover .shop-mount img{transform:scale(1.035);}
+/* the ribbon sits on the mount, not on the artwork, so it never covers a design */
+.shop-tag{
+  position:absolute;top:30px;left:30px;
+  background:var(--accent);color:var(--on-accent);
+  font-family:'Space Mono',monospace;
+  font-size:9px;letter-spacing:0.22em;text-transform:uppercase;
+  padding:5px 9px;
+  opacity:0;transition:opacity 0.4s ease;
+  pointer-events:none;
+}
+.shop-card:hover .shop-tag{opacity:1;}
+html.touch .shop-tag{opacity:1;}
+
+.shop-body{
+  flex:1;
+  display:flex;flex-direction:column;
+  padding:0 18px 4px;
+}
+.shop-body h3{
+  font-family:'Space Mono',monospace;font-weight:400;
+  font-size:11px;letter-spacing:0.24em;text-transform:uppercase;
+  color:var(--accent);
+  margin-bottom:7px;
+}
+.shop-body p{
+  font-size:12px;line-height:1.65;letter-spacing:0.02em;
+  max-width:52ch;
+  margin:0 0 14px;
+}
+/* series offer — sits on the products that are also sold as a bundle.
+   A pill rather than another line of body copy, so it reads as a price tag
+   and not as part of the description. */
+.shop-deal{
+  align-self:flex-start;
+  display:inline-block;
+  font-family:'Space Mono',monospace;
+  font-size:10px;letter-spacing:0.16em;text-transform:uppercase;
+  color:var(--accent);
+  border:1px solid var(--accent);
+  border-radius:999px;
+  padding:5px 12px;
+  margin:0 0 15px;
+  line-height:1.3;
+  text-decoration:none;
+  transition:background-color 0.3s ease, color 0.3s ease;
+}
+.shop-deal:hover{background-color:var(--accent);color:var(--on-accent);}
+.shop-foot{
+  margin-top:auto;
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:13px 18px;border-top:1px solid var(--hair);
+}
+.shop-price{
+  font-family:'Space Mono',monospace;
+  font-size:13px;letter-spacing:0.06em;
+}
+.shop-foot .cta{margin:0;font-size:10px;padding:8px 16px;white-space:nowrap;}
+
+/* what every download actually includes — said once rather than on each card */
+.shop-note{
+  max-width:720px;margin:7vh auto 0;
+  text-align:center;
+  font-size:12px;line-height:1.8;letter-spacing:0.02em;
+  opacity:0.75;
+}
+.shop-note b{
+  display:block;color:var(--accent);font-weight:400;
+  font-family:'Space Mono',monospace;
+  font-size:11px;letter-spacing:0.24em;text-transform:uppercase;
+  margin-bottom:9px;
+}
+.shop-note a{
+  color:var(--accent);text-decoration:none;
+  border-bottom:1px solid currentColor;
+  padding-bottom:1px;
+  transition:opacity 0.3s ease;
+}
+.shop-note a:hover{opacity:0.6;}
+
+/* two across on a narrow laptop or tablet, one on a phone.
+   justify-content:center takes care of any part-full row. */
+@media (max-width:1000px){
+  .shop-grid{max-width:760px;}
+  .shop-card{width:calc((100% - var(--sgap)) / 2);}
+}
+@media (max-width:700px){
+  .shop-grid{max-width:460px;gap:22px;}
+  .shop-card{width:100%;}
+  .shop-shot{padding:22px 22px 18px;}
+  .shop-tag{top:22px;left:22px;}
+}
+</style>
+</head>
+<body>
+
+<div class="star s1"></div><div class="star s2"></div><div class="star s3"></div>
+<div class="star s4"></div><div class="star s5"></div><div class="star s6"></div>
+<div class="star s7"></div><div class="star s8"></div><div class="star s9"></div>
+
+<header class="topbar">
+<div class="microbar">
+  <div class="track" id="marq"></div>
+</div>
+
+<nav>
+  <div class="brand"><a href="index.html"><span class="ic-logo"></span>amelia bobbin<sup>®</sup></a></div>
+  <button id="themeToggle" class="bulb" aria-label="Toggle dark mode" title="toggle dark mode">
+    <img src="lightbulb-light.webp" class="lb lb-light" alt="">
+    <img src="lightbulb-dark.webp" class="lb lb-dark" alt="">
+  </button>
+  <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false">&#9776;</button>
+  <ul><li><a href="index.html#work">work <span class="up">↗</span></a></li><li><a href="index.html#about">about <span class="up">↗</span></a></li><li><a href="index.html#contact">contact <span class="up">↗</span></a></li><li><a href="shop.html" class="here">shop <span class="up">↗</span></a></li><li><a href="music.html">music <span class="up">↗</span></a></li><li><a href="design-cv.html">design cv <span class="up">↗</span></a></li></ul>
+</nav>
+</header>
+
+<header class="page-hero">
+  <canvas class="herovine hv-left" aria-hidden="true"></canvas>
+  <canvas class="herovine hv-right" aria-hidden="true"></canvas>
+  <p class="kicker"><span id="kick-text" data-kicker="09 — shop / canberra, aus"></span><span class="cursor">▍</span></p>
+  <h1 id="ptitle" class="name-anim">Shop<span class="dot">.</span></h1>
+  <p class="lede">Digital prints of my poster designs — download, print any size you like.</p>
+</header>
+
+<main>
+<section class="sec">
+<div class="shop-grid">
+
+  <article class="shop-card rise">
+    <a class="shop-shot" href="https://payhip.com/b/sk0OP" target="_blank" rel="noopener">
+      <span class="shop-mount"><img loading="lazy" decoding="async" src="shop/sea-dragon-mermaid.webp?v=1" alt="Sea Dragon Mermaid poster"></span>
+      <span class="shop-tag">digital download</span>
+    </a>
+    <div class="shop-body">
+      <h3>Sea Dragon Mermaid</h3>
+      <p>Leafy sea dragon mermaid artwork. Australian native animal incorporation.</p>
+    </div>
+    <div class="shop-foot">
+      <span class="shop-price">A$10.00</span>
+      <a class="cta" href="https://payhip.com/b/sk0OP" target="_blank" rel="noopener">buy &#8594;</a>
+    </div>
+  </article>
+
+  <article class="shop-card rise">
+    <a class="shop-shot" href="https://payhip.com/b/qDimI" target="_blank" rel="noopener">
+      <span class="shop-mount"><img loading="lazy" decoding="async" src="shop/getting-ready.webp?v=1" alt="Getting Ready poster"></span>
+      <span class="shop-tag">digital download</span>
+    </a>
+    <div class="shop-body">
+      <h3>Getting Ready</h3>
+      <p>Digital illustration depicting girlhood and female friendship. Finalist, M16 Artspace Digital Drawing Prize.</p>
+    </div>
+    <div class="shop-foot">
+      <span class="shop-price">A$15.00</span>
+      <a class="cta" href="https://payhip.com/b/qDimI" target="_blank" rel="noopener">buy &#8594;</a>
+    </div>
+  </article>
+
+  <article class="shop-card rise">
+    <a class="shop-shot" href="https://payhip.com/b/SRL9G" target="_blank" rel="noopener">
+      <span class="shop-mount"><img loading="lazy" decoding="async" src="shop/tomato.webp?v=1" alt="Tomato poster"></span>
+      <span class="shop-tag">digital download</span>
+    </a>
+    <div class="shop-body">
+      <h3>Tomato</h3>
+      <p>Using a flatter, 2D style to create a more simplistic promotional poster design.</p>
+    </div>
+    <div class="shop-foot">
+      <span class="shop-price">A$10.00</span>
+      <a class="cta" href="https://payhip.com/b/SRL9G" target="_blank" rel="noopener">buy &#8594;</a>
+    </div>
+  </article>
+
+  <article class="shop-card rise">
+    <a class="shop-shot" href="https://payhip.com/b/WRY1n" target="_blank" rel="noopener">
+      <span class="shop-mount"><img loading="lazy" decoding="async" src="shop/revelation.webp?v=1" alt="Revelation poster"></span>
+      <span class="shop-tag">digital download</span>
+    </a>
+    <div class="shop-body">
+      <h3>Revelation</h3>
+      <p>Experimenting with different photoshop effects, colour map overlays and layout design.</p>
+    </div>
+    <div class="shop-foot">
+      <span class="shop-price">A$10.00</span>
+      <a class="cta" href="https://payhip.com/b/WRY1n" target="_blank" rel="noopener">buy &#8594;</a>
+    </div>
+  </article>
+
+  <article class="shop-card rise">
+    <a class="shop-shot" href="https://payhip.com/b/RTAoY" target="_blank" rel="noopener">
+      <span class="shop-mount"><img loading="lazy" decoding="async" src="shop/take-me-by-the-hand.webp?v=1" alt="Take Me By The Hand poster"></span>
+      <span class="shop-tag">digital download</span>
+    </a>
+    <div class="shop-body">
+      <h3>Take Me By The Hand</h3>
+      <p>Building collage effect with layout design, typography and image design.</p>
+    </div>
+    <div class="shop-foot">
+      <span class="shop-price">A$10.00</span>
+      <a class="cta" href="https://payhip.com/b/RTAoY" target="_blank" rel="noopener">buy &#8594;</a>
+    </div>
+  </article>
+
+  <article class="shop-card rise">
+    <a class="shop-shot" href="https://payhip.com/b/dwVt0" target="_blank" rel="noopener">
+      <span class="shop-mount"><img loading="lazy" decoding="async" src="shop/japanese-orchid.webp?v=1" alt="Japanese Orchid poster"></span>
+      <span class="shop-tag">digital download</span>
+    </a>
+    <div class="shop-body">
+      <h3>Japanese Orchid</h3>
+      <p>Using Japanese language characters as a design element, literally meaning &#x27;Orchidaceae&#x27;. Along with orchid illustration that has been recoloured and image traced.</p>
+      <a class="shop-deal" href="https://payhip.com/b/M9uEd" target="_blank" rel="noopener">&#9733; botanical set &mdash; 4 for A$20</a>
+    </div>
+    <div class="shop-foot">
+      <span class="shop-price">A$10.00</span>
+      <a class="cta" href="https://payhip.com/b/dwVt0" target="_blank" rel="noopener">buy &#8594;</a>
+    </div>
+  </article>
+
+  <article class="shop-card rise">
+    <a class="shop-shot" href="https://payhip.com/b/C8h2b" target="_blank" rel="noopener">
+      <span class="shop-mount"><img loading="lazy" decoding="async" src="shop/blue-orchid.webp?v=1" alt="Blue Orchid poster"></span>
+      <span class="shop-tag">digital download</span>
+    </a>
+    <div class="shop-body">
+      <h3>Blue Orchid</h3>
+      <p>Using textures, bitmap effects, typography, micrographic like elements and layout design.</p>
+      <a class="shop-deal" href="https://payhip.com/b/M9uEd" target="_blank" rel="noopener">&#9733; botanical set &mdash; 4 for A$20</a>
+    </div>
+    <div class="shop-foot">
+      <span class="shop-price">A$10.00</span>
+      <a class="cta" href="https://payhip.com/b/C8h2b" target="_blank" rel="noopener">buy &#8594;</a>
+    </div>
+  </article>
+
+  <article class="shop-card rise">
+    <a class="shop-shot" href="https://payhip.com/b/7ySHi" target="_blank" rel="noopener">
+      <span class="shop-mount"><img loading="lazy" decoding="async" src="shop/wearing-a-mask-1.webp?v=1" alt="Wearing A Mask I poster"></span>
+      <span class="shop-tag">digital download</span>
+    </a>
+    <div class="shop-body">
+      <h3>Wearing A Mask I</h3>
+      <p>Using Japanese typography and a flatter shape layout, experimenting with gradients and simple illustration.</p>
+      <a class="shop-deal" href="https://payhip.com/b/U4Qes" target="_blank" rel="noopener">&#9733; series deal &mdash; 2 for A$15</a>
+    </div>
+    <div class="shop-foot">
+      <span class="shop-price">A$10.00</span>
+      <a class="cta" href="https://payhip.com/b/7ySHi" target="_blank" rel="noopener">buy &#8594;</a>
+    </div>
+  </article>
+
+  <article class="shop-card rise">
+    <a class="shop-shot" href="https://payhip.com/b/Y59E2" target="_blank" rel="noopener">
+      <span class="shop-mount"><img loading="lazy" decoding="async" src="shop/wearing-a-mask-2.webp?v=1" alt="Wearing A Mask II poster"></span>
+      <span class="shop-tag">digital download</span>
+    </a>
+    <div class="shop-body">
+      <h3>Wearing A Mask II</h3>
+      <p>Using Japanese typography and a flatter shape layout, experimenting with gradients and simple illustration.</p>
+      <a class="shop-deal" href="https://payhip.com/b/U4Qes" target="_blank" rel="noopener">&#9733; series deal &mdash; 2 for A$15</a>
+    </div>
+    <div class="shop-foot">
+      <span class="shop-price">A$10.00</span>
+      <a class="cta" href="https://payhip.com/b/Y59E2" target="_blank" rel="noopener">buy &#8594;</a>
+    </div>
+  </article>
+
+  <article class="shop-card rise">
+    <a class="shop-shot" href="https://payhip.com/b/ubaBm" target="_blank" rel="noopener">
+      <span class="shop-mount"><img loading="lazy" decoding="async" src="shop/flora-series.webp?v=1" alt="Flora  series poster"></span>
+      <span class="shop-tag">digital download</span>
+    </a>
+    <div class="shop-body">
+      <h3>Flora &mdash; series</h3>
+      <p>Both floral designs together &mdash; Orchidaceae and Rosaceae.</p>
+      <a class="shop-deal" href="https://payhip.com/b/ubaBm" target="_blank" rel="noopener">&#9733; save A$5</a>
+    </div>
+    <div class="shop-foot">
+      <span class="shop-price">A$15.00</span>
+      <a class="cta" href="https://payhip.com/b/ubaBm" target="_blank" rel="noopener">buy &#8594;</a>
+    </div>
+  </article>
+
+  <article class="shop-card rise">
+    <a class="shop-shot" href="https://payhip.com/b/M9uEd" target="_blank" rel="noopener">
+      <span class="shop-mount"><img loading="lazy" decoding="async" src="shop/orchid-bundle.webp?v=1" alt="Orchid  botanical set poster"></span>
+      <span class="shop-tag">digital download</span>
+    </a>
+    <div class="shop-body">
+      <h3>Orchid &mdash; botanical set</h3>
+      <p>All four botanical designs &mdash; Orchidaceae, Rosaceae, Japanese Orchid and Blue Orchid.</p>
+      <a class="shop-deal" href="https://payhip.com/b/M9uEd" target="_blank" rel="noopener">&#9733; save A$20</a>
+    </div>
+    <div class="shop-foot">
+      <span class="shop-price">A$20.00</span>
+      <a class="cta" href="https://payhip.com/b/M9uEd" target="_blank" rel="noopener">buy &#8594;</a>
+    </div>
+  </article>
+
+  <article class="shop-card rise">
+    <a class="shop-shot" href="https://payhip.com/b/U4Qes" target="_blank" rel="noopener">
+      <span class="shop-mount"><img loading="lazy" decoding="async" src="shop/wearing-a-mask-series.webp?v=1" alt="Wearing A Mask  series poster"></span>
+      <span class="shop-tag">digital download</span>
+    </a>
+    <div class="shop-body">
+      <h3>Wearing A Mask &mdash; series</h3>
+      <p>Both mask designs together.</p>
+      <a class="shop-deal" href="https://payhip.com/b/U4Qes" target="_blank" rel="noopener">&#9733; save A$5</a>
+    </div>
+    <div class="shop-foot">
+      <span class="shop-price">A$15.00</span>
+      <a class="cta" href="https://payhip.com/b/U4Qes" target="_blank" rel="noopener">buy &#8594;</a>
+    </div>
+  </article>
+
+</div>
+
+<p class="shop-note rise">
+  <b>what you get</b>
+  A high resolution file for each design, ready to print at home or through a
+  print shop, sent to you straight after checkout. Payment and delivery are handled by Payhip. For
+  something custom, or a size you can't print yourself, just
+  <a href="index.html#contact">get in touch</a>.
+</p>
+</section>
+</main>
+
+<div class="backrow">
+  <a class="cta" href="index.html">← back to portfolio</a>
+</div>
+
+<footer>
+  <span><span class="cmark">©</span> 2026 amelia bobbin</span>
+  <span class="red">canberra, aus</span>
+</footer>
+
+<div class="lightbox" id="lightbox" aria-modal="true" role="dialog">
+  <button class="lb-x" aria-label="Close">×</button>
+  <button class="lb-prev" aria-label="Previous">‹</button>
+  <button class="lb-next" aria-label="Next">›</button>
+  <img alt="">
+  <p class="lb-cap"></p>
+</div>
+
+<script src="redesign-shared.js?v=77"></script>
+<script src="shared/vine-engine.js?v=1"></script>
+<script>[].forEach.call(document.querySelectorAll('.page-hero .herovine'),function(cv){ window.growVine(cv); });</script>
+<!-- the homepage's typing section titles, same script -->
+<script src="shared/typewriter-redesign.js?v=1"></script>
+<script>window.TRAIL_RGB=getComputedStyle(document.documentElement).getPropertyValue('--trail').trim()||'194,56,28';</script>
+<script src="shared/cursor-trail.js?v=5"></script>
+<script src="shared/about-site.js?v=12"></script>
+</body>
+</html>
