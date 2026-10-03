@@ -48,17 +48,26 @@
    title, the price and the button that hands checkout over to Payhip. */
 .shop-grid{
   --sgap:clamp(20px,3vw,38px);
-  /* flex rather than grid so a part-full last row centres itself —
-     a fixed grid would leave one or two cards hanging on the left */
+  /* flex rather than grid so a part-full row centres itself —
+     a fixed grid would leave the odd cards hanging on the left.
+     Same arrangement as the Payhip store: four across, then each
+     series on a row of its own. */
   display:flex;flex-wrap:wrap;justify-content:center;align-items:stretch;
   gap:var(--sgap);
-  max-width:1180px;margin:6vh auto 0;
+  max-width:1400px;margin:6vh auto 0;
 }
+/* zero-height full-width item — forces the series onto fresh rows */
+.shop-break{flex:0 0 100%;width:100%;height:0;}
+/* a series row holds three cards; the margins either side are sized so
+   three cards plus those margins fill the row exactly, which centres
+   the trio and stops a fourth card slipping in beside it */
+.s-start{margin-left:calc(12.5% + var(--sgap) * 0.125);}
+.s-end{margin-right:calc(12.5% + var(--sgap) * 0.125);}
 .shop-card{
   flex:0 0 auto;
-  width:calc((100% - 2 * var(--sgap)) / 3);
+  width:calc((100% - 3 * var(--sgap)) / 4);
   display:flex;flex-direction:column;
-  border:1px solid var(--hair);border-radius:6px;
+  border:0;border-radius:6px;
   background:var(--cream-2);
   overflow:hidden;
 }
@@ -83,6 +92,10 @@
   transition:transform 0.55s cubic-bezier(0.22,1,0.36,1);
 }
 .shop-card:hover .shop-mount img{transform:scale(1.035);}
+/* the two landscape posters, turned a quarter so they fill the portrait
+   mount rather than sitting in a band of cream — same as the store */
+.rot .shop-mount img{transform:rotate(90deg) scale(1.41421);}
+.shop-card.rot:hover .shop-mount img{transform:rotate(90deg) scale(1.4639);}
 /* the ribbon sits on the mount, not on the artwork, so it never covers a design */
 .shop-tag{
   position:absolute;top:30px;left:30px;
@@ -133,7 +146,11 @@ html.touch .shop-tag{opacity:1;}
 .shop-foot{
   margin-top:auto;
   display:flex;align-items:center;justify-content:space-between;gap:14px;
-  padding:13px 18px;border-top:1px solid var(--hair);
+  padding:13px 18px;
+  /* no rule — the price bar is set off by a slightly deeper tan instead.
+     color-mix keeps it relative to the card, so it still reads correctly
+     when the palette flips to dark mode. */
+  background:color-mix(in srgb, var(--cream-2) 91%, var(--ink));
 }
 .shop-price{
   font-family:'Space Mono',monospace;
@@ -162,15 +179,27 @@ html.touch .shop-tag{opacity:1;}
 }
 .shop-note a:hover{opacity:0.6;}
 
-/* two across on a narrow laptop or tablet, one on a phone.
-   justify-content:center takes care of any part-full row. */
-@media (max-width:1000px){
-  .shop-grid{max-width:760px;}
+/* three across on a narrow laptop — a series then fills its row exactly,
+   so the centring margins come off */
+@media (max-width:1150px){
+  .shop-grid{max-width:1060px;}
+  .shop-card{width:calc((100% - 2 * var(--sgap)) / 3);}
+  .s-start{margin-left:0;}
+  .s-end{margin-right:0;}
+}
+/* two across on a tablet, but a series stays three together */
+@media (max-width:860px){
+  .shop-grid{max-width:720px;}
   .shop-card{width:calc((100% - var(--sgap)) / 2);}
+}
+@media (min-width:701px) and (max-width:860px){
+  .s-row{width:calc((100% - 2 * var(--sgap)) / 3);}
 }
 @media (max-width:700px){
   .shop-grid{max-width:460px;gap:22px;}
-  .shop-card{width:100%;}
+  .shop-card,.s-row{width:100%;}
+  .s-start{margin-left:0;}
+  .s-end{margin-right:0;}
   .shop-shot{padding:22px 22px 18px;}
   .shop-tag{top:22px;left:22px;}
 }
@@ -212,188 +241,222 @@ html.touch .shop-tag{opacity:1;}
 
   <article class="shop-card rise">
     <a class="shop-shot" href="https://payhip.com/b/sk0OP" target="_blank" rel="noopener">
-      <span class="shop-mount"><img loading="lazy" decoding="async" src="shop/sea-dragon-mermaid.webp?v=1" alt="Sea Dragon Mermaid poster"></span>
+      <span class="shop-mount"><img loading="lazy" decoding="async" src="shop/sea-dragon-mermaid.webp?v=2" alt="Sea Dragon Mermaid poster"></span>
       <span class="shop-tag">digital download</span>
     </a>
     <div class="shop-body">
       <h3>Sea Dragon Mermaid</h3>
-      <p>Leafy sea dragon mermaid artwork. Australian native animal incorporation.</p>
+      <p>Leafy sea dragon mermaid illustration.</p>
     </div>
     <div class="shop-foot">
-      <span class="shop-price">A$10.00</span>
+      <span class="shop-price">A$5.00</span>
       <a class="cta" href="https://payhip.com/b/sk0OP" target="_blank" rel="noopener">buy &#8594;</a>
     </div>
   </article>
 
-  <article class="shop-card rise">
+  <article class="shop-card rise rot">
     <a class="shop-shot" href="https://payhip.com/b/qDimI" target="_blank" rel="noopener">
-      <span class="shop-mount"><img loading="lazy" decoding="async" src="shop/getting-ready.webp?v=1" alt="Getting Ready poster"></span>
+      <span class="shop-mount"><img loading="lazy" decoding="async" src="shop/getting-ready.webp?v=2" alt="Getting Ready poster"></span>
       <span class="shop-tag">digital download</span>
     </a>
     <div class="shop-body">
       <h3>Getting Ready</h3>
-      <p>Digital illustration depicting girlhood and female friendship. Finalist, M16 Artspace Digital Drawing Prize.</p>
+      <p>Illustration depicting teenage girlhood.</p>
     </div>
     <div class="shop-foot">
-      <span class="shop-price">A$15.00</span>
+      <span class="shop-price">A$10.00</span>
       <a class="cta" href="https://payhip.com/b/qDimI" target="_blank" rel="noopener">buy &#8594;</a>
     </div>
   </article>
 
-  <article class="shop-card rise">
+  <article class="shop-card rise rot">
     <a class="shop-shot" href="https://payhip.com/b/SRL9G" target="_blank" rel="noopener">
-      <span class="shop-mount"><img loading="lazy" decoding="async" src="shop/tomato.webp?v=1" alt="Tomato poster"></span>
+      <span class="shop-mount"><img loading="lazy" decoding="async" src="shop/tomato.webp?v=2" alt="Tomato poster"></span>
       <span class="shop-tag">digital download</span>
     </a>
     <div class="shop-body">
       <h3>Tomato</h3>
-      <p>Using a flatter, 2D style to create a more simplistic promotional poster design.</p>
+      <p>Vintage collage, 2D style, promotional poster design.</p>
     </div>
     <div class="shop-foot">
-      <span class="shop-price">A$10.00</span>
+      <span class="shop-price">A$5.00</span>
       <a class="cta" href="https://payhip.com/b/SRL9G" target="_blank" rel="noopener">buy &#8594;</a>
     </div>
   </article>
 
   <article class="shop-card rise">
     <a class="shop-shot" href="https://payhip.com/b/WRY1n" target="_blank" rel="noopener">
-      <span class="shop-mount"><img loading="lazy" decoding="async" src="shop/revelation.webp?v=1" alt="Revelation poster"></span>
+      <span class="shop-mount"><img loading="lazy" decoding="async" src="shop/revelation.webp?v=2" alt="Revelation poster"></span>
       <span class="shop-tag">digital download</span>
     </a>
     <div class="shop-body">
       <h3>Revelation</h3>
-      <p>Experimenting with different photoshop effects, colour map overlays and layout design.</p>
+      <p>Red and blue butterfly design.</p>
     </div>
     <div class="shop-foot">
-      <span class="shop-price">A$10.00</span>
+      <span class="shop-price">A$5.00</span>
       <a class="cta" href="https://payhip.com/b/WRY1n" target="_blank" rel="noopener">buy &#8594;</a>
     </div>
   </article>
 
   <article class="shop-card rise">
     <a class="shop-shot" href="https://payhip.com/b/RTAoY" target="_blank" rel="noopener">
-      <span class="shop-mount"><img loading="lazy" decoding="async" src="shop/take-me-by-the-hand.webp?v=1" alt="Take Me By The Hand poster"></span>
+      <span class="shop-mount"><img loading="lazy" decoding="async" src="shop/take-me-by-the-hand.webp?v=2" alt="Take Me By The Hand poster"></span>
       <span class="shop-tag">digital download</span>
     </a>
     <div class="shop-body">
       <h3>Take Me By The Hand</h3>
-      <p>Building collage effect with layout design, typography and image design.</p>
+      <p>Layered collage effects, typography, texture, screen print feel.</p>
     </div>
     <div class="shop-foot">
-      <span class="shop-price">A$10.00</span>
+      <span class="shop-price">A$5.00</span>
       <a class="cta" href="https://payhip.com/b/RTAoY" target="_blank" rel="noopener">buy &#8594;</a>
     </div>
   </article>
 
   <article class="shop-card rise">
+    <a class="shop-shot" href="https://payhip.com/b/M9uEd" target="_blank" rel="noopener">
+      <span class="shop-mount"><img loading="lazy" decoding="async" src="shop/orchid-bundle.webp?v=2" alt="Orchid  botanical set poster"></span>
+      <span class="shop-tag">digital download</span>
+    </a>
+    <div class="shop-body">
+      <h3>Orchid &mdash; botanical set</h3>
+      <p>All four botanical designs &mdash; Orchidaceae, Rosaceae, Japanese Orchid and Blue Orchid.</p>
+      <a class="shop-deal" href="https://payhip.com/b/M9uEd" target="_blank" rel="noopener">&#9733; save A$10</a>
+    </div>
+    <div class="shop-foot">
+      <span class="shop-price">A$10.00</span>
+      <a class="cta" href="https://payhip.com/b/M9uEd" target="_blank" rel="noopener">buy &#8594;</a>
+    </div>
+  </article>
+
+  <article class="shop-card rise">
     <a class="shop-shot" href="https://payhip.com/b/dwVt0" target="_blank" rel="noopener">
-      <span class="shop-mount"><img loading="lazy" decoding="async" src="shop/japanese-orchid.webp?v=1" alt="Japanese Orchid poster"></span>
+      <span class="shop-mount"><img loading="lazy" decoding="async" src="shop/japanese-orchid.webp?v=2" alt="Japanese Orchid poster"></span>
       <span class="shop-tag">digital download</span>
     </a>
     <div class="shop-body">
       <h3>Japanese Orchid</h3>
-      <p>Using Japanese language characters as a design element, literally meaning &#x27;Orchidaceae&#x27;. Along with orchid illustration that has been recoloured and image traced.</p>
-      <a class="shop-deal" href="https://payhip.com/b/M9uEd" target="_blank" rel="noopener">&#9733; botanical set &mdash; 4 for A$20</a>
+      <p>Red orchid design with Japanese typography.</p>
+      <a class="shop-deal" href="https://payhip.com/b/M9uEd" target="_blank" rel="noopener">&#9733; all four for A$10</a>
     </div>
     <div class="shop-foot">
-      <span class="shop-price">A$10.00</span>
+      <span class="shop-price">A$5.00</span>
       <a class="cta" href="https://payhip.com/b/dwVt0" target="_blank" rel="noopener">buy &#8594;</a>
     </div>
   </article>
 
   <article class="shop-card rise">
     <a class="shop-shot" href="https://payhip.com/b/C8h2b" target="_blank" rel="noopener">
-      <span class="shop-mount"><img loading="lazy" decoding="async" src="shop/blue-orchid.webp?v=1" alt="Blue Orchid poster"></span>
+      <span class="shop-mount"><img loading="lazy" decoding="async" src="shop/blue-orchid.webp?v=2" alt="Blue Orchid poster"></span>
       <span class="shop-tag">digital download</span>
     </a>
     <div class="shop-body">
       <h3>Blue Orchid</h3>
-      <p>Using textures, bitmap effects, typography, micrographic like elements and layout design.</p>
-      <a class="shop-deal" href="https://payhip.com/b/M9uEd" target="_blank" rel="noopener">&#9733; botanical set &mdash; 4 for A$20</a>
+      <p>Blue textured orchid design.</p>
+      <a class="shop-deal" href="https://payhip.com/b/M9uEd" target="_blank" rel="noopener">&#9733; all four for A$10</a>
     </div>
     <div class="shop-foot">
-      <span class="shop-price">A$10.00</span>
+      <span class="shop-price">A$5.00</span>
       <a class="cta" href="https://payhip.com/b/C8h2b" target="_blank" rel="noopener">buy &#8594;</a>
     </div>
   </article>
 
-  <article class="shop-card rise">
-    <a class="shop-shot" href="https://payhip.com/b/7ySHi" target="_blank" rel="noopener">
-      <span class="shop-mount"><img loading="lazy" decoding="async" src="shop/wearing-a-mask-1.webp?v=1" alt="Wearing A Mask I poster"></span>
-      <span class="shop-tag">digital download</span>
-    </a>
-    <div class="shop-body">
-      <h3>Wearing A Mask I</h3>
-      <p>Using Japanese typography and a flatter shape layout, experimenting with gradients and simple illustration.</p>
-      <a class="shop-deal" href="https://payhip.com/b/U4Qes" target="_blank" rel="noopener">&#9733; series deal &mdash; 2 for A$15</a>
-    </div>
-    <div class="shop-foot">
-      <span class="shop-price">A$10.00</span>
-      <a class="cta" href="https://payhip.com/b/7ySHi" target="_blank" rel="noopener">buy &#8594;</a>
-    </div>
-  </article>
+  <span class="shop-break" aria-hidden="true"></span>
 
-  <article class="shop-card rise">
-    <a class="shop-shot" href="https://payhip.com/b/Y59E2" target="_blank" rel="noopener">
-      <span class="shop-mount"><img loading="lazy" decoding="async" src="shop/wearing-a-mask-2.webp?v=1" alt="Wearing A Mask II poster"></span>
-      <span class="shop-tag">digital download</span>
-    </a>
-    <div class="shop-body">
-      <h3>Wearing A Mask II</h3>
-      <p>Using Japanese typography and a flatter shape layout, experimenting with gradients and simple illustration.</p>
-      <a class="shop-deal" href="https://payhip.com/b/U4Qes" target="_blank" rel="noopener">&#9733; series deal &mdash; 2 for A$15</a>
-    </div>
-    <div class="shop-foot">
-      <span class="shop-price">A$10.00</span>
-      <a class="cta" href="https://payhip.com/b/Y59E2" target="_blank" rel="noopener">buy &#8594;</a>
-    </div>
-  </article>
-
-  <article class="shop-card rise">
+  <article class="shop-card rise s-start s-row">
     <a class="shop-shot" href="https://payhip.com/b/ubaBm" target="_blank" rel="noopener">
-      <span class="shop-mount"><img loading="lazy" decoding="async" src="shop/flora-series.webp?v=1" alt="Flora  series poster"></span>
+      <span class="shop-mount"><img loading="lazy" decoding="async" src="shop/flora-series.webp?v=2" alt="Flora  series poster"></span>
       <span class="shop-tag">digital download</span>
     </a>
     <div class="shop-body">
       <h3>Flora &mdash; series</h3>
       <p>Both floral designs together &mdash; Orchidaceae and Rosaceae.</p>
-      <a class="shop-deal" href="https://payhip.com/b/ubaBm" target="_blank" rel="noopener">&#9733; save A$5</a>
+      <a class="shop-deal" href="https://payhip.com/b/ubaBm" target="_blank" rel="noopener">&#9733; save A$3</a>
     </div>
     <div class="shop-foot">
-      <span class="shop-price">A$15.00</span>
+      <span class="shop-price">A$7.00</span>
       <a class="cta" href="https://payhip.com/b/ubaBm" target="_blank" rel="noopener">buy &#8594;</a>
     </div>
   </article>
 
-  <article class="shop-card rise">
-    <a class="shop-shot" href="https://payhip.com/b/M9uEd" target="_blank" rel="noopener">
-      <span class="shop-mount"><img loading="lazy" decoding="async" src="shop/orchid-bundle.webp?v=1" alt="Orchid  botanical set poster"></span>
+  <article class="shop-card rise s-row">
+    <a class="shop-shot" href="https://payhip.com/b/JYSyO" target="_blank" rel="noopener">
+      <span class="shop-mount"><img loading="lazy" decoding="async" src="shop/orchidaceae.webp?v=2" alt="Orchidaceae poster"></span>
       <span class="shop-tag">digital download</span>
     </a>
     <div class="shop-body">
-      <h3>Orchid &mdash; botanical set</h3>
-      <p>All four botanical designs &mdash; Orchidaceae, Rosaceae, Japanese Orchid and Blue Orchid.</p>
-      <a class="shop-deal" href="https://payhip.com/b/M9uEd" target="_blank" rel="noopener">&#9733; save A$20</a>
+      <h3>Orchidaceae</h3>
+      <p>Pink Orchid poster design.</p>
+      <a class="shop-deal" href="https://payhip.com/b/ubaBm" target="_blank" rel="noopener">&#9733; both for A$7</a>
     </div>
     <div class="shop-foot">
-      <span class="shop-price">A$20.00</span>
-      <a class="cta" href="https://payhip.com/b/M9uEd" target="_blank" rel="noopener">buy &#8594;</a>
+      <span class="shop-price">A$5.00</span>
+      <a class="cta" href="https://payhip.com/b/JYSyO" target="_blank" rel="noopener">buy &#8594;</a>
     </div>
   </article>
 
-  <article class="shop-card rise">
+  <article class="shop-card rise s-end s-row">
+    <a class="shop-shot" href="https://payhip.com/b/8syui" target="_blank" rel="noopener">
+      <span class="shop-mount"><img loading="lazy" decoding="async" src="shop/rosaceae.webp?v=2" alt="Rosaceae poster"></span>
+      <span class="shop-tag">digital download</span>
+    </a>
+    <div class="shop-body">
+      <h3>Rosaceae</h3>
+      <p>Pink Rose poster design.</p>
+      <a class="shop-deal" href="https://payhip.com/b/ubaBm" target="_blank" rel="noopener">&#9733; both for A$7</a>
+    </div>
+    <div class="shop-foot">
+      <span class="shop-price">A$5.00</span>
+      <a class="cta" href="https://payhip.com/b/8syui" target="_blank" rel="noopener">buy &#8594;</a>
+    </div>
+  </article>
+
+  <article class="shop-card rise s-start s-row">
     <a class="shop-shot" href="https://payhip.com/b/U4Qes" target="_blank" rel="noopener">
-      <span class="shop-mount"><img loading="lazy" decoding="async" src="shop/wearing-a-mask-series.webp?v=1" alt="Wearing A Mask  series poster"></span>
+      <span class="shop-mount"><img loading="lazy" decoding="async" src="shop/wearing-a-mask-series.webp?v=2" alt="Wearing A Mask  series poster"></span>
       <span class="shop-tag">digital download</span>
     </a>
     <div class="shop-body">
       <h3>Wearing A Mask &mdash; series</h3>
       <p>Both mask designs together.</p>
-      <a class="shop-deal" href="https://payhip.com/b/U4Qes" target="_blank" rel="noopener">&#9733; save A$5</a>
+      <a class="shop-deal" href="https://payhip.com/b/U4Qes" target="_blank" rel="noopener">&#9733; save A$3</a>
     </div>
     <div class="shop-foot">
-      <span class="shop-price">A$15.00</span>
+      <span class="shop-price">A$7.00</span>
       <a class="cta" href="https://payhip.com/b/U4Qes" target="_blank" rel="noopener">buy &#8594;</a>
+    </div>
+  </article>
+
+  <article class="shop-card rise s-row">
+    <a class="shop-shot" href="https://payhip.com/b/7ySHi" target="_blank" rel="noopener">
+      <span class="shop-mount"><img loading="lazy" decoding="async" src="shop/wearing-a-mask-1.webp?v=2" alt="Wearing A Mask I poster"></span>
+      <span class="shop-tag">digital download</span>
+    </a>
+    <div class="shop-body">
+      <h3>Wearing A Mask I</h3>
+      <p>2D style, Japanese typography and symbols.</p>
+      <a class="shop-deal" href="https://payhip.com/b/U4Qes" target="_blank" rel="noopener">&#9733; both for A$7</a>
+    </div>
+    <div class="shop-foot">
+      <span class="shop-price">A$5.00</span>
+      <a class="cta" href="https://payhip.com/b/7ySHi" target="_blank" rel="noopener">buy &#8594;</a>
+    </div>
+  </article>
+
+  <article class="shop-card rise s-end s-row">
+    <a class="shop-shot" href="https://payhip.com/b/Y59E2" target="_blank" rel="noopener">
+      <span class="shop-mount"><img loading="lazy" decoding="async" src="shop/wearing-a-mask-2.webp?v=2" alt="Wearing A Mask II poster"></span>
+      <span class="shop-tag">digital download</span>
+    </a>
+    <div class="shop-body">
+      <h3>Wearing A Mask II</h3>
+      <p>2D style, Japanese typography and symbols.</p>
+      <a class="shop-deal" href="https://payhip.com/b/U4Qes" target="_blank" rel="noopener">&#9733; both for A$7</a>
+    </div>
+    <div class="shop-foot">
+      <span class="shop-price">A$5.00</span>
+      <a class="cta" href="https://payhip.com/b/Y59E2" target="_blank" rel="noopener">buy &#8594;</a>
     </div>
   </article>
 
@@ -401,8 +464,8 @@ html.touch .shop-tag{opacity:1;}
 
 <p class="shop-note rise">
   <b>what you get</b>
-  A high resolution file for each design, ready to print at home or through a
-  print shop, sent to you straight after checkout. Payment and delivery are handled by Payhip. For
+  A PDF and a 300dpi JPEG for each design, print ready at A3 (297 &times; 420mm),
+  sent to you straight after checkout. For personal use &mdash; not for resale. Payment and delivery are handled by Payhip. For
   something custom, or a size you can't print yourself, just
   <a href="index.html#contact">get in touch</a>.
 </p>
