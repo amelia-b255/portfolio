@@ -300,6 +300,18 @@ nav a.here{color:var(--accent);background-size:100% 1px;}
   height:auto;
   margin:5vh auto 0;
 }
+/* A gallery holding only a pair — the four-column flow would leave both
+   stranded in columns one and two, so they run as a centred row instead.
+   Guarded against stack-mode, which lays the deck out itself. */
+.gallery.duo:not(.stack-mode){
+  display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;
+  columns:auto;gap:14px;
+}
+.gallery.duo:not(.stack-mode) figure{
+  flex:0 0 calc(50% - 7px);
+  width:calc(50% - 7px);max-width:460px;
+  break-inside:auto;margin:0;
+}
 .gallery figure{
   position:relative;
   display:block;
@@ -652,6 +664,18 @@ nav a.here{color:var(--accent);background-size:100% 1px;}
   transition:opacity 0.25s ease,transform 0.25s ease;
 }
 .cap-award:hover{opacity:0.75;transform:translateY(-2px);}
+/* Same pill as the award one, for a piece that can be bought as a print.
+   It deliberately sets no colour: in the posters gallery the caption is an
+   overlay with its own pale text, so inheriting keeps it legible there and
+   in the phone stack alike.
+   The pill sits in a block-level row of its own so it drops under the
+   description — inline, it hung off the end of the last sentence and
+   inflated that one line box, leaving the line spacing uneven. The pill
+   itself stays inline-flex inside that row, so it follows whatever
+   text-align the caption uses: centred on a desktop stack, left on a
+   phone. */
+.cap-buy-row{display:block;margin-top:13px;}
+.cap-buy{display:inline-flex;margin-top:0;}
 .cap-award .ic{
   width:12px;height:12px;flex:0 0 12px;
   background:currentColor;
@@ -718,7 +742,8 @@ nav a.here{color:var(--accent);background-size:100% 1px;}
   pointer-events:none;
 }
 .gallery.stack-mode figure[data-orient="landscape"] img,
-.gallery.stack-mode figure[data-orient="square"] img{object-fit:contain;}
+.gallery.stack-mode figure[data-orient="square"] img,
+.gallery.stack-mode figure[data-orient="post"] img{object-fit:contain;}
 /* only the front card shows its caption, printed under the deck */
 .gallery.stack-mode figcaption{display:none;}
 .stack-cap{
@@ -1143,6 +1168,15 @@ img{
   }
   .gallery.tile:not(.stack-mode):not(.vidgal):not(.icons) > figure:not([data-orient="landscape"]) img{
     height:100%;object-fit:cover;
+  }
+  /* a piece made at Instagram post size (4:5) rather than A3 — the uniform
+     0.71 tile was cropping its edges off, so it keeps its own ratio and is
+     shown whole */
+  .gallery.tile:not(.stack-mode):not(.vidgal):not(.icons) > figure[data-orient="post"]{
+    aspect-ratio:0.8;
+  }
+  .gallery.tile:not(.stack-mode):not(.vidgal):not(.icons) > figure[data-orient="post"] img{
+    height:100%;object-fit:contain;
   }
 
   /* everywhere else the original runs a 12px gutter — basis follows it */
