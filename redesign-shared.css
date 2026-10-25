@@ -312,6 +312,16 @@ nav a.here{color:var(--accent);background-size:100% 1px;}
   width:calc(50% - 7px);max-width:460px;
   break-inside:auto;margin:0;
 }
+/* and the same for a row of three */
+.gallery.trio:not(.stack-mode){
+  display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;
+  columns:auto;gap:14px;
+}
+.gallery.trio:not(.stack-mode) figure{
+  flex:0 0 calc(33.333% - 10px);
+  width:calc(33.333% - 10px);max-width:340px;
+  break-inside:auto;margin:0;
+}
 .gallery figure{
   position:relative;
   display:block;
