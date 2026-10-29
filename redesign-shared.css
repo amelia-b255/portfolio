@@ -657,6 +657,13 @@ nav a.here{color:var(--accent);background-size:100% 1px;}
 .gallery.vidgal.stack-mode video{height:100%;object-fit:contain;border-radius:0;background:#000;}
 .stack-scene:has(.vidgal.stack-mode) + .stack-cap{margin-top:38px;}
 .gallery.vidgal.stack-mode figcaption{display:none;}
+/* instagram reels are shot 9:16 — same card as the music page's videos, just
+   stood upright, since cropping one back to 16:9 would cut the frame in half.
+   .nostack keeps them a plain pair, so there is no deck and no deck arrows */
+.gallery.vidgal.reels figure{
+  flex:0 0 min(258px,74vw);width:min(258px,74vw);max-width:258px;
+  aspect-ratio:9/16;
+}
 /* duration shown beside a standalone video's label */
 .vidwrap .dur{
   float:right;letter-spacing:0.16em;

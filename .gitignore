@@ -22,4 +22,6 @@ t.html
 
 # tooling
 .claude/
-_web-originals/
+# everything unused by the site now lives here; it stays on the Mac
+# (this folder holds the old _web-originals originals, among other things)
+_archive/

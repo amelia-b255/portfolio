@@ -1065,14 +1065,14 @@
 /* Tip popup */
 #tip-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:9999;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.5s ease;pointer-events:none;}
 #tip-overlay.tip-visible{opacity:1;pointer-events:all;}
-#tip-box{position:relative;max-width:min(400px,86vw);padding:44px 32px 36px;background:url('tipbox-dark.svg?v=3') center/cover;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:16px;box-shadow:20px 20px 60px rgba(0,0,0,0.5);transform:scale(0.95);transition:transform 0.5s ease;text-align:center;}
+#tip-box{position:relative;max-width:min(400px,86vw);padding:44px 32px 36px;background:url('shared/tipbox-dark.svg?v=3') center/cover;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:16px;box-shadow:20px 20px 60px rgba(0,0,0,0.5);transform:scale(0.95);transition:transform 0.5s ease;text-align:center;}
 #tip-overlay.tip-visible #tip-box{transform:scale(1);}
 #tip-close{position:absolute;top:10px;right:12px;background:transparent;border:none;color:#fff;font-size:28px;line-height:1;width:32px;height:32px;border-radius:0;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;touch-action:manipulation;}
 #tip-close:hover{background:transparent;opacity:0.7;}
 .tip-popup-heading{font-family:'Archivo Black',sans-serif;font-size:32px;letter-spacing:-0.12em;text-transform:uppercase;color:#b89488;margin:0 0 8px;line-height:1.1;}
 .tip-popup-body{font-family:'Archivo Black',sans-serif;font-size:14px;letter-spacing:-0.12em;color:#e0c8c0;margin:0;line-height:1.5;}
 .tip-popup-divider{width:50%;height:1px;background:rgba(255,255,255,0.2);margin:18px auto;}
-html.light-mode #tip-box{background:url('tipbox-light.svg?v=3') center/cover!important;box-shadow:20px 20px 60px rgba(120,60,50,0.2)!important;}
+html.light-mode #tip-box{background:url('shared/tipbox-light.svg?v=3') center/cover!important;box-shadow:20px 20px 60px rgba(120,60,50,0.2)!important;}
 html.light-mode .tip-popup-heading{color:#4a1a2e!important;}
 html.light-mode .tip-popup-body{color:#5a3020!important;}
 html.light-mode #tip-close{color:#4a1a2e!important;background:rgba(0,0,0,0.1)!important;}
@@ -1167,18 +1167,18 @@ nav .music-nav-link:hover, nav .cv-button:hover { transform: none !important; }
 <style>
 /* === TIP-IMAGE PANEL/PILL BACKGROUNDS (reversible: delete this whole style block) === */
 html:not(.light-mode) .project-info, html:not(.light-mode) .brief-container, html:not(.light-mode) .music-achievements, html:not(.light-mode) .statement-view {
-    background: linear-gradient(rgba(30,16,22,0.58), rgba(30,16,22,0.58)), url('tipbox-dark.svg?v=3') center/cover !important;
+    background: linear-gradient(rgba(30,16,22,0.58), rgba(30,16,22,0.58)), url('shared/tipbox-dark.svg?v=3') center/cover !important;
     overflow: hidden;
 }
 html.light-mode .project-info, html.light-mode .brief-container, html.light-mode .music-achievements, html.light-mode .statement-view {
-    background: linear-gradient(rgba(242,228,218,0.55), rgba(242,228,218,0.55)), url('tipbox-light.svg?v=3') center/cover !important;
+    background: linear-gradient(rgba(242,228,218,0.55), rgba(242,228,218,0.55)), url('shared/tipbox-light.svg?v=3') center/cover !important;
     overflow: hidden;
 }
 html:not(.light-mode) .award-badge, html:not(.light-mode) .winner-badge, html:not(.light-mode) .tech-badge {
-    background: url('tipbox-dark.svg?v=3') center/cover !important;
+    background: url('shared/tipbox-dark.svg?v=3') center/cover !important;
 }
 html.light-mode .award-badge, html.light-mode .winner-badge, html.light-mode .tech-badge {
-    background: url('tipbox-light.svg?v=3') center/cover !important;
+    background: url('shared/tipbox-light.svg?v=3') center/cover !important;
 }
 </style>
 <script>

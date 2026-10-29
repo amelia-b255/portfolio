@@ -270,6 +270,7 @@
 
   [].slice.call(document.querySelectorAll('.gallery')).forEach(function(gal){
     if(gal.classList.contains('icons')) return;           /* icon grid stays a grid */
+    if(gal.classList.contains('nostack')) return;         /* a pair that reads better as a plain row */
     var figs=[].slice.call(gal.querySelectorAll('figure')).filter(function(f){
       return !f.classList.contains('g-break');
     });
